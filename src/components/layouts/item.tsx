@@ -23,7 +23,7 @@ export default function Item({
 				className,
 			)}
 			htmlProps={{
-				...({ "data-is-selected": isSelected } as any),
+				...{ "data-is-selected": isSelected },
 				onClick,
 			}}
 		>
