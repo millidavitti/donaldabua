@@ -26,7 +26,7 @@ export default function EditProfilePhoto() {
 			</Flex>
 			{/* Edit Profile Photo */}
 			<form
-				className='outline bg-white flex data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
+				className='outline bg-light-surface flex data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
 				data-is-visible={edit_profile === "edit-image"}
 				onSubmit={(e) => {
 					e.preventDefault();
