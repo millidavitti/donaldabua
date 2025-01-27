@@ -1,7 +1,7 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { profile_jotai, profile_name_jotai } from "@/data/atoms/app_data";
+import { profile_name_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { X } from "lucide-react";
 import React from "react";
 
