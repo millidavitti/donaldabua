@@ -11,14 +11,14 @@ export default function Flex({
 	children,
 	className,
 	htmlProps,
-	flex = "column",
+	flex = "row",
 }: FlexColumn) {
 	return (
 		<>
 			{flex === "column" && (
 				<div
 					className={cn(
-						"flex flex-col p-3 outline-2 overflow-y-auto",
+						"flex flex-col p-3 outline-2 outline overflow-y-auto",
 						className,
 					)}
 					{...htmlProps}
@@ -29,7 +29,7 @@ export default function Flex({
 			{flex === "row" && (
 				<div
 					className={cn(
-						"flex flex-row p-3 outline-2 overflow-x-auto",
+						"flex flex-row p-3 outline-2 outline overflow-x-auto",
 						className,
 					)}
 					{...htmlProps}
