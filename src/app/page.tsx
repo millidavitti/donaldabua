@@ -1,5 +1,4 @@
 import Flex from "@/components/layouts/flex";
-import Image from "next/image";
 
 export default function Home() {
 	return (
