@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { profile_image_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { X } from "lucide-react";
 import Image from "next/image";
 import React from "react";
