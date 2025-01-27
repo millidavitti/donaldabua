@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 
 interface InteractiveIcon {
 	children: ReactNode;
-	className?: String;
+	className?: string;
 	callback?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 export default function InteractiveIcon({
