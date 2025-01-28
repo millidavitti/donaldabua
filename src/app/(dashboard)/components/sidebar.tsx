@@ -3,13 +3,15 @@ import Flex from "@/components/layouts/flex";
 
 import React from "react";
 import VideoIntroduction from "./video-introduction";
+import EditAvailability from "./edit-availability";
 
 export default function Sidebar() {
 	return (
-		<Flex className='basis-80 grow gap-3 shrink-0' flex='column'>
-			<h2>Sidebar</h2>
+		<Flex flex='column' className='basis-80 grow gap-3 shrink-0'>
 			<VideoIntroduction />
-			<Flex className='grow'></Flex>
+			<Flex flex='column' className='grow'>
+				<EditAvailability />
+			</Flex>
 		</Flex>
 	);
 }
