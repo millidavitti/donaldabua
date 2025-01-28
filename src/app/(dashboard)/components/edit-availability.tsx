@@ -16,15 +16,20 @@ export default function EditAvailability() {
 
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between'>
-				<p className='font-semibold text-2xl'>Hours Per Week</p>
-				<InteractiveIcon
-					callback={() => {
-						edit_profile_setter("edit-hours-per-week");
-					}}
-				>
-					<EditIcon size={24} />
-				</InteractiveIcon>
+			<Flex flex='column' className='gap-3'>
+				<Flex className='h-fit items-center justify-between'>
+					<p className='font-semibold text-2xl'>Hours Per Week</p>
+					<InteractiveIcon
+						callback={() => {
+							edit_profile_setter("edit-hours-per-week");
+						}}
+					>
+						<EditIcon size={24} />
+					</InteractiveIcon>
+				</Flex>
+				<Flex>
+					<p className='text-xl'>{profile_hours_per_week}</p>
+				</Flex>
 			</Flex>
 			<Overlay
 				stateFlag='edit-hours-per-week'
@@ -50,7 +55,7 @@ export default function EditAvailability() {
 					>
 						{/* Availability Options */}
 						<Flex flex='column' className='gap-3'>
-							{availabilityOption.map((option) => (
+							{availabilityOptions.map((option) => (
 								<Flex className='gap-3' key={option}>
 									<input
 										type='radio'
@@ -66,7 +71,9 @@ export default function EditAvailability() {
 									<label htmlFor={option}>{option}</label>
 								</Flex>
 							))}
-							<Button type='submit'>Save</Button>
+							<Button type='submit' className='bg-black text-light-surface'>
+								Save
+							</Button>
 						</Flex>
 					</form>
 				</Flex>
@@ -75,7 +82,7 @@ export default function EditAvailability() {
 	);
 }
 
-const availabilityOption = [
+const availabilityOptions = [
 	"More than 30 hrs/week",
 	"Less than 30 hrs/week",
 	"As needed - open to offers",
