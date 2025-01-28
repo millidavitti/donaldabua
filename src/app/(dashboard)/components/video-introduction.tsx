@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { profile_video_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
-import { CircleCheckBigIcon, CirclePlus, Trash2, X } from "lucide-react";
+import { CirclePlus, Trash2, X } from "lucide-react";
 import Flex from "@/components/layouts/flex";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { toast } from "sonner";
@@ -48,11 +48,9 @@ export default function VideoIntroduction() {
 					value={profile_video || ""}
 					onChange={(e) => {
 						const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-						youtubeEmbed
-							? profile_video_setter(youtubeEmbed)
-							: toast.info(
-									"Provided an invalid YouTube link: " + e.target.value,
-							  );
+						if (youtubeEmbed) profile_video_setter(youtubeEmbed);
+						else
+							toast.info("Provided an invalid YouTube link: " + e.target.value);
 					}}
 				/>
 				<InteractiveIcon callback={() => edit_profile_setter(null)}>
@@ -62,7 +60,7 @@ export default function VideoIntroduction() {
 			<iframe
 				src={profile_video}
 				data-is-visible={Boolean(profile_video)}
-				className='data-[is-visible=false]:hidden'
+				className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
 			/>
 		</Flex>
 	);
