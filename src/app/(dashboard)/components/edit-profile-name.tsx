@@ -22,7 +22,7 @@ export default function EditProfileName() {
 				{profile_name}
 			</h2>
 			<form
-				className='flex outline bg-white data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
+				className='flex outline bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
 				data-is-visible={edit_profile === "edit-name"}
 				onSubmit={(e) => {
 					e.preventDefault();

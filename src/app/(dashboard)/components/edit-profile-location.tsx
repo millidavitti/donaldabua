@@ -22,7 +22,7 @@ export default function EditProfileLocation() {
 			</p>
 			{/* <p>{new Date().toTimeString()}</p> */}
 			<form
-				className='flex left-0 bg-white data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
+				className='flex left-0 bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
 				data-is-visible={edit_profile === "edit-location"}
 				onSubmit={(e) => {
 					e.preventDefault();
