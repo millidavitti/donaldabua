@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import DeveloperSummary from "./edit-developer-summary";
+import DeveloperSummary from "./developer-summary";
 import Portfolio from "./portfolio";
 import Skills from "./skills";
 
