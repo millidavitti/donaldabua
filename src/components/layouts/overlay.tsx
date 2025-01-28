@@ -18,7 +18,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 		<>
 			<div
 				className={cn(
-					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden",
+					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden px-3",
 					className,
 				)}
 				id='overlay'

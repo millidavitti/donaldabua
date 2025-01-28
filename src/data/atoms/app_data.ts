@@ -10,6 +10,8 @@ export type Profile = {
 		country: string;
 	};
 	hoursPerWeek: string;
+	title: string;
+	hourlyRate: number;
 };
 export const profile_jotai = atom<Profile>({
 	name: "Donald Abua",
@@ -20,6 +22,8 @@ export const profile_jotai = atom<Profile>({
 		country: "United State",
 	},
 	hoursPerWeek: "More than 30 hrs/week",
+	title: "Full Stack Node JS Developer",
+	hourlyRate: 15,
 });
 
 export const profile_name_jotai = focusAtom(profile_jotai, (optic) =>
@@ -36,4 +40,10 @@ export const profile_location_jotai = focusAtom(profile_jotai, (optic) =>
 );
 export const profile_hours_per_week_jotai = focusAtom(profile_jotai, (optic) =>
 	optic.prop("hoursPerWeek"),
+);
+export const profile_title_jotai = focusAtom(profile_jotai, (optic) =>
+	optic.prop("title"),
+);
+export const profile_hourly_rate_jotai = focusAtom(profile_jotai, (optic) =>
+	optic.prop("hourlyRate"),
 );
