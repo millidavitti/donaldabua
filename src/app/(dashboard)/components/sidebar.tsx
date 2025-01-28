@@ -9,7 +9,7 @@ export default function Sidebar() {
 	return (
 		<Flex flex='column' className='basis-80 grow gap-3 shrink-0'>
 			<VideoIntroduction />
-			<Flex flex='column' className='grow'>
+			<Flex flex='column'>
 				<EditAvailability />
 			</Flex>
 		</Flex>
