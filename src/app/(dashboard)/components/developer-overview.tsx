@@ -6,7 +6,7 @@ import Skills from "./skills";
 
 export default function DeveloperOverview() {
 	return (
-		<Flex className='basis-[640px] grow-[2] gap-3' flex='column'>
+		<Flex className='basis-[720px] grow-[2] gap-3' flex='column'>
 			<h2 className='shrink-0'>Developer Overview</h2>
 			<DeveloperSummary />
 			<Portfolio />
