@@ -5,7 +5,7 @@ import Sidebar from "../components/sidebar";
 import DeveloperOverview from "../components/developer-overview";
 import Testimonials from "../components/testimonials";
 import EmploymentHistory from "../components/employment-history";
-import Socials from "../components/socials";
+import Socials from "../components/edit-socials";
 
 export default function Dashboard() {
 	return (

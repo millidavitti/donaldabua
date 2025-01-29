@@ -11,7 +11,7 @@ export default function Button({ children, className, onClick, type }: Button) {
 		<button
 			type={type}
 			className={cn(
-				"outline p-3 py-2 title-medium active:scale-95 transition shrink-0",
+				"outline p-3 py-2 title-medium active:scale-[.99] transition shrink-0",
 				className,
 			)}
 			onClick={onClick}
