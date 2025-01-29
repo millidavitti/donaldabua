@@ -10,5 +10,6 @@ export type EditProfileStates =
 	| "edit-hourly-rate"
 	| "edit-profile-overview"
 	| "edit-tech-stack"
+	| "edit-employment-history"
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
