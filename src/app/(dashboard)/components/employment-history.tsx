@@ -15,19 +15,13 @@ export default function EmploymentHistory() {
 			<Flex flex='column' className=''>
 				<Flex className='h-fit items-center justify-between'>
 					<p className='font-semibold lg:text-2xl'>Employment History</p>
-					{false ? (
-						<InteractiveIcon callback={() => {}}>
-							<Trash2 size={24} />
-						</InteractiveIcon>
-					) : (
-						<InteractiveIcon
-							callback={() => {
-								edit_profile_setter("edit-employment-history");
-							}}
-						>
-							<CirclePlus size={24} />
-						</InteractiveIcon>
-					)}
+					<InteractiveIcon
+						callback={() => {
+							edit_profile_setter("edit-employment-history");
+						}}
+					>
+						<CirclePlus size={24} />
+					</InteractiveIcon>
 				</Flex>
 			</Flex>
 
