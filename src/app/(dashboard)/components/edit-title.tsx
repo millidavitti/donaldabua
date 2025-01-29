@@ -12,8 +12,8 @@ export default function EditTitle() {
 	const [profile_title, profile_title_setter] = useAtom(profile_title_jotai);
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between'>
-				<p className='font-semibold text-2xl'>{profile_title}</p>
+			<Flex className='h-fit items-center justify-between grow'>
+				<p className='font-semibold lg:text-2xl'>{profile_title}</p>
 				<InteractiveIcon
 					callback={() => {
 						edit_profile_setter("edit-title");
@@ -30,7 +30,7 @@ export default function EditTitle() {
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
 					<Flex className='justify-between items-center'>
 						<Flex flex='column'>
-							<h2 className='text-3xl font-semibold'>Edit your title</h2>
+							<h2 className='text-2xl font-semibold'>Edit your title</h2>
 							<p>
 								Enter a single sentence description of your professional
 								skills/experience (e.g. Expert Web Designer with Ajax
@@ -49,7 +49,7 @@ export default function EditTitle() {
 							edit_profile_setter(null);
 						}}
 					>
-						<label className='text-2xl font-semibold' htmlFor='title'>
+						<label className='text-xl font-semibold' htmlFor='title'>
 							Your title
 						</label>
 						<input

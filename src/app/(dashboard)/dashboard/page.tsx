@@ -10,7 +10,7 @@ import Socials from "../components/socials";
 export default function Dashboard() {
 	return (
 		<Flex className='w-full h-full gap-3' flex='column'>
-			<h1 className='outline'>Dashboard</h1>
+			<h1 className='text-3xl font-bold text-center'>Profile Dashboard</h1>
 			<Flex className='outline h-full gap-3' flex='column'>
 				<ProfileHeader />
 				{/* Main */}

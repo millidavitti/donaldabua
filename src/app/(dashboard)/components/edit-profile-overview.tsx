@@ -2,37 +2,40 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { profile_hourly_rate_jotai } from "@/data/atoms/app_data";
+import { profile_overview_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
-import React from "react";
 
-export default function EditHourlyRate() {
+export default function EditProfileOverview() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [profile_hourly_rate, profile_hourly_rate_setter] = useAtom(
-		profile_hourly_rate_jotai,
+	const [profile_overview, profile_overview_setter] = useAtom(
+		profile_overview_jotai,
 	);
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between grow'>
-				<p className='font-semibold lg:text-2xl'>${profile_hourly_rate}/hr</p>
+			<Flex>
+				<Flex className='grow max-h-[320px]'>
+					<p>{profile_overview}</p>
+				</Flex>
 				<InteractiveIcon
 					callback={() => {
-						edit_profile_setter("edit-hourly-rate");
+						edit_profile_setter("edit-profile-overview");
 					}}
 				>
 					<EditIcon size={24} />
 				</InteractiveIcon>
 			</Flex>
-			{/* Overlays */}
 			<Overlay
-				stateFlag='edit-hourly-rate'
+				stateFlag='edit-profile-overview'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3 basis-[480px]'>
-					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Set hourly rate</h2>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 basis-[720px] max-h-[80%]'
+				>
+					<Flex className='justify-between items-center shrink-0'>
+						<h2 className='text-2xl font-semibold'>Profile overview</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
@@ -45,16 +48,16 @@ export default function EditHourlyRate() {
 							edit_profile_setter(null);
 						}}
 					>
-						<label className='text-xl font-semibold' htmlFor='title'>
+						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Your title
 						</label>
-						<input
-							type='number'
-							id='title'
+						<textarea
+							id='profile-overview'
 							required
-							value={profile_hourly_rate || ""}
+							rows={20}
+							value={profile_overview}
 							onChange={(e) => {
-								profile_hourly_rate_setter(+e.target.value);
+								profile_overview_setter(e.target.value);
 							}}
 							className='outline p-3'
 						/>

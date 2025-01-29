@@ -11,7 +11,10 @@ export default function EditProfilePhoto() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const [profile_image, profile_image_setter] = useAtom(profile_image_jotai);
 	return (
-		<Flex flex='column' className='relative overflow-visible z-10'>
+		<Flex
+			flex='column'
+			className='relative overflow-visible z-10 mx-auto lg:mx-0'
+		>
 			<Flex
 				className='rounded-full shrink-0 p-0 h-24 w-24 cursor-pointer active:scale-[.99] overflow-clip'
 				htmlProps={{
