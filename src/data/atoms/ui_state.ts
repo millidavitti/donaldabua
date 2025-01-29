@@ -9,5 +9,6 @@ export type EditProfileStates =
 	| "edit-title"
 	| "edit-hourly-rate"
 	| "edit-profile-overview"
+	| "edit-tech-stack"
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
