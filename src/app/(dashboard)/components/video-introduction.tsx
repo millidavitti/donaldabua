@@ -14,7 +14,7 @@ export default function VideoIntroduction() {
 	return (
 		<Flex flex='column'>
 			<Flex className='h-fit items-center justify-between'>
-				<p className='font-semibold text-2xl'>Video Introduction</p>
+				<p className='font-semibold lg:text-2xl'>Video Introduction</p>
 				{profile_video ? (
 					<InteractiveIcon
 						callback={() => {
