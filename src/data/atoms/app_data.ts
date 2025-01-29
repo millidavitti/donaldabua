@@ -12,6 +12,7 @@ export type Profile = {
 	hoursPerWeek: string;
 	title: string;
 	hourlyRate: number;
+	profileOverview: string;
 };
 export const profile_jotai = atom<Profile>({
 	name: "Donald Abua",
@@ -24,6 +25,7 @@ export const profile_jotai = atom<Profile>({
 	hoursPerWeek: "More than 30 hrs/week",
 	title: "Full Stack Node JS Developer",
 	hourlyRate: 15,
+	profileOverview: "",
 });
 
 export const profile_name_jotai = focusAtom(profile_jotai, (optic) =>
@@ -46,4 +48,7 @@ export const profile_title_jotai = focusAtom(profile_jotai, (optic) =>
 );
 export const profile_hourly_rate_jotai = focusAtom(profile_jotai, (optic) =>
 	optic.prop("hourlyRate"),
+);
+export const profile_overview_jotai = focusAtom(profile_jotai, (optic) =>
+	optic.prop("profileOverview"),
 );
