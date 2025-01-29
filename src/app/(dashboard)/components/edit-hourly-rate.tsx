@@ -15,8 +15,8 @@ export default function EditHourlyRate() {
 	);
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between'>
-				<p className='font-semibold text-2xl'>${profile_hourly_rate}/hr</p>
+			<Flex className='h-fit items-center justify-between grow'>
+				<p className='font-semibold lg:text-2xl'>${profile_hourly_rate}/hr</p>
 				<InteractiveIcon
 					callback={() => {
 						edit_profile_setter("edit-hourly-rate");
@@ -32,7 +32,7 @@ export default function EditHourlyRate() {
 			>
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[480px]'>
 					<Flex className='justify-between items-center'>
-						<h2 className='text-3xl font-semibold'>Set hourly rate</h2>
+						<h2 className='text-2xl font-semibold'>Set hourly rate</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
@@ -45,7 +45,7 @@ export default function EditHourlyRate() {
 							edit_profile_setter(null);
 						}}
 					>
-						<label className='text-2xl font-semibold' htmlFor='title'>
+						<label className='text-xl font-semibold' htmlFor='title'>
 							Your title
 						</label>
 						<input
