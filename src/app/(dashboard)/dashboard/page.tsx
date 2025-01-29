@@ -14,7 +14,7 @@ export default function Dashboard() {
 			<Flex className='outline h-full gap-3' flex='column'>
 				<ProfileHeader />
 				{/* Main */}
-				<Flex className='h-full gap-3 shrink-0 flex-wrap'>
+				<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
 					<Sidebar />
 					<DeveloperOverview />
 				</Flex>
