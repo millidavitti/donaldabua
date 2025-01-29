@@ -7,7 +7,7 @@ import EditAvailability from "./edit-availability";
 
 export default function Sidebar() {
 	return (
-		<Flex flex='column' className='basis-80 grow gap-3 shrink-0'>
+		<Flex flex='column' className='grow gap-3 lg:shrink-0 lg:basis-80'>
 			<VideoIntroduction />
 			<Flex flex='column'>
 				<EditAvailability />
