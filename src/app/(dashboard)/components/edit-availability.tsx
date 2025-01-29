@@ -18,7 +18,7 @@ export default function EditAvailability() {
 		<>
 			<Flex flex='column' className='gap-3'>
 				<Flex className='h-fit items-center justify-between'>
-					<p className='font-semibold text-2xl'>Hours Per Week</p>
+					<p className='font-semibold lg:text-2xl'>Hours Per Week</p>
 					<InteractiveIcon
 						callback={() => {
 							edit_profile_setter("edit-hours-per-week");
@@ -28,7 +28,7 @@ export default function EditAvailability() {
 					</InteractiveIcon>
 				</Flex>
 				<Flex>
-					<p className='text-xl'>{profile_hours_per_week}</p>
+					<p className='lg:text-xl text-sm'>{profile_hours_per_week}</p>
 				</Flex>
 			</Flex>
 			<Overlay
@@ -37,13 +37,13 @@ export default function EditAvailability() {
 			>
 				<Flex flex='column' className='bg-light-surface gap-3'>
 					<Flex className='justify-between items-center'>
-						<h2 className='text-3xl font-semibold'>Availability</h2>
+						<h2 className='text-2xl font-semibold'>Availability</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
 					<Flex flex='column'>
-						<h3 className='text-2xl font-semibold'>Hours per week</h3>
+						<h3 className='text-xl font-semibold'>Hours per week</h3>
 						<p>Let your leads know how much you can work.</p>
 					</Flex>
 					<form
