@@ -5,7 +5,7 @@ import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
-import { CirclePlus, Trash2, X } from "lucide-react";
+import { CirclePlus, X } from "lucide-react";
 
 export default function EmploymentHistory() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
