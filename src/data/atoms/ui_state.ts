@@ -11,5 +11,6 @@ export type EditProfileStates =
 	| "edit-profile-overview"
 	| "edit-tech-stack"
 	| "edit-employment-history"
+	| "edit-socials"
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
