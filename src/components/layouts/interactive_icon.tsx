@@ -1,15 +1,17 @@
-import { MouseEventHandler, ReactNode } from "react";
+import { HTMLProps, MouseEventHandler, ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
 interface InteractiveIcon {
 	children: ReactNode;
 	className?: string;
 	callback?: MouseEventHandler<HTMLDivElement> | undefined;
+	htmlProps?: Partial<HTMLProps<HTMLDivElement>>;
 }
 export default function InteractiveIcon({
 	children,
 	className,
 	callback,
+	htmlProps,
 }: InteractiveIcon) {
 	return (
 		<div
@@ -18,6 +20,7 @@ export default function InteractiveIcon({
 				className,
 			)}
 			onClick={callback}
+			{...htmlProps}
 		>
 			{children}
 		</div>
