@@ -23,6 +23,7 @@ export default function EditSocials() {
 						<CirclePlus size={24} />
 					</InteractiveIcon>
 				</Flex>
+				{/* Added Socials */}
 			</Flex>
 			<Overlay
 				stateFlag='edit-socials'
