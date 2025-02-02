@@ -44,6 +44,7 @@ export default function ProjectContentOptions() {
 					<Text />
 				</InteractiveIcon>
 			</Flex>
+			{/* Text */}
 			<p className='font-semibold'>
 				<span
 					className='data-[is-hovered=false]:hidden'
