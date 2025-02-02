@@ -14,7 +14,7 @@ export default function EditPortfolioProjectVideo() {
 	const [edit_portfolio_project, edit_portfolio_project_setter] = useAtom(
 		edit_portfolio_project_jotai,
 	);
-	console.log(edit_portfolio_project);
+	// console.log(edit_portfolio_project);
 
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	return (
@@ -30,7 +30,6 @@ export default function EditPortfolioProjectVideo() {
 					},
 					onClick() {
 						edit_portfolio_project_setter("edit-portfolio-project-video");
-						alert("I was clicked");
 					},
 				}}
 			>
@@ -38,12 +37,12 @@ export default function EditPortfolioProjectVideo() {
 			</InteractiveIcon>
 			<Overlay
 				stateFlag='edit-portfolio-project-video'
-				className='flex justify-center items-center relative'
+				className='flex justify-center items-center'
 			>
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
 					<Flex className='justify-between items-center'>
 						<Flex flex='column'>
-							<h2 className='text-2xl font-semibold'>Edit your title</h2>
+							<h2 className='text-2xl font-semibold'>Link Video</h2>
 							<p>
 								Enter a single sentence description of your professional
 								skills/experience (e.g. Expert Web Designer with Ajax
@@ -56,14 +55,8 @@ export default function EditPortfolioProjectVideo() {
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
-
-					<div
-						className='flex flex-col gap-3'
-						onSubmit={(e) => {
-							e.preventDefault();
-							edit_portfolio_project_setter(null);
-						}}
-					>
+					{/* Nested Form */}
+					<Flex flex='column' className='gap-3'>
 						<label className='text-xl font-semibold' htmlFor='title'>
 							Your title
 						</label>
@@ -80,7 +73,7 @@ export default function EditPortfolioProjectVideo() {
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
 						</Button>
-					</div>
+					</Flex>
 				</Flex>
 			</Overlay>
 		</>
