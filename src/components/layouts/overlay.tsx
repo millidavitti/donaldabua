@@ -1,7 +1,6 @@
 "use client";
 
 import {
-	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 	edit_profile_jotai,
 	EditPortfolioProjectStates,
@@ -22,6 +21,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 	const [edit_portfolio_project, edit_portfolio_project_setter] = useAtom(
 		edit_portfolio_project_jotai,
 	);
+
 	return (
 		<>
 			<div
@@ -29,16 +29,13 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden px-3",
 					className,
 				)}
-				id='overlay'
+				id={stateFlag!}
 				data-is-shown={
-					false ||
-					edit_portfolio_project === stateFlag ||
-					edit_profile === stateFlag
+					stateFlag === edit_portfolio_project || stateFlag === edit_profile
 				}
 				onClick={(e) => {
-					if ((e.target as HTMLElement).id === e.currentTarget.id)
+					if (e.currentTarget.id === (e.target as HTMLElement).id)
 						edit_profile_setter(null);
-					edit_portfolio_project_setter(null);
 				}}
 			>
 				{children}
