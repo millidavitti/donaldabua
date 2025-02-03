@@ -6,12 +6,11 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
-import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
+
 import { useSetAtom } from "jotai";
-import { ImageIcon, VideoIcon, X } from "lucide-react";
+import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
-import { toast } from "sonner";
 
 export default function EditPortfolioProjectImage() {
 	const edit_portfolio_project_setter = useSetAtom(
