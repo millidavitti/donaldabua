@@ -6,16 +6,17 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
+import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
+import { useSetAtom } from "jotai";
 import { VideoIcon, X } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function EditPortfolioProjectVideo() {
-	const [edit_portfolio_project, edit_portfolio_project_setter] = useAtom(
+	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	// console.log(edit_portfolio_project);
-
+	const [videoLink, setVideoLink] = useState<string | undefined>();
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	return (
 		<>
@@ -41,14 +42,7 @@ export default function EditPortfolioProjectVideo() {
 			>
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
 					<Flex className='justify-between items-center'>
-						<Flex flex='column'>
-							<h2 className='text-2xl font-semibold'>Link Video</h2>
-							<p>
-								Enter a single sentence description of your professional
-								skills/experience (e.g. Expert Web Designer with Ajax
-								experience)
-							</p>
-						</Flex>
+						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
 						<InteractiveIcon
 							callback={() => edit_portfolio_project_setter(null)}
 						>
@@ -64,15 +58,25 @@ export default function EditPortfolioProjectVideo() {
 							type='text'
 							id='title'
 							required
-							// value={profile_title}
+							value={videoLink || ""}
 							onChange={(e) => {
-								// profile_title_setter(e.target.value);
+								setVideoLink(e.target.value);
+								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
+								if (youtubeEmbed) setVideoLink(youtubeEmbed);
+								else
+									toast.info(
+										"Provided an invalid YouTube link: " + e.target.value,
+									);
 							}}
 							className='outline p-3'
 						/>
-						<Button type='submit' className='bg-black text-light-surface'>
-							Save
-						</Button>
+
+						<iframe
+							src={videoLink || undefined}
+							data-is-visible={Boolean(videoLink)}
+							className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+						/>
+						<Button className='bg-black text-light-surface'>Add</Button>
 					</Flex>
 				</Flex>
 			</Overlay>
