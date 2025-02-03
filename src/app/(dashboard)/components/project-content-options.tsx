@@ -1,12 +1,15 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { ImageIcon, Text, VideoIcon } from "lucide-react";
-import React, { useState } from "react";
+import { content_hover_state_jotai } from "@/data/atoms/ui_state";
+import { useAtom } from "jotai";
+import { ImageIcon, Text } from "lucide-react";
+import React from "react";
+import EditPortfolioProjectVideo from "./edit-portfolio-project-video";
 
 export default function ProjectContentOptions() {
-	const [hoverState, setHoverState] = useState<
-		"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
-	>(null);
+	const [content_hover_state, content_hover_state_setter] = useAtom(
+		content_hover_state_jotai,
+	);
 	return (
 		<Flex
 			flex='column'
@@ -17,65 +20,53 @@ export default function ProjectContentOptions() {
 					className='outline'
 					htmlProps={{
 						onMouseEnter() {
-							console.log("first");
-							setHoverState("hover-image-icon");
+							content_hover_state_setter("hover-image-icon");
 						},
 						onMouseLeave() {
-							setHoverState(null);
+							content_hover_state_setter(null);
 						},
 					}}
 				>
 					<ImageIcon />
 				</InteractiveIcon>
+				<EditPortfolioProjectVideo />
 				<InteractiveIcon
 					className='outline'
 					htmlProps={{
 						onMouseEnter() {
-							setHoverState("hover-video-icon");
+							content_hover_state_setter("hover-text-icon");
 						},
 						onMouseLeave() {
-							setHoverState(null);
-						},
-					}}
-				>
-					<VideoIcon />
-				</InteractiveIcon>
-				<InteractiveIcon
-					className='outline'
-					htmlProps={{
-						onMouseEnter() {
-							setHoverState("hover-text-icon");
-						},
-						onMouseLeave() {
-							setHoverState(null);
+							content_hover_state_setter(null);
 						},
 					}}
 				>
 					<Text />
 				</InteractiveIcon>
 			</Flex>
+			{/* Text */}
 			<p className='font-semibold'>
 				<span
 					className='data-[is-hovered=false]:hidden'
-					data-is-hovered={hoverState === null}
+					data-is-hovered={content_hover_state === null}
 				>
 					Add Content
 				</span>
 				<span
 					className='data-[is-hovered=false]:hidden'
-					data-is-hovered={hoverState === "hover-image-icon"}
+					data-is-hovered={content_hover_state === "hover-image-icon"}
 				>
 					Link Images
 				</span>
 				<span
 					className='data-[is-hovered=false]:hidden'
-					data-is-hovered={hoverState === "hover-video-icon"}
+					data-is-hovered={content_hover_state === "hover-video-icon"}
 				>
 					Link Videos
 				</span>
 				<span
 					className='data-[is-hovered=false]:hidden'
-					data-is-hovered={hoverState === "hover-text-icon"}
+					data-is-hovered={content_hover_state === "hover-text-icon"}
 				>
 					Add Text Block
 				</span>

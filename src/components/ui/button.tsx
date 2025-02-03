@@ -6,7 +6,12 @@ interface Button {
 	onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 	type?: "button" | "submit";
 }
-export default function Button({ children, className, onClick, type }: Button) {
+export default function Button({
+	children,
+	className,
+	onClick,
+	type = "button",
+}: Button) {
 	return (
 		<button
 			type={type}
