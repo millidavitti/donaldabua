@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 import { ImageIcon, Text } from "lucide-react";
 import React from "react";
 import EditPortfolioProjectVideo from "./edit-portfolio-project-video";
+import EditPortfolioProjectImage from "./edit-portfolio-project-image";
 
 export default function ProjectContentOptions() {
 	const [content_hover_state, content_hover_state_setter] = useAtom(
@@ -16,19 +17,7 @@ export default function ProjectContentOptions() {
 			className='basis-[360px] grow justify-center items-center gap-3'
 		>
 			<Flex className='gap-8'>
-				<InteractiveIcon
-					className='outline'
-					htmlProps={{
-						onMouseEnter() {
-							content_hover_state_setter("hover-image-icon");
-						},
-						onMouseLeave() {
-							content_hover_state_setter(null);
-						},
-					}}
-				>
-					<ImageIcon />
-				</InteractiveIcon>
+				<EditPortfolioProjectImage />
 				<EditPortfolioProjectVideo />
 				<InteractiveIcon
 					className='outline'

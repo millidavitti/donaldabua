@@ -8,15 +8,16 @@ import {
 } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { useSetAtom } from "jotai";
-import { VideoIcon, X } from "lucide-react";
+import { ImageIcon, VideoIcon, X } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function EditPortfolioProjectVideo() {
+export default function EditPortfolioProjectImage() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	const [videoLink, setVideoLink] = useState<string | undefined>();
+	const [imageLink, setImageLink] = useState<string | undefined>();
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	return (
 		<>
@@ -24,25 +25,25 @@ export default function EditPortfolioProjectVideo() {
 				className='outline'
 				htmlProps={{
 					onMouseEnter() {
-						content_hover_state_setter("hover-video-icon");
+						content_hover_state_setter("hover-image-icon");
 					},
 					onMouseLeave() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_portfolio_project_setter("edit-portfolio-project-video");
+						edit_portfolio_project_setter("edit-portfolio-project-image");
 					},
 				}}
 			>
-				<VideoIcon />
+				<ImageIcon />
 			</InteractiveIcon>
 			<Overlay
-				stateFlag='edit-portfolio-project-video'
+				stateFlag='edit-portfolio-project-image'
 				className='flex justify-center items-center'
 			>
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
 					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
+						<h2 className='text-2xl font-semibold'>Link to an Image</h2>
 						<InteractiveIcon
 							callback={() => edit_portfolio_project_setter(null)}
 						>
@@ -52,29 +53,29 @@ export default function EditPortfolioProjectVideo() {
 					{/* Nested Form */}
 					<Flex flex='column' className='gap-3'>
 						<label className='text-xl font-semibold' htmlFor='title'>
-							Paste a link to your YouTube
+							Paste a link to your image
 						</label>
 						<input
-							type='text'
+							type='url'
 							id='title'
 							required
-							value={videoLink || ""}
+							value={imageLink || ""}
 							onChange={(e) => {
-								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-								if (youtubeEmbed) setVideoLink(youtubeEmbed);
-								else
-									toast.info(
-										"Provided an invalid YouTube link: " + e.target.value,
-									);
+								setImageLink(e.target.value);
 							}}
 							className='outline p-3'
 						/>
 
-						<iframe
-							src={videoLink || undefined}
-							data-is-visible={Boolean(videoLink)}
-							className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
-						/>
+						{imageLink && (
+							<Image
+								src={imageLink!}
+								width={1000}
+								height={1000}
+								alt='thumbnail'
+								data-is-visible={Boolean(imageLink)}
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+							/>
+						)}
 						<Button className='bg-black text-light-surface'>Add</Button>
 					</Flex>
 				</Flex>

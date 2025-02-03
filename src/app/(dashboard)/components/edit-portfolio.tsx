@@ -77,7 +77,7 @@ export default function EditPortfolio() {
 							<ProjectContentOptions />
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
-							Save
+							Next
 						</Button>
 					</form>
 				</Flex>

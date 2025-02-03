@@ -13,4 +13,7 @@ export const EDIT_PROFILE_STATES = [
 	"edit-portfolio",
 ];
 
-export const EDIT_PORTFOLIO_PROJECT_STATES = ["edit-portfolio-project-video"];
+export const EDIT_PORTFOLIO_PROJECT_STATES = [
+	"edit-portfolio-project-video",
+	"edit-portfolio-project-image",
+];
