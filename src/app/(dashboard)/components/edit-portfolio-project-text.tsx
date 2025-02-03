@@ -8,7 +8,6 @@ import {
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
-import React, { useState } from "react";
 
 export default function EditPortfolioProjectText() {
 	const edit_portfolio_project_setter = useSetAtom(
