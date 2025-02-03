@@ -6,6 +6,10 @@ import {
 	EditPortfolioProjectStates,
 	EditProfileStates,
 } from "@/data/atoms/ui_state";
+import {
+	EDIT_PORTFOLIO_PROJECT_STATES,
+	EDIT_PROFILE_STATES,
+} from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";
@@ -26,7 +30,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 		<>
 			<div
 				className={cn(
-					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden px-3",
+					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden p-3",
 					className,
 				)}
 				id={stateFlag!}
@@ -34,8 +38,12 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 					stateFlag === edit_portfolio_project || stateFlag === edit_profile
 				}
 				onClick={(e) => {
-					if (e.currentTarget.id === (e.target as HTMLElement).id)
+					if (EDIT_PROFILE_STATES.includes((e.target as HTMLElement).id))
 						edit_profile_setter(null);
+					else if (
+						EDIT_PORTFOLIO_PROJECT_STATES.includes((e.target as HTMLElement).id)
+					)
+						edit_portfolio_project_setter(null);
 				}}
 			>
 				{children}
