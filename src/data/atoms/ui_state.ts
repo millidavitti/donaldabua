@@ -27,3 +27,7 @@ export const edit_portfolio_project_jotai =
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
 >(null);
+
+export const portfolio_project_form_step_jotai = atom<
+	"draft-project-info" | "preview-project-draft"
+>("draft-project-info");
