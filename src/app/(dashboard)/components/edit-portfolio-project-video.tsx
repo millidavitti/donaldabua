@@ -52,7 +52,7 @@ export default function EditPortfolioProjectVideo() {
 					{/* Nested Form */}
 					<Flex flex='column' className='gap-3'>
 						<label className='text-xl font-semibold' htmlFor='title'>
-							Your title
+							Paste a link to your YouTube
 						</label>
 						<input
 							type='text'
@@ -60,7 +60,6 @@ export default function EditPortfolioProjectVideo() {
 							required
 							value={videoLink || ""}
 							onChange={(e) => {
-								setVideoLink(e.target.value);
 								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
 								if (youtubeEmbed) setVideoLink(youtubeEmbed);
 								else
