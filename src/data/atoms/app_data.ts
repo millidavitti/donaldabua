@@ -52,3 +52,38 @@ export const profile_hourly_rate_jotai = focusAtom(profile_jotai, (optic) =>
 export const profile_overview_jotai = focusAtom(profile_jotai, (optic) =>
 	optic.prop("profileOverview"),
 );
+
+type PortfolioProjectImage = {
+	type: "image";
+	url: string;
+	caption?: string;
+	position: number;
+};
+type PortfolioProjectVideo = {
+	type: "video";
+	url: string;
+	caption?: string;
+	position: number;
+};
+type PortfolioProjectText = {
+	type: "text";
+	markdown: string;
+	position: number;
+};
+export type PortfolioProjectData = {
+	title: string;
+	description: string;
+	techStack: string[];
+	content: (
+		| PortfolioProjectImage
+		| PortfolioProjectVideo
+		| PortfolioProjectText
+	)[];
+};
+
+export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
+	title: "",
+	description: "",
+	techStack: [],
+	content: [],
+});
