@@ -1,16 +1,13 @@
 import Flex from "@/components/layouts/flex";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { content_hover_state_jotai } from "@/data/atoms/ui_state";
-import { useAtom } from "jotai";
-import { ImageIcon, Text } from "lucide-react";
+import { useAtomValue } from "jotai";
 import React from "react";
 import EditPortfolioProjectVideo from "./edit-portfolio-project-video";
 import EditPortfolioProjectImage from "./edit-portfolio-project-image";
+import EditPortfolioProjectText from "./edit-portfolio-project-text";
 
 export default function ProjectContentOptions() {
-	const [content_hover_state, content_hover_state_setter] = useAtom(
-		content_hover_state_jotai,
-	);
+	const content_hover_state = useAtomValue(content_hover_state_jotai);
 	return (
 		<Flex
 			flex='column'
@@ -19,19 +16,7 @@ export default function ProjectContentOptions() {
 			<Flex className='gap-8'>
 				<EditPortfolioProjectImage />
 				<EditPortfolioProjectVideo />
-				<InteractiveIcon
-					className='outline'
-					htmlProps={{
-						onMouseEnter() {
-							content_hover_state_setter("hover-text-icon");
-						},
-						onMouseLeave() {
-							content_hover_state_setter(null);
-						},
-					}}
-				>
-					<Text />
-				</InteractiveIcon>
+				<EditPortfolioProjectText />
 			</Flex>
 			{/* Text */}
 			<p className='font-semibold'>

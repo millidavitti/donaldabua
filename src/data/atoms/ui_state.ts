@@ -19,6 +19,7 @@ export const edit_profile_jotai = atom<EditProfileStates>(null);
 export type EditPortfolioProjectStates =
 	| "edit-portfolio-project-video"
 	| "edit-portfolio-project-image"
+	| "edit-portfolio-project-text"
 	| null;
 export const edit_portfolio_project_jotai =
 	atom<EditPortfolioProjectStates>(null);

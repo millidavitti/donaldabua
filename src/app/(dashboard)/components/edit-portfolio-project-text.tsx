@@ -6,17 +6,13 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
-
 import { useSetAtom } from "jotai";
-import { ImageIcon, X } from "lucide-react";
-import Image from "next/image";
-import React, { useState } from "react";
+import { Text, X } from "lucide-react";
 
-export default function EditPortfolioProjectImage() {
+export default function EditPortfolioProjectText() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	const [imageLink, setImageLink] = useState<string | undefined>();
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	return (
 		<>
@@ -24,25 +20,25 @@ export default function EditPortfolioProjectImage() {
 				className='outline'
 				htmlProps={{
 					onMouseEnter() {
-						content_hover_state_setter("hover-image-icon");
+						content_hover_state_setter("hover-text-icon");
 					},
 					onMouseLeave() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_portfolio_project_setter("edit-portfolio-project-image");
+						edit_portfolio_project_setter("edit-portfolio-project-text");
 					},
 				}}
 			>
-				<ImageIcon />
+				<Text />
 			</InteractiveIcon>
 			<Overlay
-				stateFlag='edit-portfolio-project-image'
+				stateFlag='edit-portfolio-project-text'
 				className='flex justify-center items-center'
 			>
 				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
 					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Link to an Image</h2>
+						<h2 className='text-2xl font-semibold'>Markdown</h2>
 						<InteractiveIcon
 							callback={() => edit_portfolio_project_setter(null)}
 						>
@@ -51,30 +47,7 @@ export default function EditPortfolioProjectImage() {
 					</Flex>
 					{/* Nested Form */}
 					<Flex flex='column' className='gap-3'>
-						<label className='text-xl font-semibold' htmlFor='title'>
-							Paste a link to your image
-						</label>
-						<input
-							type='url'
-							id='title'
-							required
-							value={imageLink || ""}
-							onChange={(e) => {
-								setImageLink(e.target.value);
-							}}
-							className='outline p-3'
-						/>
-
-						{imageLink && (
-							<Image
-								src={imageLink!}
-								width={1000}
-								height={1000}
-								alt='thumbnail'
-								data-is-visible={Boolean(imageLink)}
-								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
-							/>
-						)}
+						<textarea id='title' required rows={10} className='outline p-3' />
 						<Button className='bg-black text-light-surface'>Add</Button>
 					</Flex>
 				</Flex>
