@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { ArrowLeftIcon, X } from "lucide-react";
 import React from "react";
 import ProjectContentOptions from "./project-content-options";
