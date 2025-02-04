@@ -10,8 +10,6 @@ import {
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
 import React, { useState } from "react";
-import md from "md";
-import parse from "html-react-parser";
 export default function EditPortfolioProjectText() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
