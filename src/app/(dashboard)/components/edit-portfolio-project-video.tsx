@@ -8,6 +8,7 @@ import {
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
+import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { VideoIcon, X } from "lucide-react";
 import React, { useState } from "react";
@@ -90,6 +91,7 @@ export default function EditPortfolioProjectVideo() {
 									content: [
 										...data.content,
 										{
+											id: createId(),
 											url: videoLink,
 											position: data.content.length,
 											type: "video",
