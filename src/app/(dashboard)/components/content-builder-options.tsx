@@ -4,10 +4,11 @@ import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import { useSetAtom } from "jotai";
 import { Edit, Trash } from "lucide-react";
 
-interface ContentBuilderOptions {
+interface ContentBuilderOptions<T extends (...args: any) => any = () => void> {
 	componentID: string;
-	edit: (...args: any[]) => void;
+	edit: T;
 }
+
 export default function ContentBuilderOptions({
 	componentID,
 	edit,
