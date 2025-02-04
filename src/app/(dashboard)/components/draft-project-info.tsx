@@ -43,7 +43,7 @@ export default function DraftProjectInfo() {
 				<input
 					type='text'
 					required
-					className='outline p-3'
+					className='outline p-3 shrink-0'
 					value={portfolio_project_data.title}
 					onChange={(e) => {
 						portfolio_project_data_setter((data) => ({
