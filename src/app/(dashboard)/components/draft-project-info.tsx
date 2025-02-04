@@ -56,10 +56,7 @@ export default function DraftProjectInfo() {
 				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
 					{/* Project Description, Tech Stack */}
-					<Flex
-						flex='column'
-						className='grow gap-3 basis-[360px] h-fit sticky top-0'
-					>
+					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
