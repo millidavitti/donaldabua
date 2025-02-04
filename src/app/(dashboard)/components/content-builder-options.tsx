@@ -6,7 +6,7 @@ import { Edit, Trash } from "lucide-react";
 
 interface ContentBuilderOptions {
 	componentID: string;
-	edit: Function;
+	edit: (...args: any[]) => any;
 }
 export default function ContentBuilderOptions({
 	componentID,
