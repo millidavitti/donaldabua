@@ -9,10 +9,7 @@ import EditPortfolioProjectText from "./edit-portfolio-project-text";
 export default function ProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
 	return (
-		<Flex
-			flex='column'
-			className='basis-[360px] grow justify-center items-center gap-3'
-		>
+		<Flex flex='column' className='grow justify-center items-center gap-3'>
 			<Flex className='gap-8'>
 				<EditPortfolioProjectImage />
 				<EditPortfolioProjectVideo />
