@@ -18,7 +18,11 @@ export default function ContentBuilder() {
 					else if (el.type === "video")
 						return <ContentBuilderVideo url={el.url} key={el.position} />;
 					else if (el.type === "text")
-						return <Flex key={el.position}>{parse(md(el.markdown))}</Flex>;
+						return (
+							<Flex flex='column' key={el.position}>
+								{parse(md(el.markdown))}
+							</Flex>
+						);
 				})}
 			</Flex>
 			<ProjectContentOptions />
