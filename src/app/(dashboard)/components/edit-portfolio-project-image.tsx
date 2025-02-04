@@ -2,6 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
+import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
@@ -16,7 +17,10 @@ export default function EditPortfolioProjectImage() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	const [imageLink, setImageLink] = useState<string | undefined>();
+	const portfolio_project_data_setter = useSetAtom(
+		portfolio_project_data_jotai,
+	);
+	const [imageLink, setImageLink] = useState("");
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	return (
 		<>
@@ -67,7 +71,7 @@ export default function EditPortfolioProjectImage() {
 
 						{imageLink && (
 							<Image
-								src={imageLink!}
+								src={imageLink}
 								width={1000}
 								height={1000}
 								alt='thumbnail'
@@ -75,7 +79,26 @@ export default function EditPortfolioProjectImage() {
 								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
 							/>
 						)}
-						<Button className='bg-black text-light-surface'>Add</Button>
+						<Button
+							className='bg-black text-light-surface'
+							onClick={() => {
+								portfolio_project_data_setter((data) => ({
+									...data,
+									content: [
+										...data.content,
+										{
+											url: imageLink,
+											position: data.content.length,
+											type: "image",
+										},
+									],
+								}));
+								setImageLink("");
+								edit_portfolio_project_setter(null);
+							}}
+						>
+							Add
+						</Button>
 					</Flex>
 				</Flex>
 			</Overlay>

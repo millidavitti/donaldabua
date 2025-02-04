@@ -2,6 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
+import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
@@ -16,8 +17,11 @@ export default function EditPortfolioProjectVideo() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	const [videoLink, setVideoLink] = useState<string | undefined>();
+	const [videoLink, setVideoLink] = useState("");
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
+	const portfolio_project_data_setter = useSetAtom(
+		portfolio_project_data_jotai,
+	);
 	return (
 		<>
 			<InteractiveIcon
@@ -54,11 +58,12 @@ export default function EditPortfolioProjectVideo() {
 						<label className='text-xl font-semibold' htmlFor='title'>
 							Paste a link to your YouTube
 						</label>
+
 						<input
 							type='text'
 							id='title'
 							required
-							value={videoLink || ""}
+							value={videoLink}
 							onChange={(e) => {
 								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
 								if (youtubeEmbed) setVideoLink(youtubeEmbed);
@@ -70,12 +75,33 @@ export default function EditPortfolioProjectVideo() {
 							className='outline p-3'
 						/>
 
-						<iframe
-							src={videoLink || undefined}
-							data-is-visible={Boolean(videoLink)}
-							className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
-						/>
-						<Button className='bg-black text-light-surface'>Add</Button>
+						{videoLink && (
+							<iframe
+								src={videoLink}
+								data-is-visible={Boolean(videoLink)}
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+							/>
+						)}
+						<Button
+							className='bg-black text-light-surface'
+							onClick={() => {
+								portfolio_project_data_setter((data) => ({
+									...data,
+									content: [
+										...data.content,
+										{
+											url: videoLink,
+											position: data.content.length,
+											type: "video",
+										},
+									],
+								}));
+								setVideoLink("");
+								edit_portfolio_project_setter(null);
+							}}
+						>
+							Add
+						</Button>
 					</Flex>
 				</Flex>
 			</Overlay>
