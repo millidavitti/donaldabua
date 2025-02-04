@@ -14,7 +14,10 @@ export default function PreviewProjectDraft() {
 	);
 	const portfolio_project_data = useAtomValue(portfolio_project_data_jotai);
 	return (
-		<Flex flex='column' className='bg-light-surface gap-3 w-full max-h-[80%]'>
+		<Flex
+			flex='column'
+			className='bg-light-surface gap-3 w-full max-h-[80%] neonScan'
+		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<InteractiveIcon

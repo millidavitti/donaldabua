@@ -35,7 +35,7 @@ export default function EditAvailability() {
 				stateFlag='edit-hours-per-week'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3'>
+				<Flex flex='column' className='bg-light-surface gap-3 neonScan'>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Availability</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>

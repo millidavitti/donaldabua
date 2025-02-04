@@ -23,6 +23,7 @@ export default function EditPortfolioProjectImage() {
 	);
 	const [imageLink, setImageLink] = useState("");
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
+
 	return (
 		<>
 			<InteractiveIcon
@@ -45,7 +46,10 @@ export default function EditPortfolioProjectImage() {
 				stateFlag='edit-portfolio-project-image'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 basis-[720px] neonScan'
+				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Link to an Image</h2>
 						<InteractiveIcon

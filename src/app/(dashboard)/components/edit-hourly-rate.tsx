@@ -30,7 +30,10 @@ export default function EditHourlyRate() {
 				stateFlag='edit-hourly-rate'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3 basis-[480px]'>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 basis-[480px] neonScan'
+				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Set hourly rate</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
