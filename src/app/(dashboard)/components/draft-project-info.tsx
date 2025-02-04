@@ -43,7 +43,7 @@ export default function DraftProjectInfo() {
 				<input
 					type='text'
 					required
-					className='outline p-3'
+					className='outline p-3 shrink-0'
 					value={portfolio_project_data.title}
 					onChange={(e) => {
 						portfolio_project_data_setter((data) => ({
@@ -56,10 +56,7 @@ export default function DraftProjectInfo() {
 				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
 					{/* Project Description, Tech Stack */}
-					<Flex
-						flex='column'
-						className='grow gap-3 basis-[360px] h-fit sticky top-0'
-					>
+					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>

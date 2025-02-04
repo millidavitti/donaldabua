@@ -7,6 +7,7 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
+import { createId } from "@paralleldrive/cuid2";
 
 import { useSetAtom } from "jotai";
 import { ImageIcon, X } from "lucide-react";
@@ -87,6 +88,7 @@ export default function EditPortfolioProjectImage() {
 									content: [
 										...data.content,
 										{
+											id: createId(),
 											url: imageLink,
 											position: data.content.length,
 											type: "image",

@@ -7,6 +7,7 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
+import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
 import React, { useState } from "react";
@@ -70,6 +71,7 @@ export default function EditPortfolioProjectText() {
 									content: [
 										...data.content,
 										{
+											id: createId(),
 											markdown,
 											position: data.content.length,
 											type: "text",
