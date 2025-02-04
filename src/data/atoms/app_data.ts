@@ -54,23 +54,27 @@ export const profile_overview_jotai = focusAtom(profile_jotai, (optic) =>
 );
 
 type PortfolioProjectImage = {
+	id: string;
 	type: "image";
 	url: string;
 	caption?: string;
 	position: number;
 };
 type PortfolioProjectVideo = {
+	id: string;
 	type: "video";
 	url: string;
 	caption?: string;
 	position: number;
 };
 type PortfolioProjectText = {
+	id: string;
 	type: "text";
 	markdown: string;
 	position: number;
 };
 export type PortfolioProjectData = {
+	id: string;
 	title: string;
 	description: string;
 	techStack: string[];
@@ -82,6 +86,7 @@ export type PortfolioProjectData = {
 };
 
 export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
+	id: "",
 	title: "",
 	description: "",
 	techStack: [],
