@@ -13,12 +13,13 @@ export default function ContentBuilder() {
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
 			<Flex flex='column' className='grow gap-3'>
 				{portfolio_project_data.content.map((el) => {
-					if (el.type === "image") return <ContentBuilderImage url={el.url} />;
+					if (el.type === "image")
+						return <ContentBuilderImage url={el.url} key={el.position} />;
 					else if (el.type === "video")
-						return <ContentBuilderVideo url={el.url} />;
+						return <ContentBuilderVideo url={el.url} key={el.position} />;
 					else if (el.type === "text")
 						return (
-							<Flex>
+							<Flex key={el.position}>
 								<p>{parse(md(el.markdown))}</p>
 							</Flex>
 						);
