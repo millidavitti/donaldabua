@@ -10,6 +10,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
+import ContentBuilder from "./content-builder";
 
 export default function DraftProjectInfo() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
@@ -20,7 +21,7 @@ export default function DraftProjectInfo() {
 		portfolio_project_data_jotai,
 	);
 	return (
-		<Flex flex='column' className='bg-light-surface gap-3 w-full'>
+		<Flex flex='column' className='bg-light-surface gap-3 w-full max-h-[90%]'>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>Add New Project</h2>
@@ -56,7 +57,10 @@ export default function DraftProjectInfo() {
 				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
 					{/* Project Description, Tech Stack */}
-					<Flex flex='column' className='grow gap-3 basis-[360px]'>
+					<Flex
+						flex='column'
+						className='grow gap-3 basis-[360px] h-fit sticky top-0'
+					>
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
@@ -105,8 +109,7 @@ export default function DraftProjectInfo() {
 							}}
 						/>
 					</Flex>
-					{/* Content OPtions */}
-					<ProjectContentOptions />
+					<ContentBuilder />
 				</Flex>
 				<Button
 					onClick={() => {
