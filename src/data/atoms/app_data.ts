@@ -53,21 +53,21 @@ export const profile_overview_jotai = focusAtom(profile_jotai, (optic) =>
 	optic.prop("profileOverview"),
 );
 
-type PortfolioProjectImage = {
+export type PortfolioProjectImage = {
 	id: string;
 	type: "image";
 	url: string;
 	caption?: string;
 	position: number;
 };
-type PortfolioProjectVideo = {
+export type PortfolioProjectVideo = {
 	id: string;
 	type: "video";
 	url: string;
 	caption?: string;
 	position: number;
 };
-type PortfolioProjectText = {
+export type PortfolioProjectText = {
 	id: string;
 	type: "text";
 	markdown: string;
