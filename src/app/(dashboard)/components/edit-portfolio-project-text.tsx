@@ -63,9 +63,7 @@ export default function EditPortfolioProjectText() {
 							}}
 							rows={10}
 							className='outline p-3'
-						>
-							{parse(md(markdown))}
-						</textarea>
+						/>
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
