@@ -1,5 +1,4 @@
 import React from "react";
-import ProjectContentOptions from "./project-content-options";
 import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
