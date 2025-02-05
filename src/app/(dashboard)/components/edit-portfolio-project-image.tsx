@@ -27,7 +27,7 @@ export default function EditPortfolioProjectImage() {
 	return (
 		<>
 			<InteractiveIcon
-				className='outline'
+				className='outline grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
 						content_hover_state_setter("hover-image-icon");
