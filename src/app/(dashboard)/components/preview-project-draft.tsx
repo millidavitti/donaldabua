@@ -7,6 +7,10 @@ import { ArrowLeftIcon, X } from "lucide-react";
 import React from "react";
 import ProjectContentOptions from "./project-content-options";
 import Button from "@/components/ui/button";
+import ContentBuilderImage from "./content-builder-image";
+import { createId } from "@paralleldrive/cuid2";
+import ContentBuilderVideo from "./content-builder-video";
+import ContentBuilderText from "./content-builder-text";
 
 export default function PreviewProjectDraft() {
 	const portfolio_project_form_step_setter = useSetAtom(
@@ -31,10 +35,12 @@ export default function PreviewProjectDraft() {
 
 			<Flex flex='column' className='gap-3'>
 				{/* Project Title */}
-				<label className='text-xl font-semibold shrink-0' htmlFor='title'>
-					Project Title
-				</label>
-				<p>{portfolio_project_data.title}</p>
+				<Flex flex='column' className='shrink-0 gap-3'>
+					<label className='text-xl font-semibold' htmlFor='title'>
+						Project Title
+					</label>
+					<p>{portfolio_project_data.title}</p>
+				</Flex>
 
 				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
@@ -59,8 +65,34 @@ export default function PreviewProjectDraft() {
 							))}
 						</Flex>
 					</Flex>
-					{/* Content OPtions */}
-					<ProjectContentOptions />
+					{/* Content Preview */}
+					<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
+						{portfolio_project_data.content
+							.sort((a, b) => a.position - b.position)
+							.map((component) => {
+								if (component.type === "image")
+									return (
+										<ContentBuilderImage
+											component={component}
+											key={createId()}
+										/>
+									);
+								else if (component.type === "video")
+									return (
+										<ContentBuilderVideo
+											component={component}
+											key={createId()}
+										/>
+									);
+								else if (component.type === "text")
+									return (
+										<ContentBuilderText
+											component={component}
+											key={createId()}
+										/>
+									);
+							})}
+					</Flex>
 				</Flex>
 				<Button type='button' className='bg-black text-light-surface'>
 					Publish
