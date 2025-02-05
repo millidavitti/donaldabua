@@ -6,7 +6,7 @@ import {
 	PortfolioProjectText,
 	PortfolioProjectVideo,
 } from "@/data/atoms/app_data";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { ArrowDown, ArrowUp, Edit, Trash } from "lucide-react";
 
 interface ContentBuilderOptions {
