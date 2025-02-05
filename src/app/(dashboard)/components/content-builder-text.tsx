@@ -23,7 +23,7 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 	return (
 		<Flex
 			flex='column'
-			className='gap-3'
+			className='gap-3 relative'
 			htmlProps={{
 				onKeyDown(e) {
 					if (e.key === "Enter" && e.ctrlKey) component_to_edit_setter(null);
@@ -31,7 +31,7 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 			}}
 		>
 			<ContentBuilderOptions
-				componentID={component.id}
+				component={component}
 				edit={() =>
 					component_to_edit === component.id
 						? component_to_edit_setter(null)
