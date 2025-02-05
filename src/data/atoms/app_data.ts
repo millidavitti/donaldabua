@@ -92,3 +92,8 @@ export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 	techStack: [],
 	content: [],
 });
+
+export const portfolio_project_content_jotai = focusAtom(
+	portfolio_project_data_jotai,
+	(optic) => optic.prop("content"),
+);
