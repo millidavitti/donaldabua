@@ -4,7 +4,6 @@ import ContentBuilderOptions from "./content-builder-options";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import {
 	portfolio_project_content_jotai,
-	portfolio_project_data_jotai,
 	PortfolioProjectText,
 } from "@/data/atoms/app_data";
 import { useAtom, useSetAtom } from "jotai";
