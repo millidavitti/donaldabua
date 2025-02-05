@@ -14,20 +14,22 @@ export default function ContentBuilder() {
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
 			<Flex flex='column' className='grow gap-3'>
-				{portfolio_project_data.content.map((component) => {
-					if (component.type === "image")
-						return (
-							<ContentBuilderImage component={component} key={createId()} />
-						);
-					else if (component.type === "video")
-						return (
-							<ContentBuilderVideo component={component} key={createId()} />
-						);
-					else if (component.type === "text")
-						return (
-							<ContentBuilderText component={component} key={createId()} />
-						);
-				})}
+				{portfolio_project_data.content
+					.sort((a, b) => a.position - b.position)
+					.map((component) => {
+						if (component.type === "image")
+							return (
+								<ContentBuilderImage component={component} key={createId()} />
+							);
+						else if (component.type === "video")
+							return (
+								<ContentBuilderVideo component={component} key={createId()} />
+							);
+						else if (component.type === "text")
+							return (
+								<ContentBuilderText component={component} key={createId()} />
+							);
+					})}
 			</Flex>
 			<ProjectContentOptions />
 		</Flex>
