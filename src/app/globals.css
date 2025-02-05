@@ -92,7 +92,7 @@
 	}
 
 	.neonScan {
-		animation: neonScan 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+		animation: neonScan 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
 	}
 
 	@layer base {
