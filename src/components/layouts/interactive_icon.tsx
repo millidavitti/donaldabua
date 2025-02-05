@@ -16,7 +16,7 @@ export default function InteractiveIcon({
 	return (
 		<div
 			className={cn(
-				"p-3 cursor-pointer active:scale-95 transition stroke-light-surface-on-surface shrink-0",
+				"p-1 cursor-pointer active:scale-95 transition stroke-light-surface-on-surface shrink-0",
 				className,
 			)}
 			onClick={callback}
