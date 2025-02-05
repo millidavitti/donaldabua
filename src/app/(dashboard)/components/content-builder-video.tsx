@@ -25,9 +25,9 @@ export default function ContentBuilderVideo({
 		portfolio_project_data_jotai,
 	);
 	return (
-		<Flex flex='column'>
+		<Flex flex='column' className='relative'>
 			<ContentBuilderOptions
-				componentID={component.id}
+				component={component}
 				edit={() =>
 					component_to_edit === component.id
 						? component_to_edit_setter(null)
