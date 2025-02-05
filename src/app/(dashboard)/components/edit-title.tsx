@@ -27,7 +27,10 @@ export default function EditTitle() {
 				stateFlag='edit-title'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 basis-[720px] neonScan'
+				>
 					<Flex className='justify-between items-center'>
 						<Flex flex='column'>
 							<h2 className='text-2xl font-semibold'>Edit your title</h2>

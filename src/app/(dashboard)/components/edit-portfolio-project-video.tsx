@@ -26,7 +26,7 @@ export default function EditPortfolioProjectVideo() {
 	return (
 		<>
 			<InteractiveIcon
-				className='outline'
+				className='outline grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
 						content_hover_state_setter("hover-video-icon");
@@ -45,7 +45,10 @@ export default function EditPortfolioProjectVideo() {
 				stateFlag='edit-portfolio-project-video'
 				className='flex justify-center items-center'
 			>
-				<Flex flex='column' className='bg-light-surface gap-3 basis-[720px]'>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 basis-[720px] neonScan'
+				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
 						<InteractiveIcon

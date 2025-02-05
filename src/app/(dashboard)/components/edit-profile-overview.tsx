@@ -32,7 +32,7 @@ export default function EditProfileOverview() {
 			>
 				<Flex
 					flex='column'
-					className='bg-light-surface gap-3 basis-[720px] max-h-[80%]'
+					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Profile overview</h2>

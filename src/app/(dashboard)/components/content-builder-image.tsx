@@ -9,6 +9,8 @@ import {
 import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";
+import { Ellipsis } from "lucide-react";
+import InteractiveIcon from "@/components/layouts/interactive_icon";
 
 interface ContentBuilderImage {
 	component: PortfolioProjectImage;
@@ -24,9 +26,9 @@ export default function ContentBuilderImage({
 		portfolio_project_data_jotai,
 	);
 	return (
-		<Flex flex='column'>
+		<Flex flex='column' className='relative'>
 			<ContentBuilderOptions
-				componentID={component.id}
+				component={component}
 				edit={() =>
 					component_to_edit === component.id
 						? component_to_edit_setter(null)
@@ -79,6 +81,14 @@ export default function ContentBuilderImage({
 					</Flex>
 				</Flex>
 			)}
+			<InteractiveIcon
+				htmlProps={{
+					onClick() {},
+				}}
+				className='absolute right-0 bg-white p-1'
+			>
+				<Ellipsis size={24} />
+			</InteractiveIcon>
 		</Flex>
 	);
 }

@@ -20,7 +20,10 @@ export default function DraftProjectInfo() {
 		portfolio_project_data_jotai,
 	);
 	return (
-		<Flex flex='column' className='bg-light-surface gap-3 w-full max-h-[90%]'>
+		<Flex
+			flex='column'
+			className='bg-light-surface gap-3 w-full max-h-[90%] neonScan'
+		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>Add New Project</h2>
