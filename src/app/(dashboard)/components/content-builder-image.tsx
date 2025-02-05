@@ -81,14 +81,6 @@ export default function ContentBuilderImage({
 					</Flex>
 				</Flex>
 			)}
-			<InteractiveIcon
-				htmlProps={{
-					onClick() {},
-				}}
-				className='absolute right-0 bg-white p-1'
-			>
-				<Ellipsis size={24} />
-			</InteractiveIcon>
 		</Flex>
 	);
 }
