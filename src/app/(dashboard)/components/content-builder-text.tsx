@@ -1,8 +1,9 @@
 import Flex from "@/components/layouts/flex";
-import React from "react";
+import React, { useState } from "react";
 import ContentBuilderOptions from "./content-builder-options";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import {
+	portfolio_project_content_jotai,
 	portfolio_project_data_jotai,
 	PortfolioProjectText,
 } from "@/data/atoms/app_data";
@@ -17,16 +18,30 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 	const [component_to_edit, component_to_edit_setter] = useAtom(
 		component_to_edit_jotai,
 	);
-	const portfolio_project_data_setter = useSetAtom(
-		portfolio_project_data_jotai,
+	const portfolio_project_content_setter = useSetAtom(
+		portfolio_project_content_jotai,
 	);
+	// This is to prevent renders from updating portfolio_project_data_jotai directly
+	const [markdown, setMarkdown] = useState(component.markdown);
 	return (
 		<Flex
 			flex='column'
 			className='gap-3 relative'
 			htmlProps={{
 				onKeyDown(e) {
-					if (e.key === "Enter" && e.ctrlKey) component_to_edit_setter(null);
+					if (e.key === "Enter" && e.ctrlKey) {
+						component_to_edit_setter(null);
+						portfolio_project_content_setter((content) => {
+							return content.map((obj) => {
+								if (component.id === obj.id)
+									return {
+										...obj,
+										markdown,
+									};
+								return obj;
+							});
+						});
+					}
 				},
 			}}
 		>
@@ -42,24 +57,11 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 			{component_to_edit === component.id || parse(md(component.markdown))}
 			{component_to_edit === component.id && (
 				<textarea
-					value={component.markdown}
+					value={markdown}
 					className='shrink-0 p-3 '
 					rows={30}
 					onChange={(e) => {
-						portfolio_project_data_setter((data) => {
-							const update = data.content.map((obj) => {
-								if (component.id === obj.id)
-									return {
-										...obj,
-										markdown: e.target.value,
-									};
-								return obj;
-							});
-							return {
-								...data,
-								content: update,
-							};
-						});
+						setMarkdown(e.target.value);
 					}}
 				/>
 			)}
