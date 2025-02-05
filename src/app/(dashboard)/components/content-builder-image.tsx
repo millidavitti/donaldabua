@@ -9,8 +9,6 @@ import {
 import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";
-import { Ellipsis } from "lucide-react";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
 
 interface ContentBuilderImage {
 	component: PortfolioProjectImage;
