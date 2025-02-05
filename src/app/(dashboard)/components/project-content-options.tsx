@@ -10,7 +10,7 @@ export default function ProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
 	return (
 		<Flex flex='column' className='grow justify-center items-center gap-3'>
-			<Flex className='gap-8'>
+			<Flex className='gap-3 flex-wrap'>
 				<EditPortfolioProjectImage />
 				<EditPortfolioProjectVideo />
 				<EditPortfolioProjectText />
