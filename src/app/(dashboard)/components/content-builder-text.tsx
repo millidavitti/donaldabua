@@ -1,6 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
-import ContentBuilderOptions from "./content-builder-options";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import {
 	portfolio_project_content_jotai,
@@ -9,6 +8,11 @@ import {
 import { useAtom, useSetAtom } from "jotai";
 import md from "md";
 import parse from "html-react-parser";
+import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
+import ContentBuilderEditOption from "./content-builder-edit-option";
+import ContentBuilderDeleteOption from "./content-builder-delete-option";
+import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
+import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 
 interface ContentBuilderText {
 	component: PortfolioProjectText;
@@ -44,14 +48,12 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 				},
 			}}
 		>
-			<ContentBuilderOptions
-				component={component}
-				edit={() =>
-					component_to_edit === component.id
-						? component_to_edit_setter(null)
-						: component_to_edit_setter(component.id)
-				}
-			/>
+			<ContentBuilderOptionsDrawer>
+				<ContentBuilderEditOption componentID={component.id} />
+				<ContentBuilderDeleteOption componentID={component.id} />
+				<ContentBuilderMoveUpOption position={component.position} />
+				<ContentBuilderMoveDownOption position={component.position} />
+			</ContentBuilderOptionsDrawer>
 
 			{component_to_edit === component.id || parse(md(component.markdown))}
 			{component_to_edit === component.id && (
