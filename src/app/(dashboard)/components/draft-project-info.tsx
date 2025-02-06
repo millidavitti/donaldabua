@@ -10,6 +10,7 @@ import {
 import { useAtom, useSetAtom } from "jotai";
 import {
 	portfolio_project_data_jotai,
+	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
 } from "@/data/atoms/app_data";
 
@@ -23,6 +24,8 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	);
 	const [portfolio_project_tech_stack, portfolio_project_tech_stack_setter] =
 		useAtom(portfolio_project_tech_stack_jotai);
+	const [portfolio_project_description, portfolio_project_description_setter] =
+		useAtom(portfolio_project_description_jotai);
 
 	const [portfolio_project_data, portfolio_project_data_setter] = useAtom(
 		portfolio_project_data_jotai,
@@ -68,6 +71,7 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 				<Flex className='gap-3 flex-wrap'>
 					{/* Project Description, Tech Stack */}
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
+						{/* Project Description */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
@@ -75,14 +79,13 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 							type='text'
 							required
 							className='outline p-3'
-							value={portfolio_project_data.description}
+							value={portfolio_project_description}
 							onChange={(e) => {
-								portfolio_project_data_setter((data) => ({
-									...data,
-									description: e.target.value,
-								}));
+								portfolio_project_description_setter(e.target.value);
 							}}
 						/>
+
+						{/* Tech Stack */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Tech Stack
 						</label>
