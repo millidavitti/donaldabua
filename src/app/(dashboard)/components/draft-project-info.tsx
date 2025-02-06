@@ -34,7 +34,6 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 					<X size={24} className='stroke-light-error' />
 				</InteractiveIcon>
 			</Flex>
-
 			<form
 				className='flex flex-col gap-3'
 				onSubmit={(e) => {
@@ -43,18 +42,12 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 				}}
 			>
 				<AddPortfolioProjectTitle />
-
-				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
-					{/* Project Description, Tech Stack */}
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
 						<AddPortfolioProjectDescription />
-						{/* Tech Stack */}
 						<AddPortfolioProjectTechStack />
-						{/* Thumbnail */}
 						<AddPortfolioProjectThumbnail />
 					</Flex>
-
 					{children}
 				</Flex>
 				<Button
