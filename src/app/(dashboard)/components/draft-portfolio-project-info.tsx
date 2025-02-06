@@ -8,15 +8,17 @@ import {
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
-import AddPortfolioProjectTitle from "./add-portfolio-project-title";
-import AddPortfolioProjectDescription from "./add-portfolio-project-description";
-import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
-import AddPortfolioProjectThumbnail from "./add-portfolio-project-thumbnail";
+import AddPortfolioProjectTitle from "./portfolio-project/add-portfolio-project-title";
+import AddPortfolioProjectDescription from "./portfolio-project/add-portfolio-project-description";
+import AddPortfolioProjectTechStack from "./portfolio-project/add-portfolio-project-tech-stack";
+import AddPortfolioProjectThumbnail from "./portfolio-project/add-portfolio-project-thumbnail";
 
-interface DraftProjectInfo {
+interface DraftPortfolioProjectInfo {
 	children: ReactNode;
 }
-export default function DraftProjectInfo({ children }: DraftProjectInfo) {
+export default function DraftPortfolioProjectInfo({
+	children,
+}: DraftPortfolioProjectInfo) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
