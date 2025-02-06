@@ -1,6 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
-import ContentBuilderOptions from "./content-builder-options";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import {
 	portfolio_project_content_jotai,
