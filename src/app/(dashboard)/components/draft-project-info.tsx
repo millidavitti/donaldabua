@@ -9,9 +9,9 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import {
-	portfolio_project_data_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
+	portfolio_project_title_jotai,
 } from "@/data/atoms/app_data";
 
 interface DraftProjectInfo {
@@ -22,14 +22,15 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
+
 	const [portfolio_project_tech_stack, portfolio_project_tech_stack_setter] =
 		useAtom(portfolio_project_tech_stack_jotai);
 	const [portfolio_project_description, portfolio_project_description_setter] =
 		useAtom(portfolio_project_description_jotai);
-
-	const [portfolio_project_data, portfolio_project_data_setter] = useAtom(
-		portfolio_project_data_jotai,
+	const [portfolio_project_title, portfolio_project_title_setter] = useAtom(
+		portfolio_project_title_jotai,
 	);
+
 	return (
 		<Flex
 			flex='column'
@@ -58,12 +59,9 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 					type='text'
 					required
 					className='outline p-3 shrink-0'
-					value={portfolio_project_data.title}
+					value={portfolio_project_title}
 					onChange={(e) => {
-						portfolio_project_data_setter((data) => ({
-							...data,
-							title: e.target.value,
-						}));
+						portfolio_project_title_setter(e.target.value);
 					}}
 				/>
 
