@@ -1,6 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import {
+	portfolio_project_content_jotai,
 	portfolio_project_data_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
@@ -20,7 +21,9 @@ export default function PreviewProjectDraft() {
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
-	const portfolio_project_data = useAtomValue(portfolio_project_data_jotai);
+	const portfolio_project_content = useAtomValue(
+		portfolio_project_content_jotai,
+	);
 	const portfolio_project_tech_stack = useAtomValue(
 		portfolio_project_tech_stack_jotai,
 	);
@@ -78,7 +81,7 @@ export default function PreviewProjectDraft() {
 					</Flex>
 					{/* Content Preview */}
 					<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
-						{portfolio_project_data.content
+						{portfolio_project_content
 							.sort((a, b) => a.position - b.position)
 							.map((component) => {
 								if (component.type === "image")
