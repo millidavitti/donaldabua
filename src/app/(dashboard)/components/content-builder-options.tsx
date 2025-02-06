@@ -51,7 +51,11 @@ export default function ContentBuilderOptions({
 						htmlProps={{
 							onClick() {
 								portfolio_project_content_setter((content) => {
-									return content.filter((obj) => component?.id !== obj.id);
+									return content
+										.filter((obj) => component?.id !== obj.id)
+										.map((obj, i) => {
+											return { ...obj, position: i };
+										});
 								});
 							},
 						}}
