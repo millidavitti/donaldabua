@@ -64,8 +64,8 @@ export default function AddPortfolioProjectVideo() {
 						</label>
 
 						<input
-							type='text'
-							id='title'
+							type='url'
+							id='add-portfolio-project-video'
 							required
 							value={videoLink}
 							onChange={(e) => {
@@ -89,15 +89,19 @@ export default function AddPortfolioProjectVideo() {
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_content_setter((content) => [
-									...content,
-									{
-										id: createId(),
-										url: videoLink,
-										position: content.length,
-										type: "video",
-									},
-								]);
+								const formElement = document.querySelector(
+									"#add-portfolio-project-video",
+								);
+								if ((formElement as HTMLInputElement).validity.valid)
+									portfolio_project_content_setter((content) => [
+										...content,
+										{
+											id: createId(),
+											url: videoLink,
+											position: content.length,
+											type: "video",
+										},
+									]);
 								setVideoLink("");
 								edit_portfolio_project_setter(null);
 							}}
