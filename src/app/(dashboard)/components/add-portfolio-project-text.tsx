@@ -2,7 +2,10 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
+import {
+	portfolio_project_content_jotai,
+	portfolio_project_data_jotai,
+} from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
@@ -17,8 +20,8 @@ export default function AddPortfolioProjectText() {
 	);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	const [markdown, setMarkdown] = useState("");
-	const portfolio_project_data_setter = useSetAtom(
-		portfolio_project_data_jotai,
+	const portfolio_project_content_setter = useSetAtom(
+		portfolio_project_content_jotai,
 	);
 	return (
 		<>
@@ -69,18 +72,15 @@ export default function AddPortfolioProjectText() {
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_data_setter((data) => ({
-									...data,
-									content: [
-										...data.content,
-										{
-											id: createId(),
-											markdown,
-											position: data.content.length,
-											type: "text",
-										},
-									],
-								}));
+								portfolio_project_content_setter((content) => [
+									...content,
+									{
+										id: createId(),
+										markdown,
+										position: content.length,
+										type: "text",
+									},
+								]);
 								setMarkdown("");
 								edit_portfolio_project_setter(null);
 							}}
