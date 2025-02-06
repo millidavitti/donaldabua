@@ -1,7 +1,7 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
 import { useSetAtom } from "jotai";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import React from "react";
 
 interface ContentBuilderMoveDownOption {
