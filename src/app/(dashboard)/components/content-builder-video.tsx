@@ -4,7 +4,6 @@ import {
 	PortfolioProjectVideo,
 } from "@/data/atoms/app_data";
 import React, { useState } from "react";
-import ContentBuilderOptions from "./content-builder-options";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import Button from "@/components/ui/button";
