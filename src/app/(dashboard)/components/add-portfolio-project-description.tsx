@@ -13,7 +13,7 @@ export default function AddPortfolioProjectDescription() {
 			<input
 				type='text'
 				required
-				className='outline p-3'
+				className='outline p-3 valid:outline-emerald-800 invalid:outline-red-800'
 				value={portfolio_project_description}
 				onChange={(e) => {
 					portfolio_project_description_setter(e.target.value);
