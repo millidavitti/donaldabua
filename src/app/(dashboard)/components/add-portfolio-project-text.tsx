@@ -7,6 +7,7 @@ import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
 } from "@/data/atoms/ui_state";
+import { cn } from "@/utils/cn";
 import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
@@ -57,27 +58,35 @@ export default function AddPortfolioProjectText() {
 					{/* Nested Form */}
 					<Flex flex='column' className='gap-3'>
 						<textarea
-							id='title'
+							id='add-portfolio-project-text'
 							required
+							minLength={500}
+							className={cn(
+								"outline p-3 valid:outline-emerald-800",
+								Boolean(markdown) && "invalid:outline-red-800",
+							)}
 							value={markdown}
 							onChange={(e) => {
 								setMarkdown(e.target.value);
 							}}
 							rows={10}
-							className='outline p-3'
 						/>
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_content_setter((content) => [
-									...content,
-									{
-										id: createId(),
-										markdown,
-										position: content.length,
-										type: "text",
-									},
-								]);
+								const formElement = document.querySelector(
+									"#add-portfolio-project-text",
+								);
+								if ((formElement as HTMLInputElement).validity.valid)
+									portfolio_project_content_setter((content) => [
+										...content,
+										{
+											id: createId(),
+											markdown,
+											position: content.length,
+											type: "text",
+										},
+									]);
 								setMarkdown("");
 								edit_portfolio_project_setter(null);
 							}}
