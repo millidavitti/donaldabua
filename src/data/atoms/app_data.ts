@@ -87,9 +87,10 @@ export type PortfolioProjectData = {
 
 // This is use to store fetched project data
 export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
-	id: "",
-	title: "",
-	description: "",
+	id: "uwe",
+	title: "Context RAG Application",
+	description:
+		"Front-End Development: Strong expertise in React, allowing for the creation of dynamic and engaging user interfaces that enhance user experience.",
 	techStack: [],
 	content: [],
 });
