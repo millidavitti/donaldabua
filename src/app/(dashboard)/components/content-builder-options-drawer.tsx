@@ -1,13 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import {
-	portfolio_project_content_jotai,
-	PortfolioProjectImage,
-	PortfolioProjectText,
-	PortfolioProjectVideo,
-} from "@/data/atoms/app_data";
-import { useSetAtom } from "jotai";
-import { ArrowDown, ArrowUp, Edit, EllipsisIcon, Trash } from "lucide-react";
+import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
 
 interface ContentBuilderOptionsDrawer {
