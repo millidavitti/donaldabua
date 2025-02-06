@@ -10,7 +10,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 import DraftProjectInfo from "./draft-project-info";
 import PreviewProjectDraft from "./preview-project-draft";
-import ContentBuilder from "./content-builder";
+import ContentBuilder from "./content-builder/content-builder";
 
 export default function EditPortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
