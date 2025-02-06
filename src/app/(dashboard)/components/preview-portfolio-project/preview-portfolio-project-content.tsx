@@ -1,9 +1,9 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import ContentBuilderImage from "./content-builder/content-builder-image";
+import ContentBuilderImage from "../content-builder/content-builder-image";
 import { createId } from "@paralleldrive/cuid2";
-import ContentBuilderVideo from "./content-builder/content-builder-video";
-import ContentBuilderText from "./content-builder/content-builder-text";
+import ContentBuilderVideo from "../content-builder/content-builder-video";
+import ContentBuilderText from "../content-builder/content-builder-text";
 import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
 
