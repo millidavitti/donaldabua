@@ -65,11 +65,12 @@ export default function AddPortfolioProjectImage() {
 						</label>
 						<input
 							type='url'
-							id='title'
+							id='add-portfolio-project-image'
+							placeholder='Paste a valid Cloudinary link'
 							required
 							value={imageLink || ""}
 							onChange={(e) => {
-								setImageLink(e.target.value);
+								if (e.target.validity.valid) setImageLink(e.target.value);
 							}}
 							className='outline p-3'
 						/>
@@ -87,15 +88,19 @@ export default function AddPortfolioProjectImage() {
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_content_setter((content) => [
-									...content,
-									{
-										id: createId(),
-										url: imageLink,
-										position: content.length,
-										type: "image",
-									},
-								]);
+								const formElement = document.querySelector(
+									"#add-portfolio-project-image",
+								);
+								if ((formElement as HTMLInputElement).validity.valid)
+									portfolio_project_content_setter((content) => [
+										...content,
+										{
+											id: createId(),
+											url: imageLink,
+											position: content.length,
+											type: "image",
+										},
+									]);
 								setImageLink("");
 								edit_portfolio_project_setter(null);
 							}}
