@@ -10,6 +10,11 @@ import { useAtom, useSetAtom } from "jotai";
 import Button from "@/components/ui/button";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { toast } from "sonner";
+import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
+import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
+import ContentBuilderDeleteOption from "./content-builder-delete-option";
+import ContentBuilderEditOption from "./content-builder-edit-option";
+import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 
 interface ContentBuilderVideo {
 	component: PortfolioProjectVideo;
@@ -26,14 +31,12 @@ export default function ContentBuilderVideo({
 	);
 	return (
 		<Flex flex='column' className='relative'>
-			<ContentBuilderOptions
-				component={component}
-				edit={() =>
-					component_to_edit === component.id
-						? component_to_edit_setter(null)
-						: component_to_edit_setter(component.id)
-				}
-			/>
+			<ContentBuilderOptionsDrawer>
+				<ContentBuilderEditOption componentID={component.id} />
+				<ContentBuilderDeleteOption componentID={component.id} />
+				<ContentBuilderMoveUpOption position={component.position} />
+				<ContentBuilderMoveDownOption position={component.position} />
+			</ContentBuilderOptionsDrawer>
 			{component_to_edit === component.id || (
 				<iframe src={component.url} className='aspect-[16/9]' />
 			)}
