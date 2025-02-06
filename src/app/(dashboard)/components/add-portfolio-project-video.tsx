@@ -2,10 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import {
-	portfolio_project_content_jotai,
-	portfolio_project_data_jotai,
-} from "@/data/atoms/app_data";
+import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
