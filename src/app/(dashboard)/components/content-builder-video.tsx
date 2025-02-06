@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import {
-	portfolio_project_data_jotai,
+	portfolio_project_content_jotai,
 	PortfolioProjectVideo,
 } from "@/data/atoms/app_data";
 import React, { useState } from "react";
@@ -21,8 +21,8 @@ export default function ContentBuilderVideo({
 		component_to_edit_jotai,
 	);
 	const [videoLink, setVideoLink] = useState(component.url);
-	const portfolio_project_data_setter = useSetAtom(
-		portfolio_project_data_jotai,
+	const portfolio_project_content_setter = useSetAtom(
+		portfolio_project_content_jotai,
 	);
 	return (
 		<Flex flex='column' className='relative'>
@@ -62,8 +62,8 @@ export default function ContentBuilderVideo({
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_data_setter((data) => {
-									const update = data.content.map((obj) => {
+								portfolio_project_content_setter((content) => {
+									return content.map((obj) => {
 										if (component.id === obj.id)
 											return {
 												...obj,
@@ -71,10 +71,6 @@ export default function ContentBuilderVideo({
 											};
 										return obj;
 									});
-									return {
-										...data,
-										content: update,
-									};
 								});
 								component_to_edit_setter(null);
 							}}
