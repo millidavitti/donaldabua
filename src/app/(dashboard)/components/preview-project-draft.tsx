@@ -4,6 +4,7 @@ import {
 	portfolio_project_content_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
+	portfolio_project_thumbnail_jotai,
 	portfolio_project_title_jotai,
 } from "@/data/atoms/app_data";
 import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
@@ -15,6 +16,7 @@ import ContentBuilderImage from "./content-builder-image";
 import { createId } from "@paralleldrive/cuid2";
 import ContentBuilderVideo from "./content-builder-video";
 import ContentBuilderText from "./content-builder-text";
+import Image from "next/image";
 
 export default function PreviewProjectDraft() {
 	const portfolio_project_form_step_setter = useSetAtom(
@@ -30,10 +32,14 @@ export default function PreviewProjectDraft() {
 		portfolio_project_description_jotai,
 	);
 	const portfolio_project_title = useAtomValue(portfolio_project_title_jotai);
+	const portfolio_project_thumbnail = useAtomValue(
+		portfolio_project_thumbnail_jotai,
+	);
+
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[80%] neonScan'
+			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan'
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
@@ -55,14 +61,15 @@ export default function PreviewProjectDraft() {
 					<p>{portfolio_project_title}</p>
 				</Flex>
 
-				{/* Project Description, Tech Stack, Content */}
 				<Flex className='gap-3 flex-wrap'>
-					{/* Project Description, Tech Stack */}
 					<Flex flex='column' className='grow gap-3 basis-[360px]'>
+						{/* Project Description */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
 						<p>{portfolio_project_description}</p>
+
+						{/* Tech Stack */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Tech Stack
 						</label>
@@ -77,6 +84,22 @@ export default function PreviewProjectDraft() {
 								</Flex>
 							))}
 						</Flex>
+
+						{/* Thumbnail */}
+						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+							Thumbnail
+						</label>
+
+						{portfolio_project_thumbnail && (
+							<Image
+								src={portfolio_project_thumbnail}
+								width={1000}
+								height={1000}
+								alt='thumbnail'
+								data-is-visible={Boolean(portfolio_project_thumbnail)}
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+							/>
+						)}
 					</Flex>
 					{/* Content Preview */}
 					<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
