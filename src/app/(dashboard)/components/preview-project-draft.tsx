@@ -2,7 +2,6 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import {
 	portfolio_project_content_jotai,
-	portfolio_project_data_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
 	portfolio_project_title_jotai,
