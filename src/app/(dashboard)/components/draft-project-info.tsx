@@ -8,7 +8,10 @@ import {
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
+import {
+	portfolio_project_data_jotai,
+	portfolio_project_tech_stack_jotai,
+} from "@/data/atoms/app_data";
 import ContentBuilder from "./content-builder";
 
 export default function DraftProjectInfo() {
@@ -16,6 +19,9 @@ export default function DraftProjectInfo() {
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
+	const [portfolio_project_tech_stack, portfolio_project_tech_stack_setter] =
+		useAtom(portfolio_project_tech_stack_jotai);
+
 	const [portfolio_project_data, portfolio_project_data_setter] = useAtom(
 		portfolio_project_data_jotai,
 	);
@@ -79,7 +85,7 @@ export default function DraftProjectInfo() {
 							Tech Stack
 						</label>
 						<Flex className='gap-3 flex-wrap shrink-0'>
-							{portfolio_project_data.techStack.map((tech) => (
+							{portfolio_project_tech_stack.map((tech) => (
 								<Flex className='gap-3 items-center' key={tech}>
 									<p className='shrink-0 font-medium'>{tech}</p>
 									<X
@@ -96,13 +102,10 @@ export default function DraftProjectInfo() {
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {
 									if ((e.target as HTMLInputElement).value)
-										portfolio_project_data_setter((data) => ({
-											...data,
-											techStack: [
-												...data.techStack,
-												(e.target as HTMLInputElement).value,
-											],
-										}));
+										portfolio_project_tech_stack_setter((stack) => [
+											...stack,
+											(e.target as HTMLInputElement).value,
+										]);
 									(e.target as HTMLInputElement).value = "";
 								}
 							}}
