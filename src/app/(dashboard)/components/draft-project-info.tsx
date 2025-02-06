@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -12,9 +12,11 @@ import {
 	portfolio_project_data_jotai,
 	portfolio_project_tech_stack_jotai,
 } from "@/data/atoms/app_data";
-import ContentBuilder from "./content-builder";
 
-export default function DraftProjectInfo() {
+interface DraftProjectInfo {
+	children: ReactNode;
+}
+export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
@@ -111,7 +113,7 @@ export default function DraftProjectInfo() {
 							}}
 						/>
 					</Flex>
-					<ContentBuilder />
+					{children}
 				</Flex>
 				<Button
 					onClick={() => {
