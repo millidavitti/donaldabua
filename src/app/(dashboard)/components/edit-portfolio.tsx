@@ -8,7 +8,6 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import DraftProjectInfo from "./draft-project-info";
 import PreviewProjectDraft from "./preview-project-draft";
 import ContentBuilder from "./content-builder";
@@ -18,8 +17,6 @@ export default function EditPortfolio() {
 	const portfolio_project_form_step = useAtomValue(
 		portfolio_project_form_step_jotai,
 	);
-	const portfolio_project_data = useAtomValue(portfolio_project_data_jotai);
-	console.log(portfolio_project_data);
 
 	return (
 		<>
