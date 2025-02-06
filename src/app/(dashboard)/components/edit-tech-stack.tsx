@@ -17,7 +17,7 @@ export default function EditTechStack() {
 			<Flex flex='column' className='basis-40 grow gap-3 shrink-0'>
 				{/* Header */}
 				<Flex className='justify-between items-center shrink-0'>
-					<h2 className='text-2xl font-semibold'>Tech Stack</h2>
+					<h2 className='lg:text-2xl font-semibold'>Tech Stack</h2>
 					<InteractiveIcon
 						callback={() => {
 							edit_profile_setter("edit-tech-stack");
@@ -39,7 +39,7 @@ export default function EditTechStack() {
 					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'
 				>
 					<Flex className='justify-between items-center shrink-0'>
-						<h2 className='text-2xl font-semibold'>Edit Tech Stack</h2>
+						<h2 className='text-xl font-semibold'>Edit Tech Stack</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
