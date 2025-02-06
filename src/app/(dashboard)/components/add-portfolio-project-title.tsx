@@ -1,4 +1,5 @@
 import { portfolio_project_title_jotai } from "@/data/atoms/app_data";
+import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 
 export default function AddPortfolioProjectTitle() {
@@ -13,8 +14,12 @@ export default function AddPortfolioProjectTitle() {
 			</label>
 			<input
 				type='text'
+				id='portfolio-project-title'
 				required
-				className='outline p-3 shrink-0'
+				className={cn(
+					"outline p-3 shrink-0 valid:outline-emerald-800",
+					Boolean(portfolio_project_title) && "invalid:outline-red-800",
+				)}
 				value={portfolio_project_title}
 				onChange={(e) => {
 					portfolio_project_title_setter(e.target.value);

@@ -1,4 +1,5 @@
 import { portfolio_project_thumbnail_jotai } from "@/data/atoms/app_data";
+import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
@@ -12,11 +13,18 @@ export default function AddPortfolioProjectThumbnail() {
 			</label>
 			<input
 				type='url'
+				id='portfolio-project-thumbnail'
 				required
-				className='outline p-3'
+				className={cn(
+					"outline p-3 valid:outline-emerald-800",
+					portfolio_project_thumbnail && "invalid:outline-red-800",
+				)}
 				value={portfolio_project_thumbnail}
+				placeholder='Paste a valid Cloudinary link'
 				onChange={(e) => {
-					portfolio_project_thumbnail_setter(e.target.value);
+					if (e.target.validity.valid)
+						portfolio_project_thumbnail_setter(e.target.value);
+					else portfolio_project_thumbnail_setter("");
 				}}
 			/>
 			{portfolio_project_thumbnail && (

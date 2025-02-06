@@ -52,7 +52,23 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 				</Flex>
 				<Button
 					onClick={() => {
-						portfolio_project_form_step_setter("preview-project-draft");
+						const formElements = document.querySelectorAll(
+							"[id^='portfolio-project']",
+						);
+						formElements.forEach((el) => {
+							const field = (el as HTMLInputElement).validity;
+
+							if (!field.valid) {
+								el.classList.add("outline-red-800");
+								el.scrollIntoView({ behavior: "smooth" });
+							}
+						});
+						if (
+							Array.from(formElements).every(
+								(el) => (el as HTMLInputElement).validity.valid === true,
+							)
+						)
+							portfolio_project_form_step_setter("preview-project-draft");
 					}}
 					className='bg-black text-light-surface'
 				>
