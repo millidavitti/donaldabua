@@ -2,9 +2,9 @@ import Flex from "@/components/layouts/flex";
 import { content_hover_state_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue } from "jotai";
 import React from "react";
-import AddPortfolioProjectVideo from "./portfolio-project/add-portfolio-project-video";
-import AddPortfolioProjectImage from "./portfolio-project/add-portfolio-project-image";
-import AddPortfolioProjectText from "./portfolio-project/add-portfolio-project-text";
+import AddPortfolioProjectVideo from "./add-portfolio-project-video";
+import AddPortfolioProjectImage from "./add-portfolio-project-image";
+import AddPortfolioProjectText from "./add-portfolio-project-text";
 
 export default function ProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
