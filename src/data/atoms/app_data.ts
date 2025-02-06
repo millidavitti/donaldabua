@@ -97,3 +97,8 @@ export const portfolio_project_content_jotai = focusAtom(
 	portfolio_project_data_jotai,
 	(optic) => optic.prop("content"),
 );
+
+export const portfolio_project_tech_stack_jotai = focusAtom(
+	portfolio_project_data_jotai,
+	(optic) => optic.prop("techStack"),
+);

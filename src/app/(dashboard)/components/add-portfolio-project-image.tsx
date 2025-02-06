@@ -14,7 +14,7 @@ import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function EditPortfolioProjectImage() {
+export default function AddPortfolioProjectImage() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
@@ -81,7 +81,7 @@ export default function EditPortfolioProjectImage() {
 								height={1000}
 								alt='thumbnail'
 								data-is-visible={Boolean(imageLink)}
-								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
 							/>
 						)}
 						<Button

@@ -34,10 +34,16 @@ export default function ContentBuilderImage({
 				}
 			/>
 			{component_to_edit === component.id || (
-				<Image src={component.url} width={1000} height={1000} alt='' />
+				<Image
+					src={component.url}
+					width={1000}
+					height={1000}
+					alt=''
+					className='neonScan'
+				/>
 			)}
 			{component_to_edit === component.id && (
-				<Flex flex='column' className='bg-light-surface gap-3'>
+				<Flex flex='column' className='bg-light-surface gap-3 neonScan'>
 					<Flex flex='column' className='gap-3'>
 						<label className='text-xl font-semibold' htmlFor='title'>
 							Paste a link to your image

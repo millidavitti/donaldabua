@@ -14,7 +14,7 @@ import { VideoIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function EditPortfolioProjectVideo() {
+export default function AddPortfolioProjectVideo() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
@@ -83,7 +83,7 @@ export default function EditPortfolioProjectVideo() {
 							<iframe
 								src={videoLink}
 								data-is-visible={Boolean(videoLink)}
-								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
 							/>
 						)}
 						<Button

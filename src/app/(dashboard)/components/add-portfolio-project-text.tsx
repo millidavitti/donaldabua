@@ -11,7 +11,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
 import React, { useState } from "react";
-export default function EditPortfolioProjectText() {
+export default function AddPortfolioProjectText() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
