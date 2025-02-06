@@ -51,13 +51,7 @@ export default function ContentBuilderOptions({
 						htmlProps={{
 							onClick() {
 								portfolio_project_content_setter((content) => {
-									const update = content.filter(
-										(obj) => component?.id !== obj.id,
-									);
-									return {
-										...content,
-										content: update,
-									};
+									return content.filter((obj) => component?.id !== obj.id);
 								});
 							},
 						}}
