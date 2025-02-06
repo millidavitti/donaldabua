@@ -18,9 +18,8 @@ export default function ContentBuilderEditOption({
 			className='outline grow flex place-content-center'
 			htmlProps={{
 				onClick() {
-					component_to_edit === componentID
-						? component_to_edit_setter(null)
-						: component_to_edit_setter(componentID);
+					if (component_to_edit === componentID) component_to_edit_setter(null);
+					else component_to_edit_setter(componentID);
 				},
 			}}
 		>
