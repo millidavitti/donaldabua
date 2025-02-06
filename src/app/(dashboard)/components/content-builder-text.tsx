@@ -57,7 +57,7 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 			{component_to_edit === component.id && (
 				<textarea
 					value={markdown}
-					className='shrink-0 p-3 '
+					className='shrink-0 p-3 neonScan'
 					rows={30}
 					onChange={(e) => {
 						setMarkdown(e.target.value);
