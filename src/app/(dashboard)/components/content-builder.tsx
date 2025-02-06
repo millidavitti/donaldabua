@@ -15,24 +15,26 @@ export default function ContentBuilder() {
 
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
-			<Flex flex='column' className='grow gap-3'>
-				{portfolio_project_content
-					.sort((a, b) => a.position - b.position)
-					.map((component) => {
-						if (component.type === "image")
-							return (
-								<ContentBuilderImage component={component} key={createId()} />
-							);
-						else if (component.type === "video")
-							return (
-								<ContentBuilderVideo component={component} key={createId()} />
-							);
-						else if (component.type === "text")
-							return (
-								<ContentBuilderText component={component} key={createId()} />
-							);
-					})}
-			</Flex>
+			{Boolean(portfolio_project_content.length) && (
+				<Flex flex='column' className='h-fit gap-3'>
+					{portfolio_project_content
+						.sort((a, b) => a.position - b.position)
+						.map((component) => {
+							if (component.type === "image")
+								return (
+									<ContentBuilderImage component={component} key={createId()} />
+								);
+							else if (component.type === "video")
+								return (
+									<ContentBuilderVideo component={component} key={createId()} />
+								);
+							else if (component.type === "text")
+								return (
+									<ContentBuilderText component={component} key={createId()} />
+								);
+						})}
+				</Flex>
+			)}
 			<ProjectContentOptions />
 		</Flex>
 	);
