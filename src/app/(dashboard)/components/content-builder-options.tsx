@@ -62,8 +62,6 @@ export default function ContentBuilderOptions({
 					>
 						<Trash />
 					</InteractiveIcon>
-					{/* Move up or down */}
-
 					<InteractiveIcon
 						className='outline grow flex place-content-center'
 						htmlProps={{
