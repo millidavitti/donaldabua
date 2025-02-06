@@ -14,7 +14,7 @@ export default function AddPortfolioProjectTitle() {
 			<input
 				type='text'
 				required
-				className='outline p-3 shrink-0'
+				className='outline p-3 shrink-0 valid:outline-emerald-800 invalid:outline-red-800'
 				value={portfolio_project_title}
 				onChange={(e) => {
 					portfolio_project_title_setter(e.target.value);
