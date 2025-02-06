@@ -93,6 +93,8 @@ export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 	content: [],
 });
 
+export const portfolio_project_description_jotai = atom<string>("");
+
 export const portfolio_project_content_jotai = atom<
 	(PortfolioProjectImage | PortfolioProjectVideo | PortfolioProjectText)[]
 >([]);
