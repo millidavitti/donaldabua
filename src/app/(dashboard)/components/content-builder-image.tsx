@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import ContentBuilderOptions from "./content-builder-options";
 import {
-	portfolio_project_data_jotai,
+	portfolio_project_content_jotai,
 	PortfolioProjectImage,
 } from "@/data/atoms/app_data";
 import { useAtom, useSetAtom } from "jotai";
@@ -20,8 +20,8 @@ export default function ContentBuilderImage({
 		component_to_edit_jotai,
 	);
 	const [imageLink, setImageLink] = useState(component.url);
-	const portfolio_project_data_setter = useSetAtom(
-		portfolio_project_data_jotai,
+	const portfolio_project_content_setter = useSetAtom(
+		portfolio_project_content_jotai,
 	);
 	return (
 		<Flex flex='column' className='relative'>
@@ -62,8 +62,8 @@ export default function ContentBuilderImage({
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_data_setter((data) => {
-									const update = data.content.map((obj) => {
+								portfolio_project_content_setter((content) => {
+									return content.map((obj) => {
 										if (component.id === obj.id)
 											return {
 												...obj,
@@ -71,10 +71,6 @@ export default function ContentBuilderImage({
 											};
 										return obj;
 									});
-									return {
-										...data,
-										content: update,
-									};
 								});
 								setImageLink("");
 								component_to_edit_setter(null);
