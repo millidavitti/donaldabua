@@ -7,14 +7,7 @@ import {
 	edit_profile_jotai,
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
-import {
-	portfolio_project_description_jotai,
-	portfolio_project_tech_stack_jotai,
-	portfolio_project_thumbnail_jotai,
-	portfolio_project_title_jotai,
-} from "@/data/atoms/app_data";
-import Image from "next/image";
+import { useSetAtom } from "jotai";
 import AddPortfolioProjectTitle from "./add-portfolio-project-title";
 import AddPortfolioProjectDescription from "./add-portfolio-project-description";
 import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
