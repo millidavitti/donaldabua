@@ -1,7 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import React, { useState } from "react";
-import ContentBuilderOptions from "./content-builder-options";
 import {
 	portfolio_project_content_jotai,
 	PortfolioProjectImage,
@@ -10,8 +9,6 @@ import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
-import { ArrowDown, ArrowUp, Edit, Trash } from "lucide-react";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
