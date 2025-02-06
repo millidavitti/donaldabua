@@ -85,6 +85,7 @@ export type PortfolioProjectData = {
 	)[];
 };
 
+// This is use to store fetched project data
 export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 	id: "",
 	title: "",
@@ -92,6 +93,8 @@ export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 	techStack: [],
 	content: [],
 });
+
+export const portfolio_project_title_jotai = atom<string>("");
 
 export const portfolio_project_description_jotai = atom<string>("");
 
