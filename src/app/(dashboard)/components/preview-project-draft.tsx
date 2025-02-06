@@ -1,6 +1,11 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
+import {
+	portfolio_project_content_jotai,
+	portfolio_project_description_jotai,
+	portfolio_project_tech_stack_jotai,
+	portfolio_project_title_jotai,
+} from "@/data/atoms/app_data";
 import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ArrowLeftIcon, X } from "lucide-react";
@@ -15,7 +20,16 @@ export default function PreviewProjectDraft() {
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
-	const portfolio_project_data = useAtomValue(portfolio_project_data_jotai);
+	const portfolio_project_content = useAtomValue(
+		portfolio_project_content_jotai,
+	);
+	const portfolio_project_tech_stack = useAtomValue(
+		portfolio_project_tech_stack_jotai,
+	);
+	const portfolio_project_description = useAtomValue(
+		portfolio_project_description_jotai,
+	);
+	const portfolio_project_title = useAtomValue(portfolio_project_title_jotai);
 	return (
 		<Flex
 			flex='column'
@@ -38,7 +52,7 @@ export default function PreviewProjectDraft() {
 					<label className='text-xl font-semibold' htmlFor='title'>
 						Project Title
 					</label>
-					<p>{portfolio_project_data.title}</p>
+					<p>{portfolio_project_title}</p>
 				</Flex>
 
 				{/* Project Description, Tech Stack, Content */}
@@ -48,12 +62,12 @@ export default function PreviewProjectDraft() {
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
-						<p>{portfolio_project_data.description}</p>
+						<p>{portfolio_project_description}</p>
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Tech Stack
 						</label>
 						<Flex className='gap-3 flex-wrap shrink-0'>
-							{portfolio_project_data.techStack.map((tech) => (
+							{portfolio_project_tech_stack.map((tech) => (
 								<Flex className='gap-3 items-center' key={tech}>
 									<p className='shrink-0 font-medium'>{tech}</p>
 									<X
@@ -66,7 +80,7 @@ export default function PreviewProjectDraft() {
 					</Flex>
 					{/* Content Preview */}
 					<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
-						{portfolio_project_data.content
+						{portfolio_project_content
 							.sort((a, b) => a.position - b.position)
 							.map((component) => {
 								if (component.type === "image")

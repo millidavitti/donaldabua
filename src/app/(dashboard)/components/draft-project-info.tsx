@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -9,22 +9,28 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import {
-	portfolio_project_data_jotai,
+	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
+	portfolio_project_title_jotai,
 } from "@/data/atoms/app_data";
-import ContentBuilder from "./content-builder";
 
-export default function DraftProjectInfo() {
+interface DraftProjectInfo {
+	children: ReactNode;
+}
+export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
+
 	const [portfolio_project_tech_stack, portfolio_project_tech_stack_setter] =
 		useAtom(portfolio_project_tech_stack_jotai);
-
-	const [portfolio_project_data, portfolio_project_data_setter] = useAtom(
-		portfolio_project_data_jotai,
+	const [portfolio_project_description, portfolio_project_description_setter] =
+		useAtom(portfolio_project_description_jotai);
+	const [portfolio_project_title, portfolio_project_title_setter] = useAtom(
+		portfolio_project_title_jotai,
 	);
+
 	return (
 		<Flex
 			flex='column'
@@ -53,12 +59,9 @@ export default function DraftProjectInfo() {
 					type='text'
 					required
 					className='outline p-3 shrink-0'
-					value={portfolio_project_data.title}
+					value={portfolio_project_title}
 					onChange={(e) => {
-						portfolio_project_data_setter((data) => ({
-							...data,
-							title: e.target.value,
-						}));
+						portfolio_project_title_setter(e.target.value);
 					}}
 				/>
 
@@ -66,6 +69,7 @@ export default function DraftProjectInfo() {
 				<Flex className='gap-3 flex-wrap'>
 					{/* Project Description, Tech Stack */}
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
+						{/* Project Description */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Project Description
 						</label>
@@ -73,14 +77,13 @@ export default function DraftProjectInfo() {
 							type='text'
 							required
 							className='outline p-3'
-							value={portfolio_project_data.description}
+							value={portfolio_project_description}
 							onChange={(e) => {
-								portfolio_project_data_setter((data) => ({
-									...data,
-									description: e.target.value,
-								}));
+								portfolio_project_description_setter(e.target.value);
 							}}
 						/>
+
+						{/* Tech Stack */}
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 							Tech Stack
 						</label>
@@ -111,7 +114,7 @@ export default function DraftProjectInfo() {
 							}}
 						/>
 					</Flex>
-					<ContentBuilder />
+					{children}
 				</Flex>
 				<Button
 					onClick={() => {

@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
+import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
 	edit_portfolio_project_jotai,
@@ -18,8 +18,8 @@ export default function AddPortfolioProjectImage() {
 	const edit_portfolio_project_setter = useSetAtom(
 		edit_portfolio_project_jotai,
 	);
-	const portfolio_project_data_setter = useSetAtom(
-		portfolio_project_data_jotai,
+	const portfolio_project_content_setter = useSetAtom(
+		portfolio_project_content_jotai,
 	);
 	const [imageLink, setImageLink] = useState("");
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
@@ -87,18 +87,15 @@ export default function AddPortfolioProjectImage() {
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_data_setter((data) => ({
-									...data,
-									content: [
-										...data.content,
-										{
-											id: createId(),
-											url: imageLink,
-											position: data.content.length,
-											type: "image",
-										},
-									],
-								}));
+								portfolio_project_content_setter((content) => [
+									...content,
+									{
+										id: createId(),
+										url: imageLink,
+										position: content.length,
+										type: "image",
+									},
+								]);
 								setImageLink("");
 								edit_portfolio_project_setter(null);
 							}}
