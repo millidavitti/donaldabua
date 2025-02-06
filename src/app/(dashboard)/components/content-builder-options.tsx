@@ -2,12 +2,11 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import {
 	portfolio_project_content_jotai,
-	portfolio_project_data_jotai,
 	PortfolioProjectImage,
 	PortfolioProjectText,
 	PortfolioProjectVideo,
 } from "@/data/atoms/app_data";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { ArrowDown, ArrowUp, Edit, EllipsisIcon, Trash } from "lucide-react";
 import { useState } from "react";
 
