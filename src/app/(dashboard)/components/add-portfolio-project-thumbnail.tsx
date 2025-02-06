@@ -13,7 +13,7 @@ export default function AddPortfolioProjectThumbnail() {
 			<input
 				type='url'
 				required
-				className='outline p-3'
+				className='outline p-3 valid:outline-emerald-800 invalid:outline-red-800'
 				value={portfolio_project_thumbnail}
 				onChange={(e) => {
 					portfolio_project_thumbnail_setter(e.target.value);
