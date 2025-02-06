@@ -78,6 +78,7 @@ export type PortfolioProjectData = {
 	title: string;
 	description: string;
 	techStack: string[];
+	thumbnail: string;
 	content: (
 		| PortfolioProjectImage
 		| PortfolioProjectVideo
@@ -93,6 +94,7 @@ export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 		"Front-End Development: Strong expertise in React, allowing for the creation of dynamic and engaging user interfaces that enhance user experience.",
 	techStack: [],
 	content: [],
+	thumbnail: "",
 });
 
 export const portfolio_project_title_jotai = atom<string>("");
@@ -104,3 +106,12 @@ export const portfolio_project_content_jotai = atom<
 >([]);
 
 export const portfolio_project_tech_stack_jotai = atom<string[]>([]);
+
+export const portfolio_project_thumbnail_jotai = atom<string>("");
+
+export type PortfolioProject = {
+	id: string;
+	title: string;
+	thumbnail: string;
+};
+export const portfolio_projects_jotai = atom<PortfolioProject[]>([]);
