@@ -5,7 +5,6 @@ import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ArrowLeftIcon, X } from "lucide-react";
 import React from "react";
-import ProjectContentOptions from "./project-content-options";
 import Button from "@/components/ui/button";
 import ContentBuilderImage from "./content-builder-image";
 import { createId } from "@paralleldrive/cuid2";
