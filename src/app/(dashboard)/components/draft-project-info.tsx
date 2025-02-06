@@ -11,8 +11,10 @@ import { useAtom, useSetAtom } from "jotai";
 import {
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
+	portfolio_project_thumbnail_jotai,
 	portfolio_project_title_jotai,
 } from "@/data/atoms/app_data";
+import Image from "next/image";
 
 interface DraftProjectInfo {
 	children: ReactNode;
@@ -30,6 +32,8 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	const [portfolio_project_title, portfolio_project_title_setter] = useAtom(
 		portfolio_project_title_jotai,
 	);
+	const [portfolio_project_thumbnail, portfolio_project_thumbnail_setter] =
+		useAtom(portfolio_project_thumbnail_jotai);
 
 	return (
 		<Flex
@@ -113,7 +117,31 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 								}
 							}}
 						/>
+						{/* Thumbnail */}
+						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+							Thumbnail
+						</label>
+						<input
+							type='url'
+							required
+							className='outline p-3'
+							value={portfolio_project_thumbnail}
+							onChange={(e) => {
+								portfolio_project_thumbnail_setter(e.target.value);
+							}}
+						/>
+						{portfolio_project_thumbnail && (
+							<Image
+								src={portfolio_project_thumbnail}
+								width={1000}
+								height={1000}
+								alt='thumbnail'
+								data-is-visible={Boolean(portfolio_project_thumbnail)}
+								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+							/>
+						)}
 					</Flex>
+
 					{children}
 				</Flex>
 				<Button
