@@ -27,7 +27,7 @@ export default function AddPortfolioProjectTechStack() {
 			<input
 				type='text'
 				required
-				className='outline p-3'
+				className='outline p-3 valid:outline-emerald-800'
 				onKeyDown={(e) => {
 					if (e.key === "Enter") {
 						if ((e.target as HTMLInputElement).value)
