@@ -12,7 +12,6 @@ import {
 } from "@/data/atoms/ui_state";
 import { mock_portfolio_projects_jotai } from "@/data/mock";
 import { useAtom, useSetAtom } from "jotai";
-import React from "react";
 
 export default function usePublishPortfolioProjectInterface() {
 	const [portfolio_project_data] = useAtom(portfolio_project_data_jotai);
