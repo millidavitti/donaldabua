@@ -1,7 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
 import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
 import PreviewPortfolioProjectTitle from "./preview-portfolio-project-title";
