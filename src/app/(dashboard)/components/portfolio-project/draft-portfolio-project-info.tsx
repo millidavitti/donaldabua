@@ -8,10 +8,10 @@ import {
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
-import AddPortfolioProjectTitle from "./portfolio-project/add-portfolio-project-title";
-import AddPortfolioProjectDescription from "./portfolio-project/add-portfolio-project-description";
-import AddPortfolioProjectTechStack from "./portfolio-project/add-portfolio-project-tech-stack";
-import AddPortfolioProjectThumbnail from "./portfolio-project/add-portfolio-project-thumbnail";
+import AddPortfolioProjectTitle from "./add-portfolio-project-title";
+import AddPortfolioProjectDescription from "./add-portfolio-project-description";
+import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
+import AddPortfolioProjectThumbnail from "./add-portfolio-project-thumbnail";
 
 interface DraftPortfolioProjectInfo {
 	children: ReactNode;

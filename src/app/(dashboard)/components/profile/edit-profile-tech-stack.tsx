@@ -7,9 +7,9 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import { useState } from "react";
-import TechStack from "./tech-stack";
+import TechStack from "../tech-stack";
 
-export default function EditTechStack() {
+export default function EditProfileTechStack() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [tech, setTech] = useState("");
 	return (

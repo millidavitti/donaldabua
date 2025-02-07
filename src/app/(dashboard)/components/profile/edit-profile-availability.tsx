@@ -8,7 +8,7 @@ import { useAtom, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import React from "react";
 
-export default function EditAvailability() {
+export default function EditProfileAvailability() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_hours_per_week, profile_hours_per_week_setter] = useAtom(
 		profile_hours_per_week_jotai,

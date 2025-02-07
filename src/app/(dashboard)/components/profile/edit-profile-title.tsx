@@ -7,7 +7,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 
-export default function EditTitle() {
+export default function EditProfileTitle() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_title, profile_title_setter] = useAtom(profile_title_jotai);
 	return (
