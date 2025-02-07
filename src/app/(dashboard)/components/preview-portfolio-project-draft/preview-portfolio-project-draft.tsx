@@ -2,12 +2,12 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
-import PreviewPortfolioProjectTitle from "./preview-portfolio-project-title";
-import PreviewPortfolioProjectDescription from "./preview-portfolio-project-description";
-import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-stack";
-import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail";
-import PreviewPortfolioProjectContent from "./preview-portfolio-project-content";
-import PublishPortfolioProject from "./publish-portfolio-project";
+import PreviewPortfolioProjectTitle from "./preview-portfolio-project-title-draft";
+import PreviewPortfolioProjectDescription from "./preview-portfolio-project-description-draft";
+import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-stack-draft";
+import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail-draft";
+import PreviewPortfolioProjectContent from "./preview-portfolio-project-content-draft";
+import PublishPortfolioProject from "./publish-portfolio-project-draft";
 import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
 
 export default function PreviewPortfolioProjectDraft() {

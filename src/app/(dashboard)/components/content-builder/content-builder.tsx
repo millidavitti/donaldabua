@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import ProjectContentOptions from "../portfolio-project/portfolio-project-content-options";
+import ProjectContentOptions from "../add-portfolio-project/portfolio-project-content-options";
 import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
