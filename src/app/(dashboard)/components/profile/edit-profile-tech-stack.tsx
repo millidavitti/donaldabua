@@ -14,7 +14,7 @@ export default function EditProfileTechStack() {
 	const [tech, setTech] = useState("");
 	return (
 		<>
-			<Flex flex='column' className='basis-40 grow gap-3 shrink-0'>
+			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
 				{/* Header */}
 				<Flex className='justify-between items-center shrink-0'>
 					<h2 className='lg:text-2xl font-semibold'>Tech Stack</h2>
