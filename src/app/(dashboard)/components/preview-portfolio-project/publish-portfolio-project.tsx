@@ -5,9 +5,7 @@ import { useAtom, useSetAtom } from "jotai";
 import React from "react";
 
 export default function PublishPortfolioProject() {
-	const [portfolio_project_data, portfolio_project_data_setter] = useAtom(
-		portfolio_project_data_jotai,
-	);
+	const [portfolio_project_data] = useAtom(portfolio_project_data_jotai);
 	const mock_portfolio_projects_setter = useSetAtom(
 		mock_portfolio_projects_jotai,
 	);
