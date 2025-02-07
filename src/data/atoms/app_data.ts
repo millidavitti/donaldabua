@@ -1,5 +1,8 @@
-import { atom } from "jotai";
+import { createId } from "@paralleldrive/cuid2";
+import { atom, getDefaultStore } from "jotai";
 import { focusAtom } from "jotai-optics";
+
+const defaultStore = getDefaultStore();
 
 export type Profile = {
 	name: string;
@@ -88,14 +91,23 @@ export type PortfolioProjectData = {
 
 // This is use to store fetched project data
 export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
-	id: "uwe",
-	title: "Context RAG Application",
-	description:
-		"Front-End Development: Strong expertise in React, allowing for the creation of dynamic and engaging user interfaces that enhance user experience.",
+	id: "",
+	title: "",
+	description: "",
 	techStack: [],
 	content: [],
 	thumbnail: "",
 });
+portfolio_project_data_jotai.onMount = (setAtom) => {
+	setAtom({
+		id: createId(),
+		content: defaultStore.get(portfolio_project_content_jotai),
+		description: defaultStore.get(portfolio_project_description_jotai),
+		techStack: defaultStore.get(portfolio_project_tech_stack_jotai),
+		thumbnail: defaultStore.get(portfolio_project_thumbnail_jotai),
+		title: defaultStore.get(portfolio_project_title_jotai),
+	});
+};
 
 export const portfolio_project_title_jotai = atom<string>("");
 
