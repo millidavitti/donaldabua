@@ -1,9 +1,5 @@
 import Button from "@/components/ui/button";
-import {
-	portfolio_project_data_jotai,
-	PortfolioProjectData,
-} from "@/data/atoms/app_data";
-import { createId } from "@paralleldrive/cuid2";
+import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
 import React from "react";
 
