@@ -11,6 +11,8 @@ import { CirclePlus } from "lucide-react";
 import DraftPortfolioProjectInfo from "../portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
+import PortfolioProject from "../portfolio-project/portfolio-project";
+import PortfolioProjects from "../portfolio-project/portfolio-projects";
 
 export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
@@ -20,8 +22,9 @@ export default function EditProfilePortfolio() {
 
 	return (
 		<>
-			<Flex flex='column' className='basis-40 grow shrink-0'>
-				<Flex className='h-fit items-center justify-between'>
+			<Flex flex='column' className='gap-3'>
+				{/* Header */}
+				<Flex className='items-center justify-between shrink-0'>
 					<p className='font-semibold lg:text-2xl'>Portfolio</p>
 					<InteractiveIcon
 						callback={() => {
@@ -31,6 +34,8 @@ export default function EditProfilePortfolio() {
 						<CirclePlus size={24} />
 					</InteractiveIcon>
 				</Flex>
+				{/* Projects */}
+				<PortfolioProjects />
 			</Flex>
 			<Overlay
 				stateFlag='edit-portfolio'
