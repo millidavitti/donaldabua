@@ -9,14 +9,12 @@ import PreviewPortfolioProjectDescription from "./preview-portfolio-project-desc
 import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-stack";
 import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail";
 import PreviewPortfolioProjectContent from "./preview-portfolio-project-content";
-import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import PublishPortfolioProject from "./publish-portfolio-project";
+import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft.interface";
 
 export default function PreviewPortfolioProjectDraft() {
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
-	const [] = useAtom(portfolio_project_data_jotai);
+	const { goBack } = usePreviewPortfolioProjectDraftInterface();
+
 	return (
 		<Flex
 			flex='column'
@@ -24,11 +22,7 @@ export default function PreviewPortfolioProjectDraft() {
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
-				<InteractiveIcon
-					callback={() =>
-						portfolio_project_form_step_setter("draft-project-info")
-					}
-				>
+				<InteractiveIcon callback={() => goBack()}>
 					<ArrowLeftIcon size={24} />
 				</InteractiveIcon>
 			</Flex>
