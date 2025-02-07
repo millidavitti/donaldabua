@@ -1,10 +1,16 @@
-import { portfolio_project_title_jotai } from "@/data/atoms/app_data";
+import {
+	portfolio_project_data_jotai,
+	portfolio_project_title_jotai,
+} from "@/data/atoms/app_data";
 import { cn } from "@/utils/cn";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 export default function AddPortfolioProjectTitle() {
 	const [portfolio_project_title, portfolio_project_title_setter] = useAtom(
 		portfolio_project_title_jotai,
+	);
+	const portfolio_project_data_setter = useSetAtom(
+		portfolio_project_data_jotai,
 	);
 	return (
 		<>
@@ -23,6 +29,10 @@ export default function AddPortfolioProjectTitle() {
 				value={portfolio_project_title}
 				onChange={(e) => {
 					portfolio_project_title_setter(e.target.value);
+
+					portfolio_project_data_setter((project) => {
+						return { ...project, title: e.target.value };
+					});
 				}}
 			/>
 		</>
