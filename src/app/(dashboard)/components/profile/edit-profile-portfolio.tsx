@@ -8,10 +8,10 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftPortfolioProjectInfo from "../portfolio-project/draft-portfolio-project-info";
+import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PortfolioProjects from "../portfolio-project/portfolio-projects";
+import PortfolioProjects from "../portfolio-projects";
 
 export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
