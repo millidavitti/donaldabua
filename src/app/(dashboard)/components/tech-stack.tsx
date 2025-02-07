@@ -4,7 +4,7 @@ import React from "react";
 
 export default function TechStack() {
 	return (
-		<Flex className='gap-3 flex-wrap shrink-0'>
+		<Flex className='gap-3 flex-wrap shrink-0 grow'>
 			{techStack.map((tech) => (
 				<Flex className='gap-3 items-center' key={tech}>
 					<p className='shrink-0 font-medium'>{tech}</p>

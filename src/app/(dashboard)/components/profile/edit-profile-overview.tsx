@@ -6,7 +6,8 @@ import { profile_overview_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
-
+import md from "md";
+import parse from "html-react-parser";
 export default function EditProfileOverview() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_overview, profile_overview_setter] = useAtom(
@@ -14,14 +15,15 @@ export default function EditProfileOverview() {
 	);
 	return (
 		<>
-			<Flex>
+			<Flex className='gap-3'>
 				<Flex className='grow max-h-[320px]'>
-					<p>{profile_overview}</p>
+					<div className='shrink-0 w-full'>{parse(md(profile_overview))}</div>
 				</Flex>
 				<InteractiveIcon
 					callback={() => {
 						edit_profile_setter("edit-profile-overview");
 					}}
+					className='self-start'
 				>
 					<EditIcon size={24} />
 				</InteractiveIcon>

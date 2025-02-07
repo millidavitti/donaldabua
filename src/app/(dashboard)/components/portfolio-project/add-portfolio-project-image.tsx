@@ -71,6 +71,7 @@ export default function AddPortfolioProjectImage() {
 							value={imageLink || ""}
 							onChange={(e) => {
 								if (e.target.validity.valid) setImageLink(e.target.value);
+								else setImageLink("");
 							}}
 							className='outline p-3'
 						/>
