@@ -20,7 +20,7 @@ export default function PublishPortfolioProject() {
 					...projects,
 					portfolio_project_data,
 				]);
-				portfolio_project_data_setter({});
+				// portfolio_project_data_setter({});
 			}}
 		>
 			Publish
