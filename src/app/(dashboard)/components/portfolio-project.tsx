@@ -1,30 +1,45 @@
 import Flex from "@/components/layouts/flex";
+import Overlay from "@/components/layouts/overlay";
+import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { useSetAtom } from "jotai";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import ViewPortfolioProject from "./view-portfolio-project";
+import { PortfolioProjectData } from "@/data/atoms/app_data";
 
 interface PortfolioProject {
-	thumbnail: string;
-	title: string;
+	project: PortfolioProjectData;
 }
-export default function PortfolioProject({
-	thumbnail,
-	title,
-}: PortfolioProject) {
+export default function PortfolioProject({ project }: PortfolioProject) {
+	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	return (
-		<Flex
-			flex='column'
-			className='shrink-0 gap-3 h-fit grow basis-52 cursor-pointer active:scale-[.98] transition'
-		>
-			<Flex className='w-full h-40 shrink-0'>
-				<Image
-					src={thumbnail}
-					width={1000}
-					height={1000}
-					alt='portfolio-project-thumbnail'
-					className='neonScan object-cover'
-				/>
+		<>
+			<Flex
+				flex='column'
+				className='shrink-0 gap-3 h-fit grow basis-52 cursor-pointer active:scale-[.98] transition'
+				htmlProps={{
+					onClick() {
+						edit_profile_setter("view-portfolio-project");
+					},
+				}}
+			>
+				<Flex className='w-full h-40 shrink-0'>
+					<Image
+						src={project.thumbnail}
+						width={1000}
+						height={1000}
+						alt='portfolio-project-thumbnail'
+						className='neonScan object-cover'
+					/>
+				</Flex>
+				<p className='text-lg font-semibold'>{project.title}</p>
 			</Flex>
-			<p className='text-lg font-semibold'>{title}</p>
-		</Flex>
+			<Overlay
+				stateFlag='view-portfolio-project'
+				className='place-content-center'
+			>
+				<ViewPortfolioProject project={project} />
+			</Overlay>
+		</>
 	);
 }
