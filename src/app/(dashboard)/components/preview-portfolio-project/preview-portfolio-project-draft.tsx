@@ -4,17 +4,12 @@ import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
-import Button from "@/components/ui/button";
 import PreviewPortfolioProjectTitle from "./preview-portfolio-project-title";
 import PreviewPortfolioProjectDescription from "./preview-portfolio-project-description";
 import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-stack";
 import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail";
 import PreviewPortfolioProjectContent from "./preview-portfolio-project-content";
-import {
-	portfolio_project_data_jotai,
-	PortfolioProjectData,
-} from "@/data/atoms/app_data";
-import { createId } from "@paralleldrive/cuid2";
+import { portfolio_project_data_jotai } from "@/data/atoms/app_data";
 import PublishPortfolioProject from "./publish-portfolio-project";
 
 export default function PreviewPortfolioProjectDraft() {
