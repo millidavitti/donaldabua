@@ -16,13 +16,13 @@ export type EditProfileStates =
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
 
-export type EditPortfolioProjectStates =
+export type EditProfilePortfolioProjectStates =
 	| "edit-portfolio-project-video"
 	| "edit-portfolio-project-image"
 	| "edit-portfolio-project-text"
 	| null;
 export const edit_portfolio_project_jotai =
-	atom<EditPortfolioProjectStates>(null);
+	atom<EditProfilePortfolioProjectStates>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
