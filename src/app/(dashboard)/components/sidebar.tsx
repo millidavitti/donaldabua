@@ -3,8 +3,8 @@ import Flex from "@/components/layouts/flex";
 
 import React from "react";
 import EditProfileVideoIntroduction from "./profile/edit-profile-video-introduction";
-import EditProfileAvailability from "./edit-profile-availability";
 import EditProfileSocials from "./profile/edit-profile-socials";
+import EditProfileAvailability from "./profile/edit-profile-availability";
 
 export default function Sidebar() {
 	return (
