@@ -1,9 +1,10 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import EditProfilePhoto from "./edit-profile-photo";
-import EditProfileName from "./edit-profile-name";
-import EditProfileLocation from "./edit-profile-location";
+import EditProfilePhoto from "./profile/edit-profile-photo";
+import EditProfileName from "./profile/edit-profile-name";
+import EditProfileLocation from "./profile/edit-profile-location";
+
 export default function ProfileHeader() {
 	return (
 		<Flex className='shrink-0 gap-3 overflow-visible flex-wrap'>
