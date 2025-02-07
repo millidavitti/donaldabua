@@ -10,7 +10,7 @@ import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-s
 import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail";
 import PreviewPortfolioProjectContent from "./preview-portfolio-project-content";
 import PublishPortfolioProject from "./publish-portfolio-project";
-import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft.interface";
+import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
 
 export default function PreviewPortfolioProjectDraft() {
 	const { goBack } = usePreviewPortfolioProjectDraftInterface();
