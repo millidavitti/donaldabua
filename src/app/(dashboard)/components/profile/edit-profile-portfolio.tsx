@@ -8,11 +8,11 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftProjectInfo from "./draft-project-info";
-import PreviewProjectDraft from "./preview-project-draft";
-import ContentBuilder from "./content-builder";
+import DraftPortfolioProjectInfo from "../portfolio-project/draft-portfolio-project-info";
+import PreviewPortfolioProjectDraft from "../preview-portfolio-project/preview-portfolio-project-draft";
+import ContentBuilder from "../content-builder/content-builder";
 
-export default function EditPortfolio() {
+export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const portfolio_project_form_step = useAtomValue(
 		portfolio_project_form_step_jotai,
@@ -37,12 +37,12 @@ export default function EditPortfolio() {
 				className='flex justify-center items-center'
 			>
 				{portfolio_project_form_step === "draft-project-info" && (
-					<DraftProjectInfo>
+					<DraftPortfolioProjectInfo>
 						<ContentBuilder />
-					</DraftProjectInfo>
+					</DraftPortfolioProjectInfo>
 				)}
 				{portfolio_project_form_step === "preview-project-draft" && (
-					<PreviewProjectDraft />
+					<PreviewPortfolioProjectDraft />
 				)}
 			</Overlay>
 		</>

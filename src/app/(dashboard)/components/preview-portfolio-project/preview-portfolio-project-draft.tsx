@@ -11,7 +11,7 @@ import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-s
 import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail";
 import PreviewPortfolioProjectContent from "./preview-portfolio-project-content";
 
-export default function PreviewProjectDraft() {
+export default function PreviewPortfolioProjectDraft() {
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);

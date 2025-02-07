@@ -2,9 +2,9 @@ import Flex from "@/components/layouts/flex";
 import React from "react";
 import ProfileHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
-import DeveloperOverview from "../components/developer-overview";
-import EmploymentHistory from "../components/employment-history";
-import Socials from "../components/edit-socials";
+import ProfileOverview from "../components/profile-overview";
+import Socials from "../components/profile/edit-profile-socials";
+import EditProfileEmploymentHistory from "../components/profile/edit-profile-employment-history";
 
 export default function Dashboard() {
 	return (
@@ -15,11 +15,11 @@ export default function Dashboard() {
 				{/* Main */}
 				<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
 					<Sidebar />
-					<DeveloperOverview />
+					<ProfileOverview />
 				</Flex>
 				{/* Social Proof */}
 				<Flex className='gap-3 shrink-0' flex='column'>
-					<EmploymentHistory />
+					<EditProfileEmploymentHistory />
 					<Socials />
 				</Flex>
 			</Flex>

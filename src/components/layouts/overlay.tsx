@@ -3,7 +3,7 @@
 import {
 	edit_portfolio_project_jotai,
 	edit_profile_jotai,
-	EditPortfolioProjectStates,
+	EditProfilePortfolioProjectStates,
 	EditProfileStates,
 } from "@/data/atoms/ui_state";
 import {
@@ -15,7 +15,7 @@ import { useAtom } from "jotai";
 import { ReactNode } from "react";
 
 interface Overlay {
-	stateFlag: EditProfileStates | EditPortfolioProjectStates;
+	stateFlag: EditProfileStates | EditProfilePortfolioProjectStates;
 	children: ReactNode;
 	className?: string;
 }
