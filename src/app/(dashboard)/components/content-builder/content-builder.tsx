@@ -15,6 +15,7 @@ export default function ContentBuilder() {
 
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
+			<ProjectContentOptions />
 			{Boolean(portfolio_project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3'>
 					{portfolio_project_content
@@ -35,7 +36,6 @@ export default function ContentBuilder() {
 						})}
 				</Flex>
 			)}
-			<ProjectContentOptions />
 		</Flex>
 	);
 }
