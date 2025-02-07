@@ -11,7 +11,6 @@ import { CirclePlus } from "lucide-react";
 import DraftPortfolioProjectInfo from "../portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PortfolioProject from "../portfolio-project/portfolio-project";
 import PortfolioProjects from "../portfolio-project/portfolio-projects";
 
 export default function EditProfilePortfolio() {
