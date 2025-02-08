@@ -26,9 +26,10 @@ export default function PublishedPortfolioProject({
 		<>
 			<Flex className='shrink-0 gap-3 h-fit grow basis-52 relative'>
 				<PublishedPortfolioProjectOptions>
-					<PublishedPortfolioProjectEditOption projectID='' />
+					<PublishedPortfolioProjectEditOption project={project} />
 					<PublishedPortfolioProjectDeleteOption projectID='' />
 				</PublishedPortfolioProjectOptions>
+				{/* Project */}
 				<Flex
 					flex='column'
 					className='shrink-0 gap-3 h-fit grow basis-52 cursor-pointer active:scale-[.98] transition'
