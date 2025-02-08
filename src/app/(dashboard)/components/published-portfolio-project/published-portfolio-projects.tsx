@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
 import { mock_portfolio_projects_jotai } from "@/data/mock";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import Overlay from "@/components/layouts/overlay";
 import ViewPortfolioProject from "../view-portfolio-project";
 import { selected_portfolio_project_jotai } from "@/data/atoms/app_data";
