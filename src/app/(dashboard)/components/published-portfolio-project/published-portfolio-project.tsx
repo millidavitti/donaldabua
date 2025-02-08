@@ -8,10 +8,12 @@ import {
 	selected_portfolio_project_jotai,
 } from "@/data/atoms/app_data";
 
-interface PortfolioProject {
+interface PublishedPortfolioProject {
 	project: PortfolioProjectData;
 }
-export default function PortfolioProject({ project }: PortfolioProject) {
+export default function PublishedPortfolioProject({
+	project,
+}: PublishedPortfolioProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const selected_portfolio_project_setter = useSetAtom(
 		selected_portfolio_project_jotai,
