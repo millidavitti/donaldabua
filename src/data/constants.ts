@@ -1,3 +1,5 @@
+import { EditProfileStates } from "./atoms/ui_state";
+
 export const EDIT_PROFILE_STATES = [
 	"edit-image",
 	"edit-location",
@@ -11,8 +13,9 @@ export const EDIT_PROFILE_STATES = [
 	"edit-employment-history",
 	"edit-socials",
 	"edit-portfolio",
+	"edit-published-portfolio-project",
 	"view-portfolio-project",
-];
+] as EditProfileStates[];
 
 export const EDIT_PORTFOLIO_PROJECT_STATES = [
 	"edit-portfolio-project-video",
