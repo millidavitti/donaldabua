@@ -2,7 +2,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { atom, getDefaultStore } from "jotai";
 import { focusAtom } from "jotai-optics";
 
-const defaultStore = getDefaultStore();
+export const defaultStore = getDefaultStore();
 
 export type Profile = {
 	name: string;
@@ -98,16 +98,6 @@ export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
 	content: [],
 	thumbnail: "",
 });
-portfolio_project_data_jotai.onMount = (setAtom) => {
-	setAtom({
-		id: createId(),
-		content: defaultStore.get(portfolio_project_content_jotai),
-		description: defaultStore.get(portfolio_project_description_jotai),
-		techStack: defaultStore.get(portfolio_project_tech_stack_jotai),
-		thumbnail: defaultStore.get(portfolio_project_thumbnail_jotai),
-		title: defaultStore.get(portfolio_project_title_jotai),
-	});
-};
 
 export const portfolio_project_title_jotai = atom<string>("");
 
@@ -127,3 +117,6 @@ export type PortfolioProject = {
 	thumbnail: string;
 };
 export const portfolio_projects_jotai = atom<PortfolioProject[]>([]);
+
+export const selected_portfolio_project_jotai =
+	atom<PortfolioProjectData | null>(null);
