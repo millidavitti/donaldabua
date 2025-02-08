@@ -1,17 +1,21 @@
 import Flex from "@/components/layouts/flex";
-import Overlay from "@/components/layouts/overlay";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import Image from "next/image";
-import React, { useState } from "react";
-import ViewPortfolioProject from "./view-portfolio-project";
-import { PortfolioProjectData } from "@/data/atoms/app_data";
+import React from "react";
+import {
+	PortfolioProjectData,
+	selected_portfolio_project_jotai,
+} from "@/data/atoms/app_data";
 
 interface PortfolioProject {
 	project: PortfolioProjectData;
 }
 export default function PortfolioProject({ project }: PortfolioProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const selected_portfolio_project_setter = useSetAtom(
+		selected_portfolio_project_jotai,
+	);
 	return (
 		<>
 			<Flex
@@ -20,6 +24,7 @@ export default function PortfolioProject({ project }: PortfolioProject) {
 				htmlProps={{
 					onClick() {
 						edit_profile_setter("view-portfolio-project");
+						selected_portfolio_project_setter(project);
 					},
 				}}
 			>
@@ -34,12 +39,6 @@ export default function PortfolioProject({ project }: PortfolioProject) {
 				</Flex>
 				<p className='text-lg font-semibold'>{project.title}</p>
 			</Flex>
-			<Overlay
-				stateFlag='view-portfolio-project'
-				className='place-content-center'
-			>
-				<ViewPortfolioProject project={project} />
-			</Overlay>
 		</>
 	);
 }
