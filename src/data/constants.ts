@@ -15,7 +15,7 @@ export const EDIT_PROFILE_STATES = [
 	"edit-portfolio",
 	"edit-published-portfolio-project",
 	"view-portfolio-project",
-] as EditProfileStates[];
+];
 
 export const EDIT_PORTFOLIO_PROJECT_STATES = [
 	"edit-portfolio-project-video",
