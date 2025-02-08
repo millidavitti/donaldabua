@@ -5,9 +5,7 @@ import React from "react";
 interface PublishedPortfolioProjectDeleteOption {
 	projectID: string;
 }
-export default function PublishedPortfolioProjectDeleteOption({
-	projectID,
-}: PublishedPortfolioProjectDeleteOption) {
+export default function PublishedPortfolioProjectDeleteOption({}: PublishedPortfolioProjectDeleteOption) {
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
