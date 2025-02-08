@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import {
 	PortfolioProjectData,
 	selected_portfolio_project_jotai,
