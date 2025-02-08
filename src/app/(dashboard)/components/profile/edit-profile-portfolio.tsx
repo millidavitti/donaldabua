@@ -6,7 +6,7 @@ import {
 	edit_profile_jotai,
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
