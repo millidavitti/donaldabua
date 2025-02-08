@@ -1,4 +1,3 @@
-import { createId } from "@paralleldrive/cuid2";
 import { atom, getDefaultStore } from "jotai";
 import { focusAtom } from "jotai-optics";
 
