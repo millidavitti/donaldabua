@@ -11,7 +11,7 @@ import { CirclePlus } from "lucide-react";
 import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PortfolioProjects from "../portfolio-projects";
+import PortfolioProjects from "../published-portfolio-project/published-portfolio-projects";
 
 export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);

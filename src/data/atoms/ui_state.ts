@@ -13,6 +13,7 @@ export type EditProfileStates =
 	| "edit-employment-history"
 	| "edit-socials"
 	| "edit-portfolio"
+	| "edit-published-portfolio-project"
 	| "view-portfolio-project"
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
@@ -34,3 +35,5 @@ export const portfolio_project_form_step_jotai = atom<
 >(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
+
+export const portfolio_project_to_edit_jotai = atom<string | null>(null);
