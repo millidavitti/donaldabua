@@ -30,7 +30,7 @@ export const content_hover_state_jotai = atom<
 >(null);
 
 export const portfolio_project_form_step_jotai = atom<
-	"draft-project-info" | "preview-project-draft"
->("draft-project-info");
+	"draft-project-info" | "preview-project-draft" | null
+>(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
