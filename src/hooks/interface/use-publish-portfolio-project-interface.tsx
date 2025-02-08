@@ -1,6 +1,6 @@
 import {
+	defaultStore,
 	portfolio_project_content_jotai,
-	portfolio_project_data_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
 	portfolio_project_thumbnail_jotai,
@@ -11,10 +11,10 @@ import {
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { mock_portfolio_projects_jotai } from "@/data/mock";
-import { useAtom, useSetAtom } from "jotai";
+import { createId } from "@paralleldrive/cuid2";
+import { useSetAtom } from "jotai";
 
 export default function usePublishPortfolioProjectInterface() {
-	const [portfolio_project_data] = useAtom(portfolio_project_data_jotai);
 	const mock_portfolio_projects_setter = useSetAtom(
 		mock_portfolio_projects_jotai,
 	);
@@ -41,8 +41,16 @@ export default function usePublishPortfolioProjectInterface() {
 	function publishPortfolioProject() {
 		mock_portfolio_projects_setter((projects) => [
 			...projects,
-			portfolio_project_data,
+			{
+				id: createId(),
+				content: defaultStore.get(portfolio_project_content_jotai),
+				description: defaultStore.get(portfolio_project_description_jotai),
+				techStack: defaultStore.get(portfolio_project_tech_stack_jotai),
+				thumbnail: defaultStore.get(portfolio_project_thumbnail_jotai),
+				title: defaultStore.get(portfolio_project_title_jotai),
+			},
 		]);
+
 		resetPortfolioProjectFormFields();
 	}
 
