@@ -34,3 +34,7 @@ export const portfolio_project_form_step_jotai = atom<
 >(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
+
+export const published_portfolio_project_option_states_jotai = atom<
+	"published_portfolio_project_option" | null
+>(null);
