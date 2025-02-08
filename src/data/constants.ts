@@ -1,5 +1,3 @@
-import { EditProfileStates } from "./atoms/ui_state";
-
 export const EDIT_PROFILE_STATES = [
 	"edit-image",
 	"edit-location",
