@@ -60,7 +60,7 @@ export default function usePublishPortfolioProjectInterface() {
 		portfolio_project_content_setter([]);
 		portfolio_project_tech_stack_setter([]);
 		portfolio_project_thumbnail_setter("");
-		portfolio_project_form_step_setter("draft-project-info");
+		portfolio_project_form_step_setter(null);
 		edit_profile_setter(null);
 	}
 	return { publishPortfolioProject };
