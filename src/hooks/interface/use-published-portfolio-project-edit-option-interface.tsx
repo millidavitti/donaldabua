@@ -11,7 +11,6 @@ import {
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
-import React from "react";
 
 export default function usePublishedPortfolioProjectEditOptionInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
