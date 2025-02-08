@@ -28,26 +28,30 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 
 	return (
 		<>
-			<div
-				className={cn(
-					"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden p-3",
-					className,
-				)}
-				id={stateFlag!}
-				data-is-shown={
-					stateFlag === edit_portfolio_project || stateFlag === edit_profile
-				}
-				onClick={(e) => {
-					if (EDIT_PROFILE_STATES.includes((e.target as HTMLElement).id))
-						edit_profile_setter(null);
-					else if (
-						EDIT_PORTFOLIO_PROJECT_STATES.includes((e.target as HTMLElement).id)
-					)
-						edit_portfolio_project_setter(null);
-				}}
-			>
-				{children}
-			</div>
+			{(stateFlag === edit_portfolio_project || stateFlag === edit_profile) && (
+				<div
+					className={cn(
+						"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden p-3",
+						className,
+					)}
+					id={stateFlag!}
+					data-is-shown={
+						stateFlag === edit_portfolio_project || stateFlag === edit_profile
+					}
+					onClick={(e) => {
+						if (EDIT_PROFILE_STATES.includes((e.target as HTMLElement).id))
+							edit_profile_setter(null);
+						else if (
+							EDIT_PORTFOLIO_PROJECT_STATES.includes(
+								(e.target as HTMLElement).id,
+							)
+						)
+							edit_portfolio_project_setter(null);
+					}}
+				>
+					{children}
+				</div>
+			)}
 		</>
 	);
 }
