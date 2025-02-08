@@ -11,6 +11,7 @@ export const EDIT_PROFILE_STATES = [
 	"edit-employment-history",
 	"edit-socials",
 	"edit-portfolio",
+	"view-portfolio-project",
 ];
 
 export const EDIT_PORTFOLIO_PROJECT_STATES = [

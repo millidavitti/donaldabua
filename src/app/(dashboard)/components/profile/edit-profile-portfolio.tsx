@@ -6,7 +6,7 @@ import {
 	edit_profile_jotai,
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
@@ -15,9 +15,8 @@ import PortfolioProjects from "../portfolio-projects";
 
 export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const portfolio_project_form_step = useAtomValue(
-		portfolio_project_form_step_jotai,
-	);
+	const [portfolio_project_form_step, portfolio_project_form_step_setter] =
+		useAtom(portfolio_project_form_step_jotai);
 
 	return (
 		<>
@@ -28,6 +27,7 @@ export default function EditProfilePortfolio() {
 					<InteractiveIcon
 						callback={() => {
 							edit_profile_setter("edit-portfolio");
+							portfolio_project_form_step_setter("draft-project-info");
 						}}
 					>
 						<CirclePlus size={24} />
