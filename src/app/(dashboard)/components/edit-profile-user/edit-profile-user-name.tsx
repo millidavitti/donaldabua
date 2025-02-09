@@ -1,13 +1,15 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { profile_name_jotai } from "@/data/atoms/app_data";
+import { profile_user_name_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { X } from "lucide-react";
 import React from "react";
 
-export default function EditProfileName() {
+export default function EditProfileUserName() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [profile_name, profile_name_setter] = useAtom(profile_name_jotai);
+	const [profile_user_name, profile_user_name_setter] = useAtom(
+		profile_user_name_jotai,
+	);
 
 	return (
 		<>
@@ -19,7 +21,7 @@ export default function EditProfileName() {
 					);
 				}}
 			>
-				{profile_name}
+				{profile_user_name}
 			</h2>
 			<form
 				className='flex outline bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
@@ -33,9 +35,9 @@ export default function EditProfileName() {
 					type='text'
 					required
 					className='outline-none p-3'
-					value={profile_name}
+					value={profile_user_name}
 					onChange={(e) => {
-						profile_name_setter(e.target.value);
+						profile_user_name_setter(e.target.value);
 					}}
 				/>
 				<InteractiveIcon callback={() => edit_profile_setter(null)}>

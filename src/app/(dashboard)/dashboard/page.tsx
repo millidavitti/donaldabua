@@ -3,8 +3,8 @@ import React from "react";
 import ProfileHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
 import ProfileOverview from "../components/profile-overview";
-import Socials from "../components/profile/edit-profile-socials";
-import EditProfileEmploymentHistory from "../components/profile/edit-profile-employment-history";
+import Socials from "../components/edit-profile-user/edit-profile-user-socials";
+import EditProfileEmploymentHistory from "../components/edit-profile/edit-profile-employment-history";
 
 export default function Dashboard() {
 	return (

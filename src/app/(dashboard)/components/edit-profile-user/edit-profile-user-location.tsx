@@ -1,15 +1,15 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { profile_location_jotai } from "@/data/atoms/app_data";
+import { profile_user_location_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { MapPin, X } from "lucide-react";
 import React from "react";
 
-export default function EditProfileLocation() {
+export default function EditProfileUserLocation() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [profile_location, profile_location_setter] = useAtom(
-		profile_location_jotai,
+	const [profile_user_location, profile_user_location_setter] = useAtom(
+		profile_user_location_jotai,
 	);
 	return (
 		<Flex className='gap-3'>
@@ -18,7 +18,7 @@ export default function EditProfileLocation() {
 				onClick={() => edit_profile_setter("edit-location")}
 				className='cursor-pointer'
 			>
-				{profile_location.city}, {profile_location.country} -{" "}
+				{profile_user_location?.city}, {profile_user_location?.country} -{" "}
 			</p>
 			{/* <p>{new Date().toTimeString()}</p> */}
 			<form
@@ -36,10 +36,10 @@ export default function EditProfileLocation() {
 						id='city'
 						required
 						className='outline p-3'
-						value={profile_location.city}
+						value={profile_user_location?.city}
 						onChange={(e) => {
-							profile_location_setter((location) => ({
-								...location,
+							profile_user_location_setter((location) => ({
+								...location!,
 								city: e.target.value,
 							}));
 						}}
@@ -50,10 +50,10 @@ export default function EditProfileLocation() {
 						id='country'
 						required
 						className='outline p-3'
-						value={profile_location.country}
+						value={profile_user_location?.country}
 						onChange={(e) => {
-							profile_location_setter((location) => ({
-								...location,
+							profile_user_location_setter((location) => ({
+								...location!,
 								country: e.target.value,
 							}));
 						}}

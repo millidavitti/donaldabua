@@ -2,7 +2,10 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { profile_hours_per_week_jotai } from "@/data/atoms/app_data";
+import {
+	availability_jotai,
+	ProfileAvailabilityOptions,
+} from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
@@ -10,9 +13,8 @@ import React from "react";
 
 export default function EditProfileAvailability() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [profile_hours_per_week, profile_hours_per_week_setter] = useAtom(
-		profile_hours_per_week_jotai,
-	);
+	const [profile_hours_per_week, profile_hours_per_week_setter] =
+		useAtom(availability_jotai);
 
 	return (
 		<>
@@ -65,7 +67,9 @@ export default function EditProfileAvailability() {
 										required
 										checked={profile_hours_per_week === option}
 										onChange={(e) =>
-											profile_hours_per_week_setter(e.target.value)
+											profile_hours_per_week_setter(
+												e.target.value as ProfileAvailabilityOptions,
+											)
 										}
 									/>
 									<label htmlFor={option}>{option}</label>

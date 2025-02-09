@@ -1,8 +1,8 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import EditProfilePortfolio from "./profile/edit-profile-portfolio";
-import EditProfileTechStack from "./profile/edit-profile-tech-stack";
-import EditProfileSummary from "./profile/edit-profile-summary";
+import EditProfilePortfolio from "./edit-profile/edit-profile-portfolio";
+import EditProfileTechStack from "./edit-profile/edit-profile-tech-stack";
+import EditProfileSummary from "./edit-profile/edit-profile-summary";
 
 export default function ProfileOverview() {
 	return (
