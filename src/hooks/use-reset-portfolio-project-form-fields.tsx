@@ -1,5 +1,4 @@
 import {
-	defaultStore,
 	portfolio_project_content_jotai,
 	portfolio_project_description_jotai,
 	portfolio_project_tech_stack_jotai,
