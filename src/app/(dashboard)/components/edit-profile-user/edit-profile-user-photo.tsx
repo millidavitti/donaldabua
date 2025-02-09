@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-export default function EditProfilePhoto() {
+export default function EditProfileUserPhoto() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const [profile_image, profile_image_setter] = useAtom(profile_image_jotai);
 	return (

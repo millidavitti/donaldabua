@@ -8,7 +8,7 @@ import Flex from "@/components/layouts/flex";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { toast } from "sonner";
 
-export default function EditProfileVideoIntroduction() {
+export default function EditProfileUserVideoIntroduction() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const [profile_video, profile_video_setter] = useAtom(profile_video_jotai);
 	return (

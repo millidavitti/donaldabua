@@ -7,7 +7,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { CirclePlus, X } from "lucide-react";
 
-export default function EditProfileSocials() {
+export default function EditProfileUserSocials() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 
 	return (

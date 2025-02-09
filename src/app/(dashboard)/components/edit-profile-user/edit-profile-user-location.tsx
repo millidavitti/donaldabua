@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { MapPin, X } from "lucide-react";
 import React from "react";
 
-export default function EditProfileLocation() {
+export default function EditProfileUserLocation() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const [profile_location, profile_location_setter] = useAtom(
 		profile_location_jotai,
