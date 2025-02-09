@@ -24,15 +24,15 @@ export default function PublishedPortfolioProject({
 
 	return (
 		<>
-			<Flex className='shrink-0 gap-3 h-fit grow basis-52 relative'>
+			<Flex className='shrink-0 gap-3 grow w-full md:basis-52 relative'>
 				<PublishedPortfolioProjectOptions>
 					<PublishedPortfolioProjectEditOption project={project} />
-					<PublishedPortfolioProjectDeleteOption projectID='' />
+					<PublishedPortfolioProjectDeleteOption projectID={project.id} />
 				</PublishedPortfolioProjectOptions>
 				{/* Project */}
 				<Flex
 					flex='column'
-					className='shrink-0 gap-3 h-fit grow basis-52 cursor-pointer active:scale-[.98] transition'
+					className='gap-3 grow md:basis-52 cursor-pointer active:scale-[.98] transition'
 					htmlProps={{
 						onClick() {
 							edit_profile_setter("view-portfolio-project");
