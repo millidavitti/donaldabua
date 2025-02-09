@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { profile_image_jotai } from "@/data/atoms/app_data";
+import { profile_user_image_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { X } from "lucide-react";
@@ -9,7 +9,9 @@ import React from "react";
 
 export default function EditProfileUserPhoto() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [profile_image, profile_image_setter] = useAtom(profile_image_jotai);
+	const [profile_user_image, profile_user_image_setter] = useAtom(
+		profile_user_image_jotai,
+	);
 	return (
 		<Flex
 			flex='column'
@@ -25,7 +27,12 @@ export default function EditProfileUserPhoto() {
 					},
 				}}
 			>
-				<Image src={profile_image} width={1000} height={1000} alt='donald' />
+				<Image
+					src={profile_user_image}
+					width={1000}
+					height={1000}
+					alt='donald'
+				/>
 			</Flex>
 			{/* Edit Profile Photo */}
 			<form
@@ -40,9 +47,9 @@ export default function EditProfileUserPhoto() {
 					type='url'
 					required
 					className='p-3 outline-none'
-					value={profile_image}
+					value={profile_user_image}
 					onChange={(e) => {
-						profile_image_setter(e.target.value);
+						profile_user_image_setter(e.target.value);
 					}}
 				/>
 				<InteractiveIcon callback={() => edit_profile_setter(null)}>
