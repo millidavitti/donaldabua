@@ -9,6 +9,7 @@ import {
 import {
 	edit_profile_jotai,
 	portfolio_project_form_step_jotai,
+	portfolio_project_to_edit_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 
@@ -17,10 +18,14 @@ export default function usePublishedPortfolioProjectEditOptionInterface() {
 	const portfolio_project_title_setter = useSetAtom(
 		portfolio_project_title_jotai,
 	);
+	const portfolio_project_to_edit_setter = useSetAtom(
+		portfolio_project_to_edit_jotai,
+	);
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
 
+	//
 	const portfolio_project_description_setter = useSetAtom(
 		portfolio_project_description_jotai,
 	);
@@ -36,6 +41,7 @@ export default function usePublishedPortfolioProjectEditOptionInterface() {
 	function edit(project: PortfolioProjectData) {
 		edit_profile_setter("edit-published-portfolio-project");
 		portfolio_project_form_step_setter("draft-project-info");
+		portfolio_project_to_edit_setter(project.id);
 
 		portfolio_project_title_setter(project.title);
 		portfolio_project_description_setter(project.description);
