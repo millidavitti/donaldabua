@@ -1,5 +1,5 @@
-import { getUser } from "@/backend/get-user-action";
-import { createId } from "@paralleldrive/cuid2";
+import { getProfile } from "@/backend/get-profile-controller";
+import { getUser } from "@/backend/get-user-controller";
 import { atom, getDefaultStore } from "jotai";
 import { focusAtom } from "jotai-optics";
 
@@ -9,55 +9,108 @@ export type ProfileUser = {
 	id: string;
 	name: string;
 	image: string;
-	video: string | undefined;
-	location: {
-		city: string;
-		country: string;
-	};
+	video: string;
+	location: ProfileUserLocation;
 };
+export type ProfileUserLocation = {
+	city: string;
+	country: string;
+};
+export type ProfileAvailabilityOptions =
+	| "More than 30 hrs/week"
+	| "Less than 30 hrs/week"
+	| "As needed - open to offers"
+	| "None";
 export type Profile = {
-	user: ProfileUser | null;
-	hoursPerWeek: string;
+	user?: ProfileUser;
+	availability: ProfileAvailabilityOptions;
 	title: string;
 	hourlyRate: number;
-	profileOverview: string;
+	overview: string;
 };
-export const user_jotai = atom<ProfileUser | null>(null);
-
+export const user_jotai = atom<ProfileUser>({
+	id: "",
+	name: "",
+	image: "",
+	video: "",
+	location: {
+		city: "",
+		country: "",
+	},
+});
+user_jotai.onMount = (setAtom) => {
+	getUser().then((user) => setAtom(user));
+};
 export const profile_jotai = atom<Profile>({
-	user: null,
-	hoursPerWeek: "More than 30 hrs/week",
 	title: "Full Stack Node JS Developer",
 	hourlyRate: 15,
-	profileOverview: "",
+	overview: "",
+	availability: "More than 30 hrs/week",
 });
 profile_jotai.onMount = (setAtom) => {
-	getUser().then((user) =>
-		setAtom((profile) => {
-			return { ...profile, user };
-		}),
-	);
+	getProfile().then((profile) => setAtom(profile));
 };
-export const profile_user_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("user"),
-);
-export const profile_user_name_jotai = atom("");
-export const profile_user_image_jotai = atom("");
-export const profile_user_video_jotai = atom("");
-export const profile_user_location_jotai = atom("");
 
-export const profile_hours_per_week_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("hoursPerWeek"),
-);
-export const profile_title_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("title"),
-);
-export const profile_hourly_rate_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("hourlyRate"),
-);
-export const profile_overview_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("profileOverview"),
-);
+export const profile_user_name_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(profile_user_name_jotai, defaultStore.get(user_jotai).name!);
+});
+
+export const profile_user_image_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(
+		profile_user_image_jotai,
+		defaultStore.get(user_jotai).image,
+	);
+});
+
+export const profile_user_video_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(
+		profile_user_video_jotai,
+		defaultStore.get(user_jotai).video,
+	);
+});
+
+export const profile_user_location_jotai = atom<ProfileUserLocation>({
+	city: "",
+	country: "",
+});
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(
+		profile_user_location_jotai,
+		defaultStore.get(user_jotai).location,
+	);
+});
+
+export const availability_jotai = atom<string>("");
+defaultStore.sub(profile_jotai, () => {
+	defaultStore.set(
+		availability_jotai,
+		defaultStore.get(profile_jotai).availability,
+	);
+});
+
+export const profile_title_jotai = atom<string>("");
+defaultStore.sub(profile_jotai, () => {
+	defaultStore.set(profile_title_jotai, defaultStore.get(profile_jotai).title);
+});
+
+export const profile_hourly_rate_jotai = atom<number>(1);
+defaultStore.sub(profile_jotai, () => {
+	defaultStore.set(
+		profile_hourly_rate_jotai,
+		defaultStore.get(profile_jotai).hourlyRate,
+	);
+});
+
+export const profile_overview_jotai = atom<string>("");
+defaultStore.sub(profile_jotai, () => {
+	defaultStore.set(
+		profile_overview_jotai,
+		defaultStore.get(profile_jotai).overview,
+	);
+});
 
 export type PortfolioProjectImage = {
 	id: string;
