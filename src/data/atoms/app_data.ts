@@ -1,9 +1,12 @@
+import { getUser } from "@/backend/get-user-action";
+import { createId } from "@paralleldrive/cuid2";
 import { atom, getDefaultStore } from "jotai";
 import { focusAtom } from "jotai-optics";
 
 export const defaultStore = getDefaultStore();
 
-export type Profile = {
+export type ProfileUser = {
+	id: string;
 	name: string;
 	image: string;
 	video: string | undefined;
@@ -11,37 +14,38 @@ export type Profile = {
 		city: string;
 		country: string;
 	};
+};
+export type Profile = {
+	user: ProfileUser | null;
 	hoursPerWeek: string;
 	title: string;
 	hourlyRate: number;
 	profileOverview: string;
 };
+export const user_jotai = atom<ProfileUser | null>(null);
+
 export const profile_jotai = atom<Profile>({
-	name: "Donald Abua",
-	image: "/stud.jpg",
-	video: undefined,
-	location: {
-		city: "New York",
-		country: "United State",
-	},
+	user: null,
 	hoursPerWeek: "More than 30 hrs/week",
 	title: "Full Stack Node JS Developer",
 	hourlyRate: 15,
 	profileOverview: "",
 });
+profile_jotai.onMount = (setAtom) => {
+	getUser().then((user) =>
+		setAtom((profile) => {
+			return { ...profile, user };
+		}),
+	);
+};
+export const profile_user_jotai = focusAtom(profile_jotai, (optic) =>
+	optic.prop("user"),
+);
+export const profile_user_name_jotai = atom("");
+export const profile_user_image_jotai = atom("");
+export const profile_user_video_jotai = atom("");
+export const profile_user_location_jotai = atom("");
 
-export const profile_name_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("name"),
-);
-export const profile_image_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("image"),
-);
-export const profile_video_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("video"),
-);
-export const profile_location_jotai = focusAtom(profile_jotai, (optic) =>
-	optic.prop("location"),
-);
 export const profile_hours_per_week_jotai = focusAtom(profile_jotai, (optic) =>
 	optic.prop("hoursPerWeek"),
 );
