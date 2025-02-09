@@ -8,35 +8,22 @@ import {
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
-	portfolio_project_form_step_jotai,
+	portfolio_project_to_edit_jotai,
 } from "@/data/atoms/ui_state";
 import { mock_portfolio_projects_jotai } from "@/data/mock";
 import { createId } from "@paralleldrive/cuid2";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import useResetPortfolioProjectFormFields from "../use-reset-portfolio-project-form-fields";
 
 export default function usePublishPortfolioProjectInterface() {
 	const mock_portfolio_projects_setter = useSetAtom(
 		mock_portfolio_projects_jotai,
 	);
-	const portfolio_project_title_setter = useSetAtom(
-		portfolio_project_title_jotai,
+	const portfolio_project_to_edit = useAtomValue(
+		portfolio_project_to_edit_jotai,
 	);
-	const portfolio_project_description_setter = useSetAtom(
-		portfolio_project_description_jotai,
-	);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
-	const portfolio_project_tech_stack_setter = useSetAtom(
-		portfolio_project_tech_stack_jotai,
-	);
-	const portfolio_project_thumbnail_setter = useSetAtom(
-		portfolio_project_thumbnail_jotai,
-	);
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const edit_profile = useAtomValue(edit_profile_jotai);
+	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
 
 	function publishPortfolioProject() {
 		mock_portfolio_projects_setter((projects) => [
@@ -54,14 +41,27 @@ export default function usePublishPortfolioProjectInterface() {
 		resetPortfolioProjectFormFields();
 	}
 
-	function resetPortfolioProjectFormFields() {
-		portfolio_project_title_setter("");
-		portfolio_project_description_setter("");
-		portfolio_project_content_setter([]);
-		portfolio_project_tech_stack_setter([]);
-		portfolio_project_thumbnail_setter("");
-		portfolio_project_form_step_setter(null);
-		edit_profile_setter(null);
+	function savePublishedPortfolioProjectEdit() {
+		mock_portfolio_projects_setter((projects) =>
+			projects.map((project) => {
+				if (portfolio_project_to_edit! === project.id)
+					return {
+						id: createId(),
+						content: defaultStore.get(portfolio_project_content_jotai),
+						description: defaultStore.get(portfolio_project_description_jotai),
+						techStack: defaultStore.get(portfolio_project_tech_stack_jotai),
+						thumbnail: defaultStore.get(portfolio_project_thumbnail_jotai),
+						title: defaultStore.get(portfolio_project_title_jotai),
+					};
+				return project;
+			}),
+		);
+		resetPortfolioProjectFormFields();
 	}
-	return { publishPortfolioProject };
+
+	return {
+		publishPortfolioProject,
+		savePublishedPortfolioProjectEdit,
+		editProfileState: edit_profile,
+	};
 }
