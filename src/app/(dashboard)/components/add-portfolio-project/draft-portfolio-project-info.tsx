@@ -7,11 +7,12 @@ import {
 	edit_profile_jotai,
 	portfolio_project_form_step_jotai,
 } from "@/data/atoms/ui_state";
-import { useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import AddPortfolioProjectTitle from "./add-portfolio-project-title";
 import AddPortfolioProjectDescription from "./add-portfolio-project-description";
 import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
 import AddPortfolioProjectThumbnail from "./add-portfolio-project-thumbnail";
+import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
 interface DraftPortfolioProjectInfo {
 	children: ReactNode;
@@ -19,10 +20,11 @@ interface DraftPortfolioProjectInfo {
 export default function DraftPortfolioProjectInfo({
 	children,
 }: DraftPortfolioProjectInfo) {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const portfolio_project_form_step_setter = useSetAtom(
 		portfolio_project_form_step_jotai,
 	);
+	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
 
 	return (
 		<Flex
@@ -31,8 +33,17 @@ export default function DraftPortfolioProjectInfo({
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
-				<h2 className='text-2xl font-semibold'>Add New Project</h2>
-				<InteractiveIcon callback={() => edit_profile_setter(null)}>
+				<h2 className='text-2xl font-semibold'>
+					{edit_profile === "edit-published-portfolio-project"
+						? "Edit Published Project"
+						: "Add New Project"}
+				</h2>
+				<InteractiveIcon
+					callback={() => {
+						edit_profile_setter(null);
+						resetPortfolioProjectFormFields();
+					}}
+				>
 					<X size={24} className='stroke-light-error' />
 				</InteractiveIcon>
 			</Flex>
