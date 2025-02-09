@@ -47,7 +47,7 @@ export default function EditProfileUserVideoIntroduction() {
 					type='text'
 					required
 					className='outline-none p-3 grow'
-					value={profile_user_video || ""}
+					value={profile_user_video}
 					onChange={(e) => {
 						const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
 						if (youtubeEmbed) profile_user_video_setter(youtubeEmbed);
@@ -59,11 +59,13 @@ export default function EditProfileUserVideoIntroduction() {
 					<X className='stroke-light-error' />
 				</InteractiveIcon>
 			</form>
-			<iframe
-				src={profile_user_video}
-				data-is-visible={Boolean(profile_user_video)}
-				className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
-			/>
+			{Boolean(profile_user_video) && (
+				<iframe
+					src={profile_user_video}
+					data-is-visible={Boolean(profile_user_video)}
+					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+				/>
+			)}
 		</Flex>
 	);
 }
