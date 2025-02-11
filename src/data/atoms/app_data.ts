@@ -1,7 +1,7 @@
+import { getPortfolioProjects } from "@/backend/get-portfolio-projects";
 import { getProfile } from "@/backend/get-profile-controller";
 import { getUser } from "@/backend/get-user-controller";
 import { atom, getDefaultStore } from "jotai";
-import { focusAtom } from "jotai-optics";
 
 export const defaultStore = getDefaultStore();
 
@@ -146,14 +146,10 @@ export type PortfolioProjectData = {
 };
 
 // This is use to store fetched project data
-export const portfolio_project_data_jotai = atom<PortfolioProjectData>({
-	id: "",
-	title: "",
-	description: "",
-	techStack: [],
-	content: [],
-	thumbnail: "",
-});
+export const portfolio_projects_jotai = atom<PortfolioProjectData[]>([]);
+portfolio_projects_jotai.onMount = (setAtom) => {
+	getPortfolioProjects().then((projects) => setAtom(projects));
+};
 
 export const portfolio_project_title_jotai = atom<string>("");
 
@@ -172,7 +168,7 @@ export type PortfolioProject = {
 	title: string;
 	thumbnail: string;
 };
-export const portfolio_projects_jotai = atom<PortfolioProject[]>([]);
+// export const portfolio_projects_jotai = atom<PortfolioProject[]>([]);
 
 export const selected_portfolio_project_jotai =
 	atom<PortfolioProjectData | null>(null);
