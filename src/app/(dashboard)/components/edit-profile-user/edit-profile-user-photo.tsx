@@ -27,12 +27,15 @@ export default function EditProfileUserPhoto() {
 					},
 				}}
 			>
-				<Image
-					src={profile_user_image || "/stud.jpg"}
-					width={1000}
-					height={1000}
-					alt='donald'
-				/>
+				{Boolean(profile_user_image) && (
+					<Image
+						src={profile_user_image}
+						width={1000}
+						height={1000}
+						alt='donald'
+						className='object-cover'
+					/>
+				)}
 			</Flex>
 			{/* Edit Profile Photo */}
 			<form

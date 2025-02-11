@@ -12,7 +12,7 @@ export default function ContentBuilder() {
 	const portfolio_project_content = useAtomValue(
 		portfolio_project_content_jotai,
 	);
-
+	console.log(portfolio_project_content);
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
 			<ProjectContentOptions />

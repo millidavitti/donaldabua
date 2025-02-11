@@ -5,20 +5,18 @@ import {
 	portfolio_project_tech_stack_jotai,
 	portfolio_project_thumbnail_jotai,
 	portfolio_project_title_jotai,
+	portfolio_projects_jotai,
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
 	portfolio_project_to_edit_jotai,
 } from "@/data/atoms/ui_state";
-import { mock_portfolio_projects_jotai } from "@/data/mock";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtomValue, useSetAtom } from "jotai";
 import useResetPortfolioProjectFormFields from "../use-reset-portfolio-project-form-fields";
 
 export default function usePublishPortfolioProjectInterface() {
-	const mock_portfolio_projects_setter = useSetAtom(
-		mock_portfolio_projects_jotai,
-	);
+	const portfolio_projects_setter = useSetAtom(portfolio_projects_jotai);
 	const portfolio_project_to_edit = useAtomValue(
 		portfolio_project_to_edit_jotai,
 	);
@@ -26,7 +24,7 @@ export default function usePublishPortfolioProjectInterface() {
 	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
 
 	function publishPortfolioProject() {
-		mock_portfolio_projects_setter((projects) => [
+		portfolio_projects_setter((projects) => [
 			...projects,
 			{
 				id: createId(),
@@ -42,7 +40,7 @@ export default function usePublishPortfolioProjectInterface() {
 	}
 
 	function savePublishedPortfolioProjectEdit() {
-		mock_portfolio_projects_setter((projects) =>
+		portfolio_projects_setter((projects) =>
 			projects.map((project) => {
 				if (portfolio_project_to_edit! === project.id)
 					return {
