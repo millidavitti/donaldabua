@@ -3,16 +3,11 @@ import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
-import {
-	edit_profile_jotai,
-	portfolio_project_form_step_jotai,
-} from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
 import AddPortfolioProjectTitle from "./add-portfolio-project-title";
 import AddPortfolioProjectDescription from "./add-portfolio-project-description";
 import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
 import AddPortfolioProjectThumbnail from "./add-portfolio-project-thumbnail";
-import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
+import useDraftPortfolioProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
 interface DraftPortfolioProjectInfo {
 	children: ReactNode;
@@ -20,12 +15,8 @@ interface DraftPortfolioProjectInfo {
 export default function DraftPortfolioProjectInfo({
 	children,
 }: DraftPortfolioProjectInfo) {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
-	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
-
+	const { edit_profile, closePortfolioProjectForm, gotToPreview } =
+		useDraftPortfolioProjectInfoInterface();
 	return (
 		<Flex
 			flex='column'
@@ -39,9 +30,10 @@ export default function DraftPortfolioProjectInfo({
 						: "Add New Project"}
 				</h2>
 				<InteractiveIcon
-					callback={() => {
-						edit_profile_setter(null);
-						resetPortfolioProjectFormFields();
+					htmlProps={{
+						onClick() {
+							closePortfolioProjectForm();
+						},
 					}}
 				>
 					<X size={24} className='stroke-light-error' />
@@ -51,7 +43,7 @@ export default function DraftPortfolioProjectInfo({
 				className='flex flex-col gap-3'
 				onSubmit={(e) => {
 					e.preventDefault();
-					edit_profile_setter(null);
+					closePortfolioProjectForm();
 				}}
 			>
 				<AddPortfolioProjectTitle />
@@ -65,23 +57,7 @@ export default function DraftPortfolioProjectInfo({
 				</Flex>
 				<Button
 					onClick={() => {
-						const formElements = document.querySelectorAll(
-							"[id^='portfolio-project']",
-						);
-						formElements.forEach((el) => {
-							const field = (el as HTMLInputElement).validity;
-
-							if (!field.valid) {
-								el.classList.add("outline-red-800");
-								el.scrollIntoView({ behavior: "smooth" });
-							}
-						});
-						if (
-							Array.from(formElements).every(
-								(el) => (el as HTMLInputElement).validity.valid === true,
-							)
-						)
-							portfolio_project_form_step_setter("preview-project-draft");
+						gotToPreview();
 					}}
 					className='bg-black text-light-surface'
 				>
