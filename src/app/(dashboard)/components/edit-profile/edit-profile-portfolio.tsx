@@ -12,12 +12,13 @@ import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-
 import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PortfolioProjects from "../published-portfolio-project/published-portfolio-projects";
+import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
 export default function EditProfilePortfolio() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [portfolio_project_form_step, portfolio_project_form_step_setter] =
 		useAtom(portfolio_project_form_step_jotai);
-
+	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
 	return (
 		<>
 			<Flex flex='column' className='gap-3'>
@@ -26,6 +27,7 @@ export default function EditProfilePortfolio() {
 					<p className='font-semibold lg:text-2xl'>Portfolio</p>
 					<InteractiveIcon
 						callback={() => {
+							resetPortfolioProjectFormFields();
 							edit_profile_setter("edit-portfolio");
 							portfolio_project_form_step_setter("draft-project-info");
 						}}
