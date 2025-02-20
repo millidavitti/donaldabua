@@ -38,27 +38,29 @@ export default function EditProfileUserPhoto() {
 				)}
 			</Flex>
 			{/* Edit Profile Photo */}
-			<form
-				className='outline bg-light-surface flex data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
-				data-is-visible={edit_profile === "edit-image"}
-				onSubmit={(e) => {
-					e.preventDefault();
-					edit_profile_setter(null);
-				}}
-			>
-				<input
-					type='url'
-					required
-					className='p-3 outline-none'
-					value={profile_user_image}
-					onChange={(e) => {
-						profile_user_image_setter(e.target.value);
+			{edit_profile === "edit-image" && (
+				<form
+					className='outline bg-light-surface flex data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
+					data-is-visible={edit_profile === "edit-image"}
+					onSubmit={(e) => {
+						e.preventDefault();
+						edit_profile_setter(null);
 					}}
-				/>
-				<InteractiveIcon callback={() => edit_profile_setter(null)}>
-					<X className='stroke-light-error' />
-				</InteractiveIcon>
-			</form>
+				>
+					<input
+						type='url'
+						required
+						className='p-3 outline-none'
+						value={profile_user_image}
+						onChange={(e) => {
+							profile_user_image_setter(e.target.value);
+						}}
+					/>
+					<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<X className='stroke-light-error' />
+					</InteractiveIcon>
+				</form>
+			)}
 		</Flex>
 	);
 }

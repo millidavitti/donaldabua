@@ -1,51 +1,66 @@
 import { getPortfolioProjects } from "@/backend/get-portfolio-projects";
 import { getProfile } from "@/backend/get-profile-controller";
-import { getUser } from "@/backend/get-user-controller";
+import { getUser } from "@/backend/get-user.controller";
+import { getUserLocation } from "@/backend/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
 
 export const defaultStore = getDefaultStore();
 
-export type ProfileUser = {
+export type User = {
 	id: string;
 	name: string;
 	image: string;
 	video: string;
-	location: ProfileUserLocation;
 };
-export type ProfileUserLocation = {
+export const user_jotai = atom<User>({
+	id: "",
+	name: "",
+	image: "",
+	video: "",
+});
+// Get User On Mount
+user_jotai.onMount = (setAtom) => {
+	getUser().then((user) => {
+		console.log("---user---\n", user);
+		setAtom(user);
+	});
+};
+
+export type UserLocation = {
 	city: string;
 	country: string;
 };
+
+export const user_location_jotai = atom<UserLocation>({
+	city: "",
+	country: "",
+});
+
+defaultStore.sub(user_jotai, () => {
+	getUserLocation(defaultStore.get(user_jotai).id).then((userLocation) => {
+		console.log("---userLocation---\n", userLocation);
+
+		defaultStore.set(user_location_jotai, userLocation);
+	});
+});
+
 export type ProfileAvailabilityOptions =
 	| "More than 30 hrs/week"
 	| "Less than 30 hrs/week"
 	| "As needed - open to offers"
 	| "None";
+
 export type Profile = {
-	user?: ProfileUser;
 	availability: ProfileAvailabilityOptions;
 	title: string;
 	hourlyRate: number;
 	overview: string;
 };
-export const user_jotai = atom<ProfileUser>({
-	id: "",
-	name: "",
-	image: "",
-	video: "",
-	location: {
-		city: "",
-		country: "",
-	},
-});
-user_jotai.onMount = (setAtom) => {
-	getUser().then((user) => setAtom(user));
-};
 export const profile_jotai = atom<Profile>({
-	title: "Full Stack Node JS Developer",
-	hourlyRate: 15,
+	title: "",
+	hourlyRate: 0,
 	overview: "",
-	availability: "More than 30 hrs/week",
+	availability: "None",
 });
 profile_jotai.onMount = (setAtom) => {
 	getProfile().then((profile) => setAtom(profile));
@@ -68,18 +83,7 @@ export const profile_user_video_jotai = atom<string>("");
 defaultStore.sub(user_jotai, () => {
 	defaultStore.set(
 		profile_user_video_jotai,
-		defaultStore.get(user_jotai).video,
-	);
-});
-
-export const profile_user_location_jotai = atom<ProfileUserLocation>({
-	city: "",
-	country: "",
-});
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(
-		profile_user_location_jotai,
-		defaultStore.get(user_jotai).location,
+		defaultStore.get(user_jotai).video || "",
 	);
 });
 
@@ -172,3 +176,15 @@ export type PortfolioProject = {
 
 export const selected_portfolio_project_jotai =
 	atom<PortfolioProjectData | null>(null);
+
+export type ProfileSocials = {
+	id: string;
+	platform: string;
+	profile: string;
+};
+export const profile_socials_jotai = atom<ProfileSocials[]>([]);
+
+export type ProfileTechnology = {
+	id: string;
+	name: string;
+};
