@@ -23,27 +23,29 @@ export default function EditProfileUserName() {
 			>
 				{profile_user_name}
 			</h2>
-			<form
-				className='flex outline bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
-				data-is-visible={edit_profile === "edit-name"}
-				onSubmit={(e) => {
-					e.preventDefault();
-					edit_profile_setter(null);
-				}}
-			>
-				<input
-					type='text'
-					required
-					className='outline-none p-3'
-					value={profile_user_name}
-					onChange={(e) => {
-						profile_user_name_setter(e.target.value);
+			{edit_profile === "edit-name" && (
+				<form
+					className='flex outline bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
+					data-is-visible={edit_profile === "edit-name"}
+					onSubmit={(e) => {
+						e.preventDefault();
+						edit_profile_setter(null);
 					}}
-				/>
-				<InteractiveIcon callback={() => edit_profile_setter(null)}>
-					<X className='stroke-light-error' />
-				</InteractiveIcon>
-			</form>
+				>
+					<input
+						type='text'
+						required
+						className='outline-none p-3'
+						value={profile_user_name}
+						onChange={(e) => {
+							profile_user_name_setter(e.target.value);
+						}}
+					/>
+					<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<X className='stroke-light-error' />
+					</InteractiveIcon>
+				</form>
+			)}
 		</>
 	);
 }
