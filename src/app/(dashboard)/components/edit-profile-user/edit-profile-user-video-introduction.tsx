@@ -13,6 +13,7 @@ export default function EditProfileUserVideoIntroduction() {
 	const [profile_user_video, profile_user_video_setter] = useAtom(
 		profile_user_video_jotai,
 	);
+
 	return (
 		<Flex flex='column'>
 			<Flex className='h-fit items-center justify-between'>
@@ -35,30 +36,34 @@ export default function EditProfileUserVideoIntroduction() {
 					</InteractiveIcon>
 				)}
 			</Flex>
-			<form
-				className='flex outline bg-light-surface data-[is-visible=false]:hidden'
-				data-is-visible={edit_profile === "edit-video"}
-				onSubmit={(e) => {
-					e.preventDefault();
-					edit_profile_setter(null);
-				}}
-			>
-				<input
-					type='text'
-					required
-					className='outline-none p-3 grow'
-					value={profile_user_video}
-					onChange={(e) => {
-						const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-						if (youtubeEmbed) profile_user_video_setter(youtubeEmbed);
-						else
-							toast.info("Provided an invalid YouTube link: " + e.target.value);
+			{edit_profile === "edit-video" && (
+				<form
+					className='flex outline bg-light-surface data-[is-visible=false]:hidden'
+					data-is-visible={edit_profile === "edit-video"}
+					onSubmit={(e) => {
+						e.preventDefault();
+						edit_profile_setter(null);
 					}}
-				/>
-				<InteractiveIcon callback={() => edit_profile_setter(null)}>
-					<X className='stroke-light-error' />
-				</InteractiveIcon>
-			</form>
+				>
+					<input
+						type='text'
+						required
+						className='outline-none p-3 grow'
+						value={profile_user_video}
+						onChange={(e) => {
+							const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
+							if (youtubeEmbed) profile_user_video_setter(youtubeEmbed);
+							else
+								toast.info(
+									"Provided an invalid YouTube link: " + e.target.value,
+								);
+						}}
+					/>
+					<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<X className='stroke-light-error' />
+					</InteractiveIcon>
+				</form>
+			)}
 			{Boolean(profile_user_video) && (
 				<iframe
 					src={profile_user_video}
