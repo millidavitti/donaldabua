@@ -1,5 +1,5 @@
 import { getPortfolioProjects } from "@/backend/get-portfolio-projects";
-import { getProfile } from "@/backend/get-profile-controller";
+import { getUserProfile } from "@/backend/get-user-profile.controller";
 import { getUser } from "@/backend/get-user.controller";
 import { getUserLocation } from "@/backend/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
@@ -38,8 +38,6 @@ export const user_location_jotai = atom<UserLocation>({
 
 defaultStore.sub(user_jotai, () => {
 	getUserLocation(defaultStore.get(user_jotai).id).then((userLocation) => {
-		console.log("---userLocation---\n", userLocation);
-
 		defaultStore.set(user_location_jotai, userLocation);
 	});
 });
@@ -50,21 +48,23 @@ export type ProfileAvailabilityOptions =
 	| "As needed - open to offers"
 	| "None";
 
-export type Profile = {
+export type UserProfile = {
 	availability: ProfileAvailabilityOptions;
 	title: string;
 	hourlyRate: number;
 	overview: string;
 };
-export const profile_jotai = atom<Profile>({
+export const profile_jotai = atom<UserProfile>({
 	title: "",
 	hourlyRate: 0,
 	overview: "",
 	availability: "None",
 });
-profile_jotai.onMount = (setAtom) => {
-	getProfile().then((profile) => setAtom(profile));
-};
+defaultStore.sub(user_jotai, () => {
+	getUserProfile(defaultStore.get(user_jotai).id).then((profile) => {
+		defaultStore.set(profile_jotai, profile);
+	});
+});
 
 export const profile_user_name_jotai = atom<string>("");
 defaultStore.sub(user_jotai, () => {
