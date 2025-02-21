@@ -1,5 +1,4 @@
 import { Project } from "@/data/atoms/app_data";
-import { createId } from "@paralleldrive/cuid2";
 
 export async function getProjects(profileId: string) {
 	try {
