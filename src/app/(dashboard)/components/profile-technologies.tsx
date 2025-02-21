@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import React from "react";
 
-export default function ProfileTechStack() {
+export default function ProfileTechnologies() {
 	return (
 		<Flex className='gap-3 flex-wrap shrink-0 grow'>
 			{techStack.map((tech) => (
