@@ -25,7 +25,7 @@ export default function usePublishedProjectEditOptionInterface() {
 	const project_thumbnail_setter = useSetAtom(project_thumbnail_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	function edit(project: Project) {
-		edit_profile_setter("edit-published-portfolio-project");
+		edit_profile_setter("edit-published-project");
 		project_form_step_setter("draft-project-info");
 		project_to_edit_setter(project.id);
 

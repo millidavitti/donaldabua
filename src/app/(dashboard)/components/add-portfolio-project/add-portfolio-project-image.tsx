@@ -32,14 +32,14 @@ export default function AddProjectImage() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-portfolio-project-image");
+						edit_project_setter("edit-project-image");
 					},
 				}}
 			>
 				<ImageIcon />
 			</InteractiveIcon>
 			<Overlay
-				stateFlag='edit-portfolio-project-image'
+				stateFlag='edit-project-image'
 				className='flex justify-center items-center'
 			>
 				<Flex

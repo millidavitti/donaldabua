@@ -10,14 +10,12 @@ export default function PublishProject() {
 			type='button'
 			className='bg-black text-light-surface'
 			onClick={() =>
-				editProfileState === "edit-published-portfolio-project"
+				editProfileState === "edit-published-project"
 					? savePublishedProjectEdit()
 					: publishProject()
 			}
 		>
-			{editProfileState === "edit-published-portfolio-project"
-				? "Save"
-				: "Publish"}
+			{editProfileState === "edit-published-project" ? "Save" : "Publish"}
 		</Button>
 	);
 }

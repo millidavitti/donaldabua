@@ -29,14 +29,14 @@ export default function AddProjectMarkdown() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-portfolio-project-text");
+						edit_project_setter("edit-project-markdown");
 					},
 				}}
 			>
 				<Text />
 			</InteractiveIcon>
 			<Overlay
-				stateFlag='edit-portfolio-project-text'
+				stateFlag='edit-project-markdown'
 				className='flex justify-center items-center'
 			>
 				<Flex

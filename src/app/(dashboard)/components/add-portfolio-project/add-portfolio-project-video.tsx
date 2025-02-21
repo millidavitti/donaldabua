@@ -31,14 +31,14 @@ export default function AddProjectVideo() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-portfolio-project-video");
+						edit_project_setter("edit-project-video");
 					},
 				}}
 			>
 				<VideoIcon />
 			</InteractiveIcon>
 			<Overlay
-				stateFlag='edit-portfolio-project-video'
+				stateFlag='edit-project-video'
 				className='flex justify-center items-center'
 			>
 				<Flex

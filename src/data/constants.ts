@@ -11,12 +11,12 @@ export const EDIT_PROFILE_STATES = [
 	"edit-employment-history",
 	"edit-socials",
 	"edit-portfolio",
-	"edit-published-portfolio-project",
-	"view-portfolio-project",
+	"edit-published-project",
+	"view-project",
 ];
 
 export const EDIT_PORTFOLIO_PROJECT_STATES = [
-	"edit-portfolio-project-video",
-	"edit-portfolio-project-image",
-	"edit-portfolio-project-text",
+	"edit-project-video",
+	"edit-project-image",
+	"edit-project-markdown",
 ];

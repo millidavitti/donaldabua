@@ -28,7 +28,7 @@ export default function PublishedProject({ project }: PublishedProject) {
 					className='gap-3 grow md:basis-52 cursor-pointer active:scale-[.98] transition'
 					htmlProps={{
 						onClick() {
-							edit_profile_setter("view-portfolio-project");
+							edit_profile_setter("view-project");
 							selected_project_setter(project);
 						},
 					}}

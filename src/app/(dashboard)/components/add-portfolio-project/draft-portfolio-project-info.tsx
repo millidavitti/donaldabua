@@ -23,7 +23,7 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>
-					{edit_profile === "edit-published-portfolio-project"
+					{edit_profile === "edit-published-project"
 						? "Edit Published Project"
 						: "Add New Project"}
 				</h2>
