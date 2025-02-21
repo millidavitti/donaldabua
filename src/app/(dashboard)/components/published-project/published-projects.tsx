@@ -4,7 +4,7 @@ import { useAtomValue } from "jotai";
 import Overlay from "@/components/layouts/overlay";
 import ViewProject from "../view-project";
 import { projects_jotai, selected_project_jotai } from "@/data/atoms/app_data";
-import PublishedProject from "./published-portfolio-project";
+import PublishedProject from "./published-project";
 import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";

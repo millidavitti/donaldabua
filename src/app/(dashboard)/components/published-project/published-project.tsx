@@ -4,9 +4,9 @@ import { useSetAtom } from "jotai";
 import Image from "next/image";
 import React from "react";
 import { Project, selected_project_jotai } from "@/data/atoms/app_data";
-import PublishedProjectOptions from "./published-portfolio-project-options";
-import PublishedProjectEditOption from "./options/published-portfolio-project-edit-option";
-import PublishedProjectDeleteOption from "./options/published-portfolio-project-delete-option";
+import PublishedProjectOptions from "./published-project-options";
+import PublishedProjectEditOption from "./options/published-project-edit-option";
+import PublishedProjectDeleteOption from "./options/published-project-delete-option";
 
 interface PublishedProject {
 	project: Project;
