@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { profile_user_name_jotai } from "@/data/atoms/app_data";
+import { user_name_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { X } from "lucide-react";
@@ -7,9 +7,8 @@ import React from "react";
 
 export default function EditProfileUserName() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [profile_user_name, profile_user_name_setter] = useAtom(
-		profile_user_name_jotai,
-	);
+	const [profile_user_name, profile_user_name_setter] =
+		useAtom(user_name_jotai);
 
 	return (
 		<>
