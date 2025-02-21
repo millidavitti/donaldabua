@@ -7,19 +7,14 @@ import PublishedPortfolioProjectDescription from "./published-portfolio-project/
 import PublishedPortfolioProjectTechStack from "./published-portfolio-project/published-portfolio-project-tech-stack";
 import PublishedPortfolioProjectThumbnail from "./published-portfolio-project/published-portfolio-project-thumbnail";
 import PublishedPortfolioProjectContent from "./published-portfolio-project/published-portfolio-project-content";
-import {
-	PortfolioProjectData,
-	
-} from "@/data/atoms/app_data";
+import { Project } from "@/data/atoms/app_data";
 import { useSetAtom } from "jotai";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 
 interface ViewPortfolioProject {
-	project: PortfolioProjectData;
+	project: Project;
 }
-export default function ViewPortfolioProject({
-	project,
-}: ViewPortfolioProject) {
+export default function ViewProject({ project }: ViewPortfolioProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 
 	return (
@@ -33,7 +28,6 @@ export default function ViewPortfolioProject({
 					htmlProps={{
 						onClick() {
 							edit_profile_setter(null);
-
 						},
 					}}
 				>
@@ -53,7 +47,7 @@ export default function ViewPortfolioProject({
 						<PublishedPortfolioProjectTechStack techStack={project.techStack} />
 						<PublishedPortfolioProjectThumbnail thumbnail={project.thumbnail} />
 					</Flex>
-					<PublishedPortfolioProjectContent content={project.content} />
+					<PublishedPortfolioProjectContent />
 				</Flex>
 			</Flex>
 		</Flex>
