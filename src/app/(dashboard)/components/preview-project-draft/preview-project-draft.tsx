@@ -3,10 +3,10 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
 import PreviewProjectTitle from "./preview-project-title-draft";
-import PreviewProjectDescription from "./preview-portfolio-project-description-draft";
+import PreviewProjectDescription from "./preview-project-description-draft";
 import PreviewProjectTechnologies from "./preview-project-tech-stack-draft";
 import PreviewProjectThumbnail from "./preview-project-thumbnail-draft";
-import PreviewProjectContent from "./preview-portfolio-project-content-draft";
+import PreviewProjectContent from "./preview-project-content-draft";
 import PublishProject from "./publish-project-draft";
 import usePreviewProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
 
