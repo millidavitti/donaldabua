@@ -28,19 +28,3 @@ const techStack = [
 	{ id: 7, name: "Github" },
 	{ id: 8, name: "Azure" },
 ];
-
-/**
- * Portfolio Project Tech Stack
- * Composite Key:
- * name + projectId or techId + projectId
- */
-
-/**
- * id | name |
- * 1 | Next JS
- * 2 | Express
- * 3 | Node
- * 4 | Prisma
- * 5 | Neo4j
- *
- */
