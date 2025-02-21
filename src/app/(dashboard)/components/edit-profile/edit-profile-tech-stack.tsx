@@ -9,7 +9,7 @@ import { EditIcon, X } from "lucide-react";
 import { useState } from "react";
 import ProfileTechStack from "../profile-tech-stack";
 
-export default function EditProfileTechStack() {
+export default function EditProfileTechnologies() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [tech, setTech] = useState("");
 	return (
