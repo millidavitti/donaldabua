@@ -1,9 +1,9 @@
 "use client";
 
 import {
-	edit_portfolio_project_jotai,
+	edit_project_jotai,
 	edit_profile_jotai,
-	EditProfilePortfolioProjectStates,
+	EditProjectStates,
 	EditProfileStates,
 } from "@/data/atoms/ui_state";
 import {
@@ -15,20 +15,18 @@ import { useAtom } from "jotai";
 import { ReactNode } from "react";
 
 interface Overlay {
-	stateFlag: EditProfileStates | EditProfilePortfolioProjectStates;
+	stateFlag: EditProfileStates | EditProjectStates;
 	children: ReactNode;
 	className?: string;
 }
 
 export default function Overlay({ stateFlag, children, className }: Overlay) {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [edit_portfolio_project, edit_portfolio_project_setter] = useAtom(
-		edit_portfolio_project_jotai,
-	);
+	const [edit_project, edit_project_setter] = useAtom(edit_project_jotai);
 
 	return (
 		<>
-			{(stateFlag === edit_portfolio_project || stateFlag === edit_profile) && (
+			{(stateFlag === edit_project || stateFlag === edit_profile) && (
 				<div
 					className={cn(
 						"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 data-[is-shown=true]:fixed data-[is-shown=false]:hidden p-3",
@@ -36,7 +34,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 					)}
 					id={stateFlag!}
 					data-is-shown={
-						stateFlag === edit_portfolio_project || stateFlag === edit_profile
+						stateFlag === edit_project || stateFlag === edit_profile
 					}
 					onClick={(e) => {
 						if (EDIT_PROFILE_STATES.includes((e.target as HTMLElement).id))
@@ -46,7 +44,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 								(e.target as HTMLElement).id,
 							)
 						)
-							edit_portfolio_project_setter(null);
+							edit_project_setter(null);
 					}}
 				>
 					{children}

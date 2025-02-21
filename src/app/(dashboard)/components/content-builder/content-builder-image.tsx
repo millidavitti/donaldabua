@@ -1,10 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import React, { useState } from "react";
-import {
-	portfolio_project_content_jotai,
-	PortfolioProjectImage,
-} from "@/data/atoms/app_data";
+import { project_content_jotai, ProjectImage } from "@/data/atoms/app_data";
 import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";
@@ -15,7 +12,7 @@ import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 
 interface ContentBuilderImage {
-	component: PortfolioProjectImage;
+	component: ProjectImage;
 }
 export default function ContentBuilderImage({
 	component,
@@ -24,9 +21,7 @@ export default function ContentBuilderImage({
 		component_to_edit_jotai,
 	);
 	const [imageLink, setImageLink] = useState(component.url);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
+	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
 		<Flex flex='column' className='relative'>
 			{/* <ContentBuilderOptions component={component} /> */}
@@ -65,7 +60,7 @@ export default function ContentBuilderImage({
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_content_setter((content) => {
+								project_content_setter((content) => {
 									return content.map((obj) => {
 										if (component.id === obj.id)
 											return {

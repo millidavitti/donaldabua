@@ -2,10 +2,10 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
+import { project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
-	edit_portfolio_project_jotai,
+	edit_project_jotai,
 } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { createId } from "@paralleldrive/cuid2";
@@ -14,15 +14,11 @@ import { VideoIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function AddPortfolioProjectVideo() {
-	const edit_portfolio_project_setter = useSetAtom(
-		edit_portfolio_project_jotai,
-	);
+export default function AddProjectVideo() {
 	const [videoLink, setVideoLink] = useState("");
+	const edit_project_setter = useSetAtom(edit_project_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
+	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
 		<>
 			<InteractiveIcon
@@ -35,7 +31,7 @@ export default function AddPortfolioProjectVideo() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_portfolio_project_setter("edit-portfolio-project-video");
+						edit_project_setter("edit-portfolio-project-video");
 					},
 				}}
 			>
@@ -51,9 +47,7 @@ export default function AddPortfolioProjectVideo() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
-						<InteractiveIcon
-							callback={() => edit_portfolio_project_setter(null)}
-						>
+						<InteractiveIcon callback={() => edit_project_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -93,7 +87,7 @@ export default function AddPortfolioProjectVideo() {
 									"#add-portfolio-project-video",
 								);
 								if ((formElement as HTMLInputElement).validity.valid)
-									portfolio_project_content_setter((content) => [
+									project_content_setter((content) => [
 										...content,
 										{
 											id: createId(),
@@ -103,7 +97,7 @@ export default function AddPortfolioProjectVideo() {
 										},
 									]);
 								setVideoLink("");
-								edit_portfolio_project_setter(null);
+								edit_project_setter(null);
 							}}
 						>
 							Add

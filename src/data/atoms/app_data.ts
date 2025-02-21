@@ -1,5 +1,5 @@
-import { getPortfolioProjects } from "@/backend/get-portfolio-projects";
-import { getProfile } from "@/backend/get-profile-controller";
+import { getProjects } from "@/backend/get-projects";
+import { getUserProfile } from "@/backend/get-user-profile.controller";
 import { getUser } from "@/backend/get-user.controller";
 import { getUserLocation } from "@/backend/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
@@ -38,8 +38,6 @@ export const user_location_jotai = atom<UserLocation>({
 
 defaultStore.sub(user_jotai, () => {
 	getUserLocation(defaultStore.get(user_jotai).id).then((userLocation) => {
-		console.log("---userLocation---\n", userLocation);
-
 		defaultStore.set(user_location_jotai, userLocation);
 	});
 });
@@ -50,41 +48,40 @@ export type ProfileAvailabilityOptions =
 	| "As needed - open to offers"
 	| "None";
 
-export type Profile = {
+export type UserProfile = {
+	id: string;
 	availability: ProfileAvailabilityOptions;
 	title: string;
 	hourlyRate: number;
 	overview: string;
 };
-export const profile_jotai = atom<Profile>({
+
+export const user_name_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_name_jotai, defaultStore.get(user_jotai).name!);
+});
+
+export const user_image_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_image_jotai, defaultStore.get(user_jotai).image);
+});
+
+export const user_video_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_video_jotai, defaultStore.get(user_jotai).video || "");
+});
+
+export const profile_jotai = atom<UserProfile>({
+	id: "",
 	title: "",
 	hourlyRate: 0,
 	overview: "",
 	availability: "None",
 });
-profile_jotai.onMount = (setAtom) => {
-	getProfile().then((profile) => setAtom(profile));
-};
-
-export const profile_user_name_jotai = atom<string>("");
 defaultStore.sub(user_jotai, () => {
-	defaultStore.set(profile_user_name_jotai, defaultStore.get(user_jotai).name!);
-});
-
-export const profile_user_image_jotai = atom<string>("");
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(
-		profile_user_image_jotai,
-		defaultStore.get(user_jotai).image,
-	);
-});
-
-export const profile_user_video_jotai = atom<string>("");
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(
-		profile_user_video_jotai,
-		defaultStore.get(user_jotai).video || "",
-	);
+	getUserProfile(defaultStore.get(user_jotai).id).then((profile) => {
+		defaultStore.set(profile_jotai, profile);
+	});
 });
 
 export const availability_jotai = atom<string>("");
@@ -116,66 +113,58 @@ defaultStore.sub(profile_jotai, () => {
 	);
 });
 
-export type PortfolioProjectImage = {
+export type ProjectImage = {
 	id: string;
 	type: "image";
 	url: string;
 	caption?: string;
 	position: number;
 };
-export type PortfolioProjectVideo = {
+export type ProjectVideo = {
 	id: string;
 	type: "video";
 	url: string;
 	caption?: string;
 	position: number;
 };
-export type PortfolioProjectText = {
+export type ProjectText = {
 	id: string;
 	type: "text";
 	markdown: string;
 	position: number;
 };
-export type PortfolioProjectData = {
+export type Project = {
 	id: string;
 	title: string;
 	description: string;
-	techStack: string[];
 	thumbnail: string;
-	content: (
-		| PortfolioProjectImage
-		| PortfolioProjectVideo
-		| PortfolioProjectText
-	)[];
 };
 
 // This is use to store fetched project data
-export const portfolio_projects_jotai = atom<PortfolioProjectData[]>([]);
-portfolio_projects_jotai.onMount = (setAtom) => {
-	getPortfolioProjects().then((projects) => setAtom(projects));
-};
+export const projects_jotai = atom<Project[]>([]);
 
-export const portfolio_project_title_jotai = atom<string>("");
+defaultStore.sub(profile_jotai, () => {
+	getProjects(defaultStore.get(profile_jotai).id).then((projects) => {
+		defaultStore.set(projects_jotai, projects);
+	});
+});
 
-export const portfolio_project_description_jotai = atom<string>("");
+export const project_title_jotai = atom<string>("");
+export const project_description_jotai = atom<string>("");
+export const project_thumbnail_jotai = atom<string>("");
 
-export const portfolio_project_content_jotai = atom<
-	(PortfolioProjectImage | PortfolioProjectVideo | PortfolioProjectText)[]
->([]);
+export type ProjectContent = (ProjectImage | ProjectVideo | ProjectText)[];
 
-export const portfolio_project_tech_stack_jotai = atom<string[]>([]);
+export const project_content_jotai = atom<ProjectContent>([]);
 
-export const portfolio_project_thumbnail_jotai = atom<string>("");
-
-export type PortfolioProject = {
+export type ProfileTechnology = {
 	id: string;
-	title: string;
-	thumbnail: string;
+	name: string;
 };
-// export const portfolio_projects_jotai = atom<PortfolioProject[]>([]);
 
-export const selected_portfolio_project_jotai =
-	atom<PortfolioProjectData | null>(null);
+export const project_technologies_jotai = atom<ProfileTechnology[]>([]);
+
+export const selected_project_jotai = atom<Project | null>(null);
 
 export type ProfileSocials = {
 	id: string;
@@ -183,8 +172,3 @@ export type ProfileSocials = {
 	profile: string;
 };
 export const profile_socials_jotai = atom<ProfileSocials[]>([]);
-
-export type ProfileTechnology = {
-	id: string;
-	name: string;
-};

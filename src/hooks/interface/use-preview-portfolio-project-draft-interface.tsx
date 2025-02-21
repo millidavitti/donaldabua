@@ -1,13 +1,11 @@
-import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
+import { project_form_step_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 
-export default function usePreviewPortfolioProjectDraftInterface() {
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
+export default function usePreviewProjectDraftInterface() {
+	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 
 	function goBack() {
-		portfolio_project_form_step_setter("draft-project-info");
+		project_form_step_setter("draft-project-info");
 	}
 	return { goBack };
 }

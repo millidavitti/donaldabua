@@ -1,11 +1,12 @@
-import { portfolio_project_thumbnail_jotai } from "@/data/atoms/app_data";
+import { project_thumbnail_jotai } from "@/data/atoms/app_data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
-export default function AddPortfolioProjectThumbnail() {
-	const [portfolio_project_thumbnail, portfolio_project_thumbnail_setter] =
-		useAtom(portfolio_project_thumbnail_jotai);
+export default function AddProjectThumbnail() {
+	const [project_thumbnail, project_thumbnail_setter] = useAtom(
+		project_thumbnail_jotai,
+	);
 	return (
 		<>
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
@@ -17,23 +18,22 @@ export default function AddPortfolioProjectThumbnail() {
 				required
 				className={cn(
 					"outline p-3 valid:outline-emerald-800",
-					portfolio_project_thumbnail && "invalid:outline-red-800",
+					project_thumbnail && "invalid:outline-red-800",
 				)}
-				value={portfolio_project_thumbnail}
+				value={project_thumbnail}
 				placeholder='Paste a valid Cloudinary link'
 				onChange={(e) => {
-					if (e.target.validity.valid)
-						portfolio_project_thumbnail_setter(e.target.value);
-					else portfolio_project_thumbnail_setter("");
+					if (e.target.validity.valid) project_thumbnail_setter(e.target.value);
+					else project_thumbnail_setter("");
 				}}
 			/>
-			{portfolio_project_thumbnail && (
+			{project_thumbnail && (
 				<Image
-					src={portfolio_project_thumbnail}
+					src={project_thumbnail}
 					width={1000}
 					height={1000}
 					alt='thumbnail'
-					data-is-visible={Boolean(portfolio_project_thumbnail)}
+					data-is-visible={Boolean(project_thumbnail)}
 					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
 				/>
 			)}

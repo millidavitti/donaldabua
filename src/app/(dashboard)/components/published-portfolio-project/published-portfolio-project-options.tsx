@@ -6,7 +6,7 @@ import { ReactNode, useState } from "react";
 interface PublishedPortfolioProjectOptions {
 	children: ReactNode;
 }
-export default function PublishedPortfolioProjectOptions({
+export default function PublishedProjectOptions({
 	children,
 }: PublishedPortfolioProjectOptions) {
 	const [isOptionsVisible, setIsOptionsVisible] = useState(false);

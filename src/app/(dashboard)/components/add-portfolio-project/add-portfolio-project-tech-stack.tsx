@@ -1,12 +1,13 @@
 import Flex from "@/components/layouts/flex";
-import { portfolio_project_tech_stack_jotai } from "@/data/atoms/app_data";
+import { project_technologies_jotai } from "@/data/atoms/app_data";
 import { useAtom } from "jotai";
 import { X } from "lucide-react";
 import React from "react";
 
-export default function AddPortfolioProjectTechStack() {
-	const [portfolio_project_tech_stack, portfolio_project_tech_stack_setter] =
-		useAtom(portfolio_project_tech_stack_jotai);
+export default function AddProjectTechStack() {
+	const [project_technologies, project_technologies_setter] = useAtom(
+		project_technologies_jotai,
+	);
 	return (
 		<>
 			{" "}
@@ -14,9 +15,9 @@ export default function AddPortfolioProjectTechStack() {
 				Tech Stack
 			</label>
 			<Flex className='gap-3 flex-wrap shrink-0'>
-				{portfolio_project_tech_stack.map((tech) => (
-					<Flex className='gap-3 items-center' key={tech}>
-						<p className='shrink-0 font-medium'>{tech}</p>
+				{project_technologies.map((tech) => (
+					<Flex className='gap-3 items-center' key={tech.id}>
+						<p className='shrink-0 font-medium'>{tech.name}</p>
 						<X
 							size={24}
 							className='stroke-light-error cursor-pointer active:scale-[.95]'
@@ -31,10 +32,12 @@ export default function AddPortfolioProjectTechStack() {
 				onKeyDown={(e) => {
 					if (e.key === "Enter") {
 						if ((e.target as HTMLInputElement).value)
-							portfolio_project_tech_stack_setter((stack) => [
-								...stack,
-								(e.target as HTMLInputElement).value,
-							]);
+							project_technologies_setter((tech) => {
+								return {
+									...tech,
+									name: (e.target as HTMLInputElement).value,
+								};
+							});
 						(e.target as HTMLInputElement).value = "";
 					}
 				}}

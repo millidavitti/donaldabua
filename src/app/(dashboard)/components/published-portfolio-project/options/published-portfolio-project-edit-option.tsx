@@ -1,16 +1,16 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { PortfolioProjectData } from "@/data/atoms/app_data";
-import usePublishedPortfolioProjectEditOptionInterface from "@/hooks/interface/use-published-portfolio-project-edit-option-interface";
+import { Project } from "@/data/atoms/app_data";
+import usePublishedProjectEditOptionInterface from "@/hooks/interface/use-published-portfolio-project-edit-option-interface";
 import { Edit } from "lucide-react";
 import React from "react";
 
-interface PublishedPortfolioProjectEditOption {
-	project: PortfolioProjectData;
+interface PublishedProjectEditOption {
+	project: Project;
 }
-export default function PublishedPortfolioProjectEditOption({
+export default function PublishedProjectEditOption({
 	project,
-}: PublishedPortfolioProjectEditOption) {
-	const { edit } = usePublishedPortfolioProjectEditOptionInterface();
+}: PublishedProjectEditOption) {
+	const { edit } = usePublishedProjectEditOptionInterface();
 
 	return (
 		<InteractiveIcon

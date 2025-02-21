@@ -4,13 +4,11 @@ import ContentBuilderImage from "../content-builder/content-builder-image";
 import { createId } from "@paralleldrive/cuid2";
 import ContentBuilderVideo from "../content-builder/content-builder-video";
 import ContentBuilderText from "../content-builder/content-builder-text";
-import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
+import { project_content_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
 
-export default function PreviewPortfolioProjectContent() {
-	const portfolio_project_content = useAtomValue(
-		portfolio_project_content_jotai,
-	);
+export default function PreviewProjectContent() {
+	const portfolio_project_content = useAtomValue(project_content_jotai);
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
 			{portfolio_project_content

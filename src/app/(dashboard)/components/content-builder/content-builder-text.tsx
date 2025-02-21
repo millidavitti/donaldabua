@@ -1,10 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
-import {
-	portfolio_project_content_jotai,
-	PortfolioProjectText,
-} from "@/data/atoms/app_data";
+import { project_content_jotai, ProjectText } from "@/data/atoms/app_data";
 import { useAtom, useSetAtom } from "jotai";
 import md from "md";
 import parse from "html-react-parser";
@@ -15,16 +12,14 @@ import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 
 interface ContentBuilderText {
-	component: PortfolioProjectText;
+	component: ProjectText;
 }
 export default function ContentBuilderText({ component }: ContentBuilderText) {
 	const [component_to_edit, component_to_edit_setter] = useAtom(
 		component_to_edit_jotai,
 	);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
-	// This is to prevent renders from updating portfolio_project_data_jotai directly
+	const project_content_setter = useSetAtom(project_content_jotai);
+	// This is to prevent renders when updating project_data_jotai directly
 	const [markdown, setMarkdown] = useState(component.markdown);
 	return (
 		<Flex
@@ -34,7 +29,7 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 				onKeyDown(e) {
 					if (e.key === "Enter" && e.ctrlKey) {
 						component_to_edit_setter(null);
-						portfolio_project_content_setter((content) => {
+						project_content_setter((content) => {
 							return content.map((obj) => {
 								if (component.id === obj.id)
 									return {

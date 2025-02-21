@@ -3,32 +3,25 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import Image from "next/image";
 import React from "react";
-import {
-	PortfolioProjectData,
-	selected_portfolio_project_jotai,
-} from "@/data/atoms/app_data";
-import PublishedPortfolioProjectOptions from "./published-portfolio-project-options";
-import PublishedPortfolioProjectEditOption from "./options/published-portfolio-project-edit-option";
-import PublishedPortfolioProjectDeleteOption from "./options/published-portfolio-project-delete-option";
+import { Project, selected_project_jotai } from "@/data/atoms/app_data";
+import PublishedProjectOptions from "./published-portfolio-project-options";
+import PublishedProjectEditOption from "./options/published-portfolio-project-edit-option";
+import PublishedProjectDeleteOption from "./options/published-portfolio-project-delete-option";
 
-interface PublishedPortfolioProject {
-	project: PortfolioProjectData;
+interface PublishedProject {
+	project: Project;
 }
-export default function PublishedPortfolioProject({
-	project,
-}: PublishedPortfolioProject) {
+export default function PublishedProject({ project }: PublishedProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const selected_portfolio_project_setter = useSetAtom(
-		selected_portfolio_project_jotai,
-	);
+	const selected_project_setter = useSetAtom(selected_project_jotai);
 
 	return (
 		<>
 			<Flex className='shrink-0 gap-3 grow w-full md:basis-52 relative'>
-				<PublishedPortfolioProjectOptions>
-					<PublishedPortfolioProjectEditOption project={project} />
-					<PublishedPortfolioProjectDeleteOption projectID={project.id} />
-				</PublishedPortfolioProjectOptions>
+				<PublishedProjectOptions>
+					<PublishedProjectEditOption project={project} />
+					<PublishedProjectDeleteOption projectID={project.id} />
+				</PublishedProjectOptions>
 				{/* Project */}
 				<Flex
 					flex='column'
@@ -36,7 +29,7 @@ export default function PublishedPortfolioProject({
 					htmlProps={{
 						onClick() {
 							edit_profile_setter("view-portfolio-project");
-							selected_portfolio_project_setter(project);
+							selected_project_setter(project);
 						},
 					}}
 				>

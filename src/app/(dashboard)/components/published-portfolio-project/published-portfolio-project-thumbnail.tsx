@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function PublishedPortfolioProjectThumbnail({
+export default function PublishedProjectThumbnail({
 	thumbnail,
 }: {
 	thumbnail: string;

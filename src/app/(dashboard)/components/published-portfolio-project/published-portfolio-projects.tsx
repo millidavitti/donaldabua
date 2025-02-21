@@ -2,51 +2,42 @@ import Flex from "@/components/layouts/flex";
 import React from "react";
 import { useAtomValue } from "jotai";
 import Overlay from "@/components/layouts/overlay";
-import ViewPortfolioProject from "../view-portfolio-project";
-import {
-	portfolio_projects_jotai,
-	selected_portfolio_project_jotai,
-} from "@/data/atoms/app_data";
-import PublishedPortfolioProject from "./published-portfolio-project";
-import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
+import ViewProject from "../view-portfolio-project";
+import { projects_jotai, selected_project_jotai } from "@/data/atoms/app_data";
+import PublishedProject from "./published-portfolio-project";
+import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
 import ContentBuilder from "../content-builder/content-builder";
-import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
-import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
+import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
+import { project_form_step_jotai } from "@/data/atoms/ui_state";
 
-export default function PublishedPortfolioProjects() {
-	const portfolio_projects = useAtomValue(portfolio_projects_jotai);
-	const selected_portfolio_project = useAtomValue(
-		selected_portfolio_project_jotai,
-	);
-	const portfolio_project_form_step = useAtomValue(
-		portfolio_project_form_step_jotai,
-	);
+export default function PublishedProjects() {
+	const projects = useAtomValue(projects_jotai);
+	const selected_project = useAtomValue(selected_project_jotai);
+	const project_form_step = useAtomValue(project_form_step_jotai);
 	return (
 		<>
 			<Flex className='flex-wrap gap-3 max-h-[484px]'>
-				{portfolio_projects.map((project) => {
-					return (
-						<PublishedPortfolioProject key={project.id} project={project} />
-					);
+				{projects.map((project) => {
+					return <PublishedProject key={project.id} project={project} />;
 				})}
 			</Flex>
 			<Overlay
 				stateFlag='view-portfolio-project'
 				className='place-content-center'
 			>
-				<ViewPortfolioProject project={selected_portfolio_project!} />
+				<ViewProject project={selected_project!} />
 			</Overlay>
 			<Overlay
 				stateFlag='edit-published-portfolio-project'
 				className='flex justify-center items-center'
 			>
-				{portfolio_project_form_step === "draft-project-info" && (
-					<DraftPortfolioProjectInfo>
+				{project_form_step === "draft-project-info" && (
+					<DraftProjectInfo>
 						<ContentBuilder />
-					</DraftPortfolioProjectInfo>
+					</DraftProjectInfo>
 				)}
-				{portfolio_project_form_step === "preview-project-draft" && (
-					<PreviewPortfolioProjectDraft />
+				{project_form_step === "preview-project-draft" && (
+					<PreviewProjectDraft />
 				)}
 			</Overlay>
 		</>

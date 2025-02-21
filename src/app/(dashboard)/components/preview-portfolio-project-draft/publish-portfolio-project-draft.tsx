@@ -2,20 +2,17 @@ import Button from "@/components/ui/button";
 import usePublishPortfolioProjectInterface from "@/hooks/interface/use-publish-portfolio-project-interface";
 import React from "react";
 
-export default function PublishPortfolioProject() {
-	const {
-		publishPortfolioProject,
-		editProfileState,
-		savePublishedPortfolioProjectEdit,
-	} = usePublishPortfolioProjectInterface();
+export default function PublishProject() {
+	const { publishProject, editProfileState, savePublishedProjectEdit } =
+		usePublishPortfolioProjectInterface();
 	return (
 		<Button
 			type='button'
 			className='bg-black text-light-surface'
 			onClick={() =>
 				editProfileState === "edit-published-portfolio-project"
-					? savePublishedPortfolioProjectEdit()
-					: publishPortfolioProject()
+					? savePublishedProjectEdit()
+					: publishProject()
 			}
 		>
 			{editProfileState === "edit-published-portfolio-project"

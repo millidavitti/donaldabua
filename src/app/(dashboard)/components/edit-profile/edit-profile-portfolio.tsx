@@ -4,21 +4,22 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import {
 	edit_profile_jotai,
-	portfolio_project_form_step_jotai,
+	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftPortfolioProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
-import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
+import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
+import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PortfolioProjects from "../published-portfolio-project/published-portfolio-projects";
-import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
+import PublishedProjects from "../published-portfolio-project/published-portfolio-projects";
+import useResetProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
-export default function EditProfilePortfolio() {
+export default function EditProjects() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [portfolio_project_form_step, portfolio_project_form_step_setter] =
-		useAtom(portfolio_project_form_step_jotai);
-	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
+	const [project_form_step, project_form_step_setter] = useAtom(
+		project_form_step_jotai,
+	);
+	const resetProjectFormFields = useResetProjectFormFields();
 	return (
 		<>
 			<Flex flex='column' className='gap-3'>
@@ -27,28 +28,28 @@ export default function EditProfilePortfolio() {
 					<p className='font-semibold lg:text-2xl'>Portfolio</p>
 					<InteractiveIcon
 						callback={() => {
-							resetPortfolioProjectFormFields();
+							resetProjectFormFields();
 							edit_profile_setter("edit-portfolio");
-							portfolio_project_form_step_setter("draft-project-info");
+							project_form_step_setter("draft-project-info");
 						}}
 					>
 						<CirclePlus size={24} />
 					</InteractiveIcon>
 				</Flex>
 				{/* Projects */}
-				<PortfolioProjects />
+				<PublishedProjects />
 			</Flex>
 			<Overlay
 				stateFlag='edit-portfolio'
 				className='flex justify-center items-center'
 			>
-				{portfolio_project_form_step === "draft-project-info" && (
-					<DraftPortfolioProjectInfo>
+				{project_form_step === "draft-project-info" && (
+					<DraftProjectInfo>
 						<ContentBuilder />
-					</DraftPortfolioProjectInfo>
+					</DraftProjectInfo>
 				)}
-				{portfolio_project_form_step === "preview-project-draft" && (
-					<PreviewPortfolioProjectDraft />
+				{project_form_step === "preview-project-draft" && (
+					<PreviewProjectDraft />
 				)}
 			</Overlay>
 		</>
