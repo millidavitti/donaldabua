@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { portfolio_project_form_step_jotai } from "@/data/atoms/ui_state";
+import { project_form_step_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue } from "jotai";
 import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
@@ -12,12 +12,10 @@ export default function ContentBuilderOptionsDrawer({
 	children,
 }: ContentBuilderOptionsDrawer) {
 	const [isOptionsVisible, setIsOptionsVisible] = useState(false);
-	const portfolio_project_form_step = useAtomValue(
-		portfolio_project_form_step_jotai,
-	);
+	const project_form_step = useAtomValue(project_form_step_jotai);
 	return (
 		<>
-			{portfolio_project_form_step === "draft-project-info" && (
+			{project_form_step === "draft-project-info" && (
 				<>
 					{isOptionsVisible ? (
 						<Flex
