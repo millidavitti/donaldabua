@@ -12,14 +12,14 @@ import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-i
 import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-portfolio-project/published-portfolio-projects";
-import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
+import useResetProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
 export default function EditProjects() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [project_form_step, project_form_step_setter] = useAtom(
 		project_form_step_jotai,
 	);
-	const resetProjectFormFields = useResetPortfolioProjectFormFields();
+	const resetProjectFormFields = useResetProjectFormFields();
 	return (
 		<>
 			<Flex flex='column' className='gap-3'>
