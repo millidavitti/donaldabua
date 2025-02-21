@@ -18,8 +18,8 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 	const [component_to_edit, component_to_edit_setter] = useAtom(
 		component_to_edit_jotai,
 	);
-	const portfolio_project_content_setter = useSetAtom(project_content_jotai);
-	// This is to prevent renders from updating portfolio_project_data_jotai directly
+	const project_content_setter = useSetAtom(project_content_jotai);
+	// This is to prevent renders when updating project_data_jotai directly
 	const [markdown, setMarkdown] = useState(component.markdown);
 	return (
 		<Flex
@@ -29,7 +29,7 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 				onKeyDown(e) {
 					if (e.key === "Enter" && e.ctrlKey) {
 						component_to_edit_setter(null);
-						portfolio_project_content_setter((content) => {
+						project_content_setter((content) => {
 							return content.map((obj) => {
 								if (component.id === obj.id)
 									return {
