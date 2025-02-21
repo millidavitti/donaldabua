@@ -13,15 +13,15 @@ export type EditProfileStates =
 	| "edit-employment-history"
 	| "edit-socials"
 	| "edit-portfolio"
-	| "edit-published-portfolio-project"
-	| "view-portfolio-project"
+	| "edit-published-project"
+	| "view-project"
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
 
 export type EditProjectStates =
-	| "edit-portfolio-project-video"
-	| "edit-portfolio-project-image"
-	| "edit-portfolio-project-text"
+	| "edit-project-video"
+	| "edit-project-image"
+	| "edit-project-markdown"
 	| null;
 export const edit_project_jotai = atom<EditProjectStates>(null);
 

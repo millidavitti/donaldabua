@@ -2,12 +2,12 @@ import Flex from "@/components/layouts/flex";
 import React from "react";
 import { useAtomValue } from "jotai";
 import Overlay from "@/components/layouts/overlay";
-import ViewProject from "../view-portfolio-project";
+import ViewProject from "../view-project";
 import { projects_jotai, selected_project_jotai } from "@/data/atoms/app_data";
-import PublishedProject from "./published-portfolio-project";
-import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
+import PublishedProject from "./published-project";
+import DraftProjectInfo from "../add-project/draft-project-info";
 import ContentBuilder from "../content-builder/content-builder";
-import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
+import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import { project_form_step_jotai } from "@/data/atoms/ui_state";
 
 export default function PublishedProjects() {
@@ -21,14 +21,11 @@ export default function PublishedProjects() {
 					return <PublishedProject key={project.id} project={project} />;
 				})}
 			</Flex>
-			<Overlay
-				stateFlag='view-portfolio-project'
-				className='place-content-center'
-			>
+			<Overlay stateFlag='view-project' className='place-content-center'>
 				<ViewProject project={selected_project!} />
 			</Overlay>
 			<Overlay
-				stateFlag='edit-published-portfolio-project'
+				stateFlag='edit-published-project'
 				className='flex justify-center items-center'
 			>
 				{project_form_step === "draft-project-info" && (

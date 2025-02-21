@@ -3,10 +3,10 @@ import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
-import AddProjectTitle from "./add-portfolio-project-title";
-import AddProjectDescription from "./add-portfolio-project-description";
-import AddProjectTechStack from "./add-portfolio-project-tech-stack";
-import AddProjectThumbnail from "./add-portfolio-project-thumbnail";
+import AddProjectTitle from "./add-project-title";
+import AddProjectDescription from "./add-project-description";
+import AddProjectTechStack from "./add-project-tech-stack";
+import AddProjectThumbnail from "./add-project-thumbnail";
 import useDraftProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
 interface DraftProjectInfo {
@@ -23,7 +23,7 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>
-					{edit_profile === "edit-published-portfolio-project"
+					{edit_profile === "edit-published-project"
 						? "Edit Published Project"
 						: "Add New Project"}
 				</h2>

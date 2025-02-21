@@ -8,10 +8,10 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
-import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
+import DraftProjectInfo from "../add-project/draft-project-info";
+import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PublishedProjects from "../published-portfolio-project/published-portfolio-projects";
+import PublishedProjects from "../published-project/published-projects";
 import useResetProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
 export default function EditProjects() {
