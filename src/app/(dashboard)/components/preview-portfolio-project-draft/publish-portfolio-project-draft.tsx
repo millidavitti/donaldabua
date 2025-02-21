@@ -3,19 +3,16 @@ import usePublishPortfolioProjectInterface from "@/hooks/interface/use-publish-p
 import React from "react";
 
 export default function PublishProject() {
-	const {
-		publishPortfolioProject,
-		editProfileState,
-		savePublishedPortfolioProjectEdit,
-	} = usePublishPortfolioProjectInterface();
+	const { publishProject, editProfileState, savePublishedProjectEdit } =
+		usePublishPortfolioProjectInterface();
 	return (
 		<Button
 			type='button'
 			className='bg-black text-light-surface'
 			onClick={() =>
 				editProfileState === "edit-published-portfolio-project"
-					? savePublishedPortfolioProjectEdit()
-					: publishPortfolioProject()
+					? savePublishedProjectEdit()
+					: publishProject()
 			}
 		>
 			{editProfileState === "edit-published-portfolio-project"
