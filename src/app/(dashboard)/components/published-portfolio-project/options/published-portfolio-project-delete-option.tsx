@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import usePublishedPortfolioProjectDeleteOption from "@/hooks/interface/use-published-portfolio-project-delete-option";
+import usePublishedProjectDeleteOption from "@/hooks/interface/use-published-portfolio-project-delete-option";
 import { Trash } from "lucide-react";
 import React from "react";
 
@@ -9,7 +9,7 @@ interface PublishedProjectDeleteOption {
 export default function PublishedProjectDeleteOption({
 	projectID,
 }: PublishedProjectDeleteOption) {
-	const { deleteProject } = usePublishedPortfolioProjectDeleteOption();
+	const { deleteProject } = usePublishedProjectDeleteOption();
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
