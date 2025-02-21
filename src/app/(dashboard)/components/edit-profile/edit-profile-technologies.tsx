@@ -7,7 +7,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import { useState } from "react";
-import ProfileTechStack from "../profile-tech-stack";
+import ProfileTechnologies from "../profile-technologies";
 
 export default function EditProfileTechnologies() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
@@ -27,7 +27,7 @@ export default function EditProfileTechnologies() {
 					</InteractiveIcon>
 				</Flex>
 				{/* Stack */}
-				<ProfileTechStack />
+				<ProfileTechnologies />
 			</Flex>
 
 			<Overlay
@@ -59,7 +59,7 @@ export default function EditProfileTechnologies() {
 							Tech
 						</label>
 						<Flex flex='column' className='gap-3'>
-							<ProfileTechStack />
+							<ProfileTechnologies />
 							<input
 								id='tech-stack'
 								required
