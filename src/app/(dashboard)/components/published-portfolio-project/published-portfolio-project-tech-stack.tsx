@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import React from "react";
 
-export default function PublishedPortfolioProjectTechStack({
+export default function PublishedProjectTechStack({
 	techStack,
 }: {
 	techStack: string[];
