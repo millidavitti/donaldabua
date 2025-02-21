@@ -1,10 +1,10 @@
 import Button from "@/components/ui/button";
-import usePublishPortfolioProjectInterface from "@/hooks/interface/use-publish-portfolio-project-interface";
+import usePublishProjectInterface from "@/hooks/interface/use-publish-portfolio-project-interface";
 import React from "react";
 
 export default function PublishProject() {
 	const { publishProject, editProfileState, savePublishedProjectEdit } =
-		usePublishPortfolioProjectInterface();
+		usePublishProjectInterface();
 	return (
 		<Button
 			type='button'
