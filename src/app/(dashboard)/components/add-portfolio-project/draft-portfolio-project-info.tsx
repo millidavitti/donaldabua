@@ -7,14 +7,14 @@ import AddProjectTitle from "./add-portfolio-project-title";
 import AddProjectDescription from "./add-portfolio-project-description";
 import AddProjectTechStack from "./add-portfolio-project-tech-stack";
 import AddProjectThumbnail from "./add-portfolio-project-thumbnail";
-import useDraftPortfolioProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
+import useDraftProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
 interface DraftProjectInfo {
 	children: ReactNode;
 }
 export default function DraftProjectInfo({ children }: DraftProjectInfo) {
-	const { edit_profile, closePortfolioProjectForm, gotToPreview } =
-		useDraftPortfolioProjectInfoInterface();
+	const { edit_profile, closeProjectForm, gotToPreview } =
+		useDraftProjectInfoInterface();
 	return (
 		<Flex
 			flex='column'
@@ -30,7 +30,7 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
-							closePortfolioProjectForm();
+							closeProjectForm();
 						},
 					}}
 				>
@@ -41,7 +41,7 @@ export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 				className='flex flex-col gap-3'
 				onSubmit={(e) => {
 					e.preventDefault();
-					closePortfolioProjectForm();
+					closeProjectForm();
 				}}
 			>
 				<AddProjectTitle />
