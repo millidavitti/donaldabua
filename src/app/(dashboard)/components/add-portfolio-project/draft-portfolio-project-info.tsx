@@ -3,18 +3,16 @@ import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
-import AddPortfolioProjectTitle from "./add-portfolio-project-title";
-import AddPortfolioProjectDescription from "./add-portfolio-project-description";
-import AddPortfolioProjectTechStack from "./add-portfolio-project-tech-stack";
-import AddPortfolioProjectThumbnail from "./add-portfolio-project-thumbnail";
+import AddProjectTitle from "./add-portfolio-project-title";
+import AddProjectDescription from "./add-portfolio-project-description";
+import AddProjectTechStack from "./add-portfolio-project-tech-stack";
+import AddProjectThumbnail from "./add-portfolio-project-thumbnail";
 import useDraftPortfolioProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
-interface DraftPortfolioProjectInfo {
+interface DraftProjectInfo {
 	children: ReactNode;
 }
-export default function DraftPortfolioProjectInfo({
-	children,
-}: DraftPortfolioProjectInfo) {
+export default function DraftProjectInfo({ children }: DraftProjectInfo) {
 	const { edit_profile, closePortfolioProjectForm, gotToPreview } =
 		useDraftPortfolioProjectInfoInterface();
 	return (
@@ -46,12 +44,12 @@ export default function DraftPortfolioProjectInfo({
 					closePortfolioProjectForm();
 				}}
 			>
-				<AddPortfolioProjectTitle />
+				<AddProjectTitle />
 				<Flex className='gap-3 flex-wrap'>
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
-						<AddPortfolioProjectDescription />
-						<AddPortfolioProjectTechStack />
-						<AddPortfolioProjectThumbnail />
+						<AddProjectDescription />
+						<AddProjectTechStack />
+						<AddProjectThumbnail />
 					</Flex>
 					{children}
 				</Flex>
