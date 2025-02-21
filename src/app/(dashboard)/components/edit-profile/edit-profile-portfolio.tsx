@@ -8,7 +8,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
+import DraftProjectInfo from "../add-portfolio-project/draft-project-info";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
