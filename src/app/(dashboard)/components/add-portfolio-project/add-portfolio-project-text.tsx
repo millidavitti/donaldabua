@@ -2,10 +2,10 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { portfolio_project_content_jotai } from "@/data/atoms/app_data";
+import { project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
-	edit_portfolio_project_jotai,
+	edit_project_jotai,
 } from "@/data/atoms/ui_state";
 import { cn } from "@/utils/cn";
 import { createId } from "@paralleldrive/cuid2";
@@ -13,14 +13,10 @@ import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
 import React, { useState } from "react";
 export default function AddPortfolioProjectText() {
-	const edit_portfolio_project_setter = useSetAtom(
-		edit_portfolio_project_jotai,
-	);
+	const edit_project_setter = useSetAtom(edit_project_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
+	const project_content_setter = useSetAtom(project_content_jotai);
 	const [markdown, setMarkdown] = useState("");
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
 	return (
 		<>
 			<InteractiveIcon
@@ -33,7 +29,7 @@ export default function AddPortfolioProjectText() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_portfolio_project_setter("edit-portfolio-project-text");
+						edit_project_setter("edit-portfolio-project-text");
 					},
 				}}
 			>
@@ -49,9 +45,7 @@ export default function AddPortfolioProjectText() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Markdown</h2>
-						<InteractiveIcon
-							callback={() => edit_portfolio_project_setter(null)}
-						>
+						<InteractiveIcon callback={() => edit_project_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -78,7 +72,7 @@ export default function AddPortfolioProjectText() {
 									"#add-portfolio-project-text",
 								);
 								if ((formElement as HTMLInputElement).validity.valid)
-									portfolio_project_content_setter((content) => [
+									project_content_setter((content) => [
 										...content,
 										{
 											id: createId(),
@@ -88,7 +82,7 @@ export default function AddPortfolioProjectText() {
 										},
 									]);
 								setMarkdown("");
-								edit_portfolio_project_setter(null);
+								edit_project_setter(null);
 							}}
 						>
 							Add
