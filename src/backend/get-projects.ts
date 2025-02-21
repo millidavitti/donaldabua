@@ -11,5 +11,6 @@ export async function getProjects(profileId: string) {
 		return projects as Project[];
 	} catch (error) {
 		console.log("---getProjects---\n", error);
+		return [];
 	}
 }
