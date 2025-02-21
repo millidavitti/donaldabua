@@ -2,7 +2,7 @@ import Button from "@/components/ui/button";
 import usePublishPortfolioProjectInterface from "@/hooks/interface/use-publish-portfolio-project-interface";
 import React from "react";
 
-export default function PublishPortfolioProject() {
+export default function PublishProject() {
 	const {
 		publishPortfolioProject,
 		editProfileState,
