@@ -1,8 +1,6 @@
 import {
 	defaultStore,
-	project_content_jotai,
 	project_description_jotai,
-	project_technologies_jotai,
 	project_thumbnail_jotai,
 	project_title_jotai,
 	projects_jotai,
