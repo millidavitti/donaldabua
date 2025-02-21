@@ -3,12 +3,12 @@ import usePublishedPortfolioProjectDeleteOption from "@/hooks/interface/use-publ
 import { Trash } from "lucide-react";
 import React from "react";
 
-interface PublishedPortfolioProjectDeleteOption {
+interface PublishedProjectDeleteOption {
 	projectID: string;
 }
-export default function PublishedPortfolioProjectDeleteOption({
+export default function PublishedProjectDeleteOption({
 	projectID,
-}: PublishedPortfolioProjectDeleteOption) {
+}: PublishedProjectDeleteOption) {
 	const { deleteProject } = usePublishedPortfolioProjectDeleteOption();
 	return (
 		<InteractiveIcon
