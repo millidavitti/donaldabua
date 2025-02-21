@@ -2,15 +2,15 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
 import React from "react";
-import PreviewPortfolioProjectTitle from "./preview-portfolio-project-title-draft";
-import PreviewPortfolioProjectDescription from "./preview-portfolio-project-description-draft";
-import PreviewPortfolioProjectTechStack from "./preview-portfolio-project-tech-stack-draft";
-import PreviewPortfolioProjectThumbnail from "./preview-portfolio-project-thumbnail-draft";
-import PreviewPortfolioProjectContent from "./preview-portfolio-project-content-draft";
-import PublishPortfolioProject from "./publish-portfolio-project-draft";
+import PreviewProjectTitle from "./preview-portfolio-project-title-draft";
+import PreviewProjectDescription from "./preview-portfolio-project-description-draft";
+import PreviewProjectTechnologies from "./preview-portfolio-project-tech-stack-draft";
+import PreviewProjectThumbnail from "./preview-portfolio-project-thumbnail-draft";
+import PreviewProjectContent from "./preview-portfolio-project-content-draft";
+import PublishProject from "./publish-portfolio-project-draft";
 import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
 
-export default function PreviewPortfolioProjectDraft() {
+export default function PreviewProjectDraft() {
 	const { goBack } = usePreviewPortfolioProjectDraftInterface();
 
 	return (
@@ -27,17 +27,17 @@ export default function PreviewPortfolioProjectDraft() {
 
 			<Flex flex='column' className='gap-3'>
 				{/* Project Title */}
-				<PreviewPortfolioProjectTitle />
+				<PreviewProjectTitle />
 
 				<Flex className='gap-3 flex-wrap'>
 					<Flex flex='column' className='grow gap-3 basis-[360px]'>
-						<PreviewPortfolioProjectDescription />
-						<PreviewPortfolioProjectTechStack />
-						<PreviewPortfolioProjectThumbnail />
+						<PreviewProjectDescription />
+						<PreviewProjectTechnologies />
+						<PreviewProjectThumbnail />
 					</Flex>
-					<PreviewPortfolioProjectContent />
+					<PreviewProjectContent />
 				</Flex>
-				<PublishPortfolioProject />
+				<PublishProject />
 			</Flex>
 		</Flex>
 	);
