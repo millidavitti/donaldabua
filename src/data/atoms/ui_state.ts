@@ -18,22 +18,21 @@ export type EditProfileStates =
 	| null;
 export const edit_profile_jotai = atom<EditProfileStates>(null);
 
-export type EditProfilePortfolioProjectStates =
+export type EditProjectStates =
 	| "edit-portfolio-project-video"
 	| "edit-portfolio-project-image"
 	| "edit-portfolio-project-text"
 	| null;
-export const edit_portfolio_project_jotai =
-	atom<EditProfilePortfolioProjectStates>(null);
+export const edit_project_jotai = atom<EditProjectStates>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
 >(null);
 
-export const portfolio_project_form_step_jotai = atom<
+export const project_form_step_jotai = atom<
 	"draft-project-info" | "preview-project-draft" | null
 >(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
 
-export const portfolio_project_to_edit_jotai = atom<string | null>(null);
+export const project_to_edit_jotai = atom<string | null>(null);
