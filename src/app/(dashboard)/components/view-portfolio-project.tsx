@@ -42,7 +42,7 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 				<Flex className='gap-3 flex-wrap'>
 					<Flex flex='column' className='grow gap-3 basis-[360px]'>
 						<PublishedProjectDescription description={project.description} />
-						<PublishedProjectTechStack techStack={project.techStack} />
+						<PublishedProjectTechStack />
 						<PublishedProjectThumbnail thumbnail={project.thumbnail} />
 					</Flex>
 					<PublishedProjectContent />
