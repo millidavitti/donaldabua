@@ -1,11 +1,13 @@
 import Flex from "@/components/layouts/flex";
+import { profile_technologies_jotai } from "@/data/atoms/app_data";
+import { useAtomValue } from "jotai";
 import { X } from "lucide-react";
-import React from "react";
 
 export default function ProfileTechnologies() {
+	const profile_technologies = useAtomValue(profile_technologies_jotai);
 	return (
 		<Flex className='gap-3 flex-wrap shrink-0 grow'>
-			{techStack.map((tech) => (
+			{profile_technologies.map((tech) => (
 				<Flex className='gap-3 items-center' key={tech.id}>
 					<p className='shrink-0 font-medium'>{tech.name}</p>
 					<X
@@ -17,14 +19,3 @@ export default function ProfileTechnologies() {
 		</Flex>
 	);
 }
-
-const techStack = [
-	{ id: 1, name: "Next JS" },
-	{ id: 2, name: "Express" },
-	{ id: 3, name: "Node" },
-	{ id: 4, name: "Prisma" },
-	{ id: 5, name: "Neo4j" },
-	{ id: 6, name: "Typescript" },
-	{ id: 7, name: "Github" },
-	{ id: 8, name: "Azure" },
-];
