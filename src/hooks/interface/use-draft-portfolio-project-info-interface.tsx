@@ -1,17 +1,15 @@
-import useResetPortfolioProjectFormFields from "../use-reset-portfolio-project-form-fields";
+import useResetProjectFormFields from "../use-reset-portfolio-project-form-fields";
 import { useAtom, useSetAtom } from "jotai";
 import {
 	component_to_edit_jotai,
 	edit_profile_jotai,
-	portfolio_project_form_step_jotai,
+	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 
-export default function useDraftPortfolioProjectInfoInterface() {
+export default function useDraftProjectInfoInterface() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
-	const resetPortfolioProjectFormFields = useResetPortfolioProjectFormFields();
+	const project_form_step_setter = useSetAtom(project_form_step_jotai);
+	const resetProjectFormFields = useResetProjectFormFields();
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
 
 	function gotToPreview() {
@@ -28,18 +26,18 @@ export default function useDraftPortfolioProjectInfoInterface() {
 				(el) => (el as HTMLInputElement).validity.valid === true,
 			)
 		)
-			portfolio_project_form_step_setter("preview-project-draft");
+			project_form_step_setter("preview-project-draft");
 		component_to_edit_setter(null);
 	}
 
-	function closePortfolioProjectForm() {
+	function closeProjectForm() {
 		edit_profile_setter(null);
-		resetPortfolioProjectFormFields();
+		resetProjectFormFields();
 	}
 	return {
-		resetPortfolioProjectFormFields,
+		resetProjectFormFields,
 		gotToPreview,
-		closePortfolioProjectForm,
+		closeProjectForm,
 		edit_profile,
 	};
 }
