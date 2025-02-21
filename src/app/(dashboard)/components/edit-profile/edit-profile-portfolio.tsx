@@ -9,12 +9,12 @@ import {
 import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
-import PreviewPortfolioProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
+import PreviewProjectDraft from "../preview-portfolio-project-draft/preview-portfolio-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
-import PortfolioProjects from "../published-portfolio-project/published-portfolio-projects";
+import PublishedProjects from "../published-portfolio-project/published-portfolio-projects";
 import useResetPortfolioProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
-export default function EditProfilePortfolio() {
+export default function EditProjects() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [project_form_step, project_form_step_setter] = useAtom(
 		project_form_step_jotai,
@@ -37,7 +37,7 @@ export default function EditProfilePortfolio() {
 					</InteractiveIcon>
 				</Flex>
 				{/* Projects */}
-				<PortfolioProjects />
+				<PublishedProjects />
 			</Flex>
 			<Overlay
 				stateFlag='edit-portfolio'
@@ -49,7 +49,7 @@ export default function EditProfilePortfolio() {
 					</DraftProjectInfo>
 				)}
 				{project_form_step === "preview-project-draft" && (
-					<PreviewPortfolioProjectDraft />
+					<PreviewProjectDraft />
 				)}
 			</Overlay>
 		</>
