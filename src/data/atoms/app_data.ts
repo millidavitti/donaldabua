@@ -1,8 +1,9 @@
-import { getProjects } from "@/backend/get-projects";
+import { getProjects } from "@/backend/get-projects.controller";
 import { getUserProfile } from "@/backend/get-user-profile.controller";
 import { getUser } from "@/backend/get-user.controller";
 import { getUserLocation } from "@/backend/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
+import { getProfileTechnologies } from "@/backend/get-profile-technologies.controller";
 
 export const defaultStore = getDefaultStore();
 
@@ -157,12 +158,19 @@ export type ProjectContent = (ProjectImage | ProjectVideo | ProjectText)[];
 
 export const project_content_jotai = atom<ProjectContent>([]);
 
-export type ProfileTechnology = {
+export type Technology = {
 	id: string;
 	name: string;
 };
 
-export const project_technologies_jotai = atom<ProfileTechnology[]>([]);
+export const profile_technologies_jotai = atom<Technology[]>([]);
+defaultStore.sub(profile_jotai, () => {
+	getProfileTechnologies(defaultStore.get(profile_jotai).id).then((tech) =>
+		defaultStore.set(profile_technologies_jotai, tech),
+	);
+});
+
+export const project_technologies_jotai = atom<Technology[]>([]);
 
 export const selected_project_jotai = atom<Project | null>(null);
 
