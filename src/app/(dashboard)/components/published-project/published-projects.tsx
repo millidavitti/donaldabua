@@ -5,7 +5,7 @@ import Overlay from "@/components/layouts/overlay";
 import ViewProject from "../view-project";
 import { projects_jotai, selected_project_jotai } from "@/data/atoms/app_data";
 import PublishedProject from "./published-project";
-import DraftProjectInfo from "../add-portfolio-project/draft-portfolio-project-info";
+import DraftProjectInfo from "../add-portfolio-project/draft-project-info";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import { project_form_step_jotai } from "@/data/atoms/ui_state";
