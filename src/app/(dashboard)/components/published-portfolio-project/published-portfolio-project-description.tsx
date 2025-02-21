@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PublishedPortfolioProjectDescription({
+export default function PublishedProjectDescription({
 	description,
 }: {
 	description: string;
