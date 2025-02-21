@@ -8,10 +8,10 @@ import PreviewProjectTechnologies from "./preview-portfolio-project-tech-stack-d
 import PreviewProjectThumbnail from "./preview-portfolio-project-thumbnail-draft";
 import PreviewProjectContent from "./preview-portfolio-project-content-draft";
 import PublishProject from "./publish-portfolio-project-draft";
-import usePreviewPortfolioProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
+import usePreviewProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
 
 export default function PreviewProjectDraft() {
-	const { goBack } = usePreviewPortfolioProjectDraftInterface();
+	const { goBack } = usePreviewProjectDraftInterface();
 
 	return (
 		<Flex
