@@ -1,11 +1,9 @@
-import { portfolio_project_title_jotai } from "@/data/atoms/app_data";
+import { project_title_jotai } from "@/data/atoms/app_data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 
-export default function AddPortfolioProjectTitle() {
-	const [portfolio_project_title, portfolio_project_title_setter] = useAtom(
-		portfolio_project_title_jotai,
-	);
+export default function AddProjectTitle() {
+	const [project_title, project_title_setter] = useAtom(project_title_jotai);
 
 	return (
 		<>
@@ -19,11 +17,11 @@ export default function AddPortfolioProjectTitle() {
 				required
 				className={cn(
 					"outline p-3 shrink-0 valid:outline-emerald-800",
-					Boolean(portfolio_project_title) && "invalid:outline-red-800",
+					Boolean(project_title) && "invalid:outline-red-800",
 				)}
-				value={portfolio_project_title}
+				value={project_title}
 				onChange={(e) => {
-					portfolio_project_title_setter(e.target.value);
+					project_title_setter(e.target.value);
 				}}
 			/>
 		</>
