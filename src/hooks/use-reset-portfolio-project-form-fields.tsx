@@ -1,45 +1,33 @@
 import {
-	portfolio_project_content_jotai,
-	portfolio_project_description_jotai,
-	portfolio_project_tech_stack_jotai,
-	portfolio_project_thumbnail_jotai,
-	portfolio_project_title_jotai,
+	project_content_jotai,
+	project_description_jotai,
+	project_technologies_jotai,
+	project_thumbnail_jotai,
+	project_title_jotai,
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
-	portfolio_project_form_step_jotai,
+	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 
-export default function useResetPortfolioProjectFormFields() {
-	const portfolio_project_title_setter = useSetAtom(
-		portfolio_project_title_jotai,
-	);
-	const portfolio_project_description_setter = useSetAtom(
-		portfolio_project_description_jotai,
-	);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
-	const portfolio_project_tech_stack_setter = useSetAtom(
-		portfolio_project_tech_stack_jotai,
-	);
-	const portfolio_project_thumbnail_setter = useSetAtom(
-		portfolio_project_thumbnail_jotai,
-	);
-	const portfolio_project_form_step_setter = useSetAtom(
-		portfolio_project_form_step_jotai,
-	);
+export default function useResetProjectFormFields() {
+	const project_title_setter = useSetAtom(project_title_jotai);
+	const project_description_setter = useSetAtom(project_description_jotai);
+	const project_content_setter = useSetAtom(project_content_jotai);
+	const project_tech_stack_setter = useSetAtom(project_technologies_jotai);
+	const project_thumbnail_setter = useSetAtom(project_thumbnail_jotai);
+	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	function resetPortfolioProjectFormFields() {
-		portfolio_project_title_setter("");
-		portfolio_project_description_setter("");
-		portfolio_project_content_setter([]);
-		portfolio_project_tech_stack_setter([]);
-		portfolio_project_thumbnail_setter("");
-		portfolio_project_form_step_setter(null);
+	function resetProjectFormFields() {
+		project_title_setter("");
+		project_description_setter("");
+		project_content_setter([]);
+		project_tech_stack_setter([]);
+		project_thumbnail_setter("");
+		project_form_step_setter(null);
 		edit_profile_setter(null);
 	}
-	return resetPortfolioProjectFormFields;
+	return resetProjectFormFields;
 }
