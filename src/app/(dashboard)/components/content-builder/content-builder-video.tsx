@@ -1,8 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import {
-	portfolio_project_content_jotai,
-	PortfolioProjectVideo,
-} from "@/data/atoms/app_data";
+import { project_content_jotai, ProjectVideo } from "@/data/atoms/app_data";
 import React, { useState } from "react";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
@@ -16,7 +13,7 @@ import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 
 interface ContentBuilderVideo {
-	component: PortfolioProjectVideo;
+	component: ProjectVideo;
 }
 export default function ContentBuilderVideo({
 	component,
@@ -25,9 +22,7 @@ export default function ContentBuilderVideo({
 		component_to_edit_jotai,
 	);
 	const [videoLink, setVideoLink] = useState(component.url);
-	const portfolio_project_content_setter = useSetAtom(
-		portfolio_project_content_jotai,
-	);
+	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
 		<Flex flex='column' className='relative'>
 			<ContentBuilderOptionsDrawer>
@@ -64,7 +59,7 @@ export default function ContentBuilderVideo({
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
-								portfolio_project_content_setter((content) => {
+								project_content_setter((content) => {
 									return content.map((obj) => {
 										if (component.id === obj.id)
 											return {
