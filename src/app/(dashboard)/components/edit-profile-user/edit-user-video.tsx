@@ -2,73 +2,76 @@ import React from "react";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { user_video_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { CirclePlus, Trash2, X } from "lucide-react";
 import Flex from "@/components/layouts/flex";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { toast } from "sonner";
+import Overlay from "@/components/layouts/overlay";
+import Button from "@/components/ui/button";
+import DeleteUserVideoOption from "./delete-user-video-option";
+import AddUserVideoOption from "./add-user-video-option";
+import useEditUserVideoInterface from "@/hooks/interface/use-edit-user-video-interface";
 
-export default function EditProfileUserVideoIntroduction() {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [user_video, user_video_setter] = useAtom(user_video_jotai);
-
+export default function EditUserVideo() {
+	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =
+		useEditUserVideoInterface();
 	return (
 		<Flex flex='column'>
 			<Flex className='h-fit items-center justify-between'>
 				<p className='font-semibold lg:text-2xl'>Video Introduction</p>
-				{user_video ? (
-					<InteractiveIcon
-						callback={() => {
-							user_video_setter("");
-						}}
-					>
-						<Trash2 size={24} />
-					</InteractiveIcon>
-				) : (
-					<InteractiveIcon
-						callback={() => {
-							edit_profile_setter("edit-video");
-						}}
-					>
-						<CirclePlus size={24} />
-					</InteractiveIcon>
-				)}
+				{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
 			</Flex>
-			{edit_profile === "edit-video" && (
-				<form
-					className='flex outline bg-light-surface data-[is-visible=false]:hidden'
-					data-is-visible={edit_profile === "edit-video"}
-					onSubmit={(e) => {
-						e.preventDefault();
-						edit_profile_setter(null);
-					}}
-				>
-					<input
-						type='text'
-						required
-						className='outline-none p-3 grow'
-						value={user_video}
-						onChange={(e) => {
-							const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-							if (youtubeEmbed) user_video_setter(youtubeEmbed);
-							else
-								toast.info(
-									"Provided an invalid YouTube link: " + e.target.value,
-								);
-						}}
-					/>
-					<InteractiveIcon callback={() => edit_profile_setter(null)}>
-						<X className='stroke-light-error' />
-					</InteractiveIcon>
-				</form>
-			)}
 			{Boolean(user_video) && (
 				<iframe
-					src={user_video}
+					src={user_video!}
 					data-is-visible={Boolean(user_video)}
 					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
 				/>
 			)}
+			<Overlay
+				stateFlag='edit-video'
+				className='flex justify-center items-center'
+			>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
+				>
+					<Flex className='justify-between items-center'>
+						<h2 className='text-2xl font-semibold'>Video</h2>
+						<InteractiveIcon
+							callback={() => {
+								cancelVideoEdit();
+							}}
+						>
+							<X size={24} className='stroke-light-error' />
+						</InteractiveIcon>
+					</Flex>
+
+					<form
+						className='flex flex-col gap-3 bg-light-surface'
+						onSubmit={(e) => {
+							e.preventDefault();
+							saveVideoEdit();
+						}}
+					>
+						<label className='text-lg font-semibold' htmlFor='title'>
+							Please provide a YouTube link for your video introduction
+						</label>
+						<input
+							type='text'
+							className='outline p-3 grow'
+							value={user_video || ""}
+							onChange={(e) => {
+								captureVideoEdit(e.target.value);
+							}}
+						/>
+						<Button type='submit' className='bg-black text-light-surface'>
+							Save
+						</Button>
+					</form>
+				</Flex>
+			</Overlay>
 		</Flex>
 	);
 }
