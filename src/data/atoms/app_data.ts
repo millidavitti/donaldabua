@@ -33,14 +33,29 @@ export type UserLocation = {
 };
 
 export const user_location_jotai = atom<UserLocation>({
-	city: "",
-	country: "",
+	city: "City",
+	country: "Country",
 });
-
 defaultStore.sub(user_jotai, () => {
 	getUserLocation(defaultStore.get(user_jotai).id).then((userLocation) => {
 		defaultStore.set(user_location_jotai, userLocation);
 	});
+});
+
+export const user_location_city_jotai = atom<string>("City");
+defaultStore.sub(user_location_jotai, () => {
+	defaultStore.set(
+		user_location_city_jotai,
+		defaultStore.get(user_location_jotai).city,
+	);
+});
+
+export const user_location_country_jotai = atom<string>("Country");
+defaultStore.sub(user_location_jotai, () => {
+	defaultStore.set(
+		user_location_country_jotai,
+		defaultStore.get(user_location_jotai).country,
+	);
 });
 
 export type ProfileAvailabilityOptions =
