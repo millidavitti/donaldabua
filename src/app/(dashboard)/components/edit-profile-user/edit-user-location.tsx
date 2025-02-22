@@ -2,12 +2,8 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { user_location_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import useEditUserLocationInterface from "@/hooks/interface/use-edit-user-location-interface";
-import { useAtom } from "jotai";
 import { MapPin, X } from "lucide-react";
-import React from "react";
 
 export default function EditUserLocation() {
 	const {
