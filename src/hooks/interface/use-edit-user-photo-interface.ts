@@ -14,6 +14,7 @@ export function useEditUserPhotoInterface() {
 	}
 
 	function cancelPhotoEdit() {
+		user_image_setter(image);
 		edit_profile_setter(null);
 	}
 
