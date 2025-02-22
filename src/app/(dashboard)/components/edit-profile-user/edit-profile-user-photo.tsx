@@ -1,15 +1,20 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { user_image_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom } from "jotai";
+import Overlay from "@/components/layouts/overlay";
+import Button from "@/components/ui/button";
+import { useEditUserPhotoInterface } from "@/hooks/interface/use-edit-user-photo-interface";
 import { X } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
-export default function EditProfileUserPhoto() {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [user_image, user_image_setter] = useAtom(user_image_jotai);
+export default function EditUserPhoto() {
+	const {
+		edit_profile,
+		user_image,
+		cancelPhotoEdit,
+		capturePhotoEdit,
+		editPhoto,
+		savePhotoEdit,
+	} = useEditUserPhotoInterface();
 	return (
 		<Flex
 			flex='column'
@@ -19,9 +24,7 @@ export default function EditProfileUserPhoto() {
 				className='rounded-full shrink-0 p-0 h-24 w-24 cursor-pointer active:scale-[.99] overflow-clip'
 				htmlProps={{
 					onClick() {
-						edit_profile_setter(
-							edit_profile === "edit-image" ? null : "edit-image",
-						);
+						editPhoto();
 					},
 				}}
 			>
@@ -36,29 +39,52 @@ export default function EditProfileUserPhoto() {
 				)}
 			</Flex>
 			{/* Edit Profile Photo */}
-			{edit_profile === "edit-image" && (
-				<form
-					className='outline bg-light-surface flex data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
-					data-is-visible={edit_profile === "edit-image"}
-					onSubmit={(e) => {
-						e.preventDefault();
-						edit_profile_setter(null);
-					}}
+
+			<Overlay
+				stateFlag='edit-image'
+				className='flex justify-center items-center'
+			>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
 				>
-					<input
-						type='url'
-						required
-						className='p-3 outline-none'
-						value={user_image}
-						onChange={(e) => {
-							user_image_setter(e.target.value);
+					<Flex className='justify-between items-center'>
+						<h2 className='text-2xl font-semibold'>Photo</h2>
+						<InteractiveIcon
+							callback={() => {
+								cancelPhotoEdit();
+							}}
+						>
+							<X size={24} className='stroke-light-error' />
+						</InteractiveIcon>
+					</Flex>
+
+					<form
+						className='flex flex-col gap-3 bg-light-surface data-[is-visible=false]:hidden'
+						data-is-visible={edit_profile === "edit-image"}
+						onSubmit={(e) => {
+							e.preventDefault();
+							savePhotoEdit();
 						}}
-					/>
-					<InteractiveIcon callback={() => edit_profile_setter(null)}>
-						<X className='stroke-light-error' />
-					</InteractiveIcon>
-				</form>
-			)}
+					>
+						<label className='text-lg font-semibold' htmlFor='title'>
+							Provide a link to the to an image of yourself
+						</label>
+						<input
+							type='url'
+							required
+							className='p-3 outline w-full'
+							value={user_image}
+							onChange={(e) => {
+								capturePhotoEdit(e.target.value);
+							}}
+						/>
+						<Button type='submit' className='bg-black text-light-surface'>
+							Save
+						</Button>
+					</form>
+				</Flex>
+			</Overlay>
 		</Flex>
 	);
 }
