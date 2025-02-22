@@ -1,5 +1,4 @@
 import { updateUserLocationController } from "@/backend/update-user-location.controller";
-import { updateUserController } from "@/backend/update-user.controller";
 import {
 	user_jotai,
 	user_location_city_jotai,
@@ -8,7 +7,6 @@ import {
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import React from "react";
 import { toast } from "sonner";
 
 export default function useEditUserLocationInterface() {
