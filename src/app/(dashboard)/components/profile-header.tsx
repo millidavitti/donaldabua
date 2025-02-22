@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 import React from "react";
 import EditUserPhoto from "./edit-profile-user/edit-user-photo";
 import EditUserName from "./edit-profile-user/edit-user-name";
-import EditProfileUserLocation from "./edit-profile-user/edit-profile-user-location";
+import EditUserLocation from "./edit-profile-user/edit-user-location";
 
 export default function ProfileHeader() {
 	return (
@@ -11,7 +11,7 @@ export default function ProfileHeader() {
 			<EditUserPhoto />
 			<Flex flex='column' className='relative overflow-visible gap-3 grow'>
 				<EditUserName />
-				<EditProfileUserLocation />
+				<EditUserLocation />
 			</Flex>
 		</Flex>
 	);
