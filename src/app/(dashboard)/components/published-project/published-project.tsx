@@ -18,10 +18,6 @@ export default function PublishedProject({ project }: PublishedProject) {
 	return (
 		<>
 			<Flex className='shrink-0 gap-3 grow w-full md:basis-52 relative'>
-				<PublishedProjectOptions>
-					<PublishedProjectEditOption project={project} />
-					<PublishedProjectDeleteOption projectID={project.id} />
-				</PublishedProjectOptions>
 				{/* Project */}
 				<Flex
 					flex='column'
@@ -44,6 +40,10 @@ export default function PublishedProject({ project }: PublishedProject) {
 					</Flex>
 					<p className='text-lg font-semibold'>{project.title}</p>
 				</Flex>
+				<PublishedProjectOptions>
+					<PublishedProjectEditOption project={project} />
+					<PublishedProjectDeleteOption projectID={project.id} />
+				</PublishedProjectOptions>
 			</Flex>
 		</>
 	);
