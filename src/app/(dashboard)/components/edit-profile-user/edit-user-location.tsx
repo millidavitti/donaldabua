@@ -1,72 +1,85 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
+import Overlay from "@/components/layouts/overlay";
+import Button from "@/components/ui/button";
 import { user_location_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import useEditUserLocationInterface from "@/hooks/interface/use-edit-user-location-interface";
 import { useAtom } from "jotai";
 import { MapPin, X } from "lucide-react";
 import React from "react";
 
-export default function EditProfileUserLocation() {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [user_location, user_location_setter] = useAtom(user_location_jotai);
+export default function EditUserLocation() {
+	const {
+		cancelLocationEdit,
+		editLocation,
+		captureLocationEdit,
+		saveLocationEdit,
+		user_location_city,
+		user_location_country,
+	} = useEditUserLocationInterface();
 	return (
 		<Flex className='gap-3'>
 			<MapPin />
-			<p
-				onClick={() => edit_profile_setter("edit-location")}
-				className='cursor-pointer font-medium'
-			>
-				{user_location?.city}, {user_location?.country}
+			<p onClick={editLocation} className='cursor-pointer font-medium'>
+				{user_location_city}, {user_location_country}
 			</p>
 			{/* <p>{new Date().toTimeString()}</p> */}
-			{edit_profile === "edit-location" && (
-				<form
-					className='flex left-0 bg-light-surface data-[is-visible=true]:absolute data-[is-visible=false]:hidden'
-					data-is-visible={edit_profile === "edit-location"}
-					onSubmit={(e) => {
-						e.preventDefault();
-						edit_profile_setter(null);
-					}}
+
+			<Overlay
+				stateFlag='edit-location'
+				className='flex justify-center items-center'
+			>
+				<Flex
+					flex='column'
+					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
 				>
-					<Flex flex='column' className='gap-3'>
-						<label htmlFor='city'>City</label>
-						<input
-							type='text'
-							id='city'
-							required
-							className='outline p-3'
-							value={user_location?.city}
-							onChange={(e) => {
-								user_location_setter((location) => ({
-									...location!,
-									city: e.target.value,
-								}));
+					<Flex className='justify-between items-center'>
+						<h2 className='text-2xl font-semibold'>Location</h2>
+						<InteractiveIcon
+							callback={() => {
+								cancelLocationEdit();
 							}}
-						/>
-						<label htmlFor='country'>Country</label>
-						<input
-							type='text'
-							id='country'
-							required
-							className='outline p-3'
-							value={user_location?.country}
-							onChange={(e) => {
-								user_location_setter((location) => ({
-									...location!,
-									country: e.target.value,
-								}));
-							}}
-						/>
-						<button type='submit' style={{ display: "none" }}></button>
+						>
+							<X size={24} className='stroke-light-error' />
+						</InteractiveIcon>
 					</Flex>
-					<InteractiveIcon
-						callback={() => edit_profile_setter(null)}
-						className='self-start'
+
+					<form
+						className='flex flex-col gap-3 bg-light-surface'
+						onSubmit={(e) => {
+							e.preventDefault();
+							saveLocationEdit();
+						}}
 					>
-						<X className='stroke-light-error' />
-					</InteractiveIcon>
-				</form>
-			)}
+						<Flex flex='column' className='gap-3'>
+							<label htmlFor='city'>City</label>
+							<input
+								type='text'
+								id='city'
+								required
+								className='outline p-3'
+								value={user_location_city}
+								onChange={(e) => captureLocationEdit("city", e.target.value)}
+							/>
+							<label htmlFor='country'>Country</label>
+							<input
+								type='text'
+								id='country'
+								required
+								className='outline p-3'
+								value={user_location_country}
+								onChange={(e) => {
+									captureLocationEdit("country", e.target.value);
+								}}
+							/>
+						</Flex>
+						<Button type='submit' className='bg-black text-light-surface'>
+							Save
+						</Button>
+					</form>
+				</Flex>
+			</Overlay>
 		</Flex>
 	);
 }
