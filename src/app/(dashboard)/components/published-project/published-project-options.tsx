@@ -16,7 +16,7 @@ export default function PublishedProjectOptions({
 			<>
 				{isOptionsVisible ? (
 					<Flex
-						className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto neonScan z-10'
+						className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto neonScan'
 						htmlProps={{
 							onMouseLeave() {
 								setIsOptionsVisible(false);
@@ -27,7 +27,7 @@ export default function PublishedProjectOptions({
 					</Flex>
 				) : (
 					<InteractiveIcon
-						className='place-content-center flex-wrap gap-3 p-0 bg-light-surface absolute top-0 inset-x-0 w-fit ml-auto mr-3 mt-3 z-10'
+						className='place-content-center flex-wrap gap-3 p-0 bg-light-surface absolute top-0 inset-x-0 w-fit ml-auto mr-3 mt-3'
 						htmlProps={{
 							onClick() {
 								setIsOptionsVisible(true);
