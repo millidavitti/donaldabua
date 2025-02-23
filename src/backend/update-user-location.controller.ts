@@ -1,5 +1,5 @@
 "use server";
-import { UserLocation } from "@/data/atoms/app_data";
+import { APIResponse, UserLocation } from "@/data/atoms/app_data";
 
 export async function updateUserLocationController(
 	userId: string,
@@ -21,11 +21,7 @@ export async function updateUserLocationController(
 		);
 		const data = await res.json();
 
-		return data as {
-			success: boolean;
-			location: UserLocation;
-			error?: unknown;
-		};
+		return data as APIResponse<UserLocation, "location">;
 	} catch (error) {
 		console.log("---updateUserLocationController---\n", error);
 		throw error;

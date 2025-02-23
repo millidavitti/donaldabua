@@ -101,7 +101,7 @@ defaultStore.sub(user_jotai, () => {
 	});
 });
 
-export const availability_jotai = atom<string>("");
+export const availability_jotai = atom<ProfileAvailabilityOptions>("None");
 defaultStore.sub(profile_jotai, () => {
 	defaultStore.set(
 		availability_jotai,
@@ -196,3 +196,8 @@ export type ProfileSocials = {
 	profile: string;
 };
 export const profile_socials_jotai = atom<ProfileSocials[]>([]);
+
+export type APIResponse<T, K extends string> = {
+	success: boolean;
+	error?: unknown;
+} & { [key in K]: T };

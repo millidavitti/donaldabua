@@ -20,3 +20,10 @@ export const EDIT_PORTFOLIO_PROJECT_STATES = [
 	"edit-project-image",
 	"edit-project-markdown",
 ];
+
+export const AVAILABILITY_OPTIONS = [
+	"More than 30 hrs/week",
+	"Less than 30 hrs/week",
+	"As needed - open to offers",
+	"None",
+];

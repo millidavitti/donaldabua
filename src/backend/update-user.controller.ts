@@ -1,5 +1,5 @@
 "use server";
-import { User } from "@/data/atoms/app_data";
+import { APIResponse, User } from "@/data/atoms/app_data";
 
 export async function updateUserController(
 	userId: string,
@@ -19,7 +19,7 @@ export async function updateUserController(
 		);
 		const data = await res.json();
 
-		return data as { success: boolean; user: User; error?: unknown };
+		return data as APIResponse<User, "user">;
 	} catch (error) {
 		console.log("---updateUserController---\n", error);
 		throw error;
