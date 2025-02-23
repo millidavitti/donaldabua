@@ -2,7 +2,7 @@ import { updateUserController } from "@/backend/update-user.controller";
 import { user_jotai, user_video_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useEditUserVideoInterface() {
