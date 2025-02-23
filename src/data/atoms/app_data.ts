@@ -27,6 +27,21 @@ user_jotai.onMount = (setAtom) => {
 	});
 };
 
+export const user_name_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_name_jotai, defaultStore.get(user_jotai).name!);
+});
+
+export const user_image_jotai = atom<string>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_image_jotai, defaultStore.get(user_jotai).image);
+});
+
+export const user_video_jotai = atom<string | null>("");
+defaultStore.sub(user_jotai, () => {
+	defaultStore.set(user_video_jotai, defaultStore.get(user_jotai).video);
+});
+
 export type UserLocation = {
 	city: string;
 	country: string;
@@ -72,21 +87,6 @@ export type UserProfile = {
 	hourlyRate: number;
 	overview: string;
 };
-
-export const user_name_jotai = atom<string>("");
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(user_name_jotai, defaultStore.get(user_jotai).name!);
-});
-
-export const user_image_jotai = atom<string>("");
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(user_image_jotai, defaultStore.get(user_jotai).image);
-});
-
-export const user_video_jotai = atom<string | null>("");
-defaultStore.sub(user_jotai, () => {
-	defaultStore.set(user_video_jotai, defaultStore.get(user_jotai).video);
-});
 
 export const profile_jotai = atom<UserProfile>({
 	id: "",
