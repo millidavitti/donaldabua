@@ -37,6 +37,7 @@ export const user_location_jotai = atom<UserLocation>({
 	country: "Country",
 });
 defaultStore.sub(user_jotai, () => {
+	console.log("---user---\n", defaultStore.get(user_jotai));
 	getUserLocation(defaultStore.get(user_jotai).id).then((userLocation) => {
 		defaultStore.set(user_location_jotai, userLocation);
 	});
