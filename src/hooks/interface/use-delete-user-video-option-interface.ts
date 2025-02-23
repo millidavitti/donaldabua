@@ -1,13 +1,12 @@
 import { updateUserController } from "@/backend/update-user.controller";
 import { user_jotai, user_video_jotai } from "@/data/atoms/app_data";
-import { useAtomValue, useSetAtom } from "jotai";
-import React from "react";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useDeleteUserVideoOptionInterface() {
 	const user_video_setter = useSetAtom(user_video_jotai);
-	const { id: userId, video } = useAtomValue(user_jotai);
-	const user_setter = useSetAtom(user_jotai);
+	const [{ id: userId, video }, user_setter] = useAtom(user_jotai);
+
 	async function deleteVideo() {
 		user_video_setter(null);
 		try {
