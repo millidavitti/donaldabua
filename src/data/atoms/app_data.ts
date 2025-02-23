@@ -11,7 +11,7 @@ export type User = {
 	id: string;
 	name: string;
 	image: string;
-	video: string;
+	video: string | null;
 };
 export const user_jotai = atom<User>({
 	id: "",
@@ -82,9 +82,9 @@ defaultStore.sub(user_jotai, () => {
 	defaultStore.set(user_image_jotai, defaultStore.get(user_jotai).image);
 });
 
-export const user_video_jotai = atom<string>("");
+export const user_video_jotai = atom<string | null>("");
 defaultStore.sub(user_jotai, () => {
-	defaultStore.set(user_video_jotai, defaultStore.get(user_jotai).video || "");
+	defaultStore.set(user_video_jotai, defaultStore.get(user_jotai).video);
 });
 
 export const profile_jotai = atom<UserProfile>({
