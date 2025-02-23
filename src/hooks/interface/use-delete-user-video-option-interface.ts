@@ -1,6 +1,6 @@
 import { updateUserController } from "@/backend/update-user.controller";
 import { user_jotai, user_video_jotai } from "@/data/atoms/app_data";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useDeleteUserVideoOptionInterface() {
