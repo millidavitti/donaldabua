@@ -14,8 +14,10 @@ export default function useDeleteUserVideoOptionInterface() {
 				video: null,
 			});
 
-			if (error) toast.error("Update failed. Please try again later");
-			else user_setter(user);
+			if (error) {
+				user_video_setter(video);
+				toast.error("Update failed. Please try again later");
+			} else user_setter(user);
 		} catch (error) {
 			user_video_setter(video);
 			toast.error("Update failed. Please try again later");
