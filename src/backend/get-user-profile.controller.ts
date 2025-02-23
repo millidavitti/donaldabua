@@ -9,7 +9,7 @@ export async function getUserProfile(userId: string) {
 
 		return profile as UserProfile;
 	} catch (error) {
-		console.log("---getUserProfile---\n", getUserProfile);
+		console.log("---getUserProfile---\n", error);
 		return {
 			id: "",
 			title: "Failed to fetch profile",
