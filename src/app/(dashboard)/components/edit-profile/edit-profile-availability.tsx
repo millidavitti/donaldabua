@@ -2,20 +2,18 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import {
-	availability_jotai,
-	ProfileAvailabilityOptions,
-} from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
+import { AVAILABILITY_OPTIONS } from "@/data/constants";
+import useEditProfileAvailabilityInterface from "@/hooks/interface/use-edit-profile-availability-interface";
 import { EditIcon, X } from "lucide-react";
-import React from "react";
 
 export default function EditProfileAvailability() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [profile_hours_per_week, profile_hours_per_week_setter] =
-		useAtom(availability_jotai);
-
+	const {
+		cancelAvailabilityEdit,
+		captureAvailabilityEdit,
+		editAvailability,
+		saveAvailabilityEdit,
+		profile_hours_per_week,
+	} = useEditProfileAvailabilityInterface();
 	return (
 		<>
 			<Flex flex='column' className='gap-3'>
@@ -23,7 +21,7 @@ export default function EditProfileAvailability() {
 					<p className='font-semibold lg:text-2xl'>Hours Per Week</p>
 					<InteractiveIcon
 						callback={() => {
-							edit_profile_setter("edit-hours-per-week");
+							editAvailability();
 						}}
 					>
 						<EditIcon size={24} />
@@ -40,7 +38,7 @@ export default function EditProfileAvailability() {
 				<Flex flex='column' className='bg-light-surface gap-3 neonScan'>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Availability</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon callback={() => cancelAvailabilityEdit()}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -52,12 +50,12 @@ export default function EditProfileAvailability() {
 						className='flex flex-col'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							saveAvailabilityEdit();
 						}}
 					>
 						{/* Availability Options */}
 						<Flex flex='column' className='gap-3'>
-							{availabilityOptions.map((option) => (
+							{AVAILABILITY_OPTIONS.map((option) => (
 								<Flex className='gap-3' key={option}>
 									<input
 										type='radio'
@@ -66,11 +64,7 @@ export default function EditProfileAvailability() {
 										value={option}
 										required
 										checked={profile_hours_per_week === option}
-										onChange={(e) =>
-											profile_hours_per_week_setter(
-												e.target.value as ProfileAvailabilityOptions,
-											)
-										}
+										onChange={(e) => captureAvailabilityEdit(e.target.value)}
 									/>
 									<label htmlFor={option}>{option}</label>
 								</Flex>
@@ -85,10 +79,3 @@ export default function EditProfileAvailability() {
 		</>
 	);
 }
-
-const availabilityOptions = [
-	"More than 30 hrs/week",
-	"Less than 30 hrs/week",
-	"As needed - open to offers",
-	"None",
-];
