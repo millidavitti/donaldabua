@@ -11,7 +11,7 @@ export async function getUserLocation(userId: string) {
 
 		return location as UserLocation;
 	} catch (error) {
-		console.log("---getUserLocation---\n", getUserLocation);
+		console.log("---getUserLocation---\n", error);
 		return {
 			city: "Failed to fetch user location",
 			country: "Failed to fetch user",
