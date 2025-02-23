@@ -8,7 +8,7 @@ import { toast } from "sonner";
 export default function useEditUserVideoInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [user_video, user_video_setter] = useAtom(user_video_jotai);
-	const { id: userId, video } = useAtomValue(user_jotai);
+	const [{ id: userId, video }, user_setter] = useAtom(user_jotai);
 
 	function cancelVideoEdit() {
 		user_video_setter(video || "");
@@ -18,13 +18,16 @@ export default function useEditUserVideoInterface() {
 	async function saveVideoEdit() {
 		try {
 			edit_profile_setter(null);
-			const { error } = await updateUserController(userId, {
+			const { error, user } = await updateUserController(userId, {
 				video: user_video,
 			});
 
-			if (error) toast.error("Update failed. Please try again later");
+			if (error) {
+				user_video_setter(video);
+				toast.error("Update failed. Please try again later");
+			} else user_setter(user);
 		} catch (error) {
-			user_video_setter(video || "");
+			user_video_setter(video);
 			toast.error("Update failed. Please try again later");
 			console.log("---saveVideoEdit---\n", error);
 		}
