@@ -17,30 +17,34 @@ export default function useEditUserLocationInterface() {
 	const [user_location_country, user_location_country_setter] = useAtom(
 		user_location_country_jotai,
 	);
-	const location = useAtomValue(user_location_jotai);
+	const [user_location, user_location_setter] = useAtom(user_location_jotai);
 	const { id: userId } = useAtomValue(user_jotai);
 
 	function editLocation() {
 		edit_profile_setter("edit-location");
 	}
 	function cancelLocationEdit() {
-		user_location_city_setter(location.city);
-		user_location_country_setter(location.country);
+		user_location_city_setter(user_location.city);
+		user_location_country_setter(user_location.country);
 		edit_profile_setter(null);
 	}
 
 	async function saveLocationEdit() {
 		try {
 			edit_profile_setter(null);
-			const { error } = await updateUserLocationController(userId, {
+			const { error, location } = await updateUserLocationController(userId, {
 				city: user_location_city,
 				country: user_location_country,
 			});
 
-			if (error) toast.error("Update failed. Please try again later");
+			if (error) {
+				user_location_city_setter(user_location.city);
+				user_location_country_setter(user_location.country);
+				toast.error("Update failed. Please try again later");
+			} else user_location_setter(location);
 		} catch (error) {
-			user_location_city_setter(location.city);
-			user_location_country_setter(location.country);
+			user_location_city_setter(user_location.city);
+			user_location_country_setter(user_location.country);
 			toast.error("Update failed. Please try again later");
 			console.log("---saveLocationEdit---\n", error);
 		}
