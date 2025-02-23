@@ -1,12 +1,6 @@
-import React from "react";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { user_video_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue } from "jotai";
-import { CirclePlus, Trash2, X } from "lucide-react";
+import { X } from "lucide-react";
 import Flex from "@/components/layouts/flex";
-import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
-import { toast } from "sonner";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import DeleteUserVideoOption from "./delete-user-video-option";
