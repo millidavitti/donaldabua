@@ -5,7 +5,7 @@ import Button from "@/components/ui/button";
 import { EditIcon, X } from "lucide-react";
 import md from "md";
 import parse from "html-react-parser";
-import useEditProfileOverviewInterface from "@/hooks/interface/use-edit-profile-overview-interface";
+import { useEditProfileOverviewInterface } from "@/hooks/interface/use-edit-profile-overview-interface";
 export default function EditProfileOverview() {
 	const {
 		cancelOverviewEdit,
