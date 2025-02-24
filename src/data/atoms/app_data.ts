@@ -201,3 +201,5 @@ export type APIResponse<T, K extends string> = {
 	success?: boolean;
 	error?: unknown;
 } & { [key in K]: T };
+
+export const technologies_jotai = atom<Technology[]>([]);
