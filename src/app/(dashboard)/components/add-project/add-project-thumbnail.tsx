@@ -9,16 +9,19 @@ export default function AddProjectThumbnail() {
 	);
 	return (
 		<>
-			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+			<label
+				className='text-xl font-semibold shrink-0'
+				htmlFor='project-thumbnail'
+			>
 				Thumbnail
 			</label>
 			<input
 				type='url'
-				id='portfolio-project-thumbnail'
+				id='project-thumbnail'
 				required
 				className={cn(
-					"outline p-3 valid:outline-emerald-800",
-					project_thumbnail && "invalid:outline-red-800",
+					"outline p-3 valid:outline-emerald-600",
+					project_thumbnail && "invalid:outline-red-600",
 				)}
 				value={project_thumbnail}
 				placeholder='Paste a valid Cloudinary link'
