@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import useEditUserLocationInterface from "@/hooks/interface/use-edit-user-location-interface";
+import { useEditUserLocationInterface } from "@/hooks/interface/use-edit-user-location-interface";
 import { MapPin, X } from "lucide-react";
 
 export default function EditUserLocation() {
