@@ -14,7 +14,7 @@ import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
 import useResetProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
 
-export default function EditProjects() {
+export default function EditProfileProjects() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [project_form_step, project_form_step_setter] = useAtom(
 		project_form_step_jotai,
