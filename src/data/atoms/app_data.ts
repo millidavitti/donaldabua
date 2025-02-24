@@ -203,3 +203,8 @@ export type APIResponse<T, K extends string> = {
 } & { [key in K]: T };
 
 export const technologies_jotai = atom<Technology[]>([]);
+
+export type ProjectTechnology = {
+	projectId: string;
+	technologyId: string;
+};
