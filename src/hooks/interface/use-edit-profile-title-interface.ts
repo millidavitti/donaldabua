@@ -4,7 +4,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
-export default function useEditProfileTitleInterface() {
+export function useEditProfileTitleInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_title, profile_title_setter] = useAtom(profile_title_jotai);
 	const [{ id: profileId, title }, profile_setter] = useAtom(profile_jotai);
