@@ -14,13 +14,13 @@ export default function AddProjectDescription() {
 			</label>
 			<input
 				type='text'
-				id='portfolio-project-description'
+				id='project-description'
 				minLength={100}
 				maxLength={250}
 				required
 				className={cn(
-					"outline p-3 valid:outline-emerald-800",
-					Boolean(project_description) && "invalid:outline-red-800",
+					"outline p-3 valid:outline-emerald-600",
+					Boolean(project_description) && "invalid:outline-red-600",
 				)}
 				value={project_description}
 				onChange={(e) => {

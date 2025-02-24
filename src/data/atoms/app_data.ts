@@ -198,6 +198,6 @@ export type ProfileSocials = {
 export const profile_socials_jotai = atom<ProfileSocials[]>([]);
 
 export type APIResponse<T, K extends string> = {
-	success: boolean;
+	success?: boolean;
 	error?: unknown;
 } & { [key in K]: T };
