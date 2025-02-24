@@ -13,7 +13,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 
-export default function usePublishedProjectEditOptionInterface() {
+export function usePublishedProjectEditOptionInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const project_title_setter = useSetAtom(project_title_jotai);
 	const project_to_edit_setter = useSetAtom(project_to_edit_jotai);
