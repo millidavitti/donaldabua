@@ -9,7 +9,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
-export default function useEditUserLocationInterface() {
+export function useEditUserLocationInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [user_location_city, user_location_city_setter] = useAtom(
 		user_location_city_jotai,
