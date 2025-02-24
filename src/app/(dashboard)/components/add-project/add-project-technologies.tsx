@@ -16,7 +16,7 @@ export default function AddProjectTechnologies() {
 	return (
 		<>
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
-				Tech Stack
+				Technologies
 			</label>
 			{Boolean(project_technologies.length) && (
 				<Flex className='gap-3 shrink-0 outline-none overflow-x-auto no-scrollbar'>
