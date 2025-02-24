@@ -19,7 +19,6 @@ export default function ContentBuilderText({ component }: ContentBuilderText) {
 		component_to_edit_jotai,
 	);
 	const project_content_setter = useSetAtom(project_content_jotai);
-	// This is to prevent renders when updating project_data_jotai directly
 	const [markdown, setMarkdown] = useState(component.markdown);
 	return (
 		<Flex

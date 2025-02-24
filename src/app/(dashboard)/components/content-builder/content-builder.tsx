@@ -11,7 +11,11 @@ import { createId } from "@paralleldrive/cuid2";
 export default function ContentBuilder() {
 	const project_content = useAtomValue(project_content_jotai);
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
+		<Flex
+			flex='column'
+			className='basis-[360px] grow-[2] gap-3'
+			htmlProps={{ id: "content-builder" }}
+		>
 			<ProjectContentOptions />
 			{Boolean(project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3'>
