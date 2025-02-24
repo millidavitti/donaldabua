@@ -2,24 +2,24 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { profile_hourly_rate_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
+import useEditProfileHourlyRateInterface from "@/hooks/interface/use-edit-profile-hourly-rate-interface";
 import { EditIcon, X } from "lucide-react";
-import React from "react";
 
-export default function EditHourlyRate() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [profile_hourly_rate, profile_hourly_rate_setter] = useAtom(
-		profile_hourly_rate_jotai,
-	);
+export default function EditProfileHourlyRate() {
+	const {
+		cancelHourlyRateEdit,
+		captureHourlyRateEdit,
+		editHourlyRate,
+		profile_hourly_rate,
+		saveHourlyRateEdit,
+	} = useEditProfileHourlyRateInterface();
 	return (
 		<>
 			<Flex className='h-fit items-center justify-between grow'>
 				<p className='font-semibold lg:text-2xl'>${profile_hourly_rate}/hr</p>
 				<InteractiveIcon
 					callback={() => {
-						edit_profile_setter("edit-hourly-rate");
+						editHourlyRate();
 					}}
 				>
 					<EditIcon size={24} />
@@ -36,7 +36,7 @@ export default function EditHourlyRate() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Set hourly rate</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon callback={() => cancelHourlyRateEdit()}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -45,7 +45,7 @@ export default function EditHourlyRate() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							saveHourlyRateEdit();
 						}}
 					>
 						<label className='text-xl font-semibold' htmlFor='title'>
@@ -57,7 +57,7 @@ export default function EditHourlyRate() {
 							required
 							value={profile_hourly_rate || ""}
 							onChange={(e) => {
-								profile_hourly_rate_setter(+e.target.value);
+								captureHourlyRateEdit(+e.target.value);
 							}}
 							className='outline p-3'
 						/>
