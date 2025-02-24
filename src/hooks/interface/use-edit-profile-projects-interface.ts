@@ -24,7 +24,7 @@ export function useEditProfileProjectsInterface() {
 		if (!technologies.length)
 			getTechnologiesController().then((data) => {
 				const { error, technologies } = data;
-				console.log(technologies);
+
 				if (error) {
 					toast.info(
 						"Unable to retrieve technologies at this time. Please try again later.",
