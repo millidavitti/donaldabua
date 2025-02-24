@@ -6,7 +6,7 @@ import {
 	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 
-export default function useDraftProjectInfoInterface() {
+export function useDraftProjectInterface() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const resetProjectFormFields = useResetProjectFormFields();
