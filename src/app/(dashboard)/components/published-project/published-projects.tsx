@@ -5,7 +5,7 @@ import Overlay from "@/components/layouts/overlay";
 import ViewProject from "../view-project";
 import { projects_jotai, selected_project_jotai } from "@/data/atoms/app_data";
 import PublishedProject from "./published-project";
-import DraftProjectInfo from "../add-project/draft-project-info";
+import DraftProject from "../add-project/draft-project-info";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import { project_form_step_jotai } from "@/data/atoms/ui_state";
@@ -29,9 +29,9 @@ export default function PublishedProjects() {
 				className='flex justify-center items-center'
 			>
 				{project_form_step === "draft-project-info" && (
-					<DraftProjectInfo>
+					<DraftProject>
 						<ContentBuilder />
-					</DraftProjectInfo>
+					</DraftProject>
 				)}
 				{project_form_step === "preview-project-draft" && (
 					<PreviewProjectDraft />
