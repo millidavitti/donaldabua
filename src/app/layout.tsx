@@ -28,7 +28,15 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<Toaster position='top-center' />
+				<Toaster
+					position='top-center'
+					toastOptions={{
+						style: {
+							borderRadius: "0px",
+							outline: "auto",
+						},
+					}}
+				/>
 				<main className='bg-light-surface'>{children}</main>
 			</body>
 		</html>
