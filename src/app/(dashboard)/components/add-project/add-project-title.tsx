@@ -8,16 +8,16 @@ export default function AddProjectTitle() {
 	return (
 		<>
 			{/* Project Title */}
-			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+			<label className='text-xl font-semibold shrink-0' htmlFor='project-title'>
 				Project Title
 			</label>
 			<input
 				type='text'
-				id='portfolio-project-title'
+				id='project-title'
 				required
 				className={cn(
-					"outline p-3 shrink-0 valid:outline-emerald-800",
-					Boolean(project_title) && "invalid:outline-red-800",
+					"outline p-3 shrink-0 valid:outline-emerald-600",
+					Boolean(project_title) && "invalid:outline-red-600",
 				)}
 				value={project_title}
 				onChange={(e) => {
