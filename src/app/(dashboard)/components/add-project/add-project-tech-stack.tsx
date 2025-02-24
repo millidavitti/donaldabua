@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 import { X } from "lucide-react";
 import React from "react";
 
-export default function AddProjectTechStack() {
+export default function AddProjectTechnologies() {
 	const [project_technologies, project_technologies_setter] = useAtom(
 		project_technologies_jotai,
 	);
