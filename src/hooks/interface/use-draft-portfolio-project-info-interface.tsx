@@ -13,11 +13,12 @@ export function useDraftProjectInterface() {
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
 
 	function gotToPreview() {
-		const formElements = document.querySelectorAll("[id^='portfolio-project']");
+		const formElements = document.querySelectorAll("[id^='project']");
 		formElements.forEach((el) => {
 			const field = (el as HTMLInputElement).validity;
 			if (!field.valid) {
-				el.classList.add("bg-red-100");
+				(el as HTMLElement).style.backgroundColor = "#fecaca";
+				(el as HTMLElement).style.outlineColor = "#dc2626";
 				el.scrollIntoView({ behavior: "smooth" });
 			}
 		});
