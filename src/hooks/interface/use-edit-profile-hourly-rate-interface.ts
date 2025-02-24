@@ -7,7 +7,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
-export default function useEditProfileHourlyRateInterface() {
+export function useEditProfileHourlyRateInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_hourly_rate, profile_hourly_rate_setter] = useAtom(
 		profile_hourly_rate_jotai,
