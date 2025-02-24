@@ -2,17 +2,18 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { profile_overview_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import md from "md";
 import parse from "html-react-parser";
+import useEditProfileOverviewInterface from "@/hooks/interface/use-edit-profile-overview-interface";
 export default function EditProfileOverview() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [profile_overview, profile_overview_setter] = useAtom(
-		profile_overview_jotai,
-	);
+	const {
+		cancelOverviewEdit,
+		captureOverviewEdit,
+		editOverview,
+		profile_overview,
+		saveOverviewEdit,
+	} = useEditProfileOverviewInterface();
 	return (
 		<>
 			<Flex className='gap-3'>
@@ -21,7 +22,7 @@ export default function EditProfileOverview() {
 				</Flex>
 				<InteractiveIcon
 					callback={() => {
-						edit_profile_setter("edit-profile-overview");
+						editOverview();
 					}}
 					className='self-start'
 				>
@@ -38,7 +39,7 @@ export default function EditProfileOverview() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Profile overview</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon callback={() => cancelOverviewEdit()}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -47,7 +48,7 @@ export default function EditProfileOverview() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							saveOverviewEdit();
 						}}
 					>
 						<label className='text-xl font-semibold shrink-0' htmlFor='title'>
@@ -59,7 +60,7 @@ export default function EditProfileOverview() {
 							rows={20}
 							value={profile_overview}
 							onChange={(e) => {
-								profile_overview_setter(e.target.value);
+								captureOverviewEdit(e.target.value);
 							}}
 							className='outline p-3'
 						/>
