@@ -5,7 +5,6 @@ import {
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
-import React from "react";
 import { toast } from "sonner";
 
 export default function useEditProfileHourlyRateInterface() {
