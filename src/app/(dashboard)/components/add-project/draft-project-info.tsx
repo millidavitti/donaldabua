@@ -12,7 +12,7 @@ import useDraftProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-
 interface DraftProjectInfo {
 	children: ReactNode;
 }
-export default function DraftProjectInfo({ children }: DraftProjectInfo) {
+export default function DraftProject({ children }: DraftProjectInfo) {
 	const { edit_profile, closeProjectForm, gotToPreview } =
 		useDraftProjectInfoInterface();
 	return (
