@@ -13,7 +13,12 @@ export default function useAddProjectTechnologiesInterface() {
 		project_technologies_jotai,
 	);
 	const technologies = useAtomValue(technologies_jotai);
-	const [hayStack, setHayStack] = useState<Technology[]>(technologies);
+	const [hayStack, setHayStack] = useState<Technology[]>(() =>
+		technologies.filter(
+			(technology) =>
+				!project_technologies.some((tech) => technology.id === tech.id),
+		),
+	);
 	defaultStore.sub(technologies_jotai, () => {
 		setHayStack(defaultStore.get(technologies_jotai));
 	});
