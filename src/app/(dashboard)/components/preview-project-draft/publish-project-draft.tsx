@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import usePublishProjectInterface from "@/hooks/interface/use-publish-portfolio-project-interface";
+import usePublishProjectInterface from "@/hooks/interface/use-publish-project-interface";
 import React from "react";
 
 export default function PublishProject() {
