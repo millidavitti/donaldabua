@@ -10,6 +10,6 @@ export async function getTechnologiesController() {
 		return data as APIResponse<Technology[], "technologies">;
 	} catch (error) {
 		console.log("---getTechnologies---\n", error);
-		return { error };
+		throw error;
 	}
 }
