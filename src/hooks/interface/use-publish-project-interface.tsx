@@ -11,7 +11,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtomValue, useSetAtom } from "jotai";
-import useResetProjectFormFields from "../use-reset-project-form-fields";
+import { useResetProjectFormFields } from "../use-reset-project-form-fields";
 
 export function usePublishProjectInterface() {
 	const projects_setter = useSetAtom(projects_jotai);
