@@ -8,7 +8,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
-import DraftProjectInfo from "../add-project/draft-project-info";
+import DraftProject from "../add-project/draft-project-info";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
@@ -44,9 +44,9 @@ export default function EditProfileProjects() {
 				className='flex justify-center items-center'
 			>
 				{project_form_step === "draft-project-info" && (
-					<DraftProjectInfo>
+					<DraftProject>
 						<ContentBuilder />
-					</DraftProjectInfo>
+					</DraftProject>
 				)}
 				{project_form_step === "preview-project-draft" && (
 					<PreviewProjectDraft />
