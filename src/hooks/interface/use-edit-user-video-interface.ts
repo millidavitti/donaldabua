@@ -5,7 +5,7 @@ import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-u
 import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
-export default function useEditUserVideoInterface() {
+export function useEditUserVideoInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [user_video, user_video_setter] = useAtom(user_video_jotai);
 	const [{ id: userId, video }, user_setter] = useAtom(user_jotai);
