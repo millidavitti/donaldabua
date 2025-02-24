@@ -1,5 +1,5 @@
 "use server";
-import { APIResponse, ProjectTechnology, User } from "@/data/atoms/app_data";
+import { APIResponse, ProjectTechnology } from "@/data/atoms/app_data";
 
 export async function createProjectTechnologiesController(
 	projectTechnologies: ProjectTechnology[],
