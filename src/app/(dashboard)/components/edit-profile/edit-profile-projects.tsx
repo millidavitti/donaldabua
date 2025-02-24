@@ -12,7 +12,7 @@ import DraftProject from "../add-project/draft-project";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
-import useResetProjectFormFields from "@/hooks/use-reset-portfolio-project-form-fields";
+import useResetProjectFormFields from "@/hooks/use-reset-project-form-fields";
 
 export default function EditProfileProjects() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
