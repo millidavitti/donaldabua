@@ -5,7 +5,10 @@ import {
 	edit_profile_jotai,
 	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
-import { project_technologies_jotai } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	project_technologies_jotai,
+} from "@/data/atoms/app_data";
 import { toast } from "sonner";
 
 export function useDraftProjectInterface() {
@@ -14,6 +17,7 @@ export function useDraftProjectInterface() {
 	const resetProjectFormFields = useResetProjectFormFields();
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
 	const project_technologies = useAtomValue(project_technologies_jotai);
+	const project_content = useAtomValue(project_content_jotai);
 
 	function gotToPreview() {
 		const formElements = document.querySelectorAll("[id^='project']");
@@ -31,7 +35,14 @@ export function useDraftProjectInterface() {
 			)
 		) {
 			if (project_technologies.length)
-				project_form_step_setter("preview-project-draft");
+				if (project_content.length)
+					project_form_step_setter("preview-project-draft");
+				else {
+					toast.info("You must provide at least one content block");
+					(
+						document.querySelector("#content-builder") as HTMLElement
+					).style.outlineColor = "#dc2626";
+				}
 			else {
 				toast.info("You must provide at least one technology");
 				(
