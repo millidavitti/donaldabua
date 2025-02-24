@@ -8,7 +8,7 @@ import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
-export default function useEditProfileAvailabilityInterface() {
+export function useEditProfileAvailabilityInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_hours_per_week, profile_hours_per_week_setter] =
 		useAtom(availability_jotai);

@@ -11,7 +11,7 @@ import {
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 
-export default function useResetProjectFormFields() {
+export function useResetProjectFormFields() {
 	const project_title_setter = useSetAtom(project_title_jotai);
 	const project_description_setter = useSetAtom(project_description_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);

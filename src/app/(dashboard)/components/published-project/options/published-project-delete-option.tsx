@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import usePublishedProjectDeleteOption from "@/hooks/interface/use-published-portfolio-project-delete-option";
+import usePublishedProjectDeleteOption from "@/hooks/interface/use-published-project-delete-option";
 import { Trash } from "lucide-react";
 import React from "react";
 

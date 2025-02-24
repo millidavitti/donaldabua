@@ -7,14 +7,14 @@ import AddProjectTitle from "./add-project-title";
 import AddProjectDescription from "./add-project-description";
 import AddProjectTechStack from "./add-project-tech-stack";
 import AddProjectThumbnail from "./add-project-thumbnail";
-import useDraftProjectInfoInterface from "@/hooks/interface/use-draft-portfolio-project-info-interface";
+import { useDraftProjectInterface } from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
-interface DraftProjectInfo {
+interface DraftProject {
 	children: ReactNode;
 }
-export default function DraftProjectInfo({ children }: DraftProjectInfo) {
+export default function DraftProject({ children }: DraftProject) {
 	const { edit_profile, closeProjectForm, gotToPreview } =
-		useDraftProjectInfoInterface();
+		useDraftProjectInterface();
 	return (
 		<Flex
 			flex='column'

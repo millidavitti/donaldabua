@@ -8,7 +8,7 @@ import PreviewProjectTechnologies from "./preview-project-tech-stack-draft";
 import PreviewProjectThumbnail from "./preview-project-thumbnail-draft";
 import PreviewProjectContent from "./preview-project-content-draft";
 import PublishProject from "./publish-project-draft";
-import usePreviewProjectDraftInterface from "@/hooks/interface/use-preview-portfolio-project-draft-interface";
+import { usePreviewProjectDraftInterface } from "@/hooks/interface/use-preview-project-draft-interface";
 
 export default function PreviewProjectDraft() {
 	const { goBack } = usePreviewProjectDraftInterface();
