@@ -1,10 +1,13 @@
 import Flex from "@/components/layouts/flex";
-import { project_technologies_jotai } from "@/data/atoms/app_data";
-import { useAtomValue } from "jotai";
+import {
+	project_content_jotai,
+	project_technologies_jotai,
+} from "@/data/atoms/app_data";
+import { useAtomValue, useSetAtom } from "jotai";
 
 export default function PublishedProjectTechStack() {
 	const project_technologies = useAtomValue(project_technologies_jotai);
-
+	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
 		<>
 			{/* Technologies */}
