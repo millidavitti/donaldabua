@@ -22,7 +22,7 @@ export default function PreviewProjectContent() {
 						return (
 							<ContentBuilderVideo component={component} key={createId()} />
 						);
-					else if (component.type === "text")
+					else if (component.type === "markdown")
 						return (
 							<ContentBuilderText component={component} key={createId()} />
 						);
