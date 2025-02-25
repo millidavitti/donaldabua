@@ -7,11 +7,11 @@ import {
 	project_thumbnail_jotai,
 	project_title_jotai,
 	Project,
+	project_to_edit_jotai,
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
 	project_form_step_jotai,
-	project_to_edit_jotai,
 } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { toast } from "sonner";
@@ -31,7 +31,7 @@ export function usePublishedProjectEditOptionInterface() {
 	function editProject(project: Project) {
 		edit_profile_setter("edit-published-project");
 		project_form_step_setter("draft-project-info");
-		project_to_edit_setter(project.id);
+		project_to_edit_setter(project);
 
 		project_title_setter(project.title);
 		project_description_setter(project.description);
