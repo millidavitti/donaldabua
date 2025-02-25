@@ -10,14 +10,14 @@ interface PublishedProjectEditOption {
 export default function PublishedProjectEditOption({
 	project,
 }: PublishedProjectEditOption) {
-	const { edit } = usePublishedProjectEditOptionInterface();
+	const { editProject } = usePublishedProjectEditOptionInterface();
 
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
 			htmlProps={{
 				onClick() {
-					edit(project);
+					editProject(project);
 				},
 			}}
 		>
