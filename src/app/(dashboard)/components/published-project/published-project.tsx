@@ -1,19 +1,16 @@
 import Flex from "@/components/layouts/flex";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useSetAtom } from "jotai";
 import Image from "next/image";
-import React from "react";
-import { Project, selected_project_jotai } from "@/data/atoms/app_data";
+import { Project } from "@/data/atoms/app_data";
 import PublishedProjectOptions from "./published-project-options";
 import PublishedProjectEditOption from "./options/published-project-edit-option";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";
+import usePublishedProjectInterface from "@/hooks/interface/use-published-project-interface";
 
 interface PublishedProject {
 	project: Project;
 }
 export default function PublishedProject({ project }: PublishedProject) {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const selected_project_setter = useSetAtom(selected_project_jotai);
+	const { viewProject } = usePublishedProjectInterface();
 
 	return (
 		<>
@@ -24,8 +21,7 @@ export default function PublishedProject({ project }: PublishedProject) {
 					className='gap-3 grow md:basis-52 cursor-pointer active:scale-[.98] transition'
 					htmlProps={{
 						onClick() {
-							edit_profile_setter("view-project");
-							selected_project_setter(project);
+							viewProject(project);
 						},
 					}}
 				>
