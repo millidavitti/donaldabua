@@ -3,6 +3,7 @@ import {
 	technologies_jotai,
 	Technology,
 	defaultStore,
+	profile_technologies_jotai,
 } from "@/data/atoms/app_data";
 import FuzzySearch from "fuzzy-search";
 import { useAtom, useAtomValue } from "jotai";
@@ -12,9 +13,9 @@ export default function useAddProjectTechnologiesInterface() {
 	const [project_technologies, project_technologies_setter] = useAtom(
 		project_technologies_jotai,
 	);
-	const technologies = useAtomValue(technologies_jotai);
+	const profile_technologies = useAtomValue(profile_technologies_jotai);
 	const [hayStack, setHayStack] = useState<Technology[]>(() =>
-		technologies.filter(
+		profile_technologies.filter(
 			(technology) =>
 				!project_technologies.some((tech) => technology.id === tech.id),
 		),

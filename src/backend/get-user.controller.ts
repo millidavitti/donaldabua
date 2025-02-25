@@ -1,22 +1,18 @@
-import { User } from "@/data/atoms/app_data";
+import { APIResponse, User } from "@/data/atoms/app_data";
 
-export async function getUser() {
+export async function getUserController() {
 	try {
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/",
 		);
 		const {
 			users: [user],
+			error,
 		} = await res.json();
 
-		return user as User;
+		return { user, error } as APIResponse<User, "user">;
 	} catch (error) {
-		console.log("---getUser---\n", error);
-		return {
-			id: "",
-			image: "/stud.jpg",
-			name: "Failed to fetch user",
-			video: null,
-		} as User;
+		console.log("---getUserController---\n", error);
+		throw error;
 	}
 }
