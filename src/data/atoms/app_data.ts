@@ -181,7 +181,7 @@ export type ProjectVideo = {
 };
 export type ProjectText = {
 	id: string;
-	type: "text";
+	type: "markdown";
 	markdown: string;
 	position: number;
 };
@@ -199,6 +199,7 @@ defaultStore.sub(profile_jotai, () => {
 	getProjectsController(defaultStore.get(profile_jotai).id)
 		.then((data) => {
 			const { projects, error } = data;
+			console.log(projects);
 			if (error)
 				toast.info(
 					"We were unable to retrieve your data. Please try again later.",
