@@ -6,12 +6,10 @@ import {
 	project_technologies_jotai,
 	project_thumbnail_jotai,
 	project_title_jotai,
+	project_to_edit_jotai,
 	projects_jotai,
 } from "@/data/atoms/app_data";
-import {
-	edit_profile_jotai,
-	project_to_edit_jotai,
-} from "@/data/atoms/ui_state";
+import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
@@ -19,6 +17,7 @@ import { createProjectController } from "@/backend/create-project.controller";
 import { createProjectContentController } from "@/backend/create-project-content.controller";
 import { createProjectTechnologiesController } from "@/backend/create-project-technologies.controller";
 import { toast } from "sonner";
+import { updateProjectController } from "@/backend/update-project.controller";
 
 export function usePublishProjectInterface() {
 	const projects_setter = useSetAtom(projects_jotai);
@@ -64,19 +63,36 @@ export function usePublishProjectInterface() {
 		resetProjectFormFields();
 	}
 
-	function savePublishedProjectEdit() {
-		projects_setter((projects) =>
-			projects.map((project) => {
-				if (project_to_edit! === project.id)
-					return {
-						id: createId(),
-						description: defaultStore.get(project_description_jotai),
-						thumbnail: defaultStore.get(project_thumbnail_jotai),
-						title: defaultStore.get(project_title_jotai),
-					};
-				return project;
-			}),
+	async function savePublishedProjectEdit() {
+		// Update Project
+		const { update, error } = await updateProjectController(
+			project_to_edit!.id,
+			{
+				title: defaultStore.get(project_title_jotai),
+				description: defaultStore.get(project_description_jotai),
+				thumbnail: defaultStore.get(project_thumbnail_jotai),
+			},
 		);
+		console.log("updatedProject---\n", update);
+
+		if (error) {
+			projects_setter((projects) =>
+				projects.map((project) => {
+					if (project_to_edit!.id! === project.id) return project_to_edit!;
+					return project;
+				}),
+			);
+			toast.error("Update failed. Please try again later");
+		} else
+			projects_setter((projects) =>
+				projects.map((project) => {
+					if (project_to_edit!.id! === project.id) return update;
+					return project;
+				}),
+			);
+
+		// Update Project Technologies
+		// Update Project Content
 		resetProjectFormFields();
 	}
 

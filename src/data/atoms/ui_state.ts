@@ -34,5 +34,3 @@ export const project_form_step_jotai = atom<
 >(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
-
-export const project_to_edit_jotai = atom<string | null>(null);
