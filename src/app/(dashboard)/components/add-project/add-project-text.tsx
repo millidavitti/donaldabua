@@ -78,7 +78,7 @@ export default function AddProjectMarkdown() {
 											id: createId(),
 											markdown,
 											position: content.length,
-											type: "text",
+											type: "markdown",
 										},
 									]);
 								setMarkdown("");

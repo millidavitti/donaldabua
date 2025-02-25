@@ -7,7 +7,7 @@ import PublishedProjectDescription from "./published-project/published-project-d
 import PublishedProjectTechStack from "./published-project/published-project-tech-stack";
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
-import { Project } from "@/data/atoms/app_data";
+import { Project, project_content_jotai } from "@/data/atoms/app_data";
 import { useSetAtom } from "jotai";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 
@@ -16,7 +16,7 @@ interface ViewPortfolioProject {
 }
 export default function ViewProject({ project }: ViewPortfolioProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-
+	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
 		<Flex
 			flex='column'
@@ -28,6 +28,7 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 					htmlProps={{
 						onClick() {
 							edit_profile_setter(null);
+							project_content_setter([]);
 						},
 					}}
 				>
