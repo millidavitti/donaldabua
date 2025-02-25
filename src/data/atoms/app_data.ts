@@ -210,8 +210,10 @@ defaultStore.sub(profile_jotai, () => {
 			console.log("---App Data:projects_jotai---\n", error);
 		});
 });
+export const project_to_edit_jotai = atom<Project | null>(null);
 
 export const project_title_jotai = atom<string>("");
+
 export const project_description_jotai = atom<string>("");
 export const project_thumbnail_jotai = atom<string>("");
 
