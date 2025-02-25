@@ -1,17 +1,17 @@
-import { Technology } from "@/data/atoms/app_data";
+import { APIResponse, Technology } from "@/data/atoms/app_data";
 
-export async function getProfileTechnologies(profileId: string) {
+export async function getProfileTechnologiesController(profileId: string) {
 	try {
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
 				"/profile-technologies/" +
 				profileId,
 		);
-		const { profileTechnologies } = await res.json();
+		const data = await res.json();
 
-		return profileTechnologies as Technology[];
+		return data as APIResponse<Technology[], "profileTechnologies">;
 	} catch (error) {
-		console.log("---getProfileTechnologies---\n", error);
-		return [];
+		console.log("---getProfileTechnologiesController---\n", error);
+		throw error;
 	}
 }
