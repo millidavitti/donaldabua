@@ -40,6 +40,7 @@ export function usePublishProjectInterface() {
 			});
 			if (error) throw error;
 			// Create Project Content
+
 			const { error: error2 } = await createProjectContentController(
 				project.id,
 				project_content,
