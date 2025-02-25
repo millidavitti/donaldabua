@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 
 export default function ProfileTechnologies() {
 	const profile_technologies = useAtomValue(profile_technologies_jotai);
+	console.log(profile_technologies);
 	return (
 		<Flex className='gap-3 flex-wrap shrink-0 grow'>
 			{profile_technologies.map((tech) => (
