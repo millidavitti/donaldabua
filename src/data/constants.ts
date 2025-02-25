@@ -12,7 +12,6 @@ export const EDIT_PROFILE_STATES = [
 	"edit-socials",
 	"edit-portfolio",
 	"edit-published-project",
-	"view-project",
 ];
 
 export const EDIT_PORTFOLIO_PROJECT_STATES = [
