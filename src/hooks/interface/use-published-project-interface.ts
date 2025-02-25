@@ -24,7 +24,7 @@ export default function usePublishedProjectInterface() {
 		getProjectContentController(project.id)
 			.then((data) => {
 				const { projectContent, error } = data;
-				console.log("---projectContent---\n", projectContent);
+
 				if (error)
 					toast.info(
 						"Unable to retrieve project content. Please try again later.",
@@ -42,7 +42,7 @@ export default function usePublishedProjectInterface() {
 		getProjectTechnologiesController(project.id)
 			.then((data) => {
 				const { projectTechnologies, error } = data;
-				console.log("---projectTechnologies---\n", projectTechnologies);
+
 				if (error)
 					toast.info(
 						"Unable to retrieve project content. Please try again later.",
