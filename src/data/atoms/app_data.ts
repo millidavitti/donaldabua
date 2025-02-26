@@ -179,12 +179,14 @@ export type ProjectVideo = {
 	caption?: string;
 	position: number;
 };
-export type ProjectText = {
+export type ProjectMarkdown = {
 	id: string;
 	type: "markdown";
 	markdown: string;
 	position: number;
 };
+export type ProjectContent = (ProjectImage | ProjectVideo | ProjectMarkdown)[];
+
 export type Project = {
 	id: string;
 	title: string;
@@ -199,7 +201,6 @@ defaultStore.sub(profile_jotai, () => {
 	getProjectsController(defaultStore.get(profile_jotai).id)
 		.then((data) => {
 			const { projects, error } = data;
-			console.log(projects);
 			if (error)
 				toast.info(
 					"We were unable to retrieve your data. Please try again later.",
@@ -216,8 +217,6 @@ export const project_title_jotai = atom<string>("");
 
 export const project_description_jotai = atom<string>("");
 export const project_thumbnail_jotai = atom<string>("");
-
-export type ProjectContent = (ProjectImage | ProjectVideo | ProjectText)[];
 
 export const project_content_jotai = atom<ProjectContent>([]);
 
@@ -266,4 +265,10 @@ export const technologies_jotai = atom<Technology[]>([]);
 export type ProjectTechnology = {
 	projectId: string;
 	technologyId: string;
+};
+
+export type ProjectData = {
+	project: Project;
+	technologies: Technology[];
+	content: ProjectContent;
 };
