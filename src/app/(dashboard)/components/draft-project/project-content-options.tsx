@@ -6,7 +6,7 @@ import DraftProjectVideo from "./draft-project-video";
 import DraftProjectImage from "./draft-project-image";
 import DraftProjectMarkdown from "./draft-project-text";
 
-export default function ProjectContentOptions() {
+export default function DraftProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
 	return (
 		<Flex flex='column' className='grow justify-center items-center gap-3'>
