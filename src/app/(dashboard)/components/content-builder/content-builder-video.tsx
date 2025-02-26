@@ -32,12 +32,7 @@ export default function ContentBuilderVideo({
 				<ContentBuilderMoveDownOption position={component.position} />
 			</ContentBuilderOptionsDrawer>
 			{component_to_edit === component.id || (
-				<iframe
-					src={component.url}
-					className='aspect-[16/9]'
-					sandbox='allow-scripts'
-					loading='lazy'
-				/>
+				<iframe src={component.url} className='aspect-[16/9]' loading='lazy' />
 			)}
 			{component_to_edit === component.id && (
 				<Flex flex='column' className='bg-light-surface gap-3'>
