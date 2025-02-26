@@ -8,8 +8,6 @@ import {
 	project_title_jotai,
 	Project,
 	project_to_edit_jotai,
-	profile_technologies_jotai,
-	defaultStore,
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
