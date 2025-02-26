@@ -14,7 +14,7 @@ import { VideoIcon, X } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function AddProjectVideo() {
+export default function DraftProjectVideo() {
 	const [videoLink, setVideoLink] = useState("");
 	const edit_project_setter = useSetAtom(edit_project_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
