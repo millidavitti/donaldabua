@@ -9,6 +9,7 @@ import DraftProject from "../add-project/draft-project";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import { project_form_step_jotai } from "@/data/atoms/ui_state";
+import { HashLoader } from "react-spinners";
 
 export default function PublishedProjects() {
 	const projects = useAtomValue(projects_jotai);
@@ -21,18 +22,28 @@ export default function PublishedProjects() {
 					return <PublishedProject key={project.id} project={project} />;
 				})}
 			</Flex>
-			<Overlay stateFlag='view-project' className='place-content-center'>
-				<ViewProject project={selected_project!} />
+			<Overlay
+				stateFlag='view-project'
+				className='flex justify-center items-center'
+			>
+				{selected_project ? (
+					<ViewProject project={selected_project} />
+				) : (
+					<HashLoader />
+				)}
 			</Overlay>
 			<Overlay
 				stateFlag='edit-published-project'
 				className='flex justify-center items-center'
 			>
-				{project_form_step === "draft-project-info" && (
+				{project_form_step === "draft-project-info" ? (
 					<DraftProject>
 						<ContentBuilder />
 					</DraftProject>
+				) : (
+					project_form_step === "preview-project-draft" || <HashLoader />
 				)}
+
 				{project_form_step === "preview-project-draft" && (
 					<PreviewProjectDraft />
 				)}
