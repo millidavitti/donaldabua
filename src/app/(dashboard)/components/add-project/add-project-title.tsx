@@ -2,7 +2,7 @@ import { project_title_jotai } from "@/data/atoms/app_data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 
-export default function AddProjectTitle() {
+export default function DraftProjectTitle() {
 	const [project_title, project_title_setter] = useAtom(project_title_jotai);
 
 	return (
