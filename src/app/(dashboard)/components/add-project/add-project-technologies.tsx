@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useAddProjectTechnologiesInterface from "@/hooks/interface/use-add-project-technologies-interface";
+import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-add-project-technologies-interface";
 
 export default function DraftProjectTechnologies() {
 	const {
@@ -12,7 +12,7 @@ export default function DraftProjectTechnologies() {
 		removeTechnology,
 		searchQuery,
 		searchResult,
-	} = useAddProjectTechnologiesInterface();
+	} = useDraftProjectTechnologiesInterface();
 	return (
 		<>
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
