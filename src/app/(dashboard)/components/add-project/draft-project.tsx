@@ -5,7 +5,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
 import AddProjectTitle from "./add-project-title";
 import DraftProjectDescription from "./draft-project-description";
-import DraftProjectTechnologies from "./add-project-technologies";
+import DraftProjectTechnologies from "./draft-project-technologies";
 import AddProjectThumbnail from "./add-project-thumbnail";
 import { useDraftProjectInterface } from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
