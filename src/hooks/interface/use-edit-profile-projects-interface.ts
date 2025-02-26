@@ -1,5 +1,5 @@
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import {
 	edit_profile_jotai,
 	project_form_step_jotai,
