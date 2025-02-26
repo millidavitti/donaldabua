@@ -3,7 +3,7 @@ import { content_hover_state_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue } from "jotai";
 import React from "react";
 import AddProjectVideo from "./add-project-video";
-import DraftProjectImage from "./add-project-image";
+import DraftProjectImage from "./draft-project-image";
 import AddProjectMarkdown from "./add-project-text";
 
 export default function ProjectContentOptions() {
