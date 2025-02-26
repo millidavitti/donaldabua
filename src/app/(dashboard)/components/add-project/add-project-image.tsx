@@ -14,7 +14,7 @@ import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function AddProjectImage() {
+export default function DraftProjectImage() {
 	const edit_project_setter = useSetAtom(edit_project_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
