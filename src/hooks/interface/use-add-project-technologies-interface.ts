@@ -1,8 +1,6 @@
 import {
 	project_technologies_jotai,
-	technologies_jotai,
 	Technology,
-	defaultStore,
 	profile_technologies_jotai,
 } from "@/data/atoms/app_data";
 import FuzzySearch from "fuzzy-search";
@@ -20,9 +18,10 @@ export default function useAddProjectTechnologiesInterface() {
 				!project_technologies.some((tech) => technology.id === tech.id),
 		),
 	);
-	defaultStore.sub(technologies_jotai, () => {
-		setHayStack(defaultStore.get(technologies_jotai));
-	});
+	console.log("Search Result:\n", hayStack);
+	// console.log("Profile Technologies:\n", profile_technologies);
+	// console.log("Project Technologies:\n", project_technologies);
+
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -43,7 +42,6 @@ export default function useAddProjectTechnologiesInterface() {
 			document.onclick = (e) => {
 				if (!(e.target as HTMLElement).closest("#search-result"))
 					setSearchResult([]);
-				console.log("I was clicked!");
 				document.onclick = null;
 			};
 		}, 200);
