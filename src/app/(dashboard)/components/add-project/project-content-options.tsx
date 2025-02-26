@@ -4,7 +4,7 @@ import { useAtomValue } from "jotai";
 import React from "react";
 import AddProjectVideo from "./add-project-video";
 import DraftProjectImage from "./draft-project-image";
-import AddProjectMarkdown from "./add-project-text";
+import DraftProjectMarkdown from "./add-project-text";
 
 export default function ProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
@@ -13,7 +13,7 @@ export default function ProjectContentOptions() {
 			<Flex className='gap-3 flex-wrap'>
 				<DraftProjectImage />
 				<AddProjectVideo />
-				<AddProjectMarkdown />
+				<DraftProjectMarkdown />
 			</Flex>
 			{/* Text */}
 			<p className='font-semibold'>
