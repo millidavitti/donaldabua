@@ -16,45 +16,28 @@ export default function usePublishedProjectInterface() {
 	const project_content_setter = useSetAtom(project_content_jotai);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
 
-	function viewProject(project: Project) {
+	async function viewProject(project: Project) {
 		edit_profile_setter("view-project");
+		try {
+			const [
+				{ projectTechnologies, error: projectTechnologiesError },
+				{ projectContent, error: projectContentError },
+			] = await Promise.all([
+				getProjectTechnologiesController(project.id),
+				getProjectContentController(project.id),
+			]);
+
+			if (projectTechnologiesError || projectContentError)
+				throw projectTechnologiesError || projectContentError;
+
+			project_technologies_setter(projectTechnologies);
+			project_content_setter(projectContent);
+		} catch (error) {
+			console.log("---editProject:getProjectContent---\n", error);
+			edit_profile_setter(null);
+			toast.info("Unable to retrieve project content. Please try again later.");
+		}
 		selected_project_setter(project);
-
-		// Get Project Content
-		getProjectContentController(project.id)
-			.then((data) => {
-				const { projectContent, error } = data;
-
-				if (error)
-					toast.info(
-						"Unable to retrieve project content. Please try again later.",
-					);
-				else project_content_setter(projectContent);
-			})
-			.catch((error) => {
-				console.log("---viewProject:getProjectContent---\n", error);
-				toast.info(
-					"Unable to retrieve project content. Please try again later.",
-				);
-			});
-
-		// Get Project Technologies
-		getProjectTechnologiesController(project.id)
-			.then((data) => {
-				const { projectTechnologies, error } = data;
-
-				if (error)
-					toast.info(
-						"Unable to retrieve project content. Please try again later.",
-					);
-				else project_technologies_setter(projectTechnologies);
-			})
-			.catch((error) => {
-				console.log("---viewProject:getProjectContent---\n", error);
-				toast.info(
-					"Unable to retrieve project content. Please try again later.",
-				);
-			});
 	}
 	return { viewProject };
 }
