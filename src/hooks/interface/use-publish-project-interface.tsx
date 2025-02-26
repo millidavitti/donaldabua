@@ -8,15 +8,12 @@ import {
 	project_title_jotai,
 	project_to_edit_jotai,
 	projects_jotai,
-	technologies_jotai,
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
 import { createProjectController } from "@/backend/create-project.controller";
-import { createProjectContentController } from "@/backend/create-project-content.controller";
-import { createProjectTechnologiesController } from "@/backend/create-project-technologies.controller";
 import { toast } from "sonner";
 import { updateProjectController } from "@/backend/update-project.controller";
 import { updateProjectTechnologiesController } from "@/backend/update-project-technologies.controller";
@@ -89,7 +86,7 @@ export function usePublishProjectInterface() {
 				project_technologies.map((technology) => technology.id),
 			);
 		console.log("updatedProjectTechnologies---\n", info);
-
+		console.log(updateError);
 		// Update Project Content
 		resetProjectFormFields();
 	}
