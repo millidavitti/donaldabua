@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import { CirclePlus } from "lucide-react";
-import DraftProject from "../add-project/draft-project";
+import DraftProject from "../draft-project/draft-project";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
