@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-add-project-technologies-interface";
+import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-draft-project-technologies-interface";
 
 export default function DraftProjectTechnologies() {
 	const {
