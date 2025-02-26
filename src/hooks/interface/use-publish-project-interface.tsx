@@ -83,6 +83,7 @@ export function usePublishProjectInterface() {
 				}),
 			);
 			toast.error("Update failed. Please try again later");
+			console.log("---savePublishedProjectEdit---\n", error);
 		}
 
 		resetProjectFormFields();
