@@ -1,9 +1,9 @@
 "use server";
-import { APIResponse, Project } from "@/data/atoms/app_data";
+import { APIResponse, Project, ProjectData } from "@/data/atoms/app_data";
 
 export async function updateProjectController(
 	projectId: string,
-	update: Partial<Project>,
+	update: ProjectData,
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
