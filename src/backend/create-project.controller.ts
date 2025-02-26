@@ -1,9 +1,9 @@
 "use server";
-import { APIResponse, Project } from "@/data/atoms/app_data";
+import { APIResponse, Project, ProjectData } from "@/data/atoms/app_data";
 
 export async function createProjectController(
 	profileId: string,
-	project: Project,
+	projectData: ProjectData,
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
@@ -13,7 +13,7 @@ export async function createProjectController(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/projects/" + profileId,
 			{
 				method: "POST",
-				body: JSON.stringify(project),
+				body: JSON.stringify(projectData),
 				headers,
 			},
 		);
