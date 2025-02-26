@@ -1,35 +1,27 @@
 import {
 	project_technologies_jotai,
 	Technology,
-	profile_technologies_jotai,
+	hay_stack_jotai,
 } from "@/data/atoms/app_data";
 import FuzzySearch from "fuzzy-search";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { useState } from "react";
 
 export default function useAddProjectTechnologiesInterface() {
 	const [project_technologies, project_technologies_setter] = useAtom(
 		project_technologies_jotai,
 	);
-	const profile_technologies = useAtomValue(profile_technologies_jotai);
-	const [hayStack, setHayStack] = useState<Technology[]>(() =>
-		profile_technologies.filter(
-			(technology) =>
-				!project_technologies.some((tech) => technology.id === tech.id),
-		),
-	);
-	console.log("Search Result:\n", hayStack);
-	// console.log("Profile Technologies:\n", profile_technologies);
-	// console.log("Project Technologies:\n", project_technologies);
-
+	const [hay_stack, hay_stack_setter] = useAtom<Technology[]>(hay_stack_jotai);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
 	function removeTechnology(tech: Technology) {
 		project_technologies_setter((technologies) =>
-			technologies.filter((technology) => technology.id !== tech.id),
+			technologies.filter((technology) => {
+				return technology.id !== tech.id;
+			}),
 		);
-		setHayStack((technologies) => [...technologies, tech]);
+		hay_stack_setter((technologies) => [...technologies, tech]);
 	}
 
 	function closeSearchResult(key: string) {
@@ -38,7 +30,7 @@ export default function useAddProjectTechnologiesInterface() {
 
 	function displaySearchResult() {
 		setTimeout(() => {
-			setSearchResult(hayStack);
+			setSearchResult(hay_stack);
 			document.onclick = (e) => {
 				if (!(e.target as HTMLElement).closest("#search-result"))
 					setSearchResult([]);
@@ -48,23 +40,24 @@ export default function useAddProjectTechnologiesInterface() {
 	}
 
 	function captureAndSearch(value: string) {
-		const search = new FuzzySearch(hayStack, ["name"]);
+		const search = new FuzzySearch(hay_stack, ["name"]);
 		const result = search.search(value);
 		setSearchQuery(value);
 		if (value) setSearchResult(result);
-		else setSearchResult(hayStack);
+		else setSearchResult(hay_stack);
 	}
 
 	function addTechnology(tech: Technology) {
 		project_technologies_setter((technology) => {
 			return [tech, ...technology];
 		});
-		setHayStack((technologies) =>
+		hay_stack_setter((technologies) =>
 			technologies.filter((technology) => technology.id !== tech.id),
 		);
 		setSearchQuery("");
 		setSearchResult([]);
 	}
+
 	return {
 		removeTechnology,
 		addTechnology,
