@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
-export default function AddProjectThumbnail() {
+export default function DraftProjectThumbnail() {
 	const [project_thumbnail, project_thumbnail_setter] = useAtom(
 		project_thumbnail_jotai,
 	);
