@@ -8,6 +8,7 @@ import {
 	project_title_jotai,
 	project_to_edit_jotai,
 	projects_jotai,
+	technologies_jotai,
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
@@ -18,6 +19,7 @@ import { createProjectContentController } from "@/backend/create-project-content
 import { createProjectTechnologiesController } from "@/backend/create-project-technologies.controller";
 import { toast } from "sonner";
 import { updateProjectController } from "@/backend/update-project.controller";
+import { updateProjectTechnologiesController } from "@/backend/update-project-technologies.controller";
 
 export function usePublishProjectInterface() {
 	const projects_setter = useSetAtom(projects_jotai);
@@ -32,27 +34,16 @@ export function usePublishProjectInterface() {
 		try {
 			// Create Project
 			const { project, error } = await createProjectController(profileId, {
-				id: createId(),
-				title: defaultStore.get(project_title_jotai),
-				description: defaultStore.get(project_description_jotai),
-				thumbnail: defaultStore.get(project_thumbnail_jotai),
+				project: {
+					id: createId(),
+					title: defaultStore.get(project_title_jotai),
+					description: defaultStore.get(project_description_jotai),
+					thumbnail: defaultStore.get(project_thumbnail_jotai),
+				},
+				content: project_content,
+				technologies: project_technologies,
 			});
 			if (error) throw error;
-			// Create Project Content
-
-			const { error: error2 } = await createProjectContentController(
-				project.id,
-				project_content,
-			);
-			if (error2) throw error2;
-			// Create Project Technologies
-			const { error: error3 } = await createProjectTechnologiesController(
-				project_technologies.map((technology) => ({
-					projectId: project.id,
-					technologyId: technology.id,
-				})),
-			);
-			if (error3) throw error3;
 
 			projects_setter((projects) => [...projects, project]);
 		} catch (error) {
@@ -78,7 +69,7 @@ export function usePublishProjectInterface() {
 		if (error) {
 			projects_setter((projects) =>
 				projects.map((project) => {
-					if (project_to_edit!.id! === project.id) return project_to_edit!;
+					if (project_to_edit!.id === project.id) return project_to_edit!;
 					return project;
 				}),
 			);
@@ -86,12 +77,19 @@ export function usePublishProjectInterface() {
 		} else
 			projects_setter((projects) =>
 				projects.map((project) => {
-					if (project_to_edit!.id! === project.id) return update;
+					if (project_to_edit!.id === project.id) return update;
 					return project;
 				}),
 			);
 
 		// Update Project Technologies
+		const { info, error: updateError } =
+			await updateProjectTechnologiesController(
+				project_to_edit!.id,
+				project_technologies.map((technology) => technology.id),
+			);
+		console.log("updatedProjectTechnologies---\n", info);
+
 		// Update Project Content
 		resetProjectFormFields();
 	}
