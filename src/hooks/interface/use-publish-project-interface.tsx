@@ -16,7 +16,6 @@ import { useResetProjectFormFields } from "../use-reset-project-form-fields";
 import { createProjectController } from "@/backend/create-project.controller";
 import { toast } from "sonner";
 import { updateProjectController } from "@/backend/update-project.controller";
-import { updateProjectTechnologiesController } from "@/backend/update-project-technologies.controller";
 
 export function usePublishProjectInterface() {
 	const projects_setter = useSetAtom(projects_jotai);
