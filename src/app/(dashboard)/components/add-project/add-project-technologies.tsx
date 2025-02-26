@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import useAddProjectTechnologiesInterface from "@/hooks/interface/use-add-project-technologies-interface";
 
-export default function AddProjectTechnologies() {
+export default function DraftProjectTechnologies() {
 	const {
 		addTechnology,
 		captureAndSearch,
