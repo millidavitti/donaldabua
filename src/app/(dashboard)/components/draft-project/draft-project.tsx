@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 import DraftProjectTitle from "./draft-project-title";
 import DraftProjectDescription from "./draft-project-description";
 import DraftProjectTechnologies from "./draft-project-technologies";
-import DraftProjectThumbnail from "./add-project-thumbnail";
+import DraftProjectThumbnail from "./draft-project-thumbnail";
 import { useDraftProjectInterface } from "@/hooks/interface/use-draft-portfolio-project-info-interface";
 
 interface DraftProject {
