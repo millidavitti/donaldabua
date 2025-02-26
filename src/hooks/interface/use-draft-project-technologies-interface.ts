@@ -7,7 +7,7 @@ import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-export default function useAddProjectTechnologiesInterface() {
+export default function useDraftProjectTechnologiesInterface() {
 	const [project_technologies, project_technologies_setter] = useAtom(
 		project_technologies_jotai,
 	);

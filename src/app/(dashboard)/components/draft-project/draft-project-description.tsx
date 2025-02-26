@@ -3,7 +3,7 @@ import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import React from "react";
 
-export default function AddProjectDescription() {
+export default function DraftProjectDescription() {
 	const [project_description, project_description_setter] = useAtom(
 		project_description_jotai,
 	);

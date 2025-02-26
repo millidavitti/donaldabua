@@ -2,18 +2,18 @@ import Flex from "@/components/layouts/flex";
 import { content_hover_state_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue } from "jotai";
 import React from "react";
-import AddProjectVideo from "./add-project-video";
-import AddProjectImage from "./add-project-image";
-import AddProjectMarkdown from "./add-project-text";
+import DraftProjectVideo from "./draft-project-video";
+import DraftProjectImage from "./draft-project-image";
+import DraftProjectMarkdown from "./draft-project-text";
 
-export default function ProjectContentOptions() {
+export default function DraftProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);
 	return (
 		<Flex flex='column' className='grow justify-center items-center gap-3'>
 			<Flex className='gap-3 flex-wrap'>
-				<AddProjectImage />
-				<AddProjectVideo />
-				<AddProjectMarkdown />
+				<DraftProjectImage />
+				<DraftProjectVideo />
+				<DraftProjectMarkdown />
 			</Flex>
 			{/* Text */}
 			<p className='font-semibold'>

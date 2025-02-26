@@ -12,7 +12,8 @@ import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { Text, X } from "lucide-react";
 import React, { useState } from "react";
-export default function AddProjectMarkdown() {
+
+export default function DraftProjectMarkdown() {
 	const edit_project_setter = useSetAtom(edit_project_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);

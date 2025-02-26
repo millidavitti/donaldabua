@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import ProjectContentOptions from "../add-project/project-content-options";
+import DraftProjectContentOptions from "../draft-project/draft-project-content-options";
 import { project_content_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
@@ -16,7 +16,7 @@ export default function ContentBuilder() {
 			className='basis-[360px] grow-[2] gap-3'
 			htmlProps={{ id: "content-builder" }}
 		>
-			<ProjectContentOptions />
+			<DraftProjectContentOptions />
 			{Boolean(project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3'>
 					{project_content
