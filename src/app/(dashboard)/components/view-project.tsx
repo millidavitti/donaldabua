@@ -1,22 +1,22 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
-import React from "react";
 import PublishedProjectTitle from "./published-project/published-project-title";
 import PublishedProjectDescription from "./published-project/published-project-description";
 import PublishedProjectTechStack from "./published-project/published-project-tech-stack";
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
-import { Project, project_content_jotai } from "@/data/atoms/app_data";
+import { Project } from "@/data/atoms/app_data";
 import { useSetAtom } from "jotai";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { useResetProjectFormFields } from "@/hooks/use-reset-project-form-fields";
 
 interface ViewPortfolioProject {
 	project: Project;
 }
 export default function ViewProject({ project }: ViewPortfolioProject) {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const project_content_setter = useSetAtom(project_content_jotai);
+	const resetProjectFormFields = useResetProjectFormFields();
 	return (
 		<Flex
 			flex='column'
@@ -28,7 +28,7 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 					htmlProps={{
 						onClick() {
 							edit_profile_setter(null);
-							project_content_setter([]);
+							resetProjectFormFields();
 						},
 					}}
 				>
