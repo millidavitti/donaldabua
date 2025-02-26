@@ -21,6 +21,8 @@ export default function EditUserVideo() {
 					src={user_video!}
 					data-is-visible={Boolean(user_video)}
 					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
+					sandbox='allow-scripts'
+					loading='lazy'
 				/>
 			)}
 			<Overlay

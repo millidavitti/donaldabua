@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
-import { project_content_jotai, ProjectText } from "@/data/atoms/app_data";
+import { project_content_jotai, ProjectMarkdown } from "@/data/atoms/app_data";
 import { useAtom, useSetAtom } from "jotai";
 import md from "md";
 import parse from "html-react-parser";
@@ -12,7 +12,7 @@ import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 
 interface ContentBuilderText {
-	component: ProjectText;
+	component: ProjectMarkdown;
 }
 export default function ContentBuilderText({ component }: ContentBuilderText) {
 	const [component_to_edit, component_to_edit_setter] = useAtom(
