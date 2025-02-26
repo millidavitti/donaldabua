@@ -272,3 +272,18 @@ export type ProjectData = {
 	technologies: Technology[];
 	content: ProjectContent;
 };
+
+export const hay_stack_jotai = atom<Technology[]>([]);
+defaultStore.sub(project_technologies_jotai, () => {
+	defaultStore.set(
+		hay_stack_jotai,
+		defaultStore
+			.get(profile_technologies_jotai)
+			.filter(
+				(technology) =>
+					!defaultStore
+						.get(project_technologies_jotai)
+						.some((tech) => tech.id === technology.id),
+			),
+	);
+});

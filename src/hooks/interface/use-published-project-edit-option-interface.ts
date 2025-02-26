@@ -21,44 +21,38 @@ export function usePublishedProjectEditOptionInterface() {
 	const project_title_setter = useSetAtom(project_title_jotai);
 	const project_to_edit_setter = useSetAtom(project_to_edit_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
-
-	//
 	const project_description_setter = useSetAtom(project_description_jotai);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
 	const project_thumbnail_setter = useSetAtom(project_thumbnail_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 
-	function editProject(project: Project) {
+	async function editProject(project: Project) {
 		edit_profile_setter("edit-published-project");
-		project_form_step_setter("draft-project-info");
 		project_to_edit_setter(project);
-
 		project_title_setter(project.title);
 		project_description_setter(project.description);
-
-		Promise.all([
-			getProjectTechnologiesController(project.id),
-			getProjectContentController(project.id),
-		])
-			.then((data) => {
-				const [
-					{ projectTechnologies, error: projectTechnologiesError },
-					{ projectContent, error: projectContentError },
-				] = data;
-				if (projectTechnologiesError || projectContentError)
-					throw projectTechnologiesError || projectContentError;
-				else {
-					project_technologies_setter(projectTechnologies);
-					project_content_setter(projectContent);
-				}
-			})
-			.catch((error) => {
-				console.log("---editProject:getProjectContent---\n", error);
-				toast.info(
-					"Unable to retrieve project content. Please try again later.",
-				);
-			});
 		project_thumbnail_setter(project.thumbnail);
+		try {
+			const [
+				{ projectTechnologies, error: projectTechnologiesError },
+				{ projectContent, error: projectContentError },
+			] = await Promise.all([
+				getProjectTechnologiesController(project.id),
+				getProjectContentController(project.id),
+			]);
+
+			if (projectTechnologiesError || projectContentError)
+				throw projectTechnologiesError || projectContentError;
+
+			project_technologies_setter(projectTechnologies);
+			project_content_setter(projectContent);
+		} catch (error) {
+			console.log("---editProject:getProjectContent---\n", error);
+			edit_profile_setter(null);
+			toast.info("Unable to retrieve project content. Please try again later.");
+		}
+
+		project_form_step_setter("draft-project-info");
 	}
 	return { editProject };
 }

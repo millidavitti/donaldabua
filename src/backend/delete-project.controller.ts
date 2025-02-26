@@ -5,6 +5,9 @@ export async function deleteProjectController(projectId: string) {
 	try {
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/projects/" + projectId,
+			{
+				method: "DELETE",
+			},
 		);
 		const data = await res.json();
 

@@ -78,7 +78,6 @@ export default function AddProjectVideo() {
 								src={videoLink}
 								data-is-visible={Boolean(videoLink)}
 								className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
-								sandbox='allow-scripts'
 								loading='lazy'
 							/>
 						)}

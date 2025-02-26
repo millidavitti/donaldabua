@@ -16,7 +16,7 @@ export default function PublishedProjectOptions({
 			<>
 				{isOptionsVisible ? (
 					<Flex
-						className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto neonScan'
+						className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto '
 						htmlProps={{
 							onMouseLeave() {
 								setIsOptionsVisible(false);
