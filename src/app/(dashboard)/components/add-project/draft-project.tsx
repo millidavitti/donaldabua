@@ -4,7 +4,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
 import AddProjectTitle from "./add-project-title";
-import AddProjectDescription from "./add-project-description";
+import DraftProjectDescription from "./add-project-description";
 import AddProjectTechnologies from "./add-project-technologies";
 import AddProjectThumbnail from "./add-project-thumbnail";
 import { useDraftProjectInterface } from "@/hooks/interface/use-draft-portfolio-project-info-interface";
@@ -47,7 +47,7 @@ export default function DraftProject({ children }: DraftProject) {
 				<AddProjectTitle />
 				<Flex className='gap-3 flex-wrap'>
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
-						<AddProjectDescription />
+						<DraftProjectDescription />
 						<AddProjectTechnologies />
 						<AddProjectThumbnail />
 					</Flex>
