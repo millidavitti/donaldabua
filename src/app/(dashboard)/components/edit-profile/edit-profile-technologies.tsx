@@ -7,6 +7,7 @@ import { EditIcon, X } from "lucide-react";
 import ProfileTechnology from "../profile-technology";
 import AddProfileTechnologies from "../add-profile-technologies";
 import useEditProfileTechnologiesInterface from "@/hooks/interface/use-edit-profile-technologies-interface";
+import { HashLoader } from "react-spinners";
 
 export default function EditProfileTechnologies() {
 	const {
@@ -14,6 +15,7 @@ export default function EditProfileTechnologies() {
 		editTechnologies,
 		profile_technologies_snapshot,
 		saveTechnologiesEdit,
+		api_task,
 	} = useEditProfileTechnologiesInterface();
 	return (
 		<>
@@ -77,6 +79,9 @@ export default function EditProfileTechnologies() {
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
+							{api_task === "save_technologies_edit" && (
+								<HashLoader color='#ffffff' size={24} />
+							)}
 						</Button>
 					</form>
 				</Flex>
