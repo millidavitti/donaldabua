@@ -3,18 +3,18 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtomValue, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
-import ProfileTechnologies from "../profile-technologies";
+import ProfileTechnology from "../profile-technology";
 import AddProfileTechnologies from "../add-profile-technologies";
-import { profile_technologies_snapshot_jotai } from "@/data/atoms/app_data";
+import useEditProfileTechnologiesInterface from "@/hooks/interface/use-edit-profile-technologies-interface";
 
 export default function EditProfileTechnologies() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const profile_technologies = useAtomValue(
-		profile_technologies_snapshot_jotai,
-	);
+	const {
+		cancelTechnologiesEdit,
+		editTechnologies,
+		profile_technologies_snapshot,
+		saveTechnologiesEdit,
+	} = useEditProfileTechnologiesInterface();
 	return (
 		<>
 			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
@@ -23,7 +23,7 @@ export default function EditProfileTechnologies() {
 					<h2 className='lg:text-2xl font-semibold'>Technologies</h2>
 					<InteractiveIcon
 						callback={() => {
-							edit_profile_setter("edit-tech-stack");
+							editTechnologies();
 						}}
 					>
 						<EditIcon size={24} />
@@ -32,14 +32,14 @@ export default function EditProfileTechnologies() {
 				{/* Stack */}
 
 				<Flex className='gap-3 flex-wrap shrink-0 grow'>
-					{profile_technologies.map((technology) => (
-						<ProfileTechnologies tech={technology} key={technology.id} />
+					{profile_technologies_snapshot.map((technology) => (
+						<ProfileTechnology tech={technology} key={technology.id} />
 					))}
 				</Flex>
 			</Flex>
 
 			<Overlay
-				stateFlag='edit-tech-stack'
+				stateFlag='edit-profile-technologies'
 				className='flex justify-center items-center'
 			>
 				<Flex
@@ -48,7 +48,11 @@ export default function EditProfileTechnologies() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-xl font-semibold'>Edit Profile Technologies</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon
+							callback={() => {
+								cancelTechnologiesEdit();
+							}}
+						>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -57,7 +61,7 @@ export default function EditProfileTechnologies() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							saveTechnologiesEdit();
 						}}
 					>
 						<label
