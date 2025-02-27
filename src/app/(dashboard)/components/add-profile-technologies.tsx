@@ -1,6 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-draft-project-technologies-interface";
 import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
 import ProfileTechnologies from "./profile-technologies";
 
