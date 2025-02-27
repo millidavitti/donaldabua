@@ -1,5 +1,8 @@
 import { updateUserProfile } from "@/backend/update-user-profile.controller";
-import { profile_jotai, profile_title_jotai } from "@/data/atoms/app_data";
+import {
+	profile_snapshot_jotai,
+	profile_title_jotai,
+} from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
@@ -7,7 +10,9 @@ import { toast } from "sonner";
 export function useEditProfileTitleInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_title, profile_title_setter] = useAtom(profile_title_jotai);
-	const [{ id: profileId, title }, profile_setter] = useAtom(profile_jotai);
+	const [profile_snapshot, profile_snapshot_setter] = useAtom(
+		profile_snapshot_jotai,
+	);
 
 	function editTitle() {
 		edit_profile_setter("edit-title");
@@ -20,17 +25,15 @@ export function useEditProfileTitleInterface() {
 	async function saveTitleEdit() {
 		edit_profile_setter(null);
 		try {
-			const { error, profile } = await updateUserProfile(profileId, {
+			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				title: profile_title,
 			});
-			if (error) {
-				profile_title_setter(title);
-				toast.error("Update failed. Please try again later");
-			} else profile_setter(profile);
+			if (error) throw error;
+			else profile_snapshot_setter(profile);
 		} catch (error) {
 			console.log("---saveTitleEdit---\n", error);
 			toast.error("Update failed. Please try again later");
-			profile_title_setter(title);
+			profile_title_setter(profile_snapshot.title);
 		}
 	}
 
