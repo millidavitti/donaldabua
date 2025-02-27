@@ -6,7 +6,6 @@ import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
-import { get } from "http";
 
 export const defaultStore = getDefaultStore();
 
