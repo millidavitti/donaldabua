@@ -1,21 +1,26 @@
 import Button from "@/components/ui/button";
 import { usePublishProjectInterface } from "@/hooks/interface/use-publish-project-interface";
 import React from "react";
+import { HashLoader } from "react-spinners";
 
 export default function PublishProject() {
-	const { publishProject, editProfileState, savePublishedProjectEdit } =
+	const { publishProject, edit_profile, savePublishedProjectEdit, api_task } =
 		usePublishProjectInterface();
 	return (
 		<Button
 			type='button'
 			className='bg-black text-light-surface'
 			onClick={() =>
-				editProfileState === "edit-published-project"
+				edit_profile === "edit-published-project"
 					? savePublishedProjectEdit()
 					: publishProject()
 			}
 		>
-			{editProfileState === "edit-published-project" ? "Save" : "Publish"}
+			{edit_profile === "edit-published-project" ? "Save" : "Publish"}
+			{(api_task === "publish_project" ||
+				api_task === "save_published_project_edit") && (
+				<HashLoader color='#ffffff' size={24} />
+			)}
 		</Button>
 	);
 }
