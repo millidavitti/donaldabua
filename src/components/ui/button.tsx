@@ -16,7 +16,7 @@ export default function Button({
 		<button
 			type={type}
 			className={cn(
-				"outline p-3 py-2 title-medium active:scale-[.99] transition shrink-0",
+				"flex justify-center gap-3 outline p-3 py-2 title-medium active:scale-[.99] transition shrink-0",
 				className,
 			)}
 			onClick={onClick}
