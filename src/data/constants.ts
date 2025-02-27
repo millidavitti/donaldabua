@@ -7,7 +7,7 @@ export const EDIT_PROFILE_STATES = [
 	"edit-title",
 	"edit-hourly-rate",
 	"edit-profile-overview",
-	"edit-tech-stack",
+	"edit-profile-technologies",
 	"edit-employment-history",
 	"edit-socials",
 	"edit-portfolio",
