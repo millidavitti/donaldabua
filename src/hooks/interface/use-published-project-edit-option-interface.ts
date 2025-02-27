@@ -7,7 +7,7 @@ import {
 	project_thumbnail_jotai,
 	project_title_jotai,
 	Project,
-	project_to_edit_jotai,
+	project_snapshot_jotai,
 } from "@/data/atoms/app_data";
 import {
 	edit_profile_jotai,
@@ -19,7 +19,7 @@ import { toast } from "sonner";
 export function usePublishedProjectEditOptionInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const project_title_setter = useSetAtom(project_title_jotai);
-	const project_to_edit_setter = useSetAtom(project_to_edit_jotai);
+	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const project_description_setter = useSetAtom(project_description_jotai);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
@@ -28,7 +28,7 @@ export function usePublishedProjectEditOptionInterface() {
 
 	async function editProject(project: Project) {
 		edit_profile_setter("edit-published-project");
-		project_to_edit_setter(project);
+		project_snapshot_setter(project);
 		project_title_setter(project.title);
 		project_description_setter(project.description);
 		project_thumbnail_setter(project.thumbnail);
@@ -47,8 +47,8 @@ export function usePublishedProjectEditOptionInterface() {
 			project_technologies_setter(projectTechnologies);
 			project_content_setter(projectContent);
 		} catch (error) {
-			console.log("---editProject:getProjectContent---\n", error);
 			edit_profile_setter(null);
+			console.log("---editProject:getProjectContent---\n", error);
 			toast.info("Unable to retrieve project content. Please try again later.");
 		}
 
