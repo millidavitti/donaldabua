@@ -7,7 +7,7 @@ import {
 	technologies_snapshot_jotai,
 	defaultStore,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { api_task_jotai, edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
@@ -19,6 +19,7 @@ export default function useEditProfileTechnologiesInterface() {
 		profile_technologies_jotai,
 	);
 	const technologies_setter = useSetAtom(technologies_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_jotai);
 
 	const profile_snapshot = defaultStore.get(profile_snapshot_jotai);
 
@@ -33,7 +34,9 @@ export default function useEditProfileTechnologiesInterface() {
 		);
 		technologies_setter(defaultStore.get(technologies_snapshot_jotai));
 	}
+
 	async function saveTechnologiesEdit() {
+		api_task_setter("save_technologies_edit");
 		try {
 			const { error } = await updateProfileTechnologiesController(
 				profile_snapshot.id,
@@ -42,8 +45,10 @@ export default function useEditProfileTechnologiesInterface() {
 			if (error) throw error;
 			profile_technologies_snapshot_setter(profile_technologies);
 			edit_profile_setter(null);
+			api_task_setter(null);
 		} catch (error) {
 			console.log("---saveTechnologiesEdit---\n", error);
+			api_task_setter(null);
 			toast.error("Update failed. Please try again later");
 		}
 	}
@@ -52,5 +57,6 @@ export default function useEditProfileTechnologiesInterface() {
 		cancelTechnologiesEdit,
 		saveTechnologiesEdit,
 		profile_technologies_snapshot,
+		api_task,
 	};
 }
