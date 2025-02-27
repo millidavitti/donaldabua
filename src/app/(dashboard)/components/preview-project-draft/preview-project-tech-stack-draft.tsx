@@ -1,8 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { project_technologies_jotai } from "@/data/atoms/app_data";
 import { useAtomValue } from "jotai";
-import { X } from "lucide-react";
-import React from "react";
 import ProfileTechnology from "../profile-technology";
 
 export default function PreviewProjectTechnologies() {
