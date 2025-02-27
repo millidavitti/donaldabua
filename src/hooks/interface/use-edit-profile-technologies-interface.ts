@@ -19,6 +19,7 @@ export default function useEditProfileTechnologiesInterface() {
 		profile_technologies_jotai,
 	);
 	const technologies_setter = useSetAtom(technologies_jotai);
+
 	const profile_snapshot = defaultStore.get(profile_snapshot_jotai);
 
 	function editTechnologies() {
@@ -33,20 +34,13 @@ export default function useEditProfileTechnologiesInterface() {
 		technologies_setter(defaultStore.get(technologies_snapshot_jotai));
 	}
 	async function saveTechnologiesEdit() {
-		console.log(profile_technologies);
 		try {
 			const { error } = await updateProfileTechnologiesController(
 				profile_snapshot.id,
 				profile_technologies,
 			);
 			if (error) throw error;
-			profile_technologies_snapshot_setter((technologies) => [
-				...profile_technologies.filter(
-					(technology) =>
-						!technologies.some((tech) => tech.id === technology.id),
-				),
-				...technologies,
-			]);
+			profile_technologies_snapshot_setter(profile_technologies);
 			edit_profile_setter(null);
 		} catch (error) {
 			console.log("---saveTechnologiesEdit---\n", error);
