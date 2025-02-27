@@ -4,14 +4,16 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import { useState } from "react";
 import ProfileTechnologies from "../profile-technologies";
+import AddProfileTechnologies from "../add-profile-technologies";
+import { profile_technologies_jotai } from "@/data/atoms/app_data";
 
 export default function EditProfileTechnologies() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const [tech, setTech] = useState("");
+	const profile_technologies = useAtomValue(profile_technologies_jotai);
 	return (
 		<>
 			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
@@ -27,7 +29,12 @@ export default function EditProfileTechnologies() {
 					</InteractiveIcon>
 				</Flex>
 				{/* Stack */}
-				<ProfileTechnologies />
+
+				<Flex className='gap-3 flex-wrap shrink-0 grow'>
+					{profile_technologies.map((technology) => (
+						<ProfileTechnologies tech={technology} key={technology.id} />
+					))}
+				</Flex>
 			</Flex>
 
 			<Overlay
@@ -36,10 +43,10 @@ export default function EditProfileTechnologies() {
 			>
 				<Flex
 					flex='column'
-					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'
+					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan transition'
 				>
 					<Flex className='justify-between items-center shrink-0'>
-						<h2 className='text-xl font-semibold'>Edit Tech Stack</h2>
+						<h2 className='text-xl font-semibold'>Edit Profile Technologies</h2>
 						<InteractiveIcon callback={() => edit_profile_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
@@ -59,16 +66,7 @@ export default function EditProfileTechnologies() {
 							Tech
 						</label>
 						<Flex flex='column' className='gap-3'>
-							<ProfileTechnologies />
-							<input
-								id='tech-stack'
-								required
-								value={tech}
-								onChange={(e) => {
-									setTech(e.target.value);
-								}}
-								className='outline p-3'
-							/>
+							<AddProfileTechnologies />
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
