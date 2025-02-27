@@ -30,12 +30,10 @@ export function useEditProfileHourlyRateInterface() {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				hourlyRate: profile_hourly_rate,
 			});
-			if (error) {
-				profile_hourly_rate_setter(profile_snapshot.hourlyRate);
-				toast.error("Update failed. Please try again later");
-			} else profile_snapshot_setter(profile);
+			if (error) throw error;
+			else profile_snapshot_setter(profile);
 		} catch (error) {
-			console.log("---saveTitleEdit---\n", error);
+			console.log("---saveHourlyRateEdit---\n", error);
 			toast.error("Update failed. Please try again later");
 			profile_hourly_rate_setter(profile_snapshot.hourlyRate);
 		}
