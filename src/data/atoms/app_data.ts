@@ -210,13 +210,6 @@ defaultStore.sub(profile_snapshot_jotai, () => {
 export const profile_technologies_snapshot_jotai = atom<Technology[]>([]);
 export const profile_technologies_jotai = atom<Technology[]>([]);
 export const profile_hay_stack_jotai = atom<Technology[]>([]);
-defaultStore.sub(profile_technologies_snapshot_jotai, () => {
-	// Set Profile Technologies
-	defaultStore.set(
-		profile_technologies_jotai,
-		defaultStore.get(profile_technologies_snapshot_jotai),
-	);
-});
 defaultStore.sub(profile_snapshot_jotai, () => {
 	getProfileTechnologiesController(defaultStore.get(profile_snapshot_jotai).id)
 		.then((data) => {
@@ -235,7 +228,13 @@ defaultStore.sub(profile_snapshot_jotai, () => {
 			console.log("---App Data:profile_technologies_jotai---\n", error);
 		});
 });
-
+defaultStore.sub(profile_technologies_snapshot_jotai, () => {
+	// Set Profile Technologies
+	defaultStore.set(
+		profile_technologies_jotai,
+		defaultStore.get(profile_technologies_snapshot_jotai),
+	);
+});
 export type ProjectImage = {
 	id: string;
 	type: "image";

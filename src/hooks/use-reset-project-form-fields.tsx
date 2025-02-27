@@ -7,6 +7,7 @@ import {
 	project_title_jotai,
 } from "@/data/atoms/app_data";
 import {
+	api_task_jotai,
 	edit_profile_jotai,
 	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
@@ -21,6 +22,7 @@ export function useResetProjectFormFields() {
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const api_task_setter = useSetAtom(api_task_jotai);
 
 	function resetProjectFormFields() {
 		project_title_setter("");
@@ -31,6 +33,7 @@ export function useResetProjectFormFields() {
 		project_form_step_setter(null);
 		edit_profile_setter(null);
 		project_snapshot_setter(null);
+		api_task_setter(null);
 	}
 	return resetProjectFormFields;
 }

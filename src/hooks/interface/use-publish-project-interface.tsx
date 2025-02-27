@@ -9,9 +9,9 @@ import {
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { api_task_jotai, edit_profile_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
 import { createProjectController } from "@/backend/create-project.controller";
 import { toast } from "sonner";
@@ -24,9 +24,11 @@ export function usePublishProjectInterface() {
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
 	const project_content = useAtomValue(project_content_jotai);
 	const project_technologies = useAtomValue(project_technologies_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_jotai);
 	const resetProjectFormFields = useResetProjectFormFields();
 
 	async function publishProject() {
+		api_task_setter("publish_project");
 		try {
 			// Create Project
 			const { project, error } = await createProjectController(
@@ -47,12 +49,14 @@ export function usePublishProjectInterface() {
 			projects_snapshot_setter((projects) => [...projects, project]);
 			resetProjectFormFields();
 		} catch (error) {
+			api_task_setter(null);
 			console.log("---publishProject---\n", error);
 			toast.error("An error occurred while publishing the project.");
 		}
 	}
 
 	async function savePublishedProjectEdit() {
+		api_task_setter("save_published_project_edit");
 		// Update Project
 		try {
 			const { update, error } = await updateProjectController(
@@ -77,6 +81,7 @@ export function usePublishProjectInterface() {
 					return project;
 				}),
 			);
+
 			resetProjectFormFields();
 		} catch (error) {
 			projects_snapshot_setter((projects) =>
@@ -85,6 +90,7 @@ export function usePublishProjectInterface() {
 					return project;
 				}),
 			);
+			api_task_setter(null);
 			toast.error("Update failed. Please try again later");
 			console.log("---savePublishedProjectEdit---\n", error);
 		}
@@ -93,6 +99,7 @@ export function usePublishProjectInterface() {
 	return {
 		publishProject,
 		savePublishedProjectEdit,
-		editProfileState: edit_profile,
+		edit_profile,
+		api_task,
 	};
 }
