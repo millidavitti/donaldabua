@@ -8,11 +8,13 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
 import ProfileTechnologies from "../profile-technologies";
 import AddProfileTechnologies from "../add-profile-technologies";
-import { profile_technologies_jotai } from "@/data/atoms/app_data";
+import { profile_technologies_snapshot_jotai } from "@/data/atoms/app_data";
 
 export default function EditProfileTechnologies() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
-	const profile_technologies = useAtomValue(profile_technologies_jotai);
+	const profile_technologies = useAtomValue(
+		profile_technologies_snapshot_jotai,
+	);
 	return (
 		<>
 			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
