@@ -1,9 +1,9 @@
 "use server";
-import { APIResponse } from "@/data/atoms/app_data";
+import { APIResponse, Technology } from "@/data/atoms/app_data";
 
-export async function updateProjectTechnologiesController(
-	projectId: string,
-	projectTechnologies: string[],
+export async function updateProfileTechnologiesController(
+	profileId: string,
+	profileTechnologies: Technology[],
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
@@ -11,11 +11,11 @@ export async function updateProjectTechnologiesController(
 	try {
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/project-technologies/" +
-				projectId,
+				"/profile-technologies/" +
+				profileId,
 			{
 				method: "PUT",
-				body: JSON.stringify(projectTechnologies),
+				body: JSON.stringify(profileTechnologies),
 				headers,
 			},
 		);
@@ -23,7 +23,7 @@ export async function updateProjectTechnologiesController(
 
 		return data as APIResponse<unknown, "info">;
 	} catch (error) {
-		console.log("---createProjectTechnologiesController---\n", error);
+		console.log("---updateProfileTechnologiesController---\n", error);
 		throw error;
 	}
 }

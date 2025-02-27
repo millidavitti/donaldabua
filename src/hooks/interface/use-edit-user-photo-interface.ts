@@ -1,5 +1,5 @@
 import { updateUserController } from "@/backend/update-user.controller";
-import { user_image_jotai, user_jotai } from "@/data/atoms/app_data";
+import { user_image_jotai, user_snapshot_jotai } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
@@ -7,30 +7,28 @@ import { toast } from "sonner";
 export function useEditUserPhotoInterface() {
 	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
 	const [user_image, user_image_setter] = useAtom(user_image_jotai);
-	const [{ id: userId, image }, user_setter] = useAtom(user_jotai);
+	const [user_snapshot, user_snapshot_setter] = useAtom(user_snapshot_jotai);
 
 	function editPhoto() {
 		edit_profile_setter("edit-image");
 	}
 
 	function cancelPhotoEdit() {
-		user_image_setter(image);
+		user_image_setter(user_snapshot.image);
 		edit_profile_setter(null);
 	}
 
 	async function savePhotoEdit() {
 		try {
 			edit_profile_setter(null);
-			const { error, user } = await updateUserController(userId, {
+			const { error, user } = await updateUserController(user_snapshot.id, {
 				image: user_image,
 			});
 
-			if (error) {
-				user_image_setter(image);
-				toast.error("Update failed. Please try again later");
-			} else user_setter(user);
+			if (error) throw error;
+			else user_snapshot_setter(user);
 		} catch (error) {
-			user_image_setter(image);
+			user_image_setter(user_snapshot.image);
 			toast.error("Update failed. Please try again later");
 			console.log("---savePhotoEdit---\n", error);
 		}

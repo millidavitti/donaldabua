@@ -1,22 +1,18 @@
 import Flex from "@/components/layouts/flex";
-import { profile_technologies_jotai } from "@/data/atoms/app_data";
-import { useAtomValue } from "jotai";
-import { X } from "lucide-react";
+import { Technology } from "@/data/atoms/app_data";
+import { ReactNode } from "react";
 
-export default function ProfileTechnologies() {
-	const profile_technologies = useAtomValue(profile_technologies_jotai);
-
+export default function ProfileTechnologies({
+	children,
+	tech,
+}: {
+	children?: ReactNode;
+	tech: Technology;
+}) {
 	return (
-		<Flex className='gap-3 flex-wrap shrink-0 grow'>
-			{profile_technologies.map((tech) => (
-				<Flex className='gap-3 items-center' key={tech.id}>
-					<p className='shrink-0 font-medium'>{tech.name}</p>
-					<X
-						size={24}
-						className='stroke-light-error cursor-pointer active:scale-[.95]'
-					/>
-				</Flex>
-			))}
+		<Flex className='gap-3 items-center'>
+			<p className='shrink-0 font-medium'>{tech.name}</p>
+			{children}
 		</Flex>
 	);
 }

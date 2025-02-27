@@ -1,24 +1,24 @@
 import {
-	project_technologies_jotai,
+	profile_technologies_snapshot_jotai,
 	Technology,
-	project_hay_stack_jotai,
+	profile_hay_stack_jotai,
 } from "@/data/atoms/app_data";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-export default function useDraftProjectTechnologiesInterface() {
-	const [project_technologies, project_technologies_setter] = useAtom(
-		project_technologies_jotai,
+export default function useAddProfileTechnologiesInterface() {
+	const [profile_technologies, profile_technologies_setter] = useAtom(
+		profile_technologies_snapshot_jotai,
 	);
-	const [project_hay_stack, project_hay_stack_setter] = useAtom<Technology[]>(
-		project_hay_stack_jotai,
+	const [profile_hay_stack, profile_hay_stack_setter] = useAtom<Technology[]>(
+		profile_hay_stack_jotai,
 	);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
 	function removeTechnology(tech: Technology) {
-		project_technologies_setter((technologies) =>
+		profile_technologies_setter((technologies) =>
 			technologies.filter((technology) => {
 				return technology.id !== tech.id;
 			}),
@@ -31,7 +31,7 @@ export default function useDraftProjectTechnologiesInterface() {
 
 	function displaySearchResult() {
 		setTimeout(() => {
-			setSearchResult(project_hay_stack);
+			setSearchResult(profile_hay_stack);
 			document.onclick = (e) => {
 				if (!(e.target as HTMLElement).closest("#search-result"))
 					setSearchResult([]);
@@ -41,18 +41,18 @@ export default function useDraftProjectTechnologiesInterface() {
 	}
 
 	function captureAndSearch(value: string) {
-		const search = new FuzzySearch(project_hay_stack, ["name"]);
+		const search = new FuzzySearch(profile_hay_stack, ["name"]);
 		const result = search.search(value);
 		setSearchQuery(value);
 		if (value) setSearchResult(result);
-		else setSearchResult(project_hay_stack);
+		else setSearchResult(profile_hay_stack);
 	}
 
 	function addTechnology(tech: Technology) {
-		project_technologies_setter((technology) => {
+		profile_technologies_setter((technology) => {
 			return [tech, ...technology];
 		});
-		project_hay_stack_setter((technologies) =>
+		profile_hay_stack_setter((technologies) =>
 			technologies.filter((technology) => technology.id !== tech.id),
 		);
 		setSearchQuery("");
@@ -65,7 +65,7 @@ export default function useDraftProjectTechnologiesInterface() {
 		captureAndSearch,
 		displaySearchResult,
 		closeSearchResult,
-		project_technologies,
+		profile_technologies,
 		searchResult,
 		searchQuery,
 	};

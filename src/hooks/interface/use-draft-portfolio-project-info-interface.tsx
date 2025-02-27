@@ -1,5 +1,5 @@
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import {
 	component_to_edit_jotai,
 	edit_profile_jotai,
@@ -12,7 +12,7 @@ import {
 import { toast } from "sonner";
 
 export function useDraftProjectInterface() {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
+	const edit_profile = useAtomValue(edit_profile_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const resetProjectFormFields = useResetProjectFormFields();
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
@@ -54,7 +54,6 @@ export function useDraftProjectInterface() {
 	}
 
 	function closeProjectForm() {
-		edit_profile_setter(null);
 		resetProjectFormFields();
 	}
 	return {
