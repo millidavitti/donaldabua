@@ -16,17 +16,19 @@ export default function AddProfileTechnologies() {
 	} = useAddProfileTechnologiesInterface();
 	return (
 		<>
-			<Flex className='gap-3 flex-wrap shrink-0 grow'>
-				{profile_technologies.map((technology) => (
-					<ProfileTechnology tech={technology} key={technology.id}>
-						<X
-							size={24}
-							className='stroke-light-error cursor-pointer active:scale-[.95]'
-							onClick={() => removeTechnology(technology)}
-						/>
-					</ProfileTechnology>
-				))}
-			</Flex>
+			{Boolean(profile_technologies.length) && (
+				<Flex className='gap-3 flex-wrap shrink-0 grow'>
+					{profile_technologies.map((technology) => (
+						<ProfileTechnology tech={technology} key={technology.id}>
+							<X
+								size={24}
+								className='stroke-light-error cursor-pointer active:scale-[.95]'
+								onClick={() => removeTechnology(technology)}
+							/>
+						</ProfileTechnology>
+					))}
+				</Flex>
+			)}
 			<Flex flex='column' className='relative overflow-visible gap-3'>
 				<input
 					type='text'
