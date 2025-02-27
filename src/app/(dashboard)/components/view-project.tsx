@@ -7,15 +7,12 @@ import PublishedProjectTechStack from "./published-project/published-project-tec
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
 import { Project } from "@/data/atoms/app_data";
-import { useSetAtom } from "jotai";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useResetProjectFormFields } from "@/hooks/use-reset-project-form-fields";
 
 interface ViewPortfolioProject {
 	project: Project;
 }
 export default function ViewProject({ project }: ViewPortfolioProject) {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const resetProjectFormFields = useResetProjectFormFields();
 	return (
 		<Flex
@@ -27,7 +24,6 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
-							edit_profile_setter(null);
 							resetProjectFormFields();
 						},
 					}}
