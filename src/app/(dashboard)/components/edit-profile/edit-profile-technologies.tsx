@@ -31,11 +31,13 @@ export default function EditProfileTechnologies() {
 				</Flex>
 				{/* Stack */}
 
-				<Flex className='gap-3 flex-wrap shrink-0 grow'>
-					{profile_technologies_snapshot.map((technology) => (
-						<ProfileTechnology tech={technology} key={technology.id} />
-					))}
-				</Flex>
+				{Boolean(profile_technologies_snapshot.length) && (
+					<Flex className='gap-3 flex-wrap shrink-0 grow'>
+						{profile_technologies_snapshot.map((technology) => (
+							<ProfileTechnology tech={technology} key={technology.id} />
+						))}
+					</Flex>
+				)}
 			</Flex>
 
 			<Overlay
