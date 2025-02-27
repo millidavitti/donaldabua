@@ -5,8 +5,12 @@ import { getUserLocationController } from "@/backend/get-user-location.controlle
 import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
 import { toast } from "sonner";
+import { getTechnologiesController } from "@/backend/get-technologies.controller";
 
 export const defaultStore = getDefaultStore();
+
+export const technologies_jotai = atom<Technology[]>([]);
+technologies_jotai.onMount = (setAtom) => {};
 
 export type User = {
 	id: string;
@@ -32,9 +36,7 @@ user_jotai.onMount = (setAtom) => {
 					name: "Failed to fetch user",
 					video: null,
 				});
-				toast.info(
-					"We were unable to retrieve your data. Please try again later.",
-				);
+				throw error;
 			} else setAtom(user);
 		})
 		.catch((error) => {
@@ -42,6 +44,16 @@ user_jotai.onMount = (setAtom) => {
 			toast.info(
 				"We were unable to retrieve your data. Please try again later.",
 			);
+		});
+	getTechnologiesController()
+		.then((data) => {
+			const { technologies, error } = data;
+			if (error) throw error;
+			else defaultStore.set(technologies_jotai, technologies);
+		})
+		.catch((error) => {
+			console.log("---App Data:technologies_jotai---\n", error);
+			toast.info("Unable to retrieve technologies. Please try again.");
 		});
 };
 
@@ -73,14 +85,14 @@ defaultStore.sub(user_jotai, () => {
 	getUserLocationController(defaultStore.get(user_jotai).id)
 		.then((data) => {
 			const { location, error } = data;
-			if (error) {
-				toast.info(
-					"We were unable to retrieve your data. Please try again later.",
-				);
-			} else defaultStore.set(user_location_jotai, location);
+			if (error) throw error;
+			else defaultStore.set(user_location_jotai, location);
 		})
 		.catch((error) => {
 			console.log("---App Data:user_location_jotai---\n", error);
+			toast.info(
+				"We were unable to retrieve your data. Please try again later.",
+			);
 		});
 });
 
@@ -125,14 +137,14 @@ defaultStore.sub(user_jotai, () => {
 	getUserProfileController(defaultStore.get(user_jotai).id)
 		.then((data) => {
 			const { profile, error } = data;
-			if (error) {
-				toast.info(
-					"We were unable to retrieve your data. Please try again later.",
-				);
-			} else defaultStore.set(profile_jotai, profile);
+			if (error) throw error;
+			else defaultStore.set(profile_jotai, profile);
 		})
 		.catch((error) => {
 			console.log("---App Data:profile_jotai---\n", error);
+			toast.info(
+				"We were unable to retrieve your data. Please try again later.",
+			);
 		});
 });
 
@@ -201,14 +213,14 @@ defaultStore.sub(profile_jotai, () => {
 	getProjectsController(defaultStore.get(profile_jotai).id)
 		.then((data) => {
 			const { projects, error } = data;
-			if (error)
-				toast.info(
-					"We were unable to retrieve your data. Please try again later.",
-				);
+			if (error) throw error;
 			else defaultStore.set(projects_jotai, projects);
 		})
 		.catch((error) => {
 			console.log("---App Data:projects_jotai---\n", error);
+			toast.info(
+				"We were unable to retrieve your data. Please try again later.",
+			);
 		});
 });
 export const project_to_edit_jotai = atom<Project | null>(null);
@@ -226,14 +238,25 @@ export type Technology = {
 };
 
 export const profile_technologies_jotai = atom<Technology[]>([]);
+export const profile_hay_stack_jotai = atom<Technology[]>([]);
+defaultStore.sub(profile_technologies_jotai, () => {
+	defaultStore.set(
+		profile_hay_stack_jotai,
+		defaultStore
+			.get(technologies_jotai)
+			.filter(
+				(technology) =>
+					!defaultStore
+						.get(profile_technologies_jotai)
+						.some((tech) => tech.id === technology.id),
+			),
+	);
+});
 defaultStore.sub(profile_jotai, () => {
 	getProfileTechnologiesController(defaultStore.get(profile_jotai).id)
 		.then((data) => {
 			const { profileTechnologies, error } = data;
-			if (error)
-				toast.info(
-					"We were unable to retrieve your data. Please try again later.",
-				);
+			if (error) throw error;
 			else defaultStore.set(profile_technologies_jotai, profileTechnologies);
 		})
 		.catch((error) => {
@@ -245,6 +268,20 @@ defaultStore.sub(profile_jotai, () => {
 });
 
 export const project_technologies_jotai = atom<Technology[]>([]);
+export const project_hay_stack_jotai = atom<Technology[]>([]);
+defaultStore.sub(project_technologies_jotai, () => {
+	defaultStore.set(
+		project_hay_stack_jotai,
+		defaultStore
+			.get(profile_technologies_jotai)
+			.filter(
+				(technology) =>
+					!defaultStore
+						.get(project_technologies_jotai)
+						.some((tech) => tech.id === technology.id),
+			),
+	);
+});
 
 export const selected_project_jotai = atom<Project | null>(null);
 
@@ -260,8 +297,6 @@ export type APIResponse<T, K extends string> = {
 	error?: unknown;
 } & { [key in K]: T };
 
-export const technologies_jotai = atom<Technology[]>([]);
-
 export type ProjectTechnology = {
 	projectId: string;
 	technologyId: string;
@@ -272,18 +307,3 @@ export type ProjectData = {
 	technologies: Technology[];
 	content: ProjectContent;
 };
-
-export const hay_stack_jotai = atom<Technology[]>([]);
-defaultStore.sub(project_technologies_jotai, () => {
-	defaultStore.set(
-		hay_stack_jotai,
-		defaultStore
-			.get(profile_technologies_jotai)
-			.filter(
-				(technology) =>
-					!defaultStore
-						.get(project_technologies_jotai)
-						.some((tech) => tech.id === technology.id),
-			),
-	);
-});
