@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import { Technology } from "@/data/atoms/app_data";
 import { ReactNode } from "react";
 
-export default function ProfileTechnologies({
+export default function ProfileTechnology({
 	children,
 	tech,
 }: {

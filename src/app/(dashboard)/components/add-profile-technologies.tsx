@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
-import ProfileTechnologies from "./profile-technologies";
+import ProfileTechnology from "./profile-technology";
 
 export default function AddProfileTechnologies() {
 	const {
@@ -18,13 +18,13 @@ export default function AddProfileTechnologies() {
 		<>
 			<Flex className='gap-3 flex-wrap shrink-0 grow'>
 				{profile_technologies.map((technology) => (
-					<ProfileTechnologies tech={technology} key={technology.id}>
+					<ProfileTechnology tech={technology} key={technology.id}>
 						<X
 							size={24}
 							className='stroke-light-error cursor-pointer active:scale-[.95]'
 							onClick={() => removeTechnology(technology)}
 						/>
-					</ProfileTechnologies>
+					</ProfileTechnology>
 				))}
 			</Flex>
 			<Flex flex='column' className='relative overflow-visible gap-3'>

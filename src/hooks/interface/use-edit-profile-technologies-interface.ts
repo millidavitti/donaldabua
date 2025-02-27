@@ -1,0 +1,62 @@
+import { updateProfileTechnologiesController } from "@/backend/update-profile-technologies.controller";
+import {
+	profile_technologies_snapshot_jotai,
+	profile_technologies_jotai,
+	profile_snapshot_jotai,
+	technologies_jotai,
+	technologies_snapshot_jotai,
+	defaultStore,
+} from "@/data/atoms/app_data";
+import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { useSetAtom, useAtom } from "jotai";
+import { toast } from "sonner";
+
+export default function useEditProfileTechnologiesInterface() {
+	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const [profile_technologies_snapshot, profile_technologies_snapshot_setter] =
+		useAtom(profile_technologies_snapshot_jotai);
+	const [profile_technologies, profile_technologies_setter] = useAtom(
+		profile_technologies_jotai,
+	);
+	const technologies_setter = useSetAtom(technologies_jotai);
+	const profile_snapshot = defaultStore.get(profile_snapshot_jotai);
+
+	function editTechnologies() {
+		edit_profile_setter("edit-profile-technologies");
+	}
+
+	function cancelTechnologiesEdit() {
+		edit_profile_setter(null);
+		profile_technologies_setter(
+			defaultStore.get(profile_technologies_snapshot_jotai),
+		);
+		technologies_setter(defaultStore.get(technologies_snapshot_jotai));
+	}
+	async function saveTechnologiesEdit() {
+		console.log(profile_technologies);
+		try {
+			const { error } = await updateProfileTechnologiesController(
+				profile_snapshot.id,
+				profile_technologies,
+			);
+			if (error) throw error;
+			profile_technologies_snapshot_setter((technologies) => [
+				...profile_technologies.filter(
+					(technology) =>
+						!technologies.some((tech) => tech.id === technology.id),
+				),
+				...technologies,
+			]);
+			edit_profile_setter(null);
+		} catch (error) {
+			console.log("---saveTechnologiesEdit---\n", error);
+			toast.error("Update failed. Please try again later");
+		}
+	}
+	return {
+		editTechnologies,
+		cancelTechnologiesEdit,
+		saveTechnologiesEdit,
+		profile_technologies_snapshot,
+	};
+}

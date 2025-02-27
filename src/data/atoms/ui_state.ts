@@ -9,7 +9,7 @@ export type EditProfileStates =
 	| "edit-title"
 	| "edit-hourly-rate"
 	| "edit-profile-overview"
-	| "edit-tech-stack"
+	| "edit-profile-technologies"
 	| "edit-employment-history"
 	| "edit-socials"
 	| "edit-portfolio"
