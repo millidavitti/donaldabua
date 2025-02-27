@@ -14,14 +14,12 @@ export function useDeleteUserVideoOptionInterface() {
 				video: null,
 			});
 
-			if (error) {
-				user_video_setter(user_snapshot.video);
-				toast.error("Update failed. Please try again later");
-			} else user_snapshot_setter(user);
+			if (error) throw error;
+			else user_snapshot_setter(user);
 		} catch (error) {
 			user_video_setter(user_snapshot.video);
 			toast.error("Update failed. Please try again later");
-			console.log("---saveVideoEdit---\n", error);
+			console.log("---deleteVideo---\n", error);
 		}
 	}
 
