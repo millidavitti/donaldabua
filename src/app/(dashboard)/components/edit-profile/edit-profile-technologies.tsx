@@ -6,7 +6,6 @@ import Button from "@/components/ui/button";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { EditIcon, X } from "lucide-react";
-import { useState } from "react";
 import ProfileTechnologies from "../profile-technologies";
 import AddProfileTechnologies from "../add-profile-technologies";
 import { profile_technologies_jotai } from "@/data/atoms/app_data";
