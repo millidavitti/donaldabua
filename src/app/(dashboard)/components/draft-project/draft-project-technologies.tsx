@@ -19,7 +19,7 @@ export default function DraftProjectTechnologies() {
 				Technologies
 			</label>
 			{Boolean(project_technologies.length) && (
-				<Flex className='gap-3 shrink-0 outline-none overflow-x-auto no-scrollbar'>
+				<Flex className='gap-3 shrink-0 overflow-x-auto no-scrollbar'>
 					{project_technologies.map((tech) => (
 						<Flex className='gap-3 items-center shrink-0' key={tech.id}>
 							<p className='shrink-0 font-medium'>{tech.name}</p>
