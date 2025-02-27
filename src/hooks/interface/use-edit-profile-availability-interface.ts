@@ -1,7 +1,7 @@
 import { updateUserProfile } from "@/backend/update-user-profile.controller";
 import {
 	availability_jotai,
-	profile_jotai,
+	profile_snapshot_jotai,
 	ProfileAvailabilityOptions,
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
@@ -12,8 +12,9 @@ export function useEditProfileAvailabilityInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_hours_per_week, profile_hours_per_week_setter] =
 		useAtom(availability_jotai);
-	const [{ id: profileId, availability }, profile_setter] =
-		useAtom(profile_jotai);
+	const [{ id: profileId, availability }, profile_setter] = useAtom(
+		profile_snapshot_jotai,
+	);
 
 	function editAvailability() {
 		edit_profile_setter("edit-hours-per-week");
