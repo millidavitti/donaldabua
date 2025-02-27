@@ -33,10 +33,8 @@ export function useEditProfileAvailabilityInterface() {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				availability: profile_availability,
 			});
-			if (error) {
-				profile_availability_setter(profile_snapshot.availability);
-				toast.error("Update failed. Please try again later");
-			} else profile_snapshot_setter(profile);
+			if (error) throw error;
+			else profile_snapshot_setter(profile);
 		} catch (error) {
 			console.log("---saveAvailabilityEdit---\n", error);
 			toast.error("Update failed. Please try again later");
