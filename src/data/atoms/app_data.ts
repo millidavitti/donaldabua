@@ -6,6 +6,7 @@ import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
+import { get } from "http";
 
 export const defaultStore = getDefaultStore();
 
@@ -14,7 +15,14 @@ export type Technology = {
 	name: string;
 };
 export const technologies_snapshot_jotai = atom<Technology[]>([]);
-
+export const technologies_jotai = atom<Technology[]>([]);
+defaultStore.sub(technologies_snapshot_jotai, () => {
+	// Set Technologies
+	defaultStore.set(
+		technologies_jotai,
+		defaultStore.get(technologies_snapshot_jotai),
+	);
+});
 export type User = {
 	id: string;
 	name: string;
@@ -201,18 +209,13 @@ defaultStore.sub(profile_snapshot_jotai, () => {
 });
 
 export const profile_technologies_snapshot_jotai = atom<Technology[]>([]);
+export const profile_technologies_jotai = atom<Technology[]>([]);
 export const profile_hay_stack_jotai = atom<Technology[]>([]);
 defaultStore.sub(profile_technologies_snapshot_jotai, () => {
+	// Set Profile Technologies
 	defaultStore.set(
-		profile_hay_stack_jotai,
-		defaultStore
-			.get(technologies_snapshot_jotai)
-			.filter(
-				(technology) =>
-					!defaultStore
-						.get(profile_technologies_snapshot_jotai)
-						.some((tech) => tech.id === technology.id),
-			),
+		profile_technologies_jotai,
+		defaultStore.get(profile_technologies_snapshot_jotai),
 	);
 });
 defaultStore.sub(profile_snapshot_jotai, () => {
