@@ -34,3 +34,10 @@ export const project_form_step_jotai = atom<
 >(null);
 
 export const component_to_edit_jotai = atom<string | null>(null);
+
+export type APITask =
+	| "publish_project"
+	| "save_published_project_edit"
+	| "save_technologies_edit"
+	| null;
+export const api_task_jotai = atom<APITask>(null);
