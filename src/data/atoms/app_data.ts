@@ -10,7 +10,6 @@ import { getTechnologiesController } from "@/backend/get-technologies.controller
 export const defaultStore = getDefaultStore();
 
 export const technologies_jotai = atom<Technology[]>([]);
-technologies_jotai.onMount = (setAtom) => {};
 
 export type User = {
 	id: string;
