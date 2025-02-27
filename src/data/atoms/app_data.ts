@@ -167,10 +167,11 @@ defaultStore.sub(user_snapshot_jotai, () => {
 		});
 });
 
-export const availability_jotai = atom<ProfileAvailabilityOptions>("None");
+export const profile_availability_jotai =
+	atom<ProfileAvailabilityOptions>("None");
 defaultStore.sub(profile_snapshot_jotai, () => {
 	defaultStore.set(
-		availability_jotai,
+		profile_availability_jotai,
 		defaultStore.get(profile_snapshot_jotai).availability,
 	);
 });
