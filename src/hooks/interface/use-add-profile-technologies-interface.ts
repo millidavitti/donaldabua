@@ -1,5 +1,5 @@
 import {
-	profile_technologies_jotai,
+	profile_technologies_snapshot_jotai,
 	Technology,
 	profile_hay_stack_jotai,
 } from "@/data/atoms/app_data";
@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function useAddProfileTechnologiesInterface() {
 	const [profile_technologies, profile_technologies_setter] = useAtom(
-		profile_technologies_jotai,
+		profile_technologies_snapshot_jotai,
 	);
 	const [profile_hay_stack, profile_hay_stack_setter] = useAtom<Technology[]>(
 		profile_hay_stack_jotai,
