@@ -12,7 +12,7 @@ export function useEditProfileAvailabilityInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
 	const [profile_hours_per_week, profile_hours_per_week_setter] =
 		useAtom(availability_jotai);
-	const [{ id: profileId, availability }, profile_setter] = useAtom(
+	const [profile_snapshot, profile_snapshot_setter] = useAtom(
 		profile_snapshot_jotai,
 	);
 
@@ -29,17 +29,17 @@ export function useEditProfileAvailabilityInterface() {
 	async function saveAvailabilityEdit() {
 		edit_profile_setter(null);
 		try {
-			const { error, profile } = await updateUserProfile(profileId, {
+			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				availability: profile_hours_per_week,
 			});
 			if (error) {
-				profile_hours_per_week_setter(availability);
+				profile_hours_per_week_setter(profile_snapshot.availability);
 				toast.error("Update failed. Please try again later");
-			} else profile_setter(profile);
+			} else profile_snapshot_setter(profile);
 		} catch (error) {
 			console.log("---saveAvailabilityEdit---\n", error);
 			toast.error("Update failed. Please try again later");
-			profile_hours_per_week_setter(availability);
+			profile_hours_per_week_setter(profile_snapshot.availability);
 		}
 	}
 
