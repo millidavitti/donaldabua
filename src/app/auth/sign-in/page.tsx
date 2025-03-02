@@ -10,7 +10,7 @@ export default function SignIn() {
 	useEffect(() => {
 		if (params.get("verified"))
 			toast.info("Your email has been verified", { position: "bottom-center" });
-	}, []);
+	}, [params]);
 	return (
 		<form>
 			<Flex flex='column' className='gap-3'>
