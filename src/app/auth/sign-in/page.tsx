@@ -1,13 +1,18 @@
+"use client";
 import Button from "@/components/ui/button";
 import Flex from "@/components/layouts/flex";
+import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
+import { useEffect } from "react";
 
 export default function SignIn() {
+	const params = useSearchParams();
+	useEffect(() => {
+		if (params.get("verified"))
+			toast.info("Your email has been verified", { position: "bottom-center" });
+	}, []);
 	return (
-		<form
-			action={async (formData) => {
-				"use server";
-			}}
-		>
+		<form>
 			<Flex flex='column' className='gap-3'>
 				{/* <label htmlFor='name'>Full Name</label>
 				<input type='text' id='name' name='name' className='outline p-3' />{" "} */}
@@ -19,7 +24,7 @@ export default function SignIn() {
 					className='outline p-3'
 					required
 				/>
-				<Button type='submit'>Create Account</Button>
+				<Button type='submit'>Sign In</Button>
 			</Flex>
 		</form>
 	);
