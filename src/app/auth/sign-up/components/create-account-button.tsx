@@ -14,8 +14,11 @@ export default function CreateAccountButton() {
 						await signUpController(formData);
 						toast.info("A verification email has been sent");
 					} catch (error) {
-						console.log("---CreateAccountButton---\n", (error as any).message);
-						if ((error as any).message.includes("duplicate"))
+						console.log(
+							"---CreateAccountButton---\n",
+							(error as Record<string, string>).message,
+						);
+						if ((error as Record<string, string>).message.includes("duplicate"))
 							toast.info("Email already exists. Try signing in ");
 						else toast.info("Unable to create your account at the moment ");
 					}
