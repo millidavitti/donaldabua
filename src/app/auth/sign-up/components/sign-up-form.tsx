@@ -4,8 +4,6 @@ import Button from "@/components/ui/button";
 import { signUpController } from "@/backend/auth/sign-up.controller";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
 
 export default function SignUpForm() {
 	return (
