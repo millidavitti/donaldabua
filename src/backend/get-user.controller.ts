@@ -4,6 +4,7 @@ export async function getUserController() {
 	try {
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/",
+			{ method: "GET", credentials: "include" },
 		);
 		const {
 			users: [user],
