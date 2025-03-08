@@ -17,7 +17,7 @@ export default function SignInForm() {
 		<form
 			action={async (formData) => {
 				try {
-					// setSignIn(true);
+					setSignIn(true);
 					await signInController(formData);
 					toast.info("A magic link has been sent");
 				} catch (error) {
