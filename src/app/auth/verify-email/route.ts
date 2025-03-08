@@ -2,7 +2,6 @@ import { getErrorMessage } from "@/utils/get-error-message";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-	console.log("---ORIGIN---\n", Object.fromEntries(req.headers.entries()));
 	try {
 		const searchParams = req.nextUrl.searchParams;
 		const res = await fetch(
