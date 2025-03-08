@@ -19,11 +19,11 @@ export async function GET(req: NextRequest) {
 			status: 302,
 			headers: {
 				...Object.fromEntries(res.headers.entries()),
-				Location: `${process.env.ORIGIN}/auth/sign-in?verified=${status}`,
+				Location: `${process.env.ORIGIN}/auth/sign-in?status=${status}`,
 			},
 		});
 	} catch (error) {
-		console.error("---verifyEmailRoute---\n", error);
+		console.error("---Email Verification Route---\n", error);
 		return new Response(null, {
 			status: 302,
 			headers: {

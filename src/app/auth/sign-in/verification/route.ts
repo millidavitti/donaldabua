@@ -11,10 +11,10 @@ export async function GET(req: NextRequest) {
 			{ method: "GET", headers: req.headers, credentials: "include" },
 		);
 
-		const { error, authenticated } = await res.json();
+		const { error, status } = await res.json();
 
 		if (error) throw new Error(error);
-		return authenticated
+		return status === "User authenticated"
 			? new Response(null, {
 					status: 302,
 					headers: {
@@ -26,11 +26,11 @@ export async function GET(req: NextRequest) {
 					status: 302,
 					headers: {
 						...Object.fromEntries(res.headers.entries()),
-						Location: `${process.env.ORIGIN}/auth/sign-in?verified=${authenticated}`,
+						Location: `${process.env.ORIGIN}/auth/sign-in?status=${status}`,
 					},
 			  });
 	} catch (error) {
-		console.error("---verifyEmailRoute---\n", error);
+		console.error("---Sing In Verification Route---\n", error);
 		return new Response(null, {
 			status: 302,
 			headers: {

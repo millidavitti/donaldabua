@@ -1,6 +1,9 @@
 import { getErrorMessage } from "@/utils/get-error-message";
 
-export async function signUpController(formData: FormData) {
+export async function signUpController(formData: {
+	email: string;
+	name: string;
+}) {
 	try {
 		const headers = new Headers();
 		headers.append("Content-type", "application/json");
@@ -8,7 +11,7 @@ export async function signUpController(formData: FormData) {
 			process.env.NEXT_PUBLIC_AUTH_ENDPOINT + "/sign-up/",
 			{
 				method: "POST",
-				body: JSON.stringify(Object.fromEntries(formData.entries())),
+				body: JSON.stringify(formData),
 				headers,
 				credentials: "include",
 			},
