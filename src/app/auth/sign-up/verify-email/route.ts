@@ -6,8 +6,8 @@ export async function GET(req: NextRequest) {
 		const searchParams = req.nextUrl.searchParams;
 		const res = await fetch(
 			`${process.env.AUTH_ENDPOINT!}/verify-email/${searchParams.get(
-				"email",
-			)}/${searchParams.get("verification-token")}`,
+				"verification-token",
+			)}`,
 			{ method: "GET", headers: req.headers },
 		);
 
@@ -18,9 +18,8 @@ export async function GET(req: NextRequest) {
 		return new Response(null, {
 			status: 302,
 			headers: {
+				...Object.fromEntries(res.headers.entries()),
 				Location: `${process.env.ORIGIN}/auth/sign-in?verified=${status}`,
-				"Set-cookie":
-					"connect.sid=; path=/; expires=Thu, 1 Jan 1970 00:00:00 GMT;",
 			},
 		});
 	} catch (error) {
@@ -31,8 +30,6 @@ export async function GET(req: NextRequest) {
 				Location: `${
 					process.env.ORIGIN
 				}/auth/sign-in?verificationError=${getErrorMessage(error)}`,
-				"Set-Cookie":
-					"connect.sid=; path=/; expires=Thu, 1 Jan 1970 00:00:00 GMT;",
 			},
 		});
 	}
