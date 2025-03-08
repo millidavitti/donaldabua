@@ -4,15 +4,23 @@ import Button from "@/components/ui/button";
 import { signUpController } from "@/backend/auth/sign-up.controller";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/utils/get-error-message";
+import { HashLoader } from "react-spinners";
+import { useState } from "react";
 
 export default function SignUpForm() {
+	const [formData, setFormData] = useState({ email: "", name: "" });
+	const [signUp, setSignUp] = useState(false);
 	return (
 		<form
-			action={async (formData) => {
+			onSubmit={async (e) => {
+				e.preventDefault();
 				try {
+					setSignUp(true);
 					await signUpController(formData);
+					setSignUp(false);
 					toast.info("A verification email has been sent");
 				} catch (error) {
+					setSignUp(false);
 					console.log("---CreateAccountButton---\n", error);
 					if (getErrorMessage(error).includes("duplicate"))
 						toast.info("Email already exists. Sign in");
@@ -22,7 +30,13 @@ export default function SignUpForm() {
 		>
 			<Flex flex='column' className='gap-3'>
 				<label htmlFor='name'>Full Name</label>
-				<input type='text' id='name' name='name' className='outline p-3' />
+				<input
+					type='text'
+					id='name'
+					name='name'
+					className='outline p-3'
+					onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+				/>
 				<label htmlFor='email'>Email</label>
 				<input
 					type='email'
@@ -30,9 +44,10 @@ export default function SignUpForm() {
 					name='email'
 					className='outline p-3'
 					required
+					onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 				/>
 				<Button type='submit' htmlProps={{}}>
-					Create Account
+					Create Account {signUp && <HashLoader size={24} />}
 				</Button>
 			</Flex>
 		</form>
