@@ -26,6 +26,7 @@ export default function SignInForm() {
 					toast.info(status);
 					setSignIn(false);
 				} catch (error) {
+					setSignIn(false);
 					console.error("---SignInForm---\n", error);
 					toast.info("Unable to sign you in to account at the moment");
 				}
