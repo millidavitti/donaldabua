@@ -15,7 +15,7 @@ export default function SignUpForm() {
 				} catch (error) {
 					console.log("---CreateAccountButton---\n", error);
 					if (getErrorMessage(error).includes("duplicate"))
-						toast.info("Email already exists. Try signing in");
+						toast.info("Email already exists. Sign in");
 					else toast.info("Unable to create your account at the moment ");
 				}
 			}}
