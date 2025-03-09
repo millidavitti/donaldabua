@@ -1,28 +1,10 @@
 import { atom } from "jotai";
+import { EDIT_PROFILE_STATES, EDIT_PROJECT_STATES } from "../constants";
 
-export type EditProfileStates =
-	| "edit-image"
-	| "edit-location"
-	| "edit-name"
-	| "edit-video"
-	| "edit-hours-per-week"
-	| "edit-title"
-	| "edit-hourly-rate"
-	| "edit-profile-overview"
-	| "edit-profile-technologies"
-	| "edit-employment-history"
-	| "edit-socials"
-	| "edit-portfolio"
-	| "edit-published-project"
-	| "view-project"
-	| null;
+export type EditProfileStates = (typeof EDIT_PROFILE_STATES)[number];
 export const edit_profile_jotai = atom<EditProfileStates>(null);
 
-export type EditProjectStates =
-	| "edit-project-video"
-	| "edit-project-image"
-	| "edit-project-markdown"
-	| null;
+export type EditProjectStates = (typeof EDIT_PROJECT_STATES)[number];
 export const edit_project_jotai = atom<EditProjectStates>(null);
 
 export const content_hover_state_jotai = atom<
