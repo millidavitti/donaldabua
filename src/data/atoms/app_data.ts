@@ -6,6 +6,7 @@ import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
+import { AVAILABILITY_OPTIONS } from "../constants";
 
 export const defaultStore = getDefaultStore();
 
@@ -138,11 +139,7 @@ export type UserSocials = {
 };
 export const user_socials_jotai = atom<UserSocials[]>([]);
 
-export type ProfileAvailabilityOptions =
-	| "More than 30 hrs/week"
-	| "Less than 30 hrs/week"
-	| "As needed - open to offers"
-	| "None";
+export type ProfileAvailabilityOptions = (typeof AVAILABILITY_OPTIONS)[number];
 
 export type UserProfile = {
 	id: string;
