@@ -203,7 +203,7 @@ export const profile_overview_jotai = atom<string>("");
 defaultStore.sub(profile_snapshot_jotai, () => {
 	defaultStore.set(
 		profile_overview_jotai,
-		defaultStore.get(profile_snapshot_jotai).overview,
+		defaultStore.get(profile_snapshot_jotai).overview || "",
 	);
 });
 
@@ -304,7 +304,7 @@ defaultStore.sub(project_technologies_jotai, () => {
 
 export type APIResponse<T, K extends string> = {
 	success?: boolean;
-	error?: unknown;
+	error?: string;
 } & { [key in K]: T };
 
 export type ProjectTechnology = {
