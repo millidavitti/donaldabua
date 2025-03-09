@@ -16,8 +16,7 @@ export default function CreateProfile() {
 	return (
 		<Flex className='self-start'>
 			<Button type='button' onClick={createProfile}>
-				<span>Create Profile</span>
-				<CirclePlus size={24} />
+				Create Profile
 			</Button>
 
 			<Overlay
