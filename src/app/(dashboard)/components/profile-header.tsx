@@ -1,9 +1,9 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import React from "react";
 import EditUserPhoto from "./edit-profile-user/edit-user-photo";
 import EditUserName from "./edit-profile-user/edit-user-name";
 import EditUserLocation from "./edit-profile-user/edit-user-location";
+import CreateProfile from "./create-profile";
 
 export default function ProfileHeader() {
 	return (
@@ -13,6 +13,7 @@ export default function ProfileHeader() {
 				<EditUserName />
 				<EditUserLocation />
 			</Flex>
+			<CreateProfile />
 		</Flex>
 	);
 }
