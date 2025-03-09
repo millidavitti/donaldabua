@@ -6,10 +6,7 @@ import {
 	EditProjectStates,
 	EditProfileStates,
 } from "@/data/atoms/ui_state";
-import {
-	EDIT_PORTFOLIO_PROJECT_STATES,
-	EDIT_PROFILE_STATES,
-} from "@/data/constants";
+import { EDIT_PROJECT_STATES, EDIT_PROFILE_STATES } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";
@@ -37,11 +34,15 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 						stateFlag === edit_project || stateFlag === edit_profile
 					}
 					onClick={(e) => {
-						if (EDIT_PROFILE_STATES.includes((e.target as HTMLElement).id))
+						if (
+							EDIT_PROFILE_STATES.includes(
+								(e.target as HTMLElement).id as EditProfileStates,
+							)
+						)
 							edit_profile_setter(null);
 						else if (
-							EDIT_PORTFOLIO_PROJECT_STATES.includes(
-								(e.target as HTMLElement).id,
+							EDIT_PROJECT_STATES.includes(
+								(e.target as HTMLElement).id as EditProjectStates,
 							)
 						)
 							edit_project_setter(null);
