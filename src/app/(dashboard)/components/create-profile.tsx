@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useCreateProfileInterface from "@/hooks/interface/use-create-profile-interface";
-import { CirclePlus, X } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function CreateProfile() {
 	const {
