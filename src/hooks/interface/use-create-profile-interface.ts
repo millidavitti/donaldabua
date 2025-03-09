@@ -1,12 +1,11 @@
 import { createProfileController } from "@/backend/create-profile.controller";
 import {
 	profile_snapshot_jotai,
-	profile_title_jotai,
 	user_snapshot_jotai,
 } from "@/data/atoms/app_data";
 import { edit_profile_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import React, { useState } from "react";
+import { useAtomValue, useSetAtom } from "jotai";
+import { useState } from "react";
 
 export default function useCreateProfileInterface() {
 	const edit_profile_setter = useSetAtom(edit_profile_jotai);
