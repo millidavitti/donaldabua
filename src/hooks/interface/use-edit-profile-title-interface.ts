@@ -28,10 +28,10 @@ export function useEditProfileTitleInterface() {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				title: profile_title,
 			});
-			if (error) throw error;
-			else profile_snapshot_setter(profile);
+			if (error) throw new Error(error);
+			else if (profile) profile_snapshot_setter(profile);
 		} catch (error) {
-			console.log("---saveTitleEdit---\n", error);
+			console.error("---saveTitleEdit---\n", error);
 			toast.error("Update failed. Please try again later");
 			profile_title_setter(profile_snapshot.title);
 		}

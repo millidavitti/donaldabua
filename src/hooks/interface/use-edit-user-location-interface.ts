@@ -21,13 +21,12 @@ export function useEditUserLocationInterface() {
 		user_location_snapshot_jotai,
 	);
 	const user_snapshot = useAtomValue(user_snapshot_jotai);
-
 	function editLocation() {
 		edit_profile_setter("edit-location");
 	}
 	function cancelLocationEdit() {
-		user_location_city_setter(user_location_snapshot.city);
-		user_location_country_setter(user_location_snapshot.country);
+		user_location_city_setter(user_location_snapshot?.city);
+		user_location_country_setter(user_location_snapshot?.country);
 		edit_profile_setter(null);
 	}
 
@@ -42,13 +41,13 @@ export function useEditUserLocationInterface() {
 				},
 			);
 
-			if (error) throw error;
+			if (error) throw new Error(error);
 			else user_location_snapshot_setter(location);
 		} catch (error) {
 			user_location_city_setter(user_location_snapshot.city);
 			user_location_country_setter(user_location_snapshot.country);
 			toast.error("Update failed. Please try again later");
-			console.log("---saveLocationEdit---\n", error);
+			console.error("---saveLocationEdit---\n", error);
 		}
 	}
 

@@ -4,6 +4,7 @@ import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useCreateProfileInterface from "@/hooks/interface/use-create-profile-interface";
 import { X } from "lucide-react";
+import { HashLoader } from "react-spinners";
 
 export default function CreateProfile() {
 	const {
@@ -12,6 +13,7 @@ export default function CreateProfile() {
 		createProfile,
 		profileTitle,
 		saveProfile,
+		api_task,
 	} = useCreateProfileInterface();
 	return (
 		<Flex className='self-start'>
@@ -62,7 +64,10 @@ export default function CreateProfile() {
 							className='outline p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
-							Create Profile
+							Create Profile{" "}
+							{api_task === "create_profile" && (
+								<HashLoader size={24} color='#fff' />
+							)}
 						</Button>
 					</form>
 				</Flex>

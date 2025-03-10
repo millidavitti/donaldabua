@@ -1,5 +1,5 @@
-"use server";
 import { APIResponse, UserLocation } from "@/data/atoms/app_data";
+import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function updateUserLocationController(
 	userId: string,
@@ -17,6 +17,7 @@ export async function updateUserLocationController(
 				method: "PUT",
 				body: JSON.stringify(update),
 				headers,
+				credentials: "include",
 			},
 		);
 		const data = await res.json();
@@ -24,6 +25,6 @@ export async function updateUserLocationController(
 		return data as APIResponse<UserLocation, "location">;
 	} catch (error) {
 		console.log("---updateUserLocationController---\n", error);
-		throw error;
+		throw new Error(getErrorMessage(error));
 	}
 }
