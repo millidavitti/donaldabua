@@ -21,5 +21,6 @@ export type APITask =
 	| "publish_project"
 	| "save_published_project_edit"
 	| "save_technologies_edit"
+	| "create_profile"
 	| null;
 export const api_task_jotai = atom<APITask>(null);
