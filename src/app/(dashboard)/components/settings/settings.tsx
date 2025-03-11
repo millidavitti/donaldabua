@@ -5,7 +5,6 @@ import Overlay from "@/components/layouts/overlay";
 import { SettingsIcon, X } from "lucide-react";
 import Button from "@/components/ui/button";
 import SettingsView from "./settings-view";
-import { signOut } from "@/utils/auth";
 import { HashLoader } from "react-spinners";
 import useSettingsInterface from "@/hooks/interface/use-settings-interface";
 
