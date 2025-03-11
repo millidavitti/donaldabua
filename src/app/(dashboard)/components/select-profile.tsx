@@ -15,7 +15,7 @@ export default function SelectProfile() {
 			</Button>
 
 			<Overlay
-				stateFlag='switch-profile'
+				stateFlag='select-profile'
 				className='flex justify-center items-center'
 			>
 				<Flex
