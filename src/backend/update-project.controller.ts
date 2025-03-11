@@ -1,4 +1,3 @@
-"use server";
 import { APIResponse, Project, ProjectData } from "@/data/atoms/app_data";
 
 export async function updateProjectController(
@@ -15,6 +14,7 @@ export async function updateProjectController(
 				method: "PUT",
 				body: JSON.stringify(update),
 				headers,
+				credentials: "include",
 			},
 		);
 		const data = await res.json();

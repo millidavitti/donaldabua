@@ -28,7 +28,7 @@ export function usePublishProjectInterface() {
 	const resetProjectFormFields = useResetProjectFormFields();
 
 	async function publishProject() {
-		api_task_setter("publish_project");
+		api_task_setter("publish-project");
 		try {
 			// Create Project
 			const { project, error } = await createProjectController(
@@ -56,7 +56,7 @@ export function usePublishProjectInterface() {
 	}
 
 	async function savePublishedProjectEdit() {
-		api_task_setter("save_published_project_edit");
+		api_task_setter("save-published-project-edit");
 		// Update Project
 		try {
 			const { update, error } = await updateProjectController(

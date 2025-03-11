@@ -79,7 +79,7 @@ export default function EditProfileTechnologies() {
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
-							{api_task === "save_technologies_edit" && (
+							{api_task === "save-technologies-edit" && (
 								<HashLoader color='#ffffff' size={24} />
 							)}
 						</Button>

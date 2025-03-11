@@ -36,7 +36,7 @@ export default function useEditProfileTechnologiesInterface() {
 	}
 
 	async function saveTechnologiesEdit() {
-		api_task_setter("save_technologies_edit");
+		api_task_setter("save-technologies-edit");
 		try {
 			const { error } = await updateProfileTechnologiesController(
 				profile_snapshot.id,

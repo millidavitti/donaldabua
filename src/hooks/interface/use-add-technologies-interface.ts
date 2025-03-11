@@ -4,6 +4,8 @@ import {
 	technologies_hay_stack_jotai,
 	technologies_snapshot_jotai,
 	defaultStore,
+	profile_hay_stack_jotai,
+	profile_technologies_jotai,
 } from "@/data/atoms/app_data";
 import { createId } from "@paralleldrive/cuid2";
 import FuzzySearch from "fuzzy-search";
@@ -79,9 +81,21 @@ export default function useAddTechnologiesInterface() {
 	};
 }
 
-defaultStore.sub(technologies_snapshot_jotai, () => {
+defaultStore.sub(technologies_jotai, () => {
 	defaultStore.set(
 		technologies_hay_stack_jotai,
-		defaultStore.get(technologies_snapshot_jotai),
+		defaultStore.get(technologies_jotai),
+	);
+
+	defaultStore.set(
+		profile_hay_stack_jotai,
+		defaultStore
+			.get(technologies_jotai)
+			.filter(
+				(technology) =>
+					!defaultStore
+						.get(profile_technologies_jotai)
+						.some((tech) => tech.id === technology.id),
+			),
 	);
 });
