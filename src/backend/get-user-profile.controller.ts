@@ -1,10 +1,10 @@
 import { APIResponse, UserProfile } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
 
-export async function getUserProfileController(userId: string) {
+export async function getUserProfileController(profileId: string) {
 	try {
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + userId,
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + profileId,
 			{
 				credentials: "include",
 			},
