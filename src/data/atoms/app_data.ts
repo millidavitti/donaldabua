@@ -16,6 +16,7 @@ export type Technology = {
 };
 export const technologies_snapshot_jotai = atom<Technology[]>([]);
 export const technologies_jotai = atom<Technology[]>([]);
+export const technologies_hay_stack_jotai = atom<Technology[]>([]);
 defaultStore.sub(technologies_snapshot_jotai, () => {
 	// Set Technologies
 	defaultStore.set(
@@ -23,6 +24,7 @@ defaultStore.sub(technologies_snapshot_jotai, () => {
 		defaultStore.get(technologies_snapshot_jotai),
 	);
 });
+
 export type User = {
 	id: string;
 	name: string;
@@ -152,7 +154,7 @@ export type UserProfile = {
 export const profile_snapshot_jotai = atom<UserProfile>({
 	id: "",
 	title: "",
-	hourlyRate: 0,
+	hourlyRate: 1,
 	overview: "",
 	availability: "None",
 });
