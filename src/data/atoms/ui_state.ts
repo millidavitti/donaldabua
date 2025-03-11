@@ -1,5 +1,9 @@
 import { atom } from "jotai";
-import { EDIT_PROFILE_STATES, EDIT_PROJECT_STATES } from "../constants";
+import {
+	EDIT_PROFILE_STATES,
+	EDIT_PROJECT_STATES,
+	SETTINGS_VIEW,
+} from "../constants";
 
 export type EditProfileStates = (typeof EDIT_PROFILE_STATES)[number];
 export const edit_profile_jotai = atom<EditProfileStates>(null);
@@ -22,5 +26,9 @@ export type APITask =
 	| "save_published_project_edit"
 	| "save_technologies_edit"
 	| "create_profile"
+	| "create_technologies"
 	| null;
 export const api_task_jotai = atom<APITask>(null);
+
+export type SettingsView = (typeof SETTINGS_VIEW)[number];
+export const settings_view_jotai = atom<SettingsView>(null);

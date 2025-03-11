@@ -5,11 +5,12 @@ import Sidebar from "../components/sidebar";
 import ProfileOverview from "../components/profile-overview";
 import Socials from "../components/edit-profile-user/edit-profile-user-socials";
 import EditProfileEmploymentHistory from "../components/edit-profile/edit-profile-employment-history";
+import DashboardHeader from "../components/dashboard-header";
 
 export default function Dashboard() {
 	return (
 		<Flex className='w-full h-full gap-3' flex='column'>
-			<h1 className='text-3xl font-bold text-center'>Profile Dashboard</h1>
+			<DashboardHeader />
 			<Flex className='outline h-full gap-3' flex='column'>
 				<ProfileHeader />
 				{/* Main */}

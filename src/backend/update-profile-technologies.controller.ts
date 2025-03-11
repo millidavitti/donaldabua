@@ -1,4 +1,3 @@
-"use server";
 import { APIResponse, Technology } from "@/data/atoms/app_data";
 
 export async function updateProfileTechnologiesController(
@@ -17,6 +16,7 @@ export async function updateProfileTechnologiesController(
 				method: "PUT",
 				body: JSON.stringify(profileTechnologies),
 				headers,
+    credentials:"include"
 			},
 		);
 		const data = await res.json();

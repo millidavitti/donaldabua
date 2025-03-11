@@ -13,6 +13,7 @@ export async function updateUserProfile(
 				method: "PUT",
 				body: JSON.stringify(update),
 				headers,
+				credentials: "include",
 			},
 		);
 		const data = await res.json();
