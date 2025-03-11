@@ -21,7 +21,7 @@ export default function useManageTechnologiesInterface() {
 
 	async function createTechnologies() {
 		try {
-			api_task_setter("create_technologies");
+			api_task_setter("create-technologies");
 			const { error, technologies: savedTechnologies } =
 				await createTechnologiesController(technologies);
 

@@ -23,7 +23,7 @@ export default function useCreateProfileInterface() {
 	}
 
 	async function saveProfile() {
-		api_task_setter("create_profile");
+		api_task_setter("create-profile");
 		try {
 			const { profile, error } = await createProfileController(
 				user_snapshot.id,

@@ -65,7 +65,7 @@ export default function CreateProfile() {
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Create Profile{" "}
-							{api_task === "create_profile" && (
+							{api_task === "create-profile" && (
 								<HashLoader size={24} color='#fff' />
 							)}
 						</Button>

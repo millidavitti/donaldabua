@@ -17,8 +17,8 @@ export default function PublishProject() {
 			}
 		>
 			{edit_profile === "edit-published-project" ? "Save" : "Publish"}
-			{(api_task === "publish_project" ||
-				api_task === "save_published_project_edit") && (
+			{(api_task === "publish-project" ||
+				api_task === "save-published-project-edit") && (
 				<HashLoader color='#ffffff' size={24} />
 			)}
 		</Button>
