@@ -8,7 +8,7 @@ import useManageTechnologiesInterface from "@/hooks/interface/use-manage-technol
 import { HashLoader } from "react-spinners";
 
 export default function ManageTechnologies() {
-	const { close, createTechnologies, api_task } =
+	const { close, updateTechnologies, api_task } =
 		useManageTechnologiesInterface();
 	return (
 		<Overlay stateFlag='manage-technologies'>
@@ -26,12 +26,12 @@ export default function ManageTechnologies() {
 					className='flex flex-col gap-3'
 					onSubmit={(e) => {
 						e.preventDefault();
-						createTechnologies();
+						updateTechnologies();
 					}}
 				>
 					<AddTechnologies />
 					<Button type='submit' className='bg-black text-light-surface'>
-						Save {api_task && <HashLoader size={24} color='ffff' />}
+						Save {api_task && <HashLoader size={24} color='#fffff' />}
 					</Button>
 				</form>
 			</Flex>
