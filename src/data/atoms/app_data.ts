@@ -24,23 +24,25 @@ defaultStore.sub(technologies_snapshot_jotai, async () => {
 		defaultStore.get(technologies_snapshot_jotai),
 	);
 
-	try {
-		const { profileTechnologies, error } =
-			await getProfileTechnologiesController(
-				defaultStore.get(profile_snapshot_jotai).id,
-			);
+	if (defaultStore.get(profile_snapshot_jotai).id) {
+		try {
+			const { profileTechnologies, error } =
+				await getProfileTechnologiesController(
+					defaultStore.get(profile_snapshot_jotai).id,
+				);
 
-		if (error) throw new Error(error);
-		else if (profileTechnologies)
-			defaultStore.set(
-				profile_technologies_snapshot_jotai,
-				profileTechnologies,
+			if (error) throw new Error(error);
+			else if (profileTechnologies)
+				defaultStore.set(
+					profile_technologies_snapshot_jotai,
+					profileTechnologies,
+				);
+		} catch (error) {
+			toast.error(
+				"We were unable to retrieve your data. Please try again later.",
 			);
-	} catch (error) {
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-		console.error("---App Data:profile_technologies_jotai---\n", error);
+			console.error("---App Data:profile_technologies_jotai---\n", error);
+		}
 	}
 });
 
