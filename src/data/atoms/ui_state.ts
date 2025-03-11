@@ -25,10 +25,11 @@ export const project_form_step_jotai = atom<
 export const component_to_edit_jotai = atom<string | null>(null);
 
 export type ApiTask =
-	| "publish_project"
-	| "save_published_project_edit"
-	| "save_technologies_edit"
-	| "create_profile"
-	| "create_technologies"
+	| "publish-project"
+	| "save-published-project-edit"
+	| "save-technologies-edit"
+	| "create-profile"
+	| "create-technologies"
+	| "sign-out"
 	| null;
 export const api_task_jotai = atom<ApiTask>(null);
