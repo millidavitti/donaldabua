@@ -1,12 +1,12 @@
 import { atom } from "jotai";
 import {
-	EDIT_PROFILE_STATES,
+	DASHBOARD_VIEWS,
 	EDIT_PROJECT_STATES,
 	SETTINGS_VIEW,
 } from "../constants";
 
-export type EditProfileStates = (typeof EDIT_PROFILE_STATES)[number];
-export const edit_profile_jotai = atom<EditProfileStates>(null);
+export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
+export const edit_profile_jotai = atom<DashboardView>(null);
 
 export type EditProjectStates = (typeof EDIT_PROJECT_STATES)[number];
 export const edit_project_jotai = atom<EditProjectStates>(null);

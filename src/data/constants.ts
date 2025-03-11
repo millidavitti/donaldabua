@@ -1,4 +1,4 @@
-export const EDIT_PROFILE_STATES = [
+export const DASHBOARD_VIEWS = [
 	"edit-image",
 	"edit-location",
 	"edit-name",
