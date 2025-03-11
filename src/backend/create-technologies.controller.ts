@@ -1,7 +1,7 @@
 import { APIResponse, Technology } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
 
-export async function createTechnologiesController(technologies: Technology[]) {
+export async function updateTechnologiesController(technologies: Technology[]) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
 
