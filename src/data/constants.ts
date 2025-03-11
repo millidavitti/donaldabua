@@ -32,4 +32,4 @@ export const AVAILABILITY_OPTIONS = [
 	"None",
 ] as const;
 
-export const SETTINGS_VIEW = ["manage-technologies", null] as const;
+export const SETTINGS_VIEWS = ["manage-technologies", null] as const;

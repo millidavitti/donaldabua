@@ -11,7 +11,7 @@ import {
 import {
 	PROJECT_DRAFT_VIEWS,
 	DASHBOARD_VIEWS,
-	SETTINGS_VIEW,
+	SETTINGS_VIEWS,
 } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
@@ -55,7 +55,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 						)
 							edit_project_setter(null);
 						else if (
-							SETTINGS_VIEW.includes(
+							SETTINGS_VIEWS.includes(
 								(e.target as HTMLElement).id as SettingsView,
 							)
 						)

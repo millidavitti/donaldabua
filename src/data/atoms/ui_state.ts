@@ -2,7 +2,7 @@ import { atom } from "jotai";
 import {
 	DASHBOARD_VIEWS,
 	PROJECT_DRAFT_VIEWS,
-	SETTINGS_VIEW,
+	SETTINGS_VIEWS,
 } from "../constants";
 
 export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
@@ -30,5 +30,5 @@ export type APITask =
 	| null;
 export const api_task_jotai = atom<APITask>(null);
 
-export type SettingsView = (typeof SETTINGS_VIEW)[number];
+export type SettingsView = (typeof SETTINGS_VIEWS)[number];
 export const settings_view_jotai = atom<SettingsView>(null);
