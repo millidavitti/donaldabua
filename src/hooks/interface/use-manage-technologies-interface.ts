@@ -5,13 +5,13 @@ import {
 } from "@/data/atoms/app_data";
 import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useManageTechnologiesInterface() {
 	const settings_view_setter = useSetAtom(settings_view_jotai);
 	const [api_task, api_task_setter] = useAtom(api_task_jotai);
-	const [technologies, technologies_setter] = useAtom(technologies_jotai);
+	const technologies = useAtomValue(technologies_jotai);
 	const [technologies_snapshot, technologies_snapshot_setter] = useAtom(
 		technologies_snapshot_jotai,
 	);
