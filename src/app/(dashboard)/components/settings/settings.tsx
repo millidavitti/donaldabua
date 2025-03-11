@@ -3,20 +3,18 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import { SettingsIcon, X } from "lucide-react";
-import { useSetAtom } from "jotai";
-import {
-	dashboard_view_jotai,
-	settings_view_jotai,
-} from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";
 import SettingsView from "./settings-view";
+import { signOut } from "@/utils/auth";
+import { HashLoader } from "react-spinners";
+import useSettingsInterface from "@/hooks/interface/use-settings-interface";
 
 export default function Settings() {
-	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
-	const settings_view_setter = useSetAtom(settings_view_jotai);
+	const { api_task, close, display, manageTechnologies, signOut } =
+		useSettingsInterface();
 	return (
 		<>
-			<InteractiveIcon callback={() => dashboard_view_setter("settings")}>
+			<InteractiveIcon callback={() => display()}>
 				<SettingsIcon />
 			</InteractiveIcon>
 			<Overlay stateFlag='settings'>
@@ -26,16 +24,22 @@ export default function Settings() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Settings</h2>
-						<InteractiveIcon callback={() => dashboard_view_setter(null)}>
+						<InteractiveIcon callback={() => close()}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
-					<Flex flex='column' className=''>
+					<Flex flex='column' className='gap-3'>
+						<Button type='button' onClick={() => manageTechnologies()}>
+							Manage Technologies
+						</Button>
 						<Button
 							type='button'
-							onClick={() => settings_view_setter("manage-technologies")}
+							onClick={() => {
+								signOut();
+							}}
+							className='bg-black text-light-surface'
 						>
-							Manage Technologies
+							Sign Out {api_task && <HashLoader size={24} color='#ffffff' />}
 						</Button>
 					</Flex>
 				</Flex>
