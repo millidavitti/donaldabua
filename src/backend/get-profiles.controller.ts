@@ -1,6 +1,5 @@
 import { APIResponse, UserProfile } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { useId } from "react";
 
 export async function getProfilesController(userId: string) {
 	try {

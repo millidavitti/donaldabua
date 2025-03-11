@@ -4,7 +4,7 @@ import {
 	UserProfile,
 } from "@/data/atoms/app_data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 
 export default function useSelectProfileInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
