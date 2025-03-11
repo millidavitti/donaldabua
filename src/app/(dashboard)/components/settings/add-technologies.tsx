@@ -1,6 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import { Plus, X } from "lucide-react";
-import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
 import ProfileTechnology from "../profile-technology";
 import useAddTechnologiesInterface from "@/hooks/interface/use-add-technologies-interface";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
