@@ -7,6 +7,7 @@ import { getProfileTechnologiesController } from "@/backend/get-profile-technolo
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
 import { AVAILABILITY_OPTIONS } from "../constants";
+import { getProfilesController } from "@/backend/get-profiles.controller";
 
 export const defaultStore = getDefaultStore();
 
@@ -24,23 +25,25 @@ defaultStore.sub(technologies_snapshot_jotai, async () => {
 		defaultStore.get(technologies_snapshot_jotai),
 	);
 
-	try {
-		const { profileTechnologies, error } =
-			await getProfileTechnologiesController(
-				defaultStore.get(profile_snapshot_jotai).id,
-			);
+	if (defaultStore.get(profile_snapshot_jotai).id) {
+		try {
+			const { profileTechnologies, error } =
+				await getProfileTechnologiesController(
+					defaultStore.get(profile_snapshot_jotai).id,
+				);
 
-		if (error) throw new Error(error);
-		else if (profileTechnologies)
-			defaultStore.set(
-				profile_technologies_snapshot_jotai,
-				profileTechnologies,
+			if (error) throw new Error(error);
+			else if (profileTechnologies)
+				defaultStore.set(
+					profile_technologies_snapshot_jotai,
+					profileTechnologies,
+				);
+		} catch (error) {
+			toast.error(
+				"We were unable to retrieve your data. Please try again later.",
 			);
-	} catch (error) {
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-		console.error("---App Data:profile_technologies_jotai---\n", error);
+			console.error("---App Data:profile_technologies_jotai---\n", error);
+		}
 	}
 });
 
@@ -88,30 +91,56 @@ user_snapshot_jotai.onMount = (setAtom) => {
 		}
 	})();
 };
-
-export const user_name_jotai = atom<string>("");
-defaultStore.sub(user_snapshot_jotai, () => {
+defaultStore.sub(user_snapshot_jotai, async () => {
 	defaultStore.set(
 		user_name_jotai,
 		defaultStore.get(user_snapshot_jotai).name!,
 	);
-});
-
-export const user_image_jotai = atom<string>("");
-defaultStore.sub(user_snapshot_jotai, () => {
 	defaultStore.set(
 		user_image_jotai,
 		defaultStore.get(user_snapshot_jotai).image,
 	);
-});
-
-export const user_video_jotai = atom<string | null>("");
-defaultStore.sub(user_snapshot_jotai, () => {
 	defaultStore.set(
 		user_video_jotai,
 		defaultStore.get(user_snapshot_jotai).video,
 	);
+
+	// Get User Location
+	try {
+		const { location, error } = await getUserLocationController(
+			defaultStore.get(user_snapshot_jotai).id,
+		);
+		if (error) throw new Error(error);
+		else if (location) defaultStore.set(user_location_snapshot_jotai, location);
+	} catch (error) {
+		console.error("---App Data:user_snapshot_jotai---\n", error);
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
+	}
+
+	// Get User Profiles
+	try {
+		const { profiles, error } = await getProfilesController(
+			defaultStore.get(user_snapshot_jotai).id,
+		);
+
+		if (error) throw new Error(error);
+		else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
+	} catch (error) {
+		console.error("---App Data:user_snapshot_jotai---\n", error);
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
+	}
 });
+export const user_name_jotai = atom<string>("");
+defaultStore.sub(user_snapshot_jotai, () => {});
+
+export const user_image_jotai = atom<string>("");
+defaultStore.sub(user_snapshot_jotai, () => {});
+
+export const user_video_jotai = atom<string | null>("");
 
 export type UserLocation = {
 	city: string;
@@ -122,36 +151,18 @@ export const user_location_snapshot_jotai = atom<UserLocation>({
 	city: "City",
 	country: "Country",
 });
-defaultStore.sub(user_snapshot_jotai, async () => {
-	try {
-		const { location, error } = await getUserLocationController(
-			defaultStore.get(user_snapshot_jotai).id,
-		);
-		if (error) throw new Error(error);
-		else if (location) defaultStore.set(user_location_snapshot_jotai, location);
-	} catch (error) {
-		console.error("---App Data:user_location_snapshot__jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-	}
-});
-
-export const user_location_city_jotai = atom<string>("City");
 defaultStore.sub(user_location_snapshot_jotai, () => {
 	defaultStore.set(
 		user_location_city_jotai,
 		defaultStore.get(user_location_snapshot_jotai).city,
 	);
-});
-
-export const user_location_country_jotai = atom<string>("Country");
-defaultStore.sub(user_location_snapshot_jotai, () => {
 	defaultStore.set(
 		user_location_country_jotai,
 		defaultStore.get(user_location_snapshot_jotai).country,
 	);
 });
+export const user_location_city_jotai = atom<string>("City");
+export const user_location_country_jotai = atom<string>("Country");
 
 export type UserSocials = {
 	id: string;
@@ -177,59 +188,23 @@ export const profile_snapshot_jotai = atom<UserProfile>({
 	overview: "",
 	availability: "None",
 });
-
-defaultStore.sub(user_snapshot_jotai, async () => {
-	try {
-		const { profile, error } = await getUserProfileController(
-			defaultStore.get(user_snapshot_jotai).id,
-		);
-		if (error) throw new Error(error);
-		else if (profile) defaultStore.set(profile_snapshot_jotai, profile);
-	} catch (error) {
-		console.error("---App Data:profile_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-	}
-});
-
-export const profile_availability_jotai =
-	atom<ProfileAvailabilityOptions>("None");
-defaultStore.sub(profile_snapshot_jotai, () => {
+defaultStore.sub(profile_snapshot_jotai, async () => {
 	defaultStore.set(
 		profile_availability_jotai,
 		defaultStore.get(profile_snapshot_jotai).availability,
 	);
-});
-
-export const profile_title_jotai = atom<string>("");
-defaultStore.sub(profile_snapshot_jotai, () => {
 	defaultStore.set(
 		profile_title_jotai,
 		defaultStore.get(profile_snapshot_jotai).title,
 	);
-});
-
-export const profile_hourly_rate_jotai = atom<number>(1);
-defaultStore.sub(profile_snapshot_jotai, () => {
 	defaultStore.set(
 		profile_hourly_rate_jotai,
 		defaultStore.get(profile_snapshot_jotai).hourlyRate,
 	);
-});
-
-export const profile_overview_jotai = atom<string>("");
-defaultStore.sub(profile_snapshot_jotai, () => {
 	defaultStore.set(
 		profile_overview_jotai,
 		defaultStore.get(profile_snapshot_jotai).overview || "",
 	);
-});
-
-export const profile_technologies_snapshot_jotai = atom<Technology[]>([]);
-export const profile_technologies_jotai = atom<Technology[]>([]);
-export const profile_hay_stack_jotai = atom<Technology[]>([]);
-defaultStore.sub(profile_snapshot_jotai, async () => {
 	try {
 		const { profileTechnologies, error } =
 			await getProfileTechnologiesController(
@@ -246,9 +221,65 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 		toast.error(
 			"We were unable to retrieve your data. Please try again later.",
 		);
-		console.error("---App Data:profile_technologies_jotai---\n", error);
+		console.error("---App Data:profile_snapshot_jotai---\n", error);
+	}
+
+	try {
+		const { projects, error } = await getProjectsController(
+			defaultStore.get(profile_snapshot_jotai).id,
+		);
+		if (error) throw new Error(error);
+		else if (projects) defaultStore.set(projects_snapshot_jotai, projects);
+	} catch (error) {
+		console.error("---App Data:profile_snapshot_jotai---\n", error);
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
+	}
+
+	// Sync Profiles
+	// try {
+	// 	const { profiles, error } = await getProfilesController(
+	// 		defaultStore.get(user_snapshot_jotai).id,
+	// 	);
+
+	// 	if (error) throw new Error(error);
+	// 	else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
+	// } catch (error) {
+	// 	console.error("---App Data:user_snapshot_jotai---\n", error);
+	// 	toast.error(
+	// 		"We were unable to retrieve your data. Please try again later.",
+	// 	);
+	// }
+});
+
+export const profiles_snapshot_jotai = atom<UserProfile[]>([]);
+export const profiles_jotai = atom<UserProfile[]>([]);
+defaultStore.sub(profiles_snapshot_jotai, async () => {
+	defaultStore.set(profiles_jotai, defaultStore.get(profiles_snapshot_jotai));
+
+	try {
+		const { profile, error } = await getUserProfileController(
+			defaultStore.get(profiles_snapshot_jotai)[0].id,
+		);
+		if (error) throw new Error(error);
+		else if (profile) defaultStore.set(profile_snapshot_jotai, profile);
+	} catch (error) {
+		console.error("---App Data:profile_snapshot_jotai---\n", error);
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
 	}
 });
+
+export const profile_availability_jotai =
+	atom<ProfileAvailabilityOptions>("None");
+export const profile_title_jotai = atom<string>("");
+export const profile_hourly_rate_jotai = atom<number>(1);
+export const profile_overview_jotai = atom<string>("");
+export const profile_technologies_jotai = atom<Technology[]>([]);
+export const profile_hay_stack_jotai = atom<Technology[]>([]);
+export const profile_technologies_snapshot_jotai = atom<Technology[]>([]);
 defaultStore.sub(profile_technologies_snapshot_jotai, () => {
 	// Set Profile Technologies
 	defaultStore.set(
@@ -287,28 +318,13 @@ export type Project = {
 
 // This is use to store fetched project data
 export const projects_snapshot_jotai = atom<Project[]>([]);
-
-defaultStore.sub(profile_snapshot_jotai, async () => {
-	try {
-		const { projects, error } = await getProjectsController(
-			defaultStore.get(profile_snapshot_jotai).id,
-		);
-		if (error) throw new Error(error);
-		else if (projects) defaultStore.set(projects_snapshot_jotai, projects);
-	} catch (error) {
-		console.error("---App Data:projects_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-	}
-});
 export const project_snapshot_jotai = atom<Project | null>(null);
 export const project_title_jotai = atom<string>("");
 export const project_description_jotai = atom<string>("");
 export const project_thumbnail_jotai = atom<string>("");
 export const project_content_jotai = atom<ProjectContent>([]);
-export const project_technologies_jotai = atom<Technology[]>([]);
 export const project_hay_stack_jotai = atom<Technology[]>([]);
+export const project_technologies_jotai = atom<Technology[]>([]);
 defaultStore.sub(project_technologies_jotai, () => {
 	defaultStore.set(
 		project_hay_stack_jotai,

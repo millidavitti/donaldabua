@@ -1,6 +1,7 @@
 import { createProfileController } from "@/backend/create-profile.controller";
 import {
 	profile_snapshot_jotai,
+	profiles_snapshot_jotai,
 	user_snapshot_jotai,
 } from "@/data/atoms/app_data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
@@ -12,6 +13,7 @@ export default function useCreateProfileInterface() {
 	const user_snapshot = useAtomValue(user_snapshot_jotai);
 	const profile_snapshot_setter = useSetAtom(profile_snapshot_jotai);
 	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const profiles_snapshot_setter = useSetAtom(profiles_snapshot_jotai);
 	const [profileTitle, setProfileTitle] = useState("");
 
 	function createProfile() {
@@ -33,7 +35,13 @@ export default function useCreateProfileInterface() {
 			);
 
 			if (error) throw new Error(error);
-			else if (profile) profile_snapshot_setter(profile);
+			else if (profile) {
+				profile_snapshot_setter(profile);
+				profiles_snapshot_setter((profiles_snapshot) => [
+					profile,
+					...profiles_snapshot,
+				]);
+			}
 			setProfileTitle("");
 			dashboard_view_setter(null);
 			api_task_setter(null);

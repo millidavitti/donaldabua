@@ -14,6 +14,7 @@ export const DASHBOARD_VIEWS = [
 	"edit-published-project",
 	"view-project",
 	"create-profile",
+	"select-profile",
 	"settings",
 	null,
 ] as const;

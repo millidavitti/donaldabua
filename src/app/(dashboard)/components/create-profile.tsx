@@ -16,8 +16,8 @@ export default function CreateProfile() {
 		api_task,
 	} = useCreateProfileInterface();
 	return (
-		<Flex className='self-start'>
-			<Button type='button' onClick={createProfile}>
+		<>
+			<Button type='button' onClick={createProfile} className='self-start'>
 				Create Profile
 			</Button>
 
@@ -72,6 +72,6 @@ export default function CreateProfile() {
 					</form>
 				</Flex>
 			</Overlay>
-		</Flex>
+		</>
 	);
 }
