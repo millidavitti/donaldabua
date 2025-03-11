@@ -17,12 +17,31 @@ export type Technology = {
 export const technologies_snapshot_jotai = atom<Technology[]>([]);
 export const technologies_jotai = atom<Technology[]>([]);
 export const technologies_hay_stack_jotai = atom<Technology[]>([]);
-defaultStore.sub(technologies_snapshot_jotai, () => {
+defaultStore.sub(technologies_snapshot_jotai, async () => {
 	// Set Technologies
 	defaultStore.set(
 		technologies_jotai,
 		defaultStore.get(technologies_snapshot_jotai),
 	);
+
+	try {
+		const { profileTechnologies, error } =
+			await getProfileTechnologiesController(
+				defaultStore.get(profile_snapshot_jotai).id,
+			);
+
+		if (error) throw new Error(error);
+		else if (profileTechnologies)
+			defaultStore.set(
+				profile_technologies_snapshot_jotai,
+				profileTechnologies,
+			);
+	} catch (error) {
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
+		console.error("---App Data:profile_technologies_jotai---\n", error);
+	}
 });
 
 export type User = {
