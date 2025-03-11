@@ -3,27 +3,27 @@ import {
 	profile_snapshot_jotai,
 	profile_title_jotai,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditProfileTitleInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [profile_title, profile_title_setter] = useAtom(profile_title_jotai);
 	const [profile_snapshot, profile_snapshot_setter] = useAtom(
 		profile_snapshot_jotai,
 	);
 
 	function editTitle() {
-		edit_profile_setter("edit-title");
+		dashboard_view_setter("edit-title");
 	}
 
 	function cancelTitleEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 
 	async function saveTitleEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 		try {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				title: profile_title,

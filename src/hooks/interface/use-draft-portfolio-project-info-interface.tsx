@@ -2,7 +2,7 @@ import { useResetProjectFormFields } from "../use-reset-project-form-fields";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
 	component_to_edit_jotai,
-	edit_profile_jotai,
+	dashboard_view_jotai,
 	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 import {
@@ -12,7 +12,7 @@ import {
 import { toast } from "sonner";
 
 export function useDraftProjectInterface() {
-	const edit_profile = useAtomValue(edit_profile_jotai);
+	const dashboard_view = useAtomValue(dashboard_view_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const resetProjectFormFields = useResetProjectFormFields();
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
@@ -60,6 +60,6 @@ export function useDraftProjectInterface() {
 		resetProjectFormFields,
 		gotToPreview,
 		closeProjectForm,
-		edit_profile,
+		edit_profile: dashboard_view,
 	};
 }

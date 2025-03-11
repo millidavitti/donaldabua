@@ -1,26 +1,26 @@
 import { updateUserController } from "@/backend/update-user.controller";
 import { user_image_jotai, user_snapshot_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditUserPhotoInterface() {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
+	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
 	const [user_image, user_image_setter] = useAtom(user_image_jotai);
 	const [user_snapshot, user_snapshot_setter] = useAtom(user_snapshot_jotai);
 
 	function editPhoto() {
-		edit_profile_setter("edit-image");
+		dashboard_view_setter("edit-image");
 	}
 
 	function cancelPhotoEdit() {
 		user_image_setter(user_snapshot.image);
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 
 	async function savePhotoEdit() {
 		try {
-			edit_profile_setter(null);
+			dashboard_view_setter(null);
 			const { error, user } = await updateUserController(user_snapshot.id, {
 				image: user_image,
 			});
@@ -38,7 +38,7 @@ export function useEditUserPhotoInterface() {
 		user_image_setter(value);
 	}
 	return {
-		edit_profile,
+		edit_profile: dashboard_view,
 		user_image,
 		editPhoto,
 		cancelPhotoEdit,

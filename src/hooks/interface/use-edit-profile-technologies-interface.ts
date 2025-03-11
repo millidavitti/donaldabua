@@ -7,12 +7,12 @@ import {
 	technologies_snapshot_jotai,
 	defaultStore,
 } from "@/data/atoms/app_data";
-import { api_task_jotai, edit_profile_jotai } from "@/data/atoms/ui_state";
+import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useEditProfileTechnologiesInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [profile_technologies_snapshot, profile_technologies_snapshot_setter] =
 		useAtom(profile_technologies_snapshot_jotai);
 	const [profile_technologies, profile_technologies_setter] = useAtom(
@@ -24,11 +24,11 @@ export default function useEditProfileTechnologiesInterface() {
 	const profile_snapshot = defaultStore.get(profile_snapshot_jotai);
 
 	function editTechnologies() {
-		edit_profile_setter("edit-profile-technologies");
+		dashboard_view_setter("edit-profile-technologies");
 	}
 
 	function cancelTechnologiesEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 		profile_technologies_setter(
 			defaultStore.get(profile_technologies_snapshot_jotai),
 		);
@@ -44,7 +44,7 @@ export default function useEditProfileTechnologiesInterface() {
 			);
 			if (error) throw error;
 			profile_technologies_snapshot_setter(profile_technologies);
-			edit_profile_setter(null);
+			dashboard_view_setter(null);
 			api_task_setter(null);
 		} catch (error) {
 			console.log("---saveTechnologiesEdit---\n", error);

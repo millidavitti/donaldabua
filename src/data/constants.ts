@@ -1,4 +1,4 @@
-export const EDIT_PROFILE_STATES = [
+export const DASHBOARD_VIEWS = [
 	"edit-image",
 	"edit-location",
 	"edit-name",
@@ -18,7 +18,7 @@ export const EDIT_PROFILE_STATES = [
 	null,
 ] as const;
 
-export const EDIT_PROJECT_STATES = [
+export const PROJECT_DRAFT_VIEWS = [
 	"edit-project-video",
 	"edit-project-image",
 	"edit-project-markdown",
@@ -32,4 +32,4 @@ export const AVAILABILITY_OPTIONS = [
 	"None",
 ] as const;
 
-export const SETTINGS_VIEW = ["manage-technologies", null] as const;
+export const SETTINGS_VIEWS = ["manage-technologies", null] as const;

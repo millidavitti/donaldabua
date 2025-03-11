@@ -5,7 +5,7 @@ import Button from "@/components/ui/button";
 import { project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
-	edit_project_jotai,
+	project_draft_view_jotai,
 } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { createId } from "@paralleldrive/cuid2";
@@ -16,7 +16,7 @@ import { toast } from "sonner";
 
 export default function DraftProjectVideo() {
 	const [videoLink, setVideoLink] = useState("");
-	const edit_project_setter = useSetAtom(edit_project_jotai);
+	const project_draft_view_setter = useSetAtom(project_draft_view_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	return (
@@ -31,7 +31,7 @@ export default function DraftProjectVideo() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-project-video");
+						project_draft_view_setter("edit-project-video");
 					},
 				}}
 			>
@@ -47,7 +47,7 @@ export default function DraftProjectVideo() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
-						<InteractiveIcon callback={() => edit_project_setter(null)}>
+						<InteractiveIcon callback={() => project_draft_view_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -98,7 +98,7 @@ export default function DraftProjectVideo() {
 										},
 									]);
 								setVideoLink("");
-								edit_project_setter(null);
+								project_draft_view_setter(null);
 							}}
 						>
 							Add

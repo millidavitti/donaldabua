@@ -1,15 +1,18 @@
 import { atom } from "jotai";
 import {
-	EDIT_PROFILE_STATES,
-	EDIT_PROJECT_STATES,
-	SETTINGS_VIEW,
+	DASHBOARD_VIEWS,
+	PROJECT_DRAFT_VIEWS,
+	SETTINGS_VIEWS,
 } from "../constants";
 
-export type EditProfileStates = (typeof EDIT_PROFILE_STATES)[number];
-export const edit_profile_jotai = atom<EditProfileStates>(null);
+export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
+export const dashboard_view_jotai = atom<DashboardView>(null);
 
-export type EditProjectStates = (typeof EDIT_PROJECT_STATES)[number];
-export const edit_project_jotai = atom<EditProjectStates>(null);
+export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
+export const project_draft_view_jotai = atom<ProjectDraftView>(null);
+
+export type SettingsView = (typeof SETTINGS_VIEWS)[number];
+export const settings_view_jotai = atom<SettingsView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
@@ -21,14 +24,11 @@ export const project_form_step_jotai = atom<
 
 export const component_to_edit_jotai = atom<string | null>(null);
 
-export type APITask =
+export type ApiTask =
 	| "publish_project"
 	| "save_published_project_edit"
 	| "save_technologies_edit"
 	| "create_profile"
 	| "create_technologies"
 	| null;
-export const api_task_jotai = atom<APITask>(null);
-
-export type SettingsView = (typeof SETTINGS_VIEW)[number];
-export const settings_view_jotai = atom<SettingsView>(null);
+export const api_task_jotai = atom<ApiTask>(null);

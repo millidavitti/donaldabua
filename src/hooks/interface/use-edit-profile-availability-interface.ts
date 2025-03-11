@@ -4,12 +4,12 @@ import {
 	profile_snapshot_jotai,
 	ProfileAvailabilityOptions,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditProfileAvailabilityInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [profile_availability, profile_availability_setter] = useAtom(
 		profile_availability_jotai,
 	);
@@ -18,17 +18,17 @@ export function useEditProfileAvailabilityInterface() {
 	);
 
 	function editAvailability() {
-		edit_profile_setter("edit-hours-per-week");
+		dashboard_view_setter("edit-hours-per-week");
 	}
 	function cancelAvailabilityEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 	function captureAvailabilityEdit(value: string) {
 		profile_availability_setter(value as ProfileAvailabilityOptions);
 	}
 
 	async function saveAvailabilityEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 		try {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				availability: profile_availability,

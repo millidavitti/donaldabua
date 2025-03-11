@@ -3,12 +3,12 @@ import {
 	profile_hourly_rate_jotai,
 	profile_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditProfileHourlyRateInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [profile_hourly_rate, profile_hourly_rate_setter] = useAtom(
 		profile_hourly_rate_jotai,
 	);
@@ -17,15 +17,15 @@ export function useEditProfileHourlyRateInterface() {
 	);
 
 	function editHourlyRate() {
-		edit_profile_setter("edit-hourly-rate");
+		dashboard_view_setter("edit-hourly-rate");
 	}
 
 	function cancelHourlyRateEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 
 	async function saveHourlyRateEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 		try {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				hourlyRate: profile_hourly_rate,

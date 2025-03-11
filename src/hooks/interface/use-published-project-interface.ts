@@ -6,18 +6,18 @@ import {
 	Project,
 	project_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function usePublishedProjectInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
 
 	async function viewProject(project: Project) {
-		edit_profile_setter("view-project");
+		dashboard_view_setter("view-project");
 		try {
 			const [
 				{ projectTechnologies, error: projectTechnologiesError },
@@ -33,7 +33,7 @@ export default function usePublishedProjectInterface() {
 			project_technologies_setter(projectTechnologies);
 			project_content_setter(projectContent);
 		} catch (error) {
-			edit_profile_setter(null);
+			dashboard_view_setter(null);
 			console.log("---editProject:getProjectContent---\n", error);
 			toast.info("Unable to retrieve project content. Please try again later.");
 		}

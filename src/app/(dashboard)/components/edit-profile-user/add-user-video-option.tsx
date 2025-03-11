@@ -1,15 +1,15 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 
 export default function AddUserVideoOption() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 
 	return (
 		<InteractiveIcon
 			callback={() => {
-				edit_profile_setter("edit-video");
+				dashboard_view_setter("edit-video");
 			}}
 		>
 			<CirclePlus size={24} />

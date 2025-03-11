@@ -1,36 +1,38 @@
 "use client";
 
 import {
-	edit_project_jotai,
-	edit_profile_jotai,
-	EditProjectStates,
-	EditProfileStates,
+	project_draft_view_jotai,
+	dashboard_view_jotai,
+	ProjectDraftView,
+	DashboardView,
 	settings_view_jotai,
 	SettingsView,
 } from "@/data/atoms/ui_state";
 import {
-	EDIT_PROJECT_STATES,
-	EDIT_PROFILE_STATES,
-	SETTINGS_VIEW,
+	PROJECT_DRAFT_VIEWS,
+	DASHBOARD_VIEWS,
+	SETTINGS_VIEWS,
 } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";
 
 interface Overlay {
-	stateFlag: EditProfileStates | EditProjectStates | SettingsView;
+	stateFlag: DashboardView | ProjectDraftView | SettingsView;
 	children: ReactNode;
 	className?: string;
 }
 
 export default function Overlay({ stateFlag, children, className }: Overlay) {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
-	const [edit_project, edit_project_setter] = useAtom(edit_project_jotai);
+	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
+	const [project_draft_view, project_draft_view_setter] = useAtom(
+		project_draft_view_jotai,
+	);
 	const [settings_view, settings_view_setter] = useAtom(settings_view_jotai);
 	const view =
 		stateFlag === settings_view ||
-		stateFlag === edit_project ||
-		stateFlag === edit_profile;
+		stateFlag === project_draft_view ||
+		stateFlag === dashboard_view;
 	return (
 		<>
 			{view && (
@@ -43,19 +45,19 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 					data-is-shown={view}
 					onClick={(e) => {
 						if (
-							EDIT_PROFILE_STATES.includes(
-								(e.target as HTMLElement).id as EditProfileStates,
+							DASHBOARD_VIEWS.includes(
+								(e.target as HTMLElement).id as DashboardView,
 							)
 						)
-							edit_profile_setter(null);
+							dashboard_view_setter(null);
 						else if (
-							EDIT_PROJECT_STATES.includes(
-								(e.target as HTMLElement).id as EditProjectStates,
+							PROJECT_DRAFT_VIEWS.includes(
+								(e.target as HTMLElement).id as ProjectDraftView,
 							)
 						)
-							edit_project_setter(null);
+							project_draft_view_setter(null);
 						else if (
-							SETTINGS_VIEW.includes(
+							SETTINGS_VIEWS.includes(
 								(e.target as HTMLElement).id as SettingsView,
 							)
 						)
