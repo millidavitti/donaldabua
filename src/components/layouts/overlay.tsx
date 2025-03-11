@@ -2,7 +2,7 @@
 
 import {
 	edit_project_jotai,
-	edit_profile_jotai,
+	dashboard_view_jotai,
 	ProjectDraftView,
 	DashboardView,
 	settings_view_jotai,
@@ -24,13 +24,13 @@ interface Overlay {
 }
 
 export default function Overlay({ stateFlag, children, className }: Overlay) {
-	const [edit_profile, edit_profile_setter] = useAtom(edit_profile_jotai);
+	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
 	const [edit_project, edit_project_setter] = useAtom(edit_project_jotai);
 	const [settings_view, settings_view_setter] = useAtom(settings_view_jotai);
 	const view =
 		stateFlag === settings_view ||
 		stateFlag === edit_project ||
-		stateFlag === edit_profile;
+		stateFlag === dashboard_view;
 	return (
 		<>
 			{view && (
@@ -47,7 +47,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 								(e.target as HTMLElement).id as DashboardView,
 							)
 						)
-							edit_profile_setter(null);
+							dashboard_view_setter(null);
 						else if (
 							PROJECT_DRAFT_VIEWS.includes(
 								(e.target as HTMLElement).id as ProjectDraftView,

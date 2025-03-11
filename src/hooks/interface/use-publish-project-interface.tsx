@@ -9,7 +9,7 @@ import {
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import { api_task_jotai, edit_profile_jotai } from "@/data/atoms/ui_state";
+import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
@@ -20,7 +20,7 @@ import { updateProjectController } from "@/backend/update-project.controller";
 export function usePublishProjectInterface() {
 	const projects_snapshot_setter = useSetAtom(projects_snapshot_jotai);
 	const project_snapshot = useAtomValue(project_snapshot_jotai);
-	const edit_profile = useAtomValue(edit_profile_jotai);
+	const dashboard_view = useAtomValue(dashboard_view_jotai);
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
 	const project_content = useAtomValue(project_content_jotai);
 	const project_technologies = useAtomValue(project_technologies_jotai);
@@ -99,7 +99,7 @@ export function usePublishProjectInterface() {
 	return {
 		publishProject,
 		savePublishedProjectEdit,
-		edit_profile,
+		edit_profile: dashboard_view,
 		api_task,
 	};
 }

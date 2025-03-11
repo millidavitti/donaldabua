@@ -1,23 +1,23 @@
 import { updateUserController } from "@/backend/update-user.controller";
 import { user_snapshot_jotai, user_video_jotai } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditUserVideoInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [user_video, user_video_setter] = useAtom(user_video_jotai);
 	const [{ id: userId, video }, user_setter] = useAtom(user_snapshot_jotai);
 
 	function cancelVideoEdit() {
 		user_video_setter(video || "");
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 
 	async function saveVideoEdit() {
 		try {
-			edit_profile_setter(null);
+			dashboard_view_setter(null);
 			const { error, user } = await updateUserController(userId, {
 				video: user_video,
 			});

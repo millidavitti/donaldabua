@@ -3,12 +3,12 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { CirclePlus, X } from "lucide-react";
 
 export default function EditProfileEmploymentHistory() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 
 	return (
 		<>
@@ -17,7 +17,7 @@ export default function EditProfileEmploymentHistory() {
 					<p className='font-semibold lg:text-2xl'>Employment History</p>
 					<InteractiveIcon
 						callback={() => {
-							edit_profile_setter("edit-employment-history");
+							dashboard_view_setter("edit-employment-history");
 						}}
 					>
 						<CirclePlus size={24} />
@@ -35,7 +35,7 @@ export default function EditProfileEmploymentHistory() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Add Employment History</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon callback={() => dashboard_view_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -44,7 +44,7 @@ export default function EditProfileEmploymentHistory() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							dashboard_view_setter(null);
 						}}
 					>
 						{/* Company */}

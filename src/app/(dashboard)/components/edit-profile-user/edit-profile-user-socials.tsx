@@ -3,12 +3,12 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { CirclePlus, X } from "lucide-react";
 
 export default function EditProfileUserSocials() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 
 	return (
 		<>
@@ -17,7 +17,7 @@ export default function EditProfileUserSocials() {
 					<p className='font-semibold lg:text-2xl'>Socials</p>
 					<InteractiveIcon
 						callback={() => {
-							edit_profile_setter("edit-socials");
+							dashboard_view_setter("edit-socials");
 						}}
 					>
 						<CirclePlus size={24} />
@@ -35,7 +35,7 @@ export default function EditProfileUserSocials() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Add Socials</h2>
-						<InteractiveIcon callback={() => edit_profile_setter(null)}>
+						<InteractiveIcon callback={() => dashboard_view_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -45,7 +45,7 @@ export default function EditProfileUserSocials() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							edit_profile_setter(null);
+							dashboard_view_setter(null);
 						}}
 					>
 						<Flex flex='column' className='gap-3'>

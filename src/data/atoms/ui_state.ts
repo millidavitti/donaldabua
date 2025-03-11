@@ -6,10 +6,13 @@ import {
 } from "../constants";
 
 export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
-export const edit_profile_jotai = atom<DashboardView>(null);
+export const dashboard_view_jotai = atom<DashboardView>(null);
 
 export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
 export const edit_project_jotai = atom<ProjectDraftView>(null);
+
+export type SettingsView = (typeof SETTINGS_VIEWS)[number];
+export const settings_view_jotai = atom<SettingsView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
@@ -29,6 +32,3 @@ export type APITask =
 	| "create_technologies"
 	| null;
 export const api_task_jotai = atom<APITask>(null);
-
-export type SettingsView = (typeof SETTINGS_VIEWS)[number];
-export const settings_view_jotai = atom<SettingsView>(null);

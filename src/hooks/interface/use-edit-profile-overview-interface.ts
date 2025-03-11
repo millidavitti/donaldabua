@@ -3,12 +3,12 @@ import {
 	profile_snapshot_jotai,
 	profile_overview_jotai,
 } from "@/data/atoms/app_data";
-import { edit_profile_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 
 export function useEditProfileOverviewInterface() {
-	const edit_profile_setter = useSetAtom(edit_profile_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [profile_overview, profile_overview_setter] = useAtom(
 		profile_overview_jotai,
 	);
@@ -17,15 +17,15 @@ export function useEditProfileOverviewInterface() {
 	);
 
 	function editOverview() {
-		edit_profile_setter("edit-profile-overview");
+		dashboard_view_setter("edit-profile-overview");
 	}
 
 	function cancelOverviewEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 	}
 
 	async function saveOverviewEdit() {
-		edit_profile_setter(null);
+		dashboard_view_setter(null);
 		try {
 			const { error, profile } = await updateUserProfile(profile_snapshot.id, {
 				overview: profile_overview,
