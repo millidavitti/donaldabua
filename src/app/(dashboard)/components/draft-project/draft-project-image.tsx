@@ -5,7 +5,7 @@ import Button from "@/components/ui/button";
 import { project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
-	edit_project_jotai,
+	project_draft_view_jotai,
 } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 
@@ -15,7 +15,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 export default function DraftProjectImage() {
-	const edit_project_setter = useSetAtom(edit_project_jotai);
+	const project_draft_view_setter = useSetAtom(project_draft_view_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	const [imageLink, setImageLink] = useState("");
@@ -32,7 +32,7 @@ export default function DraftProjectImage() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-project-image");
+						project_draft_view_setter("edit-project-image");
 					},
 				}}
 			>
@@ -48,7 +48,7 @@ export default function DraftProjectImage() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Link to an Image</h2>
-						<InteractiveIcon callback={() => edit_project_setter(null)}>
+						<InteractiveIcon callback={() => project_draft_view_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -97,7 +97,7 @@ export default function DraftProjectImage() {
 										},
 									]);
 								setImageLink("");
-								edit_project_setter(null);
+								project_draft_view_setter(null);
 							}}
 						>
 							Add

@@ -9,7 +9,7 @@ export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
 export const dashboard_view_jotai = atom<DashboardView>(null);
 
 export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
-export const edit_project_jotai = atom<ProjectDraftView>(null);
+export const project_draft_view_jotai = atom<ProjectDraftView>(null);
 
 export type SettingsView = (typeof SETTINGS_VIEWS)[number];
 export const settings_view_jotai = atom<SettingsView>(null);

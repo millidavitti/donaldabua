@@ -5,7 +5,7 @@ import Button from "@/components/ui/button";
 import { project_content_jotai } from "@/data/atoms/app_data";
 import {
 	content_hover_state_jotai,
-	edit_project_jotai,
+	project_draft_view_jotai,
 } from "@/data/atoms/ui_state";
 import { cn } from "@/utils/cn";
 import { createId } from "@paralleldrive/cuid2";
@@ -14,7 +14,7 @@ import { Text, X } from "lucide-react";
 import React, { useState } from "react";
 
 export default function DraftProjectMarkdown() {
-	const edit_project_setter = useSetAtom(edit_project_jotai);
+	const project_draft_view_setter = useSetAtom(project_draft_view_jotai);
 	const content_hover_state_setter = useSetAtom(content_hover_state_jotai);
 	const project_content_setter = useSetAtom(project_content_jotai);
 	const [markdown, setMarkdown] = useState("");
@@ -30,7 +30,7 @@ export default function DraftProjectMarkdown() {
 						content_hover_state_setter(null);
 					},
 					onClick() {
-						edit_project_setter("edit-project-markdown");
+						project_draft_view_setter("edit-project-markdown");
 					},
 				}}
 			>
@@ -46,7 +46,7 @@ export default function DraftProjectMarkdown() {
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Markdown</h2>
-						<InteractiveIcon callback={() => edit_project_setter(null)}>
+						<InteractiveIcon callback={() => project_draft_view_setter(null)}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -83,7 +83,7 @@ export default function DraftProjectMarkdown() {
 										},
 									]);
 								setMarkdown("");
-								edit_project_setter(null);
+								project_draft_view_setter(null);
 							}}
 						>
 							Add

@@ -1,7 +1,7 @@
 "use client";
 
 import {
-	edit_project_jotai,
+	project_draft_view_jotai,
 	dashboard_view_jotai,
 	ProjectDraftView,
 	DashboardView,
@@ -25,11 +25,13 @@ interface Overlay {
 
 export default function Overlay({ stateFlag, children, className }: Overlay) {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
-	const [edit_project, edit_project_setter] = useAtom(edit_project_jotai);
+	const [project_draft_view, project_draft_view_setter] = useAtom(
+		project_draft_view_jotai,
+	);
 	const [settings_view, settings_view_setter] = useAtom(settings_view_jotai);
 	const view =
 		stateFlag === settings_view ||
-		stateFlag === edit_project ||
+		stateFlag === project_draft_view ||
 		stateFlag === dashboard_view;
 	return (
 		<>
@@ -53,7 +55,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 								(e.target as HTMLElement).id as ProjectDraftView,
 							)
 						)
-							edit_project_setter(null);
+							project_draft_view_setter(null);
 						else if (
 							SETTINGS_VIEWS.includes(
 								(e.target as HTMLElement).id as SettingsView,
