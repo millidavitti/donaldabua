@@ -1,4 +1,3 @@
-import { createTechnologiesController } from "@/backend/create-technologies.controller";
 import {
 	Technology,
 	technologies_jotai,
@@ -6,7 +5,6 @@ import {
 	technologies_snapshot_jotai,
 	defaultStore,
 } from "@/data/atoms/app_data";
-import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import FuzzySearch from "fuzzy-search";
 import { useAtom, useAtomValue } from "jotai";
