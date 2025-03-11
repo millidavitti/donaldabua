@@ -2,11 +2,9 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
-import React from "react";
 import { SettingsIcon, X } from "lucide-react";
 import { useSetAtom } from "jotai";
 import { edit_profile_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
-import AddTechnologies from "./add-technologies";
 import Button from "@/components/ui/button";
 import SettingsView from "./settings-view";
 
