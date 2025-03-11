@@ -1,4 +1,4 @@
-import { createTechnologiesController } from "@/backend/create-technologies.controller";
+import { updateTechnologiesController } from "@/backend/update-technologies.controller";
 import {
 	technologies_jotai,
 	technologies_snapshot_jotai,
@@ -23,7 +23,7 @@ export default function useManageTechnologiesInterface() {
 		try {
 			api_task_setter("create-technologies");
 			const { error, technologies: savedTechnologies } =
-				await createTechnologiesController(technologies);
+				await updateTechnologiesController(technologies);
 
 			if (error) throw new Error(error);
 			else if (savedTechnologies)
