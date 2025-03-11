@@ -14,6 +14,7 @@ export const EDIT_PROFILE_STATES = [
 	"edit-published-project",
 	"view-project",
 	"create-profile",
+	"settings",
 	null,
 ] as const;
 
@@ -30,3 +31,5 @@ export const AVAILABILITY_OPTIONS = [
 	"As needed - open to offers",
 	"None",
 ] as const;
+
+export const SETTINGS_VIEW = ["manage-technologies", null] as const;
