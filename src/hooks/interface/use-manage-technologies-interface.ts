@@ -5,7 +5,7 @@ import {
 } from "@/data/atoms/app_data";
 import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
 
 export default function useManageTechnologiesInterface() {
