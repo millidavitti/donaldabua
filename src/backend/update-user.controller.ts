@@ -1,4 +1,3 @@
-"use server";
 import { APIResponse, User } from "@/data/atoms/app_data";
 
 export async function updateUserController(
@@ -15,6 +14,7 @@ export async function updateUserController(
 				method: "PUT",
 				body: JSON.stringify(update),
 				headers,
+    credentials:"include"
 			},
 		);
 		const data = await res.json();
