@@ -18,7 +18,7 @@ export const DASHBOARD_VIEWS = [
 	null,
 ] as const;
 
-export const EDIT_PROJECT_STATES = [
+export const PROJECT_DRAFT_VIEWS = [
 	"edit-project-video",
 	"edit-project-image",
 	"edit-project-markdown",

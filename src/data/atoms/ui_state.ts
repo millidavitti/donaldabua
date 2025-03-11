@@ -1,15 +1,15 @@
 import { atom } from "jotai";
 import {
 	DASHBOARD_VIEWS,
-	EDIT_PROJECT_STATES,
+	PROJECT_DRAFT_VIEWS,
 	SETTINGS_VIEW,
 } from "../constants";
 
 export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
 export const edit_profile_jotai = atom<DashboardView>(null);
 
-export type EditProjectStates = (typeof EDIT_PROJECT_STATES)[number];
-export const edit_project_jotai = atom<EditProjectStates>(null);
+export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
+export const edit_project_jotai = atom<ProjectDraftView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null

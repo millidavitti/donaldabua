@@ -3,13 +3,13 @@
 import {
 	edit_project_jotai,
 	edit_profile_jotai,
-	EditProjectStates,
+	ProjectDraftView,
 	DashboardView,
 	settings_view_jotai,
 	SettingsView,
 } from "@/data/atoms/ui_state";
 import {
-	EDIT_PROJECT_STATES,
+	PROJECT_DRAFT_VIEWS,
 	DASHBOARD_VIEWS,
 	SETTINGS_VIEW,
 } from "@/data/constants";
@@ -18,7 +18,7 @@ import { useAtom } from "jotai";
 import { ReactNode } from "react";
 
 interface Overlay {
-	stateFlag: DashboardView | EditProjectStates | SettingsView;
+	stateFlag: DashboardView | ProjectDraftView | SettingsView;
 	children: ReactNode;
 	className?: string;
 }
@@ -49,8 +49,8 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 						)
 							edit_profile_setter(null);
 						else if (
-							EDIT_PROJECT_STATES.includes(
-								(e.target as HTMLElement).id as EditProjectStates,
+							PROJECT_DRAFT_VIEWS.includes(
+								(e.target as HTMLElement).id as ProjectDraftView,
 							)
 						)
 							edit_project_setter(null);
