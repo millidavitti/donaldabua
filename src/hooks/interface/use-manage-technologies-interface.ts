@@ -6,7 +6,6 @@ import {
 import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { useAtom, useSetAtom } from "jotai";
-import React from "react";
 import { toast } from "sonner";
 
 export default function useManageTechnologiesInterface() {
