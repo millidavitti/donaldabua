@@ -1,4 +1,3 @@
-"use server";
 import { APIResponse, Project, ProjectData } from "@/data/atoms/app_data";
 
 export async function createProjectController(
@@ -15,6 +14,7 @@ export async function createProjectController(
 				method: "POST",
 				body: JSON.stringify(projectData),
 				headers,
+				credentials: "include",
 			},
 		);
 		const data = await res.json();
