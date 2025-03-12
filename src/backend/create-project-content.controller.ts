@@ -1,4 +1,5 @@
 import { APIResponse, ProjectContent } from "@/data/atoms/app_data";
+import { generateCsrfToken } from "./auth/get-csrf-token.controller";
 
 export async function createProjectContentController(
 	projectId: string,
@@ -8,6 +9,10 @@ export async function createProjectContentController(
 	headers.append("Content-type", "application/json");
 
 	try {
+		const { error, csrfToken } = await generateCsrfToken();
+		if (error) throw new Error(error);
+		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
+
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
 				"/project-content/" +

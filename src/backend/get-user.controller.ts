@@ -1,14 +1,20 @@
 import { APIResponse, User } from "@/data/atoms/app_data";
 import { auth } from "@/utils/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
+import { generateCsrfToken } from "./auth/get-csrf-token.controller";
 
 export async function getUserController() {
+	const headers = new Headers();
+
 	try {
+		const { error: err, csrfToken } = await generateCsrfToken();
+		if (err) throw new Error(err);
+		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const { user, error } = await auth();
 		if (user) {
 			const res = await fetch(
 				process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/" + user.id,
-				{ method: "GET", credentials: "include" },
+				{ method: "GET", credentials: "include", headers },
 			);
 			const data = await res.json();
 
