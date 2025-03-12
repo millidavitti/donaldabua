@@ -1,5 +1,4 @@
 import { getProjectsController } from "@/backend/get-projects.controller";
-import { getUserProfileController } from "@/backend/get-user-profile.controller";
 import { getUserController } from "@/backend/get-user.controller";
 import { getUserLocationController } from "@/backend/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
