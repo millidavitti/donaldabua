@@ -1,4 +1,5 @@
 import { APIResponse, UserProfile } from "@/data/atoms/app_data";
+import { generateCsrfToken } from "./auth/get-csrf-token.controller";
 
 export async function updateUserProfile(
 	profileId: string,
@@ -6,7 +7,12 @@ export async function updateUserProfile(
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
+
 	try {
+		const { error, csrfToken } = await generateCsrfToken();
+		if (error) throw new Error(error);
+		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
+
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + profileId,
 			{
