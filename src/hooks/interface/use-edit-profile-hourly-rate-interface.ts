@@ -33,7 +33,7 @@ export function useEditProfileHourlyRateInterface() {
 			if (error) throw error;
 			else profile_snapshot_setter(profile);
 		} catch (error) {
-			console.log("---saveHourlyRateEdit---\n", error);
+			console.error("---saveHourlyRateEdit---\n", error);
 			toast.error("Update failed. Please try again later");
 			profile_hourly_rate_setter(profile_snapshot.hourlyRate);
 		}
