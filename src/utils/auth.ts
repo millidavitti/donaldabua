@@ -24,7 +24,7 @@ export async function auth(request?: NextRequest) {
 export async function signOut() {
 	try {
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_AUTH_ENDPOINT! + "/sign-out",
+			process.env.NEXT_PUBLIC_AUTH_ENDPOINT + "/sign-out",
 			{
 				method: "GET",
 				credentials: "include",
