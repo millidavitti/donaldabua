@@ -34,7 +34,7 @@ export default function EditProfileTechnologies() {
 				{/* Stack */}
 
 				{Boolean(profile_technologies_snapshot.length) && (
-					<Flex className='gap-3 flex-wrap shrink-0 grow'>
+					<Flex className='gap-3 flex-wrap shrink-0'>
 						{profile_technologies_snapshot.map((technology) => (
 							<ProfileTechnology tech={technology} key={technology.id} />
 						))}
