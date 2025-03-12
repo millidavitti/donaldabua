@@ -36,7 +36,7 @@ export function useEditProfileAvailabilityInterface() {
 			if (error) throw error;
 			else profile_snapshot_setter(profile);
 		} catch (error) {
-			console.log("---saveAvailabilityEdit---\n", error);
+			console.error("---saveAvailabilityEdit---\n", error);
 			toast.error("Update failed. Please try again later");
 			profile_availability_setter(profile_snapshot.availability);
 		}

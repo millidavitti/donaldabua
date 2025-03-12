@@ -26,7 +26,7 @@ export async function updateProjectController(
 
 		return data as APIResponse<Project, "update">;
 	} catch (error) {
-		console.log("---updateProjectController---\n", error);
+		console.error("---updateProjectController---\n", error);
 		throw error;
 	}
 }

@@ -15,7 +15,7 @@ export default function usePublishedProjectDeleteOption() {
 				return projects.filter((project) => project.id !== projectID);
 			});
 		} catch (error) {
-			console.log("---deleteProject---\n", error);
+			console.error("---deleteProject---\n", error);
 			toast.info("Unable to delete project. Please try again.");
 		}
 	}

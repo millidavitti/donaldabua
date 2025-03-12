@@ -29,7 +29,7 @@ export async function updateUserLocationController(
 
 		return data as APIResponse<UserLocation, "location">;
 	} catch (error) {
-		console.log("---updateUserLocationController---\n", error);
+		console.error("---updateUserLocationController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

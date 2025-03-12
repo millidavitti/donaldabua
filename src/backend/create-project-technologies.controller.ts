@@ -25,7 +25,7 @@ export async function createProjectTechnologiesController(
 
 		return data as APIResponse<unknown, "info">;
 	} catch (error) {
-		console.log("---createProjectTechnologiesController---\n", error);
+		console.error("---createProjectTechnologiesController---\n", error);
 		throw error;
 	}
 }

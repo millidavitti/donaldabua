@@ -19,7 +19,7 @@ export async function getUserLocationController(userId: string) {
 
 		return data as APIResponse<UserLocation, "location">;
 	} catch (error) {
-		console.log("---getUserLocationController---\n", error);
+		console.error("---getUserLocationController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

@@ -11,7 +11,6 @@ export async function createProfileController(
 
 	try {
 		const { error, csrfToken } = await generateCsrfToken();
-		console.log(csrfToken);
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
@@ -28,7 +27,7 @@ export async function createProfileController(
 
 		return data as APIResponse<UserProfile, "profile">;
 	} catch (error) {
-		console.log("---createProfileController---\n", error);
+		console.error("---createProfileController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

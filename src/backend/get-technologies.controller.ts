@@ -17,7 +17,7 @@ export async function getTechnologiesController() {
 
 		return data as APIResponse<Technology[], "technologies">;
 	} catch (error) {
-		console.log("---getTechnologies---\n", error);
+		console.error("---getTechnologies---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

@@ -23,7 +23,7 @@ export async function getProfileTechnologiesController(profileId: string) {
 
 		return data as APIResponse<Technology[], "profileTechnologies">;
 	} catch (error) {
-		console.log("---getProfileTechnologiesController---\n", error);
+		console.error("---getProfileTechnologiesController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

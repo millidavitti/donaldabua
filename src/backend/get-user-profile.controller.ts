@@ -20,7 +20,7 @@ export async function getUserProfileController(profileId: string) {
 
 		return data as APIResponse<UserProfile, "profile">;
 	} catch (error) {
-		console.log("---getUserProfileController---\n", error);
+		console.error("---getUserProfileController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

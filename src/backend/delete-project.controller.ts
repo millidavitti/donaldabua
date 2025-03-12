@@ -20,7 +20,7 @@ export async function deleteProjectController(projectId: string) {
 
 		return data as APIResponse<Project, "project">;
 	} catch (error) {
-		console.log("---deleteProjectController---\n", error);
+		console.error("---deleteProjectController---\n", error);
 		throw error;
 	}
 }

@@ -22,7 +22,7 @@ export async function getProjectContentController(projectId: string) {
 
 		return data as APIResponse<ProjectContent, "projectContent">;
 	} catch (error) {
-		console.log("---getProjectContentController---\n", error);
+		console.error("---getProjectContentController---\n", error);
 		throw error;
 	}
 }

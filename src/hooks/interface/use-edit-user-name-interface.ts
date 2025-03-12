@@ -29,7 +29,7 @@ export function useEditUserNameInterface() {
 		} catch (error) {
 			user_name_setter(user_snapshot.name);
 			toast.error("Update failed. Please try again later");
-			console.log("---saveNameEdit---\n", error);
+			console.error("---saveNameEdit---\n", error);
 		}
 	}
 

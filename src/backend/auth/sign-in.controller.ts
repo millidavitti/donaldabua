@@ -19,7 +19,7 @@ export async function signInController(formData: { email: string }) {
 		if (error) throw new Error(error);
 		return { status };
 	} catch (error) {
-		console.log("---signInController---\n", error);
+		console.error("---signInController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

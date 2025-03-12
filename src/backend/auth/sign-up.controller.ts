@@ -21,7 +21,7 @@ export async function signUpController(formData: {
 
 		if (error) throw new Error(error);
 	} catch (error) {
-		console.log("---signUpController---\n", error);
+		console.error("---signUpController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }
