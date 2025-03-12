@@ -126,7 +126,10 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 		);
 
 		if (error) throw new Error(error);
-		else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
+		else if (profiles) {
+			defaultStore.set(profiles_snapshot_jotai, profiles);
+			defaultStore.set(profile_snapshot_jotai, profiles[0]);
+		}
 	} catch (error) {
 		console.error("---App Data:user_snapshot_jotai---\n", error);
 		toast.error(
@@ -188,6 +191,13 @@ export const profile_snapshot_jotai = atom<UserProfile>({
 	overview: "",
 	availability: "None",
 });
+export const profile_jotai = atom<UserProfile>({
+	id: "",
+	title: "",
+	hourlyRate: 1,
+	overview: "",
+	availability: "None",
+});
 defaultStore.sub(profile_snapshot_jotai, async () => {
 	defaultStore.set(
 		profile_availability_jotai,
@@ -238,38 +248,25 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 	}
 
 	// Sync Profiles
-	// try {
-	// 	const { profiles, error } = await getProfilesController(
-	// 		defaultStore.get(user_snapshot_jotai).id,
-	// 	);
+	try {
+		const { profiles, error } = await getProfilesController(
+			defaultStore.get(user_snapshot_jotai).id,
+		);
 
-	// 	if (error) throw new Error(error);
-	// 	else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
-	// } catch (error) {
-	// 	console.error("---App Data:user_snapshot_jotai---\n", error);
-	// 	toast.error(
-	// 		"We were unable to retrieve your data. Please try again later.",
-	// 	);
-	// }
+		if (error) throw new Error(error);
+		else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
+	} catch (error) {
+		console.error("---App Data:user_snapshot_jotai---\n", error);
+		toast.error(
+			"We were unable to retrieve your data. Please try again later.",
+		);
+	}
 });
 
 export const profiles_snapshot_jotai = atom<UserProfile[]>([]);
 export const profiles_jotai = atom<UserProfile[]>([]);
 defaultStore.sub(profiles_snapshot_jotai, async () => {
 	defaultStore.set(profiles_jotai, defaultStore.get(profiles_snapshot_jotai));
-
-	try {
-		const { profile, error } = await getUserProfileController(
-			defaultStore.get(profiles_snapshot_jotai)[0].id,
-		);
-		if (error) throw new Error(error);
-		else if (profile) defaultStore.set(profile_snapshot_jotai, profile);
-	} catch (error) {
-		console.error("---App Data:profile_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
-	}
 });
 
 export const profile_availability_jotai =
