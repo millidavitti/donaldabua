@@ -28,7 +28,8 @@ export default function useSettingsInterface() {
 		try {
 			api_task_setter("sign-out");
 			await destroySession();
-			router.refresh();
+			api_task_setter(null);
+			router.push("/auth/sign-in");
 		} catch (error) {
 			console.error("---signOut---\n", error);
 			toast.error("Unable to sign out");
