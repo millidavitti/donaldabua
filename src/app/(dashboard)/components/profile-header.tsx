@@ -10,11 +10,14 @@ export default function ProfileHeader() {
 	return (
 		<Flex className='shrink-0 gap-3 overflow-visible flex-wrap'>
 			<EditUserPhoto />
-			<Flex flex='column' className='relative overflow-visible gap-3 grow'>
+			<Flex
+				flex='column'
+				className='relative overflow-visible gap-3 grow-[256]'
+			>
 				<EditUserName />
 				<EditUserLocation />
 			</Flex>
-			<Flex className='gap-3 self-start flex-wrap'>
+			<Flex className='gap-3 self-start flex-wrap grow'>
 				<CreateProfile />
 				<SelectProfile />
 			</Flex>
