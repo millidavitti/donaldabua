@@ -11,7 +11,7 @@ export default function SelectProfile() {
 	return (
 		<>
 			<Button type='button' onClick={display} className='self-start'>
-				Switch Profile
+				Select Profile
 			</Button>
 
 			<Overlay
