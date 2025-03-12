@@ -10,7 +10,7 @@ export default function ProfileTechnology({
 	tech: Technology;
 }) {
 	return (
-		<Flex className='gap-3 items-center'>
+		<Flex className='gap-3 items-center self-start'>
 			<p className='shrink-0 font-medium'>{tech.name}</p>
 			{children}
 		</Flex>
