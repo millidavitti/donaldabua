@@ -3,11 +3,12 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useSelectProfileInterface from "@/hooks/interface/use-select-profile-interface";
-import { X } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import React from "react";
 
 export default function SelectProfile() {
-	const { close, display, profiles, select } = useSelectProfileInterface();
+	const { close, display, profiles, select, remove } =
+		useSelectProfileInterface();
 	return (
 		<>
 			<Button type='button' onClick={display} className='self-start'>
@@ -32,9 +33,18 @@ export default function SelectProfile() {
 					<Flex flex='column' className='gap-3'>
 						{profiles.map((profile) => {
 							return (
-								<Button key={profile.id} onClick={() => select(profile)}>
-									{profile.title}
-								</Button>
+								<Flex key={profile.id} className='gap-3'>
+									<Button
+										onClick={() => select(profile)}
+										className='w-full shrink'
+									>
+										{profile.title}
+									</Button>
+									<Trash2
+										className='stroke-light-error shrink-0 self-center cursor-pointer active:scale-95 transition'
+										onClick={() => remove(profile.id)}
+									/>
+								</Flex>
 							);
 						})}
 					</Flex>

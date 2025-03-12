@@ -255,7 +255,7 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 		if (error) throw new Error(error);
 		else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
 	} catch (error) {
-		console.error("---App Data:user_snapshot_jotai---\n", error);
+		console.error("---App Data:profile_snapshot_jotai---\n", error);
 		toast.error(
 			"We were unable to retrieve your data. Please try again later.",
 		);
