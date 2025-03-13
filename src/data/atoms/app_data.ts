@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
 import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../constants";
 import { getProfilesController } from "@/backend/get-profiles.controller";
+import { getUserSocialsController } from "@/backend/get-user-socials.controller";
+import { getErrorMessage } from "@/utils/get-error-message";
 
 export const defaultStore = getDefaultStore();
 
@@ -38,9 +40,7 @@ defaultStore.sub(technologies_snapshot_jotai, async () => {
 					profileTechnologies,
 				);
 		} catch (error) {
-			toast.error(
-				"We were unable to retrieve your data. Please try again later.",
-			);
+			toast.error(getErrorMessage(error));
 			console.error("---App Data:profile_technologies_jotai---\n", error);
 		}
 	}
@@ -74,9 +74,7 @@ user_snapshot_jotai.onMount = (setAtom) => {
 			} else if (user) setAtom(user);
 		} catch (error) {
 			console.error("---App Data:user_jotai---\n", error);
-			toast.error(
-				"We were unable to retrieve your data. Please try again later.",
-			);
+			toast.error(getErrorMessage(error));
 		}
 
 		try {
@@ -91,10 +89,7 @@ user_snapshot_jotai.onMount = (setAtom) => {
 	})();
 };
 defaultStore.sub(user_snapshot_jotai, async () => {
-	defaultStore.set(
-		user_name_jotai,
-		defaultStore.get(user_snapshot_jotai).name!,
-	);
+	defaultStore.set(user_name_jotai, defaultStore.get(user_snapshot_jotai).name);
 	defaultStore.set(
 		user_image_jotai,
 		defaultStore.get(user_snapshot_jotai).image,
@@ -113,9 +108,7 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 		else if (location) defaultStore.set(user_location_snapshot_jotai, location);
 	} catch (error) {
 		console.error("---App Data:user_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
+		toast.error(getErrorMessage(error));
 	}
 
 	// Get User Profiles
@@ -131,9 +124,20 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 		}
 	} catch (error) {
 		console.error("---App Data:user_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
+		toast.error(getErrorMessage(error));
+	}
+
+	// Get User Socials
+	try {
+		const { socials, error } = await getUserSocialsController(
+			defaultStore.get(user_snapshot_jotai).id,
 		);
+
+		if (error) throw new Error(error);
+		else if (socials) defaultStore.set(user_socials_snapshot_jotai, socials);
+	} catch (error) {
+		console.error("---App Data:user_snapshot_jotai---\n", error);
+		toast.error(getErrorMessage(error));
 	}
 });
 export const user_name_jotai = atom<string>("");
@@ -166,21 +170,21 @@ export const user_location_country_jotai = atom<string>("Country");
 
 export type SocialAccount = {
 	id: string;
-	platform: string;
-	link: string;
+	platform: SocialPlatforms;
+	profile: string;
 };
 
 export type SocialPlatforms = (typeof SOCIAL_PLATFORMS)[number];
 
 export const social_account_snapshot_jotai = atom<SocialAccount>({
 	id: "",
-	platform: "",
-	link: "",
+	platform: "Facebook",
+	profile: "",
 });
 export const social_account_jotai = atom<SocialAccount>({
 	id: "",
-	platform: "",
-	link: "",
+	platform: "Facebook",
+	profile: "",
 });
 
 export const user_socials_snapshot_jotai = atom<SocialAccount[]>([]);
@@ -239,9 +243,7 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 				profileTechnologies,
 			);
 	} catch (error) {
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
+		toast.error(getErrorMessage(error));
 		console.error("---App Data:profile_snapshot_jotai---\n", error);
 	}
 
@@ -253,9 +255,7 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 		else if (projects) defaultStore.set(projects_snapshot_jotai, projects);
 	} catch (error) {
 		console.error("---App Data:profile_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
+		toast.error(getErrorMessage(error));
 	}
 
 	// Sync Profiles
@@ -268,9 +268,7 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 		else if (profiles) defaultStore.set(profiles_snapshot_jotai, profiles);
 	} catch (error) {
 		console.error("---App Data:profile_snapshot_jotai---\n", error);
-		toast.error(
-			"We were unable to retrieve your data. Please try again later.",
-		);
+		toast.error(getErrorMessage(error));
 	}
 });
 
