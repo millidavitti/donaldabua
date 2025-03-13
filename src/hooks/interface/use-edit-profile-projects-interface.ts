@@ -1,12 +1,12 @@
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import {
 	dashboard_view_jotai,
 	project_form_step_jotai,
 } from "@/data/atoms/ui_state";
 
 export function useEditProfileProjectsInterface() {
-	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
+	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [project_form_step, project_form_step_setter] = useAtom(
 		project_form_step_jotai,
 	);
@@ -17,5 +17,5 @@ export function useEditProfileProjectsInterface() {
 		dashboard_view_setter("edit-portfolio");
 		project_form_step_setter("draft-project-info");
 	}
-	return { addNewProject, project_form_step, edit_profile: dashboard_view };
+	return { addNewProject, project_form_step };
 }
