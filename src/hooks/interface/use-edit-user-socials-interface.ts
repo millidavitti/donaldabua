@@ -7,12 +7,12 @@ import {
 } from "@/data/atoms/app_data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 export default function useEditUserSocialsInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [social_account, social_account_setter] = useAtom(social_account_jotai);
-	const [user_snapshot, user_snapshot_setter] = useAtom(user_snapshot_jotai);
+	const user_snapshot = useAtomValue(user_snapshot_jotai);
 	const [user_socials_snapshot, user_socials_snapshot_setter] = useAtom(
 		user_socials_snapshot_jotai,
 	);
