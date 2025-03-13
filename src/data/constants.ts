@@ -34,3 +34,22 @@ export const AVAILABILITY_OPTIONS = [
 ] as const;
 
 export const SETTINGS_VIEWS = ["manage-technologies", null] as const;
+
+export const SOCIAL_PLATFORMS = [
+	"Facebook",
+	"Instagram",
+	"Twitter",
+	"X",
+	"TikTok",
+	"LinkedIn",
+	"Snapchat",
+	"Pinterest",
+	"Reddit",
+	"YouTube",
+	"WhatsApp",
+	"Telegram",
+	"Discord",
+	"WeChat",
+	"Threads",
+	"Tumblr",
+] as const;
