@@ -38,8 +38,7 @@ export const SETTINGS_VIEWS = ["manage-technologies", null] as const;
 export const SOCIAL_PLATFORMS = [
 	"Facebook",
 	"Instagram",
-	"Twitter",
-	"X",
+	"X / Twitter",
 	"TikTok",
 	"LinkedIn",
 	"Snapchat",
@@ -57,8 +56,7 @@ export const SOCIAL_PLATFORMS = [
 export const SOCIAL_PLATFORM_ICONS = {
 	Facebook: "/social-media-icons/facebook.svg",
 	Instagram: "/social-media-icons/instagram.svg",
-	Twitter: "/social-media-icons/twitter.svg",
-	X: "/social-media-icons/twitter.svg",
+	"X / Twitter": "/social-media-icons/twitter.svg",
 	TikTok: "/social-media-icons/tik-tok.svg",
 	LinkedIn: "/social-media-icons/linkedin.svg",
 	Snapchat: "/social-media-icons/snapchat.svg",
