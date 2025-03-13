@@ -45,7 +45,7 @@ export default function useSelectSocialPlatformInterface() {
 		const search = new FuzzySearch(platforms);
 		const result = search.search(value);
 		social_account_setter((social_account) => {
-			return { ...social_account, platform: "" };
+			return { ...social_account, platform: "Facebook" };
 		});
 		setSearchQuery(value);
 		if (value) setSearchResult(result);

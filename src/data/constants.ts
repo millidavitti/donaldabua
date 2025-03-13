@@ -38,8 +38,7 @@ export const SETTINGS_VIEWS = ["manage-technologies", null] as const;
 export const SOCIAL_PLATFORMS = [
 	"Facebook",
 	"Instagram",
-	"Twitter",
-	"X",
+	"X / Twitter",
 	"TikTok",
 	"LinkedIn",
 	"Snapchat",
@@ -53,3 +52,21 @@ export const SOCIAL_PLATFORMS = [
 	"Threads",
 	"Tumblr",
 ] as const;
+
+export const SOCIAL_PLATFORM_ICONS = {
+	Facebook: "/social-media-icons/facebook.svg",
+	Instagram: "/social-media-icons/instagram.svg",
+	"X / Twitter": "/social-media-icons/twitter.svg",
+	TikTok: "/social-media-icons/tik-tok.svg",
+	LinkedIn: "/social-media-icons/linkedin.svg",
+	Snapchat: "/social-media-icons/snapchat.svg",
+	Pinterest: "/social-media-icons/pinterest.svg",
+	Reddit: "/social-media-icons/reddit.svg",
+	YouTube: "/social-media-icons/youtube.svg",
+	WhatsApp: "/social-media-icons/whatsapp.svg",
+	Telegram: "/social-media-icons/telegram.svg",
+	Discord: "/social-media-icons/discord.svg",
+	WeChat: "/social-media-icons/wechat.svg",
+	Threads: "/social-media-icons/threads.svg",
+	Tumblr: "/social-media-icons/tumblr.svg",
+} as const;
