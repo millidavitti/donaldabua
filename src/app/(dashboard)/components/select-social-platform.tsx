@@ -1,9 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { X } from "lucide-react";
-import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
-import ProfileTechnology from "./profile-technology";
 import useSelectSocialPlatformInterface from "@/hooks/interface/use-select-social-platform-interface";
-import { platform } from "os";
 
 export default function SelectSocialPlatform() {
 	const {
