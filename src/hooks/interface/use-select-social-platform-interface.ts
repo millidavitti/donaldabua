@@ -8,7 +8,7 @@ import {
 } from "@/data/atoms/app_data";
 import { SOCIAL_PLATFORMS } from "@/data/constants";
 import FuzzySearch from "fuzzy-search";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { useState } from "react";
 
 export default function useSelectSocialPlatformInterface() {
