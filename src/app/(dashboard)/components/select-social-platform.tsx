@@ -1,5 +1,7 @@
 import Flex from "@/components/layouts/flex";
+import { SOCIAL_PLATFORM_ICONS } from "@/data/constants";
 import useSelectSocialPlatformInterface from "@/hooks/interface/use-select-social-platform-interface";
+import Image from "next/image";
 
 export default function SelectSocialPlatform() {
 	const {
@@ -45,13 +47,19 @@ export default function SelectSocialPlatform() {
 							return (
 								<Flex
 									key={socialPlatforms}
-									className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container'
+									className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container gap-3 font-semibold'
 									htmlProps={{
 										onClick() {
 											addTechnology(socialPlatforms);
 										},
 									}}
 								>
+									<Image
+										src={SOCIAL_PLATFORM_ICONS[socialPlatforms]}
+										width={24}
+										height={24}
+										alt={socialPlatforms}
+									/>
 									{socialPlatforms}
 								</Flex>
 							);
