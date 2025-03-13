@@ -30,10 +30,7 @@ export default function ManageTechnologies() {
 					}}
 				>
 					<AddTechnologies />
-					<Button
-						type='submit'
-						className='bg-black text-light-surface fill-white'
-					>
+					<Button type='submit' className='bg-black text-light-surface'>
 						Save {api_task && <HashLoader size={24} color='#fff' />}
 					</Button>
 				</form>
