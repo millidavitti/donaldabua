@@ -5,7 +5,7 @@ import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/get-technologies.controller";
-import { AVAILABILITY_OPTIONS } from "../constants";
+import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../constants";
 import { getProfilesController } from "@/backend/get-profiles.controller";
 
 export const defaultStore = getDefaultStore();
@@ -164,12 +164,33 @@ defaultStore.sub(user_location_snapshot_jotai, () => {
 export const user_location_city_jotai = atom<string>("City");
 export const user_location_country_jotai = atom<string>("Country");
 
-export type UserSocials = {
+export type SocialAccount = {
 	id: string;
 	platform: string;
-	profile: string;
+	link: string;
 };
-export const user_socials_jotai = atom<UserSocials[]>([]);
+
+export type SocialPlatforms = (typeof SOCIAL_PLATFORMS)[number];
+
+export const social_account_snapshot_jotai = atom<SocialAccount>({
+	id: "",
+	platform: "",
+	link: "",
+});
+export const social_account_jotai = atom<SocialAccount>({
+	id: "",
+	platform: "",
+	link: "",
+});
+
+export const user_socials_snapshot_jotai = atom<SocialAccount[]>([]);
+export const user_socials_jotai = atom<SocialAccount[]>([]);
+defaultStore.sub(user_socials_snapshot_jotai, () => {
+	defaultStore.set(
+		user_socials_jotai,
+		defaultStore.get(user_socials_snapshot_jotai),
+	);
+});
 
 export type ProfileAvailabilityOptions = (typeof AVAILABILITY_OPTIONS)[number];
 

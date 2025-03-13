@@ -3,7 +3,6 @@ import React from "react";
 import ProfileHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
 import ProfileOverview from "../components/profile-overview";
-import Socials from "../components/edit-profile-user/edit-profile-user-socials";
 import EditProfileEmploymentHistory from "../components/edit-profile/edit-profile-employment-history";
 import DashboardHeader from "../components/dashboard-header";
 
@@ -21,7 +20,6 @@ export default function Dashboard() {
 				{/* Social Proof */}
 				<Flex className='gap-3 shrink-0' flex='column'>
 					<EditProfileEmploymentHistory />
-					<Socials />
 				</Flex>
 			</Flex>
 		</Flex>
