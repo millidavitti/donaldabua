@@ -1,15 +1,15 @@
-"use client";
+"use client";;
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { dashboard_view_jotai } from "@/data/atoms/ui_state";
-import { useSetAtom } from "jotai";
+import useEditUserSocialsInterface from "@/hooks/interface/use-edit-user-socials-interface";
 import { CirclePlus, X } from "lucide-react";
+import SelectSocialPlatform from "../select-social-platform";
 
 export default function EditUserSocials() {
-	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
-
+	const { capture, close, display, save, social_account } =
+		useEditUserSocialsInterface();
 	return (
 		<>
 			<Flex flex='column' className='grow'>
@@ -17,7 +17,7 @@ export default function EditUserSocials() {
 					<p className='font-semibold lg:text-2xl'>Socials</p>
 					<InteractiveIcon
 						callback={() => {
-							dashboard_view_setter("edit-socials");
+							display();
 						}}
 					>
 						<CirclePlus size={24} />
@@ -35,7 +35,7 @@ export default function EditUserSocials() {
 				>
 					<Flex className='justify-between items-center shrink-0'>
 						<h2 className='text-2xl font-semibold'>Add Socials</h2>
-						<InteractiveIcon callback={() => dashboard_view_setter(null)}>
+						<InteractiveIcon callback={() => close()}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -45,20 +45,21 @@ export default function EditUserSocials() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							dashboard_view_setter(null);
+							save();
 						}}
 					>
-						<Flex flex='column' className='gap-3'>
-							<label className='text-xl font-semibold shrink-0' htmlFor='title'>
-								Platform
-							</label>
-							<input type='text' required className='outline p-3' />
-						</Flex>
+						<SelectSocialPlatform />
 						<Flex flex='column' className='gap-3'>
 							<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 								Link
 							</label>
-							<input type='url' required className='outline p-3' />
+							<input
+								type='url'
+								required
+								className='outline p-3'
+								value={social_account.link}
+								onChange={(e) => capture("link", e.target.value)}
+							/>
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
