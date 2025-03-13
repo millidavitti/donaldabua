@@ -7,7 +7,7 @@ import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { CirclePlus, X } from "lucide-react";
 
-export default function EditProfileUserSocials() {
+export default function EditUserSocials() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 
 	return (
