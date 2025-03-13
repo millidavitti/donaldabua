@@ -26,7 +26,7 @@ export async function updateUserController(
 
 		return data as APIResponse<User, "user">;
 	} catch (error) {
-		console.log("---updateUserController---\n", error);
+		console.error("---updateUserController---\n", error);
 		throw error;
 	}
 }

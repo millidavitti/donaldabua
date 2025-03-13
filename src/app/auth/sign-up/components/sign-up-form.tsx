@@ -21,7 +21,7 @@ export default function SignUpForm() {
 					toast.info("A verification email has been sent");
 				} catch (error) {
 					setSignUp(false);
-					console.log("---CreateAccountButton---\n", error);
+					console.error("---CreateAccountButton---\n", error);
 					if (getErrorMessage(error).includes("duplicate"))
 						toast.info("Email already exists. Sign in");
 					else toast.info("Unable to create your account at the moment ");

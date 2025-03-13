@@ -30,7 +30,7 @@ export function useEditUserPhotoInterface() {
 		} catch (error) {
 			user_image_setter(user_snapshot.image);
 			toast.error("Update failed. Please try again later");
-			console.log("---savePhotoEdit---\n", error);
+			console.error("---savePhotoEdit---\n", error);
 		}
 	}
 

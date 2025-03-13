@@ -28,7 +28,7 @@ export async function createProjectContentController(
 
 		return data as APIResponse<ProjectContent, "projectContent">;
 	} catch (error) {
-		console.log("---createProjectContentController---\n", error);
+		console.error("---createProjectContentController---\n", error);
 		throw error;
 	}
 }

@@ -22,7 +22,7 @@ export async function getProjectTechnologiesController(projectId: string) {
 
 		return data as APIResponse<Technology[], "projectTechnologies">;
 	} catch (error) {
-		console.log("---getProjectTechnologiesController---\n", error);
+		console.error("---getProjectTechnologiesController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

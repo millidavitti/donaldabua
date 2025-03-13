@@ -20,7 +20,7 @@ export async function getProjectsController(profileId: string) {
 
 		return data as APIResponse<Project[], "projects">;
 	} catch (error) {
-		console.log("---getProjectsController---\n", error);
+		console.error("---getProjectsController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

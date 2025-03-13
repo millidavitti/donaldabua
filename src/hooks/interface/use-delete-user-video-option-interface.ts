@@ -19,7 +19,7 @@ export function useDeleteUserVideoOptionInterface() {
 		} catch (error) {
 			user_video_setter(user_snapshot.video);
 			toast.error("Update failed. Please try again later");
-			console.log("---deleteVideo---\n", error);
+			console.error("---deleteVideo---\n", error);
 		}
 	}
 

@@ -29,7 +29,7 @@ export function useEditUserVideoInterface() {
 		} catch (error) {
 			user_video_setter(video);
 			toast.error("Update failed. Please try again later");
-			console.log("---saveVideoEdit---\n", error);
+			console.error("---saveVideoEdit---\n", error);
 		}
 	}
 

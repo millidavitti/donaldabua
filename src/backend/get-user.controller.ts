@@ -22,7 +22,7 @@ export async function getUserController() {
 		} else if (error) throw new Error(error);
 		return {} as APIResponse<User, "user">;
 	} catch (error) {
-		console.log("---getUserController---\n", error);
+		console.error("---getUserController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

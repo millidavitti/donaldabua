@@ -24,7 +24,7 @@ export async function updateTechnologiesController(technologies: Technology[]) {
 
 		return data as APIResponse<Technology[], "technologies">;
 	} catch (error) {
-		console.log("---createTechnologiesController---\n", error);
+		console.error("---createTechnologiesController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

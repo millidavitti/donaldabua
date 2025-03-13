@@ -33,7 +33,7 @@ export function useEditProfileOverviewInterface() {
 			if (error) throw error;
 			else profile_snapshot_setter(profile);
 		} catch (error) {
-			console.log("---saveOverviewEdit---\n", error);
+			console.error("---saveOverviewEdit---\n", error);
 			toast.error("Update failed. Please try again later");
 			profile_overview_setter(profile_snapshot.overview);
 		}

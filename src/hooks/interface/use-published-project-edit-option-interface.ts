@@ -48,7 +48,7 @@ export function usePublishedProjectEditOptionInterface() {
 			project_content_setter(projectContent);
 		} catch (error) {
 			dashboard_view_setter(null);
-			console.log("---editProject:getProjectContent---\n", error);
+			console.error("---editProject:getProjectContent---\n", error);
 			toast.info("Unable to retrieve project content. Please try again later.");
 		}
 

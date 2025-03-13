@@ -27,7 +27,7 @@ export async function updateProfileTechnologiesController(
 
 		return data as APIResponse<unknown, "info">;
 	} catch (error) {
-		console.log("---updateProfileTechnologiesController---\n", error);
+		console.error("---updateProfileTechnologiesController---\n", error);
 		throw error;
 	}
 }

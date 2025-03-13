@@ -26,11 +26,7 @@ export default function useManageTechnologiesInterface() {
 				await updateTechnologiesController(technologies);
 
 			if (error) throw new Error(error);
-			else if (savedTechnologies)
-				technologies_snapshot_setter([
-					...savedTechnologies,
-					...technologies_snapshot,
-				]);
+			else if (savedTechnologies) technologies_snapshot_setter(technologies);
 			api_task_setter(null);
 			settings_view_setter(null);
 		} catch (error) {

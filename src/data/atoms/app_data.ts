@@ -137,10 +137,8 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 	}
 });
 export const user_name_jotai = atom<string>("");
-defaultStore.sub(user_snapshot_jotai, () => {});
 
 export const user_image_jotai = atom<string>("");
-defaultStore.sub(user_snapshot_jotai, () => {});
 
 export const user_video_jotai = atom<string | null>("");
 
@@ -184,13 +182,6 @@ export type UserProfile = {
 };
 
 export const profile_snapshot_jotai = atom<UserProfile>({
-	id: "",
-	title: "",
-	hourlyRate: 1,
-	overview: "",
-	availability: "None",
-});
-export const profile_jotai = atom<UserProfile>({
 	id: "",
 	title: "",
 	hourlyRate: 1,

@@ -50,7 +50,7 @@ export function usePublishProjectInterface() {
 			resetProjectFormFields();
 		} catch (error) {
 			api_task_setter(null);
-			console.log("---publishProject---\n", error);
+			console.error("---publishProject---\n", error);
 			toast.error("An error occurred while publishing the project.");
 		}
 	}
@@ -92,7 +92,7 @@ export function usePublishProjectInterface() {
 			);
 			api_task_setter(null);
 			toast.error("Update failed. Please try again later");
-			console.log("---savePublishedProjectEdit---\n", error);
+			console.error("---savePublishedProjectEdit---\n", error);
 		}
 	}
 

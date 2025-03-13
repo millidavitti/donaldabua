@@ -47,7 +47,7 @@ export default function useEditProfileTechnologiesInterface() {
 			dashboard_view_setter(null);
 			api_task_setter(null);
 		} catch (error) {
-			console.log("---saveTechnologiesEdit---\n", error);
+			console.error("---saveTechnologiesEdit---\n", error);
 			api_task_setter(null);
 			toast.error("Update failed. Please try again later");
 		}

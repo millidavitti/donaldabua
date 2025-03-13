@@ -26,7 +26,7 @@ export async function updateUserProfile(
 
 		return data as APIResponse<UserProfile, "profile">;
 	} catch (error) {
-		console.log("---updateUserProfile---\n", error);
+		console.error("---updateUserProfile---\n", error);
 		throw error;
 	}
 }
