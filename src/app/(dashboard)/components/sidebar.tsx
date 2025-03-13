@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 
 import React from "react";
 import EditUserVideo from "./edit-profile-user/edit-user-video";
-import EditProfileUserSocials from "./edit-profile-user/edit-profile-user-socials";
+import EditUserSocials from "./edit-profile-user/edit-user-socials";
 import EditProfileUserAvailability from "./edit-profile/edit-profile-availability";
 
 export default function Sidebar() {
@@ -12,7 +12,7 @@ export default function Sidebar() {
 			<EditUserVideo />
 			<Flex flex='column' className='grow gap-3'>
 				<EditProfileUserAvailability />
-				<EditProfileUserSocials />
+				<EditUserSocials />
 			</Flex>
 		</Flex>
 	);
