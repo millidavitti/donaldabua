@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function DashboardHeader() {
 	return (
-		<Flex className='justify-between'>
+		<Flex className='justify-between items-center shrink-0'>
 			<Image
 				src='/logo.svg'
 				width={48}
