@@ -1,8 +1,6 @@
-import React from "react";
 import Flex from "../layouts/flex";
 import Button from "./button";
 import Overlay from "../layouts/overlay";
-import InteractiveIcon from "../layouts/interactive_icon";
 import useAlertDialogInterface from "@/hooks/interface/use-alert-dialog-interface";
 import { ApiTask } from "@/data/atoms/ui_state";
 import { HashLoader } from "react-spinners";
