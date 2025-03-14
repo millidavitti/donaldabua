@@ -4,7 +4,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useEditUserSocialsInterface from "@/hooks/interface/use-edit-user-socials-interface";
-import { CirclePlus, X } from "lucide-react";
+import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
 import { SOCIAL_PLATFORM_ICONS } from "@/data/constants";
@@ -22,6 +22,7 @@ export default function EditUserSocials() {
 		api_task,
 		update,
 		dashboard_view,
+		remove,
 	} = useEditUserSocialsInterface();
 	return (
 		<>
@@ -41,20 +42,24 @@ export default function EditUserSocials() {
 					{user_socials_snapshot.map((social_account) => (
 						<Flex
 							key={social_account.id}
-							className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container gap-3 font-semibold'
-							htmlProps={{
-								onClick() {
-									update(social_account);
-								},
-							}}
+							className='group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between'
 						>
-							<Image
-								src={SOCIAL_PLATFORM_ICONS[social_account.platform]}
-								width={24}
-								height={24}
-								alt={social_account.platform}
+							<span
+								className='flex w-full gap-3 active:scale-95 transition cursor-pointer'
+								onClick={() => update(social_account)}
+							>
+								<Image
+									src={SOCIAL_PLATFORM_ICONS[social_account.platform]}
+									width={24}
+									height={24}
+									alt={social_account.platform}
+								/>
+								{social_account.platform}
+							</span>
+							<Trash2
+								className='stroke-light-error active:scale-95 transition group-hover:block hidden cursor-pointer'
+								onClick={() => remove(social_account)}
 							/>
-							{social_account.platform}
 						</Flex>
 					))}
 				</Flex>
