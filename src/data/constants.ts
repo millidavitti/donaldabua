@@ -71,3 +71,8 @@ export const SOCIAL_PLATFORM_ICONS = {
 	Threads: "/social-media-icons/threads.svg",
 	Tumblr: "/social-media-icons/tumblr.svg",
 } as const;
+
+export const DELAY = 100;
+
+export const ANIMATIONS = ["neonScan", "swing-in-top-fwd"] as const;
+type AnimationClass = (typeof ANIMATIONS)[number];
