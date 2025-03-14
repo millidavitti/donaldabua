@@ -34,7 +34,8 @@ export default function useEditUserSocialsInterface() {
 	}
 
 	async function save(view: "add-socials" | "update-socials") {
-		view === "add-socials" ? addSocialAccount() : updateSocialAccount();
+		if (view === "add-socials") addSocialAccount();
+		else if (view === "update-socials") updateSocialAccount();
 	}
 
 	async function addSocialAccount() {
