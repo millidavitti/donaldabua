@@ -186,6 +186,12 @@ export const social_account_jotai = atom<SocialAccount>({
 	platform: "Facebook",
 	profile: "",
 });
+defaultStore.sub(social_account_snapshot_jotai, () => {
+	defaultStore.set(
+		social_account_jotai,
+		defaultStore.get(social_account_snapshot_jotai),
+	);
+});
 
 export const user_socials_snapshot_jotai = atom<SocialAccount[]>([]);
 export const user_socials_jotai = atom<SocialAccount[]>([]);
