@@ -75,4 +75,4 @@ export const SOCIAL_PLATFORM_ICONS = {
 export const DELAY = 100;
 
 export const ANIMATIONS = ["neonScan", "swing-in-top-fwd"] as const;
-type AnimationClass = (typeof ANIMATIONS)[number];
+export type AnimationClass = (typeof ANIMATIONS)[number];
