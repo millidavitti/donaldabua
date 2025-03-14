@@ -1,4 +1,5 @@
 import { createUserSocialsController } from "@/backend/create-user-socials.controller";
+import { deleteUserSocialsController } from "@/backend/delete-user-socials.controller";
 import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
 import {
 	social_account_jotai,
@@ -9,6 +10,7 @@ import {
 	user_socials_snapshot_jotai,
 } from "@/data/atoms/app_data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { getErrorMessage } from "@/utils/get-error-message";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
@@ -34,8 +36,8 @@ export default function useEditUserSocialsInterface() {
 	}
 
 	async function save(view: "add-socials" | "update-socials") {
-		if (view === "add-socials") addSocialAccount();
-		else if (view === "update-socials") updateSocialAccount();
+		if (view === "add-socials") await addSocialAccount();
+		else if (view === "update-socials") await updateSocialAccount();
 	}
 
 	async function addSocialAccount() {
@@ -102,6 +104,24 @@ export default function useEditUserSocialsInterface() {
 		social_account_snapshot_setter(socialAccount);
 		display("update-socials");
 	}
+
+	async function remove(socialAccount: SocialAccount) {
+		try {
+			const { error, socialAccount: removed } =
+				await deleteUserSocialsController(socialAccount.id);
+			if (error) throw new Error(error);
+			else if (removed)
+				user_socials_snapshot_setter((user_socials) =>
+					user_socials.filter(
+						(social_account) => social_account.id !== removed.id,
+					),
+				);
+		} catch (error) {
+			console.error("---useEditUserSocialsInterface:remove---\n", error);
+			throw new Error(getErrorMessage(error));
+		}
+	}
+
 	return {
 		display,
 		close,
@@ -112,5 +132,6 @@ export default function useEditUserSocialsInterface() {
 		api_task,
 		update,
 		dashboard_view,
+		remove,
 	};
 }
