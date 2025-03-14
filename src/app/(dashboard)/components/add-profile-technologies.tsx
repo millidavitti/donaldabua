@@ -2,6 +2,9 @@ import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
 import ProfileTechnology from "./profile-technology";
+import { getAnimationClass } from "@/utils/animations";
+import { DELAY } from "@/data/constants";
+import { cn } from "@/utils/cn";
 
 export default function AddProfileTechnologies() {
 	const {
@@ -18,8 +21,8 @@ export default function AddProfileTechnologies() {
 		<>
 			{Boolean(profile_technologies.length) && (
 				<Flex className='gap-3 flex-wrap shrink-0 grow'>
-					{profile_technologies.map((technology) => (
-						<ProfileTechnology tech={technology} key={technology.id}>
+					{profile_technologies.map((technology, i) => (
+						<ProfileTechnology tech={technology} key={technology.id} index={i}>
 							<X
 								size={24}
 								className='stroke-light-error cursor-pointer active:scale-[.95]'
@@ -53,12 +56,16 @@ export default function AddProfileTechnologies() {
 							id: "search-result",
 						}}
 					>
-						{searchResult.map((tech) => {
+						{searchResult.map((tech, i) => {
 							return (
 								<Flex
 									key={tech.id}
-									className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container'
+									className={cn(
+										"shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container",
+										getAnimationClass("swing-in-top-fwd"),
+									)}
 									htmlProps={{
+										style: { animationDelay: i * DELAY + "ms" },
 										onClick() {
 											addTechnology(tech);
 										},

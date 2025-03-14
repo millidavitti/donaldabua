@@ -35,8 +35,12 @@ export default function EditProfileTechnologies() {
 
 				{Boolean(profile_technologies_snapshot.length) && (
 					<Flex className='gap-3 flex-wrap shrink-0'>
-						{profile_technologies_snapshot.map((technology) => (
-							<ProfileTechnology tech={technology} key={technology.id} />
+						{profile_technologies_snapshot.map((technology, i) => (
+							<ProfileTechnology
+								tech={technology}
+								key={technology.id}
+								index={i}
+							/>
 						))}
 					</Flex>
 				)}

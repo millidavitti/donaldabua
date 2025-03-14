@@ -17,7 +17,7 @@ export default function EditUserName() {
 	return (
 		<>
 			<h2
-				className='font-bold text-4xl cursor-pointer data-[is-visible=false]:absolute data-[is-visible=true]:hidden'
+				className='font-bold text-4xl cursor-pointer data-[is-visible=false]:absolute data-[is-visible=true]:hidden h-10'
 				onClick={() => {
 					editName();
 				}}

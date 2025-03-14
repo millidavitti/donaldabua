@@ -13,8 +13,8 @@ export default function PreviewProjectTechnologies() {
 				Tech Stack
 			</label>
 			<Flex className='gap-3 flex-wrap shrink-0'>
-				{project_technologies.map((tech) => (
-					<ProfileTechnology tech={tech} key={tech.id} />
+				{project_technologies.map((tech, i) => (
+					<ProfileTechnology tech={tech} key={tech.id} index={i} />
 				))}
 			</Flex>
 		</>

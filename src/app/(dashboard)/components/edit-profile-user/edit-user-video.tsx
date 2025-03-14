@@ -11,7 +11,7 @@ export default function EditUserVideo() {
 	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =
 		useEditUserVideoInterface();
 	return (
-		<Flex flex='column'>
+		<Flex flex='column' className='h-[258px]'>
 			<Flex className='h-fit items-center justify-between'>
 				<p className='font-semibold lg:text-2xl'>Video Introduction</p>
 				{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}

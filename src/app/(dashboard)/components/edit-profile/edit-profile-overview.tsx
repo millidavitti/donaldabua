@@ -17,7 +17,7 @@ export default function EditProfileOverview() {
 	return (
 		<>
 			<Flex className='gap-3'>
-				<Flex className='grow max-h-[320px]'>
+				<Flex className='grow h-[320px]'>
 					<div className='shrink-0 w-full'>{parse(md(profile_overview))}</div>
 				</Flex>
 				<InteractiveIcon

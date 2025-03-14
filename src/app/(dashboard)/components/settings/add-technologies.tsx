@@ -3,6 +3,9 @@ import { Plus, X } from "lucide-react";
 import ProfileTechnology from "../profile-technology";
 import useAddTechnologiesInterface from "@/hooks/interface/use-add-technologies-interface";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
+import { cn } from "@/utils/cn";
+import { getAnimationClass } from "@/utils/animations";
+import { DELAY } from "@/data/constants";
 
 export default function AddTechnologies() {
 	const {
@@ -19,8 +22,8 @@ export default function AddTechnologies() {
 		<>
 			{Boolean(technologies.length) && (
 				<Flex className='gap-3 flex-wrap shrink-0 grow'>
-					{technologies.map((technology) => (
-						<ProfileTechnology tech={technology} key={technology.id}>
+					{technologies.map((technology, i) => (
+						<ProfileTechnology tech={technology} key={technology.id} index={i}>
 							<X
 								size={24}
 								className='stroke-light-error cursor-pointer active:scale-[.95]'
@@ -58,11 +61,15 @@ export default function AddTechnologies() {
 							id: "search-result",
 						}}
 					>
-						{searchResult.map((tech) => {
+						{searchResult.map((tech, i) => {
 							return (
 								<Flex
 									key={tech.id}
-									className='shrink-0 cursor-pointer bg-light-surface-surface-container'
+									className={cn(
+										"shrink-0 cursor-pointer bg-light-surface-surface-container",
+										getAnimationClass("swing-in-top-fwd"),
+									)}
+									htmlProps={{ style: { animationDelay: i * DELAY + "ms" } }}
 								>
 									{tech.name}
 								</Flex>

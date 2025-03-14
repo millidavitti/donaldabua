@@ -19,13 +19,14 @@ export default function PublishedProjects() {
 	const project_form_step = useAtomValue(project_form_step_jotai);
 	return (
 		<>
-			{Boolean(projects_snapshot.length) && (
-				<Flex className='flex-wrap gap-3 max-h-[484px]'>
-					{projects_snapshot.map((project) => {
-						return <PublishedProject key={project.id} project={project} />;
-					})}
-				</Flex>
-			)}
+			<Flex className='flex-wrap gap-3 h-[270px]'>
+				{projects_snapshot.map((project, i) => {
+					return (
+						<PublishedProject key={project.id} project={project} index={i} />
+					);
+				})}
+			</Flex>
+
 			<Overlay
 				stateFlag='view-project'
 				className='flex justify-center items-center'

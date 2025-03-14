@@ -1,6 +1,9 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-draft-project-technologies-interface";
+import { DELAY } from "@/data/constants";
+import { cn } from "@/utils/cn";
+import { getAnimationClass } from "@/utils/animations";
 
 export default function DraftProjectTechnologies() {
 	const {
@@ -58,15 +61,19 @@ export default function DraftProjectTechnologies() {
 							id: "search-result",
 						}}
 					>
-						{searchResult.map((tech) => {
+						{searchResult.map((tech, i) => {
 							return (
 								<Flex
 									key={tech.id}
-									className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container'
+									className={cn(
+										"shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container",
+										getAnimationClass("swing-in-top-fwd"),
+									)}
 									htmlProps={{
 										onClick() {
 											addTechnology(tech);
 										},
+										style: { animationDelay: i * DELAY + "ms" },
 									}}
 								>
 									{tech.name}
