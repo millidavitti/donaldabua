@@ -17,6 +17,7 @@ export const DASHBOARD_VIEWS = [
 	"create-profile",
 	"select-profile",
 	"settings",
+	"alert-dialog",
 	null,
 ] as const;
 
@@ -72,7 +73,7 @@ export const SOCIAL_PLATFORM_ICONS = {
 	Tumblr: "/social-media-icons/tumblr.svg",
 } as const;
 
-export const DELAY = 100;
+export const DELAY = 200;
 
 export const ANIMATIONS = ["neonScan", "swing-in-top-fwd"] as const;
 export type AnimationClass = (typeof ANIMATIONS)[number];
