@@ -12,6 +12,7 @@ import { SocialPlatforms } from "@/data/atoms/app_data";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
+import AlertDialog from "@/components/ui/alert-dialog";
 
 export default function EditUserSocials() {
 	const {
@@ -123,6 +124,8 @@ export default function EditUserSocials() {
 					</form>
 				</Flex>
 			</Overlay>
+
+			<AlertDialog apiTask={api_task} />
 		</>
 	);
 }
