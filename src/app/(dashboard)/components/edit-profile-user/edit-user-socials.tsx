@@ -7,9 +7,11 @@ import useEditUserSocialsInterface from "@/hooks/interface/use-edit-user-socials
 import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
-import { SOCIAL_PLATFORM_ICONS } from "@/data/constants";
+import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
 import { SocialPlatforms } from "@/data/atoms/app_data";
 import { HashLoader } from "react-spinners";
+import { cn } from "@/utils/cn";
+import { getAnimationClass } from "@/utils/animations";
 
 export default function EditUserSocials() {
 	const {
@@ -39,10 +41,14 @@ export default function EditUserSocials() {
 				</Flex>
 				{/* Added Socials */}
 				<Flex flex='column' className='gap-3 h-full max-h-[472px]'>
-					{user_socials_snapshot.map((social_account) => (
+					{user_socials_snapshot.map((social_account, i) => (
 						<Flex
 							key={social_account.id}
-							className='group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between'
+							className={cn(
+								"group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between",
+								getAnimationClass("swing-in-top-fwd"),
+							)}
+							htmlProps={{ style: { animationDelay: i * DELAY + "ms" } }}
 						>
 							<span
 								className='flex w-full gap-3 active:scale-95 transition cursor-pointer'
