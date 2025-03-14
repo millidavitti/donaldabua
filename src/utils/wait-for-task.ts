@@ -5,14 +5,15 @@ export function waitForTask() {
 	return (resolve: (value: boolean) => void) => {
 		const checkTask = () => {
 			if (defaultStore.get(dialog_jotai) === "continue") {
+				console.log("Continued");
 				resolve(true);
 			} else if (defaultStore.get(dialog_jotai) === "cancel") {
+				console.log("Canceled");
 				resolve(false);
 			} else {
 				setTimeout(checkTask, 2000);
 			}
 		};
-		console.log("Done");
 		checkTask();
 	};
 }
