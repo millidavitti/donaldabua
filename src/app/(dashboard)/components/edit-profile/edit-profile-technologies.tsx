@@ -8,8 +8,6 @@ import ProfileTechnology from "../profile-technology";
 import AddProfileTechnologies from "../add-profile-technologies";
 import useEditProfileTechnologiesInterface from "@/hooks/interface/use-edit-profile-technologies-interface";
 import { HashLoader } from "react-spinners";
-import { getAnimationClass } from "@/utils/animations";
-import { DELAY } from "@/data/constants";
 
 export default function EditProfileTechnologies() {
 	const {
