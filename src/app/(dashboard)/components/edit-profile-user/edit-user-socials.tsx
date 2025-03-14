@@ -80,9 +80,9 @@ export default function EditUserSocials() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							dashboard_view === "add-socials"
-								? save("add-socials")
-								: save("update-socials");
+							if (dashboard_view === "add-socials") save("add-socials");
+							else if (dashboard_view === "update-socials")
+								save("update-socials");
 						}}
 					>
 						<SelectSocialPlatform />
