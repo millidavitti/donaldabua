@@ -31,6 +31,7 @@ export type ApiTask =
 	| "create-profile"
 	| "create-technologies"
 	| "add-social-account"
+	| "update-social-account"
 	| "sign-out"
 	| null;
 export const api_task_jotai = atom<ApiTask>(null);

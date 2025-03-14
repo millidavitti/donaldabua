@@ -1,6 +1,9 @@
 import { createUserSocialsController } from "@/backend/create-user-socials.controller";
+import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
 import {
 	social_account_jotai,
+	social_account_snapshot_jotai,
+	SocialAccount,
 	SocialPlatforms,
 	user_snapshot_jotai,
 	user_socials_snapshot_jotai,
@@ -10,16 +13,19 @@ import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 
 export default function useEditUserSocialsInterface() {
-	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
+	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
 	const [social_account, social_account_setter] = useAtom(social_account_jotai);
+	const social_account_snapshot_setter = useSetAtom(
+		social_account_snapshot_jotai,
+	);
 	const user_snapshot = useAtomValue(user_snapshot_jotai);
 	const [user_socials_snapshot, user_socials_snapshot_setter] = useAtom(
 		user_socials_snapshot_jotai,
 	);
 	const [api_task, api_task_setter] = useAtom(api_task_jotai);
 
-	function display() {
-		dashboard_view_setter("edit-socials");
+	function display(view: "add-socials" | "update-socials") {
+		dashboard_view_setter(view);
 	}
 
 	function close() {
@@ -27,7 +33,12 @@ export default function useEditUserSocialsInterface() {
 		social_account_setter({ id: "", profile: "", platform: "Facebook" });
 	}
 
-	async function save() {
+	async function save(view: "add-socials" | "update-socials") {
+		if (view === "add-socials") addSocialAccount();
+		else if (view === "update-socials") updateSocialAccount();
+	}
+
+	async function addSocialAccount() {
 		try {
 			api_task_setter("add-social-account");
 			const { error, socialAccount } = await createUserSocialsController(
@@ -45,7 +56,38 @@ export default function useEditUserSocialsInterface() {
 			close();
 		} catch (error) {
 			api_task_setter(null);
-			console.error("---useEditUserSocialsInterface:save---\n", error);
+			console.error(
+				"---useEditUserSocialsInterface:addSocialAccount---\n",
+				error,
+			);
+		}
+	}
+
+	async function updateSocialAccount() {
+		try {
+			api_task_setter("update-social-account");
+			const { error, socialAccount } = await updateUserSocialsController(
+				social_account.id,
+				social_account,
+			);
+
+			if (error) throw new Error(error);
+			else if (socialAccount) {
+				user_socials_snapshot_setter((user_socials_snapshot) =>
+					user_socials_snapshot.map((social_account) => {
+						if (social_account.id === socialAccount.id) return socialAccount;
+						return social_account;
+					}),
+				);
+			}
+			api_task_setter(null);
+			close();
+		} catch (error) {
+			api_task_setter(null);
+			console.error(
+				"---useEditUserSocialsInterface:updateSocialAccount---\n",
+				error,
+			);
 		}
 	}
 
@@ -55,6 +97,11 @@ export default function useEditUserSocialsInterface() {
 				return { ...social_account, profile: value };
 			});
 	}
+
+	function update(socialAccount: SocialAccount) {
+		social_account_snapshot_setter(socialAccount);
+		display("update-socials");
+	}
 	return {
 		display,
 		close,
@@ -63,5 +110,7 @@ export default function useEditUserSocialsInterface() {
 		save,
 		user_socials_snapshot,
 		api_task,
+		update,
+		dashboard_view,
 	};
 }
