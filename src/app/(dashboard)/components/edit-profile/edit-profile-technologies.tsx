@@ -8,6 +8,8 @@ import ProfileTechnology from "../profile-technology";
 import AddProfileTechnologies from "../add-profile-technologies";
 import useEditProfileTechnologiesInterface from "@/hooks/interface/use-edit-profile-technologies-interface";
 import { HashLoader } from "react-spinners";
+import { getAnimationClass } from "@/utils/animations";
+import { DELAY } from "@/data/constants";
 
 export default function EditProfileTechnologies() {
 	const {
@@ -35,8 +37,12 @@ export default function EditProfileTechnologies() {
 
 				{Boolean(profile_technologies_snapshot.length) && (
 					<Flex className='gap-3 flex-wrap shrink-0'>
-						{profile_technologies_snapshot.map((technology) => (
-							<ProfileTechnology tech={technology} key={technology.id} />
+						{profile_technologies_snapshot.map((technology, i) => (
+							<ProfileTechnology
+								tech={technology}
+								key={technology.id}
+								index={i}
+							/>
 						))}
 					</Flex>
 				)}
