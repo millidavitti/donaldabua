@@ -2,6 +2,7 @@ import { createUserSocialsController } from "@/backend/create-user-socials.contr
 import { deleteUserSocialsController } from "@/backend/delete-user-socials.controller";
 import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
 import {
+	defaultStore,
 	social_account_jotai,
 	social_account_snapshot_jotai,
 	SocialAccount,
@@ -9,10 +10,16 @@ import {
 	user_snapshot_jotai,
 	user_socials_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	dashboard_view_jotai,
+	dialog_jotai,
+} from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
+import { waitForTask } from "@/utils/wait-for-task";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import useDialog from "../use-dialog";
 
 export default function useEditUserSocialsInterface() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
@@ -25,6 +32,7 @@ export default function useEditUserSocialsInterface() {
 		user_socials_snapshot_jotai,
 	);
 	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const { closeDialog, displayDialog } = useDialog();
 
 	function display(view: "add-socials" | "update-socials") {
 		dashboard_view_setter(view);
@@ -106,20 +114,25 @@ export default function useEditUserSocialsInterface() {
 	}
 
 	async function remove(socialAccount: SocialAccount) {
-		try {
-			const { error, socialAccount: removed } =
-				await deleteUserSocialsController(socialAccount.id);
-			if (error) throw new Error(error);
-			else if (removed)
-				user_socials_snapshot_setter((user_socials) =>
-					user_socials.filter(
-						(social_account) => social_account.id !== removed.id,
-					),
-				);
-		} catch (error) {
-			console.error("---useEditUserSocialsInterface:remove---\n", error);
-			throw new Error(getErrorMessage(error));
-		}
+		displayDialog("delete-social-account");
+
+		if (await new Promise(waitForTask()))
+			try {
+				const { error, socialAccount: removed } =
+					await deleteUserSocialsController(socialAccount.id);
+				if (error) throw new Error(error);
+				else if (removed)
+					user_socials_snapshot_setter((user_socials) =>
+						user_socials.filter(
+							(social_account) => social_account.id !== removed.id,
+						),
+					);
+			} catch (error) {
+				console.error("---useEditUserSocialsInterface:remove---\n", error);
+				throw new Error(getErrorMessage(error));
+			}
+
+		closeDialog();
 	}
 
 	return {
