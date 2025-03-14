@@ -2,19 +2,14 @@ import { createUserSocialsController } from "@/backend/create-user-socials.contr
 import { deleteUserSocialsController } from "@/backend/delete-user-socials.controller";
 import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
 import {
-	defaultStore,
-	social_account_jotai,
-	social_account_snapshot_jotai,
-	SocialAccount,
-	SocialPlatforms,
-	user_snapshot_jotai,
-	user_socials_snapshot_jotai,
+    social_account_jotai,
+    social_account_snapshot_jotai,
+    SocialAccount,
+    SocialPlatforms,
+    user_snapshot_jotai,
+    user_socials_snapshot_jotai,
 } from "@/data/atoms/app_data";
-import {
-	api_task_jotai,
-	dashboard_view_jotai,
-	dialog_jotai,
-} from "@/data/atoms/ui_state";
+import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { waitForTask } from "@/utils/wait-for-task";
 import { createId } from "@paralleldrive/cuid2";

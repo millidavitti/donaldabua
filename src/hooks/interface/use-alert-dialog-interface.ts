@@ -5,7 +5,6 @@ import {
 	dialog_jotai,
 } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";
-import React from "react";
 
 export default function useAlertDialogInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);

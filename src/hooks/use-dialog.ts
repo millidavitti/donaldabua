@@ -4,8 +4,7 @@ import {
 	dashboard_view_jotai,
 	dialog_jotai,
 } from "@/data/atoms/ui_state";
-import { useAtom, useSetAtom } from "jotai";
-import React from "react";
+import { useSetAtom } from "jotai";
 
 export default function useDialog() {
 	const api_task_setter = useSetAtom(api_task_jotai);
