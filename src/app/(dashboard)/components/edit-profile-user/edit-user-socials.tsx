@@ -20,6 +20,8 @@ export default function EditUserSocials() {
 		social_account,
 		user_socials_snapshot,
 		api_task,
+		update,
+		dashboard_view,
 	} = useEditUserSocialsInterface();
 	return (
 		<>
@@ -28,7 +30,7 @@ export default function EditUserSocials() {
 					<p className='font-semibold lg:text-2xl'>Socials</p>
 					<InteractiveIcon
 						callback={() => {
-							display();
+							display("add-socials");
 						}}
 					>
 						<CirclePlus size={24} />
@@ -41,7 +43,9 @@ export default function EditUserSocials() {
 							key={social_account.id}
 							className='shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container gap-3 font-semibold'
 							htmlProps={{
-								onClick() {},
+								onClick() {
+									update(social_account);
+								},
 							}}
 						>
 							<Image
@@ -56,7 +60,9 @@ export default function EditUserSocials() {
 				</Flex>
 			</Flex>
 			<Overlay
-				stateFlag='edit-socials'
+				stateFlag={
+					dashboard_view === "add-socials" ? "add-socials" : "update-socials"
+				}
 				className='flex justify-center items-center'
 			>
 				<Flex
@@ -74,7 +80,9 @@ export default function EditUserSocials() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							save();
+							dashboard_view === "add-socials"
+								? save("add-socials")
+								: save("update-socials");
 						}}
 					>
 						<SelectSocialPlatform />
@@ -93,8 +101,11 @@ export default function EditUserSocials() {
 							/>
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
-							Save{" "}
-							{api_task === "add-social-account" && (
+							{dashboard_view === "add-socials"
+								? "Add Account"
+								: "Update Account"}{" "}
+							{(api_task === "add-social-account" ||
+								api_task === "update-social-account") && (
 								<HashLoader color='#fff' size={24} />
 							)}
 						</Button>
