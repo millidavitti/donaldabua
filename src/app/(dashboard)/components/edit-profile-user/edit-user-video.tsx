@@ -11,11 +11,13 @@ export default function EditUserVideo() {
 	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =
 		useEditUserVideoInterface();
 	return (
-		<Flex flex='column' className='h-[258px]'>
-			<Flex className='h-fit items-center justify-between'>
-				<p className='font-semibold lg:text-2xl'>Video Introduction</p>
-				{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
-			</Flex>
+		<Flex flex='column' className='h-[258px]' htmlProps={{ id: "video" }}>
+			<a href='#video'>
+				<Flex className='h-fit items-center justify-between shrink-0'>
+					<p className='font-semibold lg:text-2xl'>Video Introduction</p>
+					{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
+				</Flex>
+			</a>
 			{Boolean(user_video) && (
 				<iframe
 					src={user_video!}
