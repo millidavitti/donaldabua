@@ -3,6 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useSelectProfileInterface from "@/hooks/interface/use-select-profile-interface";
+import { cn } from "@/utils/cn";
 import { Trash2, X } from "lucide-react";
 
 export default function SelectProfile() {
@@ -40,7 +41,10 @@ export default function SelectProfile() {
 										{profile.title}
 									</Button>
 									<Trash2
-										className='stroke-light-error shrink-0 self-center cursor-pointer active:scale-95 transition'
+										className={cn(
+											"stroke-light-error shrink-0 self-center cursor-pointer active:scale-95 transition",
+											profiles.length < 2 && "hidden",
+										)}
 										onClick={() => remove(profile.id)}
 									/>
 								</Flex>
