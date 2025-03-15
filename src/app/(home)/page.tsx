@@ -1,10 +1,27 @@
 import Flex from "@/components/layouts/flex";
-import React from "react";
+import User from "./components/profile/profile-header";
+import Sidebar from "./components/sidebar";
+import VaultHeader from "./components/dashboard-header";
+import ProfileSummary from "./components/profile/profile-summary";
+import ProfileProjects from "./components/profile/profile-projects";
+import ProfileTechnologies from "./components/profile/profile-technologies";
 
 export default function Home() {
 	return (
-		<Flex className='w-full'>
-			<h1 className='outline'>Navigation Bar</h1>
+		<Flex className='w-full h-full gap-3' flex='column'>
+			<VaultHeader />
+			<Flex className='outline h-full gap-3' flex='column'>
+				<User />
+				{/* Main */}
+				<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
+					<Sidebar />
+					<Flex className='basis-[720px] grow-[2] gap-3' flex='column'>
+						<ProfileSummary />
+						<ProfileProjects />
+						<ProfileTechnologies />
+					</Flex>
+				</Flex>
+			</Flex>
 		</Flex>
 	);
 }
