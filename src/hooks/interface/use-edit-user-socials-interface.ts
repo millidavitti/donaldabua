@@ -2,16 +2,16 @@ import { createUserSocialsController } from "@/backend/create-user-socials.contr
 import { deleteUserSocialsController } from "@/backend/delete-user-socials.controller";
 import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
 import {
-    social_account_jotai,
-    social_account_snapshot_jotai,
-    SocialAccount,
-    SocialPlatforms,
-    user_snapshot_jotai,
-    user_socials_snapshot_jotai,
+	social_account_jotai,
+	social_account_snapshot_jotai,
+	SocialAccount,
+	SocialPlatforms,
+	user_snapshot_jotai,
+	user_socials_snapshot_jotai,
 } from "@/data/atoms/app_data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { waitForTask } from "@/utils/wait-for-task";
+import { waitForDialog } from "@/utils/wait-for-dialog";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import useDialog from "../use-dialog";
@@ -109,9 +109,9 @@ export default function useEditUserSocialsInterface() {
 	}
 
 	async function remove(socialAccount: SocialAccount) {
-		displayDialog("delete-social-account");
+		displayDialog();
 
-		if (await new Promise(waitForTask()))
+		if (await new Promise(waitForDialog()))
 			try {
 				const { error, socialAccount: removed } =
 					await deleteUserSocialsController(socialAccount.id);
