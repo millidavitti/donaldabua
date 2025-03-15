@@ -1,8 +1,10 @@
 import { defaultStore } from "@/data/atoms/app_data";
 import { dialog_jotai } from "@/data/atoms/ui_state";
 
-export function waitForTask() {
+export function waitForDialog() {
 	return (resolve: (value: boolean) => void) => {
+		setTimeout(() => resolve(false), 30000);
+
 		const checkTask = () => {
 			if (defaultStore.get(dialog_jotai) === "continue") {
 				console.log("Continued");
