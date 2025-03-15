@@ -31,24 +31,26 @@ export default function useSelectProfileInterface() {
 	}
 
 	async function remove(profileId: string) {
-		displayDialog();
-		if (await new Promise(waitForDialog()))
-			try {
-				const { profile, error } = await deleteProfileController(profileId);
+		if (profiles.length > 1) {
+			displayDialog();
+			if (await new Promise(waitForDialog()))
+				try {
+					const { profile, error } = await deleteProfileController(profileId);
 
-				if (error) throw new Error(error);
-				else if (profile) {
-					profiles_snapshot_setter(
-						profiles.filter((profile) => profile.id !== profileId),
-					);
-					profile_snapshot_setter(
-						profiles.filter((profile) => profile.id !== profileId)[0],
-					);
+					if (error) throw new Error(error);
+					else if (profile) {
+						profiles_snapshot_setter(
+							profiles.filter((profile) => profile.id !== profileId),
+						);
+						profile_snapshot_setter(
+							profiles.filter((profile) => profile.id !== profileId)[0],
+						);
+					}
+				} catch (error) {
+					console.error("---useSelectProfileInterface:remove---\n", error);
 				}
-			} catch (error) {
-				console.error("---useSelectProfileInterface:remove---\n", error);
-			}
-		closeDialog();
+			closeDialog();
+		}
 	}
 	return { display, close, profiles, select, remove };
 }
