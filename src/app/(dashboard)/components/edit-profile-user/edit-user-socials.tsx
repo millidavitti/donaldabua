@@ -29,8 +29,8 @@ export default function EditUserSocials() {
 	return (
 		<>
 			<Flex flex='column' className='grow gap-3' htmlProps={{ id: "socials" }}>
-				<a href='#socials'>
-					<Flex className='h-fit items-center justify-between shrink-0'>
+				<a href='#socials' className='shrink-0'>
+					<Flex className='h-fit items-center justify-between'>
 						<p className='font-semibold lg:text-2xl'>Socials</p>
 						<InteractiveIcon
 							callback={() => {
@@ -42,7 +42,7 @@ export default function EditUserSocials() {
 					</Flex>
 				</a>
 				{/* Added Socials */}
-				<Flex flex='column' className='gap-3 h-full max-h-[472px]'>
+				<Flex flex='column' className='gap-3 h-full'>
 					{user_socials_snapshot.map((social_account, i) => (
 						<Flex
 							key={social_account.id}
