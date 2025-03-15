@@ -1,8 +1,7 @@
 import { deleteProjectController } from "@/backend/delete-project.controller";
 import { projects_snapshot_jotai } from "@/data/atoms/app_data";
-import { api_task_jotai } from "@/data/atoms/ui_state";
 import { waitForDialog } from "@/utils/wait-for-dialog";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { toast } from "sonner";
 import useDialog from "../use-dialog";
 

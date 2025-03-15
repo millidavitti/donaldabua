@@ -1,8 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import AlertDialog from "@/components/ui/alert-dialog";
 import usePublishedProjectDeleteOption from "@/hooks/interface/use-published-project-delete-option";
 import { Trash } from "lucide-react";
-import React from "react";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;
