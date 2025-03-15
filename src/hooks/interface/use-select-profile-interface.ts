@@ -5,14 +5,18 @@ import {
 	profiles_snapshot_jotai,
 	UserProfile,
 } from "@/data/atoms/app_data";
-import { dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtomValue, useSetAtom } from "jotai";
+import useDialog from "../use-dialog";
 
 export default function useSelectProfileInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const profile_snapshot_setter = useSetAtom(profile_snapshot_jotai);
 	const profiles_snapshot_setter = useSetAtom(profiles_snapshot_jotai);
 	const profiles = useAtomValue(profiles_jotai);
+	const { closeDialog, displayDialog } = useDialog();
+
 	function display() {
 		dashboard_view_setter("select-profile");
 	}
@@ -27,21 +31,24 @@ export default function useSelectProfileInterface() {
 	}
 
 	async function remove(profileId: string) {
-		try {
-			const { profile, error } = await deleteProfileController(profileId);
+		displayDialog();
+		if (await new Promise(waitForDialog()))
+			try {
+				const { profile, error } = await deleteProfileController(profileId);
 
-			if (error) throw new Error(error);
-			else if (profile) {
-				profiles_snapshot_setter(
-					profiles.filter((profile) => profile.id !== profileId),
-				);
-				profile_snapshot_setter(
-					profiles.filter((profile) => profile.id !== profileId)[0],
-				);
+				if (error) throw new Error(error);
+				else if (profile) {
+					profiles_snapshot_setter(
+						profiles.filter((profile) => profile.id !== profileId),
+					);
+					profile_snapshot_setter(
+						profiles.filter((profile) => profile.id !== profileId)[0],
+					);
+				}
+			} catch (error) {
+				console.error("---useSelectProfileInterface:remove---\n", error);
 			}
-		} catch (error) {
-			console.error("---useSelectProfileInterface:remove---\n", error);
-		}
+		closeDialog();
 	}
 	return { display, close, profiles, select, remove };
 }
