@@ -28,17 +28,19 @@ export default function EditUserSocials() {
 	} = useEditUserSocialsInterface();
 	return (
 		<>
-			<Flex flex='column' className='grow gap-3'>
-				<Flex className='h-fit items-center justify-between shrink-0'>
-					<p className='font-semibold lg:text-2xl'>Socials</p>
-					<InteractiveIcon
-						callback={() => {
-							display("add-socials");
-						}}
-					>
-						<CirclePlus size={24} />
-					</InteractiveIcon>
-				</Flex>
+			<Flex flex='column' className='grow gap-3' htmlProps={{ id: "socials" }}>
+				<a href='#socials'>
+					<Flex className='h-fit items-center justify-between shrink-0'>
+						<p className='font-semibold lg:text-2xl'>Socials</p>
+						<InteractiveIcon
+							callback={() => {
+								display("add-socials");
+							}}
+						>
+							<CirclePlus size={24} />
+						</InteractiveIcon>
+					</Flex>
+				</a>
 				{/* Added Socials */}
 				<Flex flex='column' className='gap-3 h-full max-h-[472px]'>
 					{user_socials_snapshot.map((social_account, i) => (
