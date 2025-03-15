@@ -23,7 +23,6 @@ export default function PublishedProjectDeleteOption({
 			>
 				<Trash />
 			</InteractiveIcon>
-			<AlertDialog apiTask={api_task} />
 		</>
 	);
 }
