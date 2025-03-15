@@ -6,9 +6,12 @@ import EditUserLocation from "./edit-profile-user/edit-user-location";
 import CreateProfile from "./create-profile";
 import SelectProfile from "./select-profile";
 
-export default function ProfileHeader() {
+export default function UserHeader() {
 	return (
-		<Flex className='shrink-0 gap-3 overflow-visible flex-wrap'>
+		<Flex
+			className='shrink-0 gap-3 overflow-visible flex-wrap'
+			htmlProps={{ id: "user-info" }}
+		>
 			<EditUserPhoto />
 			<Flex
 				flex='column'

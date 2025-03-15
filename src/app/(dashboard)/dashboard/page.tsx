@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import React from "react";
-import ProfileHeader from "../components/profile-header";
+import UserHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
 import ProfileOverview from "../components/profile-overview";
 import EditProfileEmploymentHistory from "../components/edit-profile/edit-profile-employment-history";
@@ -12,7 +12,7 @@ export default function Dashboard() {
 		<Flex className='w-full h-full gap-3' flex='column'>
 			<DashboardHeader />
 			<Flex className='outline h-full gap-3' flex='column'>
-				<ProfileHeader />
+				<UserHeader />
 				{/* Main */}
 				<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
 					<Sidebar />

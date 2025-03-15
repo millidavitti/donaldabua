@@ -15,21 +15,24 @@ export default function EditProfileProjects() {
 
 	return (
 		<>
-			<Flex flex='column' className='gap-3'>
-				{/* Header */}
-				<Flex className='items-center justify-between shrink-0'>
-					<p className='font-semibold lg:text-2xl'>Projects</p>
-					<InteractiveIcon
-						callback={() => {
-							addNewProject();
-						}}
-					>
-						<CirclePlus size={24} />
-					</InteractiveIcon>
-				</Flex>
+			<Flex flex='column' className='gap-3' htmlProps={{ id: "projects" }}>
+				<a href='#projects'>
+					{/* Header */}
+					<Flex className='items-center justify-between shrink-0'>
+						<p className='font-semibold lg:text-2xl'>Projects</p>
+						<InteractiveIcon
+							callback={() => {
+								addNewProject();
+							}}
+						>
+							<CirclePlus size={24} />
+						</InteractiveIcon>
+					</Flex>{" "}
+				</a>
 				{/* Projects */}
 				<PublishedProjects />
 			</Flex>
+
 			<Overlay
 				stateFlag='edit-portfolio'
 				className='flex justify-center items-center'
