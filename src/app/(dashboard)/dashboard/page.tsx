@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar";
 import ProfileOverview from "../components/profile-overview";
 import EditProfileEmploymentHistory from "../components/edit-profile/edit-profile-employment-history";
 import DashboardHeader from "../components/dashboard-header";
+import AlertDialog from "@/components/ui/alert-dialog";
 
 export default function Dashboard() {
 	return (
@@ -22,6 +23,7 @@ export default function Dashboard() {
 					<EditProfileEmploymentHistory />
 				</Flex>
 			</Flex>
+			<AlertDialog />
 		</Flex>
 	);
 }
