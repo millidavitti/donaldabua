@@ -16,17 +16,19 @@ export default function EditProfileAvailability() {
 	} = useEditProfileAvailabilityInterface();
 	return (
 		<>
-			<Flex flex='column' className='gap-3'>
-				<Flex className='h-fit items-center justify-between'>
-					<p className='font-semibold lg:text-2xl'>Hours Per Week</p>
-					<InteractiveIcon
-						callback={() => {
-							editAvailability();
-						}}
-					>
-						<EditIcon size={24} />
-					</InteractiveIcon>
-				</Flex>
+			<Flex flex='column' className='gap-3' htmlProps={{ id: "availability" }}>
+				<a href='#availability'>
+					<Flex className='h-fit items-center justify-between'>
+						<p className='font-semibold lg:text-2xl'>Availability</p>
+						<InteractiveIcon
+							callback={() => {
+								editAvailability();
+							}}
+						>
+							<EditIcon size={24} />
+						</InteractiveIcon>
+					</Flex>
+				</a>
 				<Flex>
 					<p className='lg:text-xl text-sm'>{profile_hours_per_week}</p>
 				</Flex>
