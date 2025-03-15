@@ -10,7 +10,7 @@ interface PublishedProjectDeleteOption {
 export default function PublishedProjectDeleteOption({
 	projectID,
 }: PublishedProjectDeleteOption) {
-	const { deleteProject, api_task } = usePublishedProjectDeleteOption();
+	const { deleteProject } = usePublishedProjectDeleteOption();
 	return (
 		<>
 			<InteractiveIcon
