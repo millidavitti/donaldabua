@@ -1,27 +1,27 @@
+"use client";
 import Flex from "../layouts/flex";
 import Button from "./button";
 import Overlay from "../layouts/overlay";
 import useAlertDialogInterface from "@/hooks/interface/use-alert-dialog-interface";
-import { ApiTask } from "@/data/atoms/ui_state";
 import { HashLoader } from "react-spinners";
 
-export default function AlertDialog({ apiTask }: { apiTask: ApiTask }) {
-	const { cancel, proceed, api_task, dialog } = useAlertDialogInterface();
+export default function AlertDialog() {
+	const { cancel, proceed, dialog } = useAlertDialogInterface();
 
 	return (
 		<>
 			<Overlay
-				stateFlag={apiTask === api_task ? "alert-dialog" : null}
+				stateFlag='alert-dialog'
 				className='flex justify-center items-center'
 			>
 				<Flex
 					flex='column'
-					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'
+					className='bg-light-surface gap-3 basis-[480px] max-h-[80%] neonScan'
 				>
 					<h2 className='text-2xl font-semibold'>Are you absolutely sure?</h2>
 					<p>
-						This action cannot be undone. This will permanently delete your
-						account and remove your data from our servers.
+						This action cannot be undone. This will permanently delete and
+						remove your data from your servers.
 					</p>
 					<Flex className='gap-3 justify-end outline-none'>
 						<Button
@@ -34,7 +34,7 @@ export default function AlertDialog({ apiTask }: { apiTask: ApiTask }) {
 						<Button
 							type='submit'
 							className='bg-light-error text-light-surface'
-							onClick={() => proceed(apiTask)}
+							onClick={() => proceed()}
 						>
 							Continue{" "}
 							{dialog === "continue" && <HashLoader color='#fff' size={24} />}
