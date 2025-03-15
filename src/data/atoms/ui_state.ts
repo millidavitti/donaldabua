@@ -33,8 +33,6 @@ export type ApiTask =
 	| "add-social-account"
 	| "update-social-account"
 	| "sign-out"
-	| "delete-social-account"
-	| "delete-project"
 	| null;
 export const api_task_jotai = atom<ApiTask>(null);
 
