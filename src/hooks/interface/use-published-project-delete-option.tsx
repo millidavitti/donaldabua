@@ -8,7 +8,6 @@ import useDialog from "../use-dialog";
 
 export default function usePublishedProjectDeleteOption() {
 	const projects_snapshot_setter = useSetAtom(projects_snapshot_jotai);
-	const api_task = useAtomValue(api_task_jotai);
 	const { closeDialog, displayDialog } = useDialog();
 	async function deleteProject(projectID: string) {
 		displayDialog();
@@ -26,5 +25,5 @@ export default function usePublishedProjectDeleteOption() {
 			}
 		closeDialog();
 	}
-	return { deleteProject, api_task };
+	return { deleteProject };
 }
