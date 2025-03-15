@@ -30,9 +30,12 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 	);
 	const [settings_view, settings_view_setter] = useAtom(settings_view_jotai);
 	const view =
-		stateFlag === settings_view ||
-		stateFlag === project_draft_view ||
-		stateFlag === dashboard_view;
+		stateFlag === null
+			? false
+			: stateFlag === settings_view ||
+			  stateFlag === project_draft_view ||
+			  stateFlag === dashboard_view;
+
 	return (
 		<>
 			{view && (
