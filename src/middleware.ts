@@ -7,15 +7,11 @@ export async function middleware(request: NextRequest) {
 	if (isAuthenticated) {
 		if (
 			request.nextUrl.pathname === "/auth/sign-in" ||
-			request.nextUrl.pathname === "/auth/sign-up" ||
-			request.nextUrl.pathname === "/"
+			request.nextUrl.pathname === "/auth/sign-up"
 		)
 			return NextResponse.redirect(new URL("/dashboard", request.url));
 	} else {
-		if (
-			request.nextUrl.pathname === "/dashboard" ||
-			request.nextUrl.pathname === "/"
-		) {
+		if (request.nextUrl.pathname === "/dashboard") {
 			return NextResponse.redirect(new URL("/auth/sign-in", request.url));
 		}
 	}
@@ -24,5 +20,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/", "/auth/sign-in", "/auth/sign-up", "/dashboard"],
+	matcher: ["/auth/sign-in", "/auth/sign-up", "/dashboard"],
 };
