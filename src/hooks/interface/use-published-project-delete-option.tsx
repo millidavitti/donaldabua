@@ -1,7 +1,7 @@
 import { deleteProjectController } from "@/backend/delete-project.controller";
 import { projects_snapshot_jotai } from "@/data/atoms/app_data";
 import { api_task_jotai } from "@/data/atoms/ui_state";
-import { waitForTask } from "@/utils/wait-for-task";
+import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtomValue, useSetAtom } from "jotai";
 import { toast } from "sonner";
 import useDialog from "../use-dialog";
@@ -11,8 +11,8 @@ export default function usePublishedProjectDeleteOption() {
 	const api_task = useAtomValue(api_task_jotai);
 	const { closeDialog, displayDialog } = useDialog();
 	async function deleteProject(projectID: string) {
-		displayDialog("delete-project");
-		if (await new Promise(waitForTask()))
+		displayDialog();
+		if (await new Promise(waitForDialog()))
 			try {
 				const { error } = await deleteProjectController(projectID);
 				if (error) throw error;
