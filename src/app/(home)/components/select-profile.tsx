@@ -3,8 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useSelectProfileInterface from "@/hooks/interface/use-select-profile-interface";
-import { cn } from "@/utils/cn";
-import { Trash2, X } from "lucide-react";
+import { X } from "lucide-react";
 
 export default function SelectProfile() {
 	const { close, display, profiles, select } = useSelectProfileInterface();
