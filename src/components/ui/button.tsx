@@ -19,7 +19,7 @@ export default function Button({
 			{...htmlProps}
 			type={type}
 			className={cn(
-				"flex justify-center gap-3 outline p-3 py-2 title-medium active:scale-[.99] transition shrink-0",
+				"flex justify-center gap-3 outline outline-1 p-3 py-2 title-medium active:scale-[.99] transition shrink-0",
 				className,
 			)}
 			onClick={onClick}

@@ -19,7 +19,6 @@ export async function deleteUserSocialsController(socialAccountId: string) {
 			},
 		);
 		const data = await res.json();
-		console.log(data);
 		return data as APIResponse<SocialAccount, "socialAccount">;
 	} catch (error) {
 		console.error("---deleteUserSocialsController---\n", error);

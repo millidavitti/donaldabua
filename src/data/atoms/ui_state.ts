@@ -35,3 +35,6 @@ export type ApiTask =
 	| "sign-out"
 	| null;
 export const api_task_jotai = atom<ApiTask>(null);
+
+export type Dialog = "cancel" | "continue" | null;
+export const dialog_jotai = atom<Dialog>(null);

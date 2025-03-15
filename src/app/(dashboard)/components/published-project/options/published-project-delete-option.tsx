@@ -1,7 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import usePublishedProjectDeleteOption from "@/hooks/interface/use-published-project-delete-option";
 import { Trash } from "lucide-react";
-import React from "react";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;
@@ -11,15 +10,17 @@ export default function PublishedProjectDeleteOption({
 }: PublishedProjectDeleteOption) {
 	const { deleteProject } = usePublishedProjectDeleteOption();
 	return (
-		<InteractiveIcon
-			className='outline grow flex place-content-center'
-			htmlProps={{
-				onClick() {
-					deleteProject(projectID);
-				},
-			}}
-		>
-			<Trash />
-		</InteractiveIcon>
+		<>
+			<InteractiveIcon
+				className='outline grow flex place-content-center'
+				htmlProps={{
+					onClick() {
+						deleteProject(projectID);
+					},
+				}}
+			>
+				<Trash />
+			</InteractiveIcon>
+		</>
 	);
 }

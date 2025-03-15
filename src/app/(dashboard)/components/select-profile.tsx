@@ -4,7 +4,6 @@ import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useSelectProfileInterface from "@/hooks/interface/use-select-profile-interface";
 import { Trash2, X } from "lucide-react";
-import React from "react";
 
 export default function SelectProfile() {
 	const { close, display, profiles, select, remove } =

@@ -11,8 +11,10 @@ import {
 } from "@/data/atoms/app_data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
+import { waitForDialog } from "@/utils/wait-for-dialog";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import useDialog from "../use-dialog";
 
 export default function useEditUserSocialsInterface() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
@@ -25,6 +27,7 @@ export default function useEditUserSocialsInterface() {
 		user_socials_snapshot_jotai,
 	);
 	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const { closeDialog, displayDialog } = useDialog();
 
 	function display(view: "add-socials" | "update-socials") {
 		dashboard_view_setter(view);
@@ -106,20 +109,25 @@ export default function useEditUserSocialsInterface() {
 	}
 
 	async function remove(socialAccount: SocialAccount) {
-		try {
-			const { error, socialAccount: removed } =
-				await deleteUserSocialsController(socialAccount.id);
-			if (error) throw new Error(error);
-			else if (removed)
-				user_socials_snapshot_setter((user_socials) =>
-					user_socials.filter(
-						(social_account) => social_account.id !== removed.id,
-					),
-				);
-		} catch (error) {
-			console.error("---useEditUserSocialsInterface:remove---\n", error);
-			throw new Error(getErrorMessage(error));
-		}
+		displayDialog();
+
+		if (await new Promise(waitForDialog()))
+			try {
+				const { error, socialAccount: removed } =
+					await deleteUserSocialsController(socialAccount.id);
+				if (error) throw new Error(error);
+				else if (removed)
+					user_socials_snapshot_setter((user_socials) =>
+						user_socials.filter(
+							(social_account) => social_account.id !== removed.id,
+						),
+					);
+			} catch (error) {
+				console.error("---useEditUserSocialsInterface:remove---\n", error);
+				throw new Error(getErrorMessage(error));
+			}
+
+		closeDialog();
 	}
 
 	return {
