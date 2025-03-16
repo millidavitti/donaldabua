@@ -11,7 +11,7 @@ export async function getUserLocationController(userId: string) {
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
-		const res = await fetch(ENDPOINTS.userLocation.get(userId), {
+		const res = await fetch(ENDPOINTS.location.read(userId), {
 			credentials: "include",
 			headers,
 		});
