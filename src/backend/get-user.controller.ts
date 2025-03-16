@@ -2,6 +2,7 @@ import { APIResponse, User } from "@/data/atoms/app_data";
 import { auth } from "@/utils/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { ENDPOINTS } from "./endpoints";
 
 export async function getUserController() {
 	const headers = new Headers();
@@ -12,10 +13,11 @@ export async function getUserController() {
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const { user, error } = await auth();
 		if (user) {
-			const res = await fetch(
-				process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/" + user.id,
-				{ method: "GET", credentials: "include", headers },
-			);
+			const res = await fetch(ENDPOINTS.user.get(user.id), {
+				method: "GET",
+				credentials: "include",
+				headers,
+			});
 			const data = await res.json();
 
 			return data as APIResponse<User, "user">;
