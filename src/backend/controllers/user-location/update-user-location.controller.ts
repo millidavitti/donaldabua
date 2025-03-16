@@ -1,6 +1,6 @@
 import { APIResponse, UserLocation } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function updateUserLocationController(
 	userId: string,
