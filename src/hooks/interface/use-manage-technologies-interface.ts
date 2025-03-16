@@ -1,4 +1,4 @@
-import { updateTechnologiesController } from "@/backend/update-technologies.controller";
+import { updateTechnologiesController } from "@/backend/controllers/technologies/update-technologies.controller";
 import {
 	technologies_jotai,
 	technologies_snapshot_jotai,

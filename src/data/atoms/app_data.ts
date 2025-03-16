@@ -1,13 +1,13 @@
-import { getProjectsController } from "@/backend/get-projects.controller";
-import { getUserController } from "@/backend/get-user.controller";
-import { getUserLocationController } from "@/backend/get-user-location.controller";
+import { getProjectsController } from "@/backend/controllers/project/get-projects.controller";
+import { getUserController } from "@/backend/controllers/user/get-user.controller";
+import { getUserLocationController } from "@/backend/controllers/user-location/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
-import { getProfileTechnologiesController } from "@/backend/get-profile-technologies.controller";
+import { getProfileTechnologiesController } from "@/backend/controllers/profile/get-profile-technologies.controller";
 import { toast } from "sonner";
-import { getTechnologiesController } from "@/backend/get-technologies.controller";
+import { getTechnologiesController } from "@/backend/controllers/technologies/get-technologies.controller";
 import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../constants";
-import { getProfilesController } from "@/backend/get-profiles.controller";
-import { getUserSocialsController } from "@/backend/get-user-socials.controller";
+import { getProfilesController } from "@/backend/controllers/profile/get-profiles.controller";
+import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
 
 export const defaultStore = getDefaultStore();

@@ -1,4 +1,4 @@
-import { updateUserController } from "@/backend/update-user.controller";
+import { updateUserController } from "@/backend/controllers/user/update-user.controller";
 import { user_image_jotai, user_snapshot_jotai } from "@/data/atoms/app_data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useAtom } from "jotai";
