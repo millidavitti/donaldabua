@@ -15,7 +15,7 @@ export async function updateUserLocationController(
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
-		const res = await fetch(ENDPOINTS.userLocation.update(userId), {
+		const res = await fetch(ENDPOINTS.location.update(userId), {
 			method: "PUT",
 			body: JSON.stringify(update),
 			headers,
