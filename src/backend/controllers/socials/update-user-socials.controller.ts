@@ -1,9 +1,10 @@
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 import { APIResponse, SocialAccount } from "@/data/atoms/app_data";
+import { ENDPOINTS } from "@/backend/endpoints";
 
 export async function updateUserSocialsController(
-	accountId: string,
+	socialAccountId: string,
 	update: Partial<SocialAccount>,
 ) {
 	const headers = new Headers();
@@ -13,17 +14,12 @@ export async function updateUserSocialsController(
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/user-socials/" +
-				accountId,
-			{
-				method: "PUT",
-				body: JSON.stringify(update),
-				headers,
-				credentials: "include",
-			},
-		);
+		const res = await fetch(ENDPOINTS.socials.update(socialAccountId), {
+			method: "PUT",
+			body: JSON.stringify(update),
+			headers,
+			credentials: "include",
+		});
 		const data = await res.json();
 		return data as APIResponse<SocialAccount, "socialAccount">;
 	} catch (error) {
