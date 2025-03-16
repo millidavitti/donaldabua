@@ -11,7 +11,7 @@ export default function ProfileOverview() {
 			<Flex className='gap-3'>
 				<Flex className='grow h-[320px]'>
 					<div className='shrink-0 w-full'>
-						{parse(md(profile_snapshot.overview))}
+						{parse(md(profile_snapshot.overview || ""))}
 					</div>
 				</Flex>
 			</Flex>
