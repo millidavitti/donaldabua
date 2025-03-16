@@ -5,6 +5,11 @@ import VaultHeader from "./components/vault-header";
 import ProfileSummary from "./components/profile/profile-summary";
 import ProfileProjects from "./components/profile/profile-projects";
 import ProfileTechnologies from "./components/profile/profile-technologies";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Donald Abua",
+};
 
 export default function Home() {
 	return (
