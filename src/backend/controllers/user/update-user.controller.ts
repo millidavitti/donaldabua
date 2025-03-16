@@ -1,5 +1,6 @@
 import { APIResponse, User } from "@/data/atoms/app_data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+import { ENDPOINTS } from "@/backend/endpoints";
 
 export async function updateUserController(
 	userId: string,
@@ -13,15 +14,12 @@ export async function updateUserController(
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/" + userId,
-			{
-				method: "PUT",
-				body: JSON.stringify(update),
-				headers,
-				credentials: "include",
-			},
-		);
+		const res = await fetch(ENDPOINTS.user.update(userId), {
+			method: "PUT",
+			body: JSON.stringify(update),
+			headers,
+			credentials: "include",
+		});
 		const data = await res.json();
 
 		return data as APIResponse<User, "user">;
