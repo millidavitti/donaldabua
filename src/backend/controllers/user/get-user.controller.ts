@@ -13,7 +13,7 @@ export async function getUserController() {
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const { user, error } = await auth();
 		if (user) {
-			const res = await fetch(ENDPOINTS.user.get(user.id), {
+			const res = await fetch(ENDPOINTS.user.read(user.id), {
 				method: "GET",
 				credentials: "include",
 				headers,
