@@ -1,6 +1,7 @@
 import { APIResponse, UserLocation } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+import { ENDPOINTS } from "@/backend/endpoints";
 
 export async function getUserLocationController(userId: string) {
 	const headers = new Headers();
@@ -9,12 +10,11 @@ export async function getUserLocationController(userId: string) {
 		const { error, csrfToken } = await generateCsrfToken();
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/user-locations/" +
-				userId,
-			{ credentials: "include", headers },
-		);
+
+		const res = await fetch(ENDPOINTS.userLocation.get(userId), {
+			credentials: "include",
+			headers,
+		});
 		const data = await res.json();
 
 		return data as APIResponse<UserLocation, "location">;
