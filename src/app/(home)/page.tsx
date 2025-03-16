@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import User from "./components/profile/profile-header";
+import User from "./components/user/user";
 import Sidebar from "./components/sidebar";
 import VaultHeader from "./components/vault-header";
 import ProfileSummary from "./components/profile/profile-summary";
