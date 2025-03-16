@@ -1,5 +1,5 @@
 import { APIResponse, ProjectContent } from "@/data/atoms/app_data";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function createProjectContentController(
 	projectId: string,

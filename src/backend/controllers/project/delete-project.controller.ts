@@ -1,5 +1,5 @@
 import { APIResponse, Project } from "@/data/atoms/app_data";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function deleteProjectController(projectId: string) {
 	const headers = new Headers();

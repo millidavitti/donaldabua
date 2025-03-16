@@ -1,8 +1,8 @@
-import { APIResponse, Project } from "@/data/atoms/app_data";
+import { APIResponse, UserProfile } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
-export async function getProjectsController(profileId: string) {
+export async function getUserProfileController(profileId: string) {
 	const headers = new Headers();
 
 	try {
@@ -10,7 +10,7 @@ export async function getProjectsController(profileId: string) {
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/projects/" + profileId,
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + profileId,
 			{
 				credentials: "include",
 				headers,
@@ -18,9 +18,9 @@ export async function getProjectsController(profileId: string) {
 		);
 		const data = await res.json();
 
-		return data as APIResponse<Project[], "projects">;
+		return data as APIResponse<UserProfile, "profile">;
 	} catch (error) {
-		console.error("---getProjectsController---\n", error);
+		console.error("---getUserProfileController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }

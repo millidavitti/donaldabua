@@ -1,9 +1,9 @@
-import { APIResponse, Project, ProjectData } from "@/data/atoms/app_data";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { APIResponse, User } from "@/data/atoms/app_data";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
-export async function updateProjectController(
-	projectId: string,
-	update: ProjectData,
+export async function updateUserController(
+	userId: string,
+	update: Partial<User>,
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
@@ -14,7 +14,7 @@ export async function updateProjectController(
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/projects/" + projectId,
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/users/" + userId,
 			{
 				method: "PUT",
 				body: JSON.stringify(update),
@@ -24,9 +24,9 @@ export async function updateProjectController(
 		);
 		const data = await res.json();
 
-		return data as APIResponse<Project, "update">;
+		return data as APIResponse<User, "user">;
 	} catch (error) {
-		console.error("---updateProjectController---\n", error);
+		console.error("---updateUserController---\n", error);
 		throw error;
 	}
 }

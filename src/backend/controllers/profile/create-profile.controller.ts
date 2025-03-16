@@ -1,9 +1,10 @@
 import { APIResponse, UserProfile } from "@/data/atoms/app_data";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { getErrorMessage } from "@/utils/get-error-message";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
-export async function updateUserProfile(
-	profileId: string,
-	update: Partial<UserProfile>,
+export async function createProfileController(
+	userId: string,
+	profile: Partial<UserProfile>,
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
@@ -14,10 +15,10 @@ export async function updateUserProfile(
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + profileId,
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + userId,
 			{
-				method: "PUT",
-				body: JSON.stringify(update),
+				method: "POST",
+				body: JSON.stringify(profile),
 				headers,
 				credentials: "include",
 			},
@@ -26,7 +27,7 @@ export async function updateUserProfile(
 
 		return data as APIResponse<UserProfile, "profile">;
 	} catch (error) {
-		console.error("---updateUserProfile---\n", error);
-		throw error;
+		console.error("---createProfileController---\n", error);
+		throw new Error(getErrorMessage(error));
 	}
 }

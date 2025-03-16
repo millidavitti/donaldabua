@@ -1,27 +1,27 @@
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "./auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 import { APIResponse, SocialAccount } from "@/data/atoms/app_data";
 
-export async function getUserSocialsController(userId: string) {
+export async function deleteUserSocialsController(socialAccountId: string) {
 	const headers = new Headers();
-
 	try {
 		const { error, csrfToken } = await generateCsrfToken();
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT! + "/user-socials/" + userId,
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
+				"/user-socials/" +
+				socialAccountId,
 			{
-				method: "GET",
+				method: "DELETE",
 				credentials: "include",
 				headers,
 			},
 		);
 		const data = await res.json();
-		return data as APIResponse<SocialAccount[], "socials">;
+		return data as APIResponse<SocialAccount, "socialAccount">;
 	} catch (error) {
-		console.error("---getUserSocialsController---\n", error);
+		console.error("---deleteUserSocialsController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }
