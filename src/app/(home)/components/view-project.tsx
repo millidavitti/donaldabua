@@ -4,7 +4,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import ProjectTitle from "./project/project-title";
 import ProjectDescription from "./project/project-description";
 import ProjectContent from "./project/project-content";
-import { Project } from "@/data/atoms/app_data";
+import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import ProjectTechnologies from "./project/project-technologies";
 import ProjectThumbnail from "./project/project-thumbnail";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";

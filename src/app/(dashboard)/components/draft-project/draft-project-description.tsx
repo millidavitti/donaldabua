@@ -1,4 +1,4 @@
-import { project_description_jotai } from "@/data/atoms/app_data";
+import { project_description_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import React from "react";

@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { user_location_snapshot_jotai } from "@/data/atoms/app_data";
+import { user_location_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 import { MapPin } from "lucide-react";
 

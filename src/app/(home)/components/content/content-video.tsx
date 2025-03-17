@@ -1,5 +1,8 @@
 import Flex from "@/components/layouts/flex";
-import { project_content_jotai, ProjectVideo } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	ProjectVideo,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useState } from "react";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useSetAtom } from "jotai";

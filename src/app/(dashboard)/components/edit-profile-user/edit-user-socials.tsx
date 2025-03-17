@@ -8,7 +8,7 @@ import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
 import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
-import { SocialPlatforms } from "@/data/atoms/app_data";
+import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

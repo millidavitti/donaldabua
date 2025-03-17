@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { type Project } from "@/data/atoms/app_data";
+import { type Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import usePublishedProjectInterface from "@/hooks/interface/dashboard/use-published-project-interface";
 import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";

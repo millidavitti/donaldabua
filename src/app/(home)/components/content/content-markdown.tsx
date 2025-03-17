@@ -1,7 +1,10 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
-import { project_content_jotai, ProjectMarkdown } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	ProjectMarkdown,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtom, useSetAtom } from "jotai";
 import md from "md";
 import parse from "html-react-parser";

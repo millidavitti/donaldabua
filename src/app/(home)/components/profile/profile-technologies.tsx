@@ -1,7 +1,7 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import ProfileTechnology from "./profile-technology";
-import { profile_technologies_snapshot_jotai } from "@/data/atoms/app_data";
+import { profile_technologies_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 
 export default function ProfileTechnologies() {

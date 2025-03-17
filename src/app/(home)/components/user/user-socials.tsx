@@ -2,7 +2,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
-import { user_socials_snapshot_jotai } from "@/data/atoms/app_data";
+import { user_socials_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import { useAtomValue } from "jotai";

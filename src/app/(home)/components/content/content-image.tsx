@@ -1,7 +1,10 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { useState } from "react";
-import { project_content_jotai, ProjectImage } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	ProjectImage,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data/atoms/ui_state";
 import Button from "@/components/ui/button";

@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { profile_snapshot_jotai } from "@/data/atoms/app_data";
+import { profile_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 
 export default function ProfileTitle() {

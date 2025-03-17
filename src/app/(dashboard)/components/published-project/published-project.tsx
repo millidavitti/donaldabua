@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { Project } from "@/data/atoms/app_data";
+import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import PublishedProjectOptions from "./published-project-options";
 import PublishedProjectEditOption from "./options/published-project-edit-option";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";

@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { project_title_jotai } from "@/data/atoms/app_data";
+import { project_title_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 
 export default function PreviewProjectTitle() {
