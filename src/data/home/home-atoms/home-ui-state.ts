@@ -1,8 +1,8 @@
 import { atom } from "jotai";
 import { VAULT_VIEWS } from "../home-constants";
 
-export type DashboardView = (typeof VAULT_VIEWS)[number];
-export const dashboard_view_jotai = atom<DashboardView>(null);
+export type VaultView = (typeof VAULT_VIEWS)[number];
+export const vault_view_jotai = atom<VaultView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
