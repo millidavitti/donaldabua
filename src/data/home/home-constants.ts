@@ -1,32 +1,4 @@
-export const DASHBOARD_VIEWS = [
-	"edit-image",
-	"edit-location",
-	"edit-name",
-	"edit-video",
-	"edit-hours-per-week",
-	"edit-title",
-	"edit-hourly-rate",
-	"edit-profile-overview",
-	"edit-profile-technologies",
-	"edit-employment-history",
-	"add-socials",
-	"edit-portfolio",
-	"edit-published-project",
-	"update-socials",
-	"view-project",
-	"create-profile",
-	"select-profile",
-	"settings",
-	"alert-dialog",
-	null,
-] as const;
-
-export const PROJECT_DRAFT_VIEWS = [
-	"edit-project-video",
-	"edit-project-image",
-	"edit-project-markdown",
-	null,
-] as const;
+export const VAULT_VIEWS = ["view-project", "select-profile", null] as const;
 
 export const AVAILABILITY_OPTIONS = [
 	"More than 30 hrs/week",
@@ -34,8 +6,6 @@ export const AVAILABILITY_OPTIONS = [
 	"As needed - open to offers",
 	"None",
 ] as const;
-
-export const SETTINGS_VIEWS = ["manage-technologies", null] as const;
 
 export const SOCIAL_PLATFORMS = [
 	"Facebook",
