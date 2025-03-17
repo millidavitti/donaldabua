@@ -8,7 +8,7 @@ import { getTechnologiesController } from "@/backend/controllers/technologies/ge
 import {
 	AVAILABILITY_OPTIONS,
 	SOCIAL_PLATFORMS,
-} from "../dashboard/dashboard-constants";
+} from "../../dashboard/dashboard-constants";
 import { getProfilesController } from "@/backend/controllers/profile/get-profiles.controller";
 import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
