@@ -1,6 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Project } from "@/data/atoms/app_data";
-import { usePublishedProjectEditOptionInterface } from "@/hooks/interface/use-published-project-edit-option-interface";
+import { usePublishedProjectEditOptionInterface } from "@/hooks/interface/dashboard-interface/use-published-project-edit-option-interface";
 import { Edit } from "lucide-react";
 import React from "react";
 

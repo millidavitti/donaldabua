@@ -4,7 +4,7 @@ import Overlay from "@/components/layouts/overlay";
 import AddTechnologies from "../add-technologies";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
-import useManageTechnologiesInterface from "@/hooks/interface/use-manage-technologies-interface";
+import useManageTechnologiesInterface from "@/hooks/interface/dashboard-interface/use-manage-technologies-interface";
 import { HashLoader } from "react-spinners";
 
 export default function ManageTechnologies() {

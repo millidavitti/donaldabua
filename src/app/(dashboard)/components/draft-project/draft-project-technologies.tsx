@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-draft-project-technologies-interface";
+import useDraftProjectTechnologiesInterface from "@/hooks/interface/dashboard-interface/use-draft-project-technologies-interface";
 import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

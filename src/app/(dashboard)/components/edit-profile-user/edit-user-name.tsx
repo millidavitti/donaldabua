@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditUserNameInterface } from "@/hooks/interface/use-edit-user-name-interface";
+import { useEditUserNameInterface } from "@/hooks/interface/dashboard-interface/use-edit-user-name-interface";
 import { X } from "lucide-react";
 
 export default function EditUserName() {

@@ -1,4 +1,4 @@
-import { useResetProjectFormFields } from "../use-reset-project-form-fields";
+import { useResetProjectFormFields } from "../../use-reset-project-form-fields";
 import { useAtom, useSetAtom } from "jotai";
 import {
 	dashboard_view_jotai,

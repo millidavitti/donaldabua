@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
-import useSelectSocialPlatformInterface from "@/hooks/interface/use-select-social-platform-interface";
+import useSelectSocialPlatformInterface from "@/hooks/interface/dashboard-interface/use-select-social-platform-interface";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";

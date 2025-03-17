@@ -4,7 +4,7 @@ import { Project } from "@/data/atoms/app_data";
 import PublishedProjectOptions from "./published-project-options";
 import PublishedProjectEditOption from "./options/published-project-edit-option";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";
-import usePublishedProjectInterface from "@/hooks/interface/use-published-project-interface";
+import usePublishedProjectInterface from "@/hooks/interface/dashboard-interface/use-published-project-interface";
 import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

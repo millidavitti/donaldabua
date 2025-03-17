@@ -14,7 +14,7 @@ import { getErrorMessage } from "@/utils/get-error-message";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import useDialog from "../use-dialog";
+import useDialog from "../../use-dialog";
 
 export default function useEditUserSocialsInterface() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
