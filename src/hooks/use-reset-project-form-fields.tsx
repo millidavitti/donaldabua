@@ -5,7 +5,7 @@ import {
 	project_technologies_jotai,
 	project_thumbnail_jotai,
 	project_title_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
 	api_task_jotai,
 	dashboard_view_jotai,

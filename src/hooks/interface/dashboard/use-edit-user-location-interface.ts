@@ -4,7 +4,7 @@ import {
 	user_location_city_jotai,
 	user_location_country_jotai,
 	user_location_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { toast } from "sonner";

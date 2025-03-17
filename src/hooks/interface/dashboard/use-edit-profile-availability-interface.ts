@@ -3,7 +3,7 @@ import {
 	profile_availability_jotai,
 	profile_snapshot_jotai,
 	ProfileAvailabilityOptions,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";

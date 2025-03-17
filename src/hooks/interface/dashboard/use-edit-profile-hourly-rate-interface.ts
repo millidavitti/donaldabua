@@ -2,7 +2,7 @@ import { updateUserProfile } from "@/backend/controllers/profile/update-user-pro
 import {
 	profile_hourly_rate_jotai,
 	profile_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";

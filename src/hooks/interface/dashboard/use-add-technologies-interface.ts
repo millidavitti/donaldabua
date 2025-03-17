@@ -6,7 +6,7 @@ import {
 	defaultStore,
 	profile_hay_stack_jotai,
 	profile_technologies_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { createId } from "@paralleldrive/cuid2";
 import FuzzySearch from "fuzzy-search";
 import { useAtom, useAtomValue } from "jotai";

@@ -2,7 +2,7 @@ import {
 	project_technologies_jotai,
 	Technology,
 	project_hay_stack_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";

@@ -8,7 +8,7 @@ import {
 import {
 	project_content_jotai,
 	project_technologies_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { toast } from "sonner";
 
 export function useDraftProjectInterface() {

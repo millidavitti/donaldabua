@@ -5,7 +5,7 @@ import {
 	project_technologies_jotai,
 	Project,
 	project_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { useSetAtom } from "jotai";
 import { toast } from "sonner";

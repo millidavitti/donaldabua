@@ -4,7 +4,7 @@ import {
 	profile_hay_stack_jotai,
 	defaultStore,
 	technologies_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import FuzzySearch from "fuzzy-search";
 import { useAtom, useAtomValue } from "jotai";
 import { useState } from "react";

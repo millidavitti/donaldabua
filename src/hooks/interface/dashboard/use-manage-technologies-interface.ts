@@ -2,7 +2,7 @@ import { updateTechnologiesController } from "@/backend/controllers/technologies
 import {
 	technologies_jotai,
 	technologies_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { useAtom, useSetAtom } from "jotai";

@@ -1,4 +1,4 @@
-import { defaultStore } from "@/data/atoms/app_data";
+import { defaultStore } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dialog_jotai } from "@/data/atoms/ui_state";
 
 export function waitForDialog() {

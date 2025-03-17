@@ -8,7 +8,7 @@ import {
 	project_title_jotai,
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";

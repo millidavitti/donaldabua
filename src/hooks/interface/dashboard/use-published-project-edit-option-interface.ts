@@ -8,7 +8,7 @@ import {
 	project_title_jotai,
 	Project,
 	project_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
 	dashboard_view_jotai,
 	project_form_step_jotai,

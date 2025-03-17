@@ -5,7 +5,7 @@ import {
 	technologies_jotai,
 	SocialPlatforms,
 	social_account_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { SOCIAL_PLATFORMS } from "@/data/constants";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";

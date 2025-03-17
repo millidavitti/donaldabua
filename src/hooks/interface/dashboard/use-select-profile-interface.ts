@@ -4,7 +4,7 @@ import {
 	profiles_jotai,
 	profiles_snapshot_jotai,
 	UserProfile,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtomValue, useSetAtom } from "jotai";
