@@ -1,5 +1,5 @@
 import { APIResponse, Technology } from "@/data/home/home-atoms/home-data";
-import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
+import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function updateProfileTechnologiesController(

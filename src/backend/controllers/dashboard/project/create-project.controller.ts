@@ -3,7 +3,7 @@ import {
 	Project,
 	ProjectData,
 } from "@/data/home/home-atoms/home-data";
-import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
+import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 
 export async function createProjectController(
 	profileId: string,

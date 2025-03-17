@@ -1,6 +1,6 @@
 import { APIResponse, Project } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
+import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 
 export async function getProjectsController(profileId: string) {
 	const headers = new Headers();
