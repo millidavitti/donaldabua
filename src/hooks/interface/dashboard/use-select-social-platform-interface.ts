@@ -6,7 +6,7 @@ import {
 	SocialPlatforms,
 	social_account_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { SOCIAL_PLATFORMS } from "@/data/constants";
+import { SOCIAL_PLATFORMS } from "@/data/dashboard/dashboard-constants";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";

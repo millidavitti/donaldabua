@@ -7,7 +7,10 @@ import useEditUserSocialsInterface from "@/hooks/interface/dashboard/use-edit-us
 import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
-import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
+import {
+	DELAY,
+	SOCIAL_PLATFORM_ICONS,
+} from "@/data/dashboard/dashboard-constants";
 import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";

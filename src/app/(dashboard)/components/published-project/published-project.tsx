@@ -5,7 +5,7 @@ import PublishedProjectOptions from "./published-project-options";
 import PublishedProjectEditOption from "./options/published-project-edit-option";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";
 import usePublishedProjectInterface from "@/hooks/interface/dashboard/use-published-project-interface";
-import { DELAY } from "@/data/constants";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 

@@ -12,7 +12,7 @@ import {
 	PROJECT_DRAFT_VIEWS,
 	DASHBOARD_VIEWS,
 	SETTINGS_VIEWS,
-} from "@/data/constants";
+} from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";
