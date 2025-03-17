@@ -15,7 +15,6 @@ export async function getUsersController() {
 		});
 
 		const data = await res.json();
-		console.log(data);
 		return data as APIResponse<User[], "users">;
 	} catch (error) {
 		console.error("---getUsersController---\n", error);
