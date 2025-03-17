@@ -1,18 +1,8 @@
 import { atom } from "jotai";
-import {
-	DASHBOARD_VIEWS,
-	PROJECT_DRAFT_VIEWS,
-	SETTINGS_VIEWS,
-} from "../../dashboard/dashboard-constants";
+import { VAULT_VIEWS } from "../home-constants";
 
-export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
+export type DashboardView = (typeof VAULT_VIEWS)[number];
 export const dashboard_view_jotai = atom<DashboardView>(null);
-
-export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
-export const project_draft_view_jotai = atom<ProjectDraftView>(null);
-
-export type SettingsView = (typeof SETTINGS_VIEWS)[number];
-export const settings_view_jotai = atom<SettingsView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
