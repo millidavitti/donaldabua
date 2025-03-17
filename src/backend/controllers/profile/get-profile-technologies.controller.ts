@@ -1,29 +1,16 @@
-import {
-	APIResponse,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { APIResponse, Technology } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getProfileTechnologiesController(profileId: string) {
-	const headers = new Headers();
-
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/profile-technologies/" +
-				profileId,
-			{
-				credentials: "include",
-				headers,
-			},
-		);
+		const res = await fetch(ENDPOINTS.profileTechnology.list(profileId), {
+			method: "GET",
+			credentials: "include",
+		});
 		const data = await res.json();
-
+		console.log(data);
 		return data as APIResponse<Technology[], "profileTechnologies">;
 	} catch (error) {
 		console.error("---getProfileTechnologiesController---\n", error);
