@@ -1,6 +1,6 @@
 import { APIResponse, User } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { ENDPOINTS } from "../../endpoints/endpoints";
+import { ENDPOINTS } from "../../../endpoints/endpoints";
 
 export async function getUsersController() {
 	try {

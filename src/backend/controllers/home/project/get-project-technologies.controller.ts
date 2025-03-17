@@ -1,8 +1,8 @@
 import { APIResponse, Technology } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
 
-export async function getTechnologiesController() {
+export async function getProjectTechnologiesController(projectId: string) {
 	const headers = new Headers();
 
 	try {
@@ -10,14 +10,19 @@ export async function getTechnologiesController() {
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/technologies/",
-			{ credentials: "include", headers },
+			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
+				"/project-technologies/" +
+				projectId,
+			{
+				credentials: "include",
+				headers,
+			},
 		);
 		const data = await res.json();
 
-		return data as APIResponse<Technology[], "technologies">;
+		return data as APIResponse<Technology[], "projectTechnologies">;
 	} catch (error) {
-		console.error("---getTechnologies---\n", error);
+		console.error("---getProjectTechnologiesController---\n", error);
 		throw new Error(getErrorMessage(error));
 	}
 }
