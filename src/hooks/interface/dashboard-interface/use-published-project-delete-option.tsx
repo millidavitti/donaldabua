@@ -3,7 +3,7 @@ import { projects_snapshot_jotai } from "@/data/atoms/app_data";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useSetAtom } from "jotai";
 import { toast } from "sonner";
-import useDialog from "../use-dialog";
+import useDialog from "../../use-dialog";
 
 export default function usePublishedProjectDeleteOption() {
 	const projects_snapshot_setter = useSetAtom(projects_snapshot_jotai);
