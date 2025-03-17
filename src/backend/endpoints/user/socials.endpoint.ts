@@ -1,10 +1,10 @@
-import { BASE_URL } from "..";
-
 export const SOCIALS_ENDPOINTS = {
-	list: (userId: string) => `${BASE_URL}/socials/public/${userId}`,
-	create: (userId: string) => `${BASE_URL}/socials/private/${userId}`,
+	list: (userId: string) =>
+		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/public/${userId}`,
+	create: (userId: string) =>
+		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/private/${userId}`,
 	update: (socialAccountId: string) =>
-		`${BASE_URL}/socials/private/${socialAccountId}`,
+		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/private/${socialAccountId}`,
 	delete: (socialAccountId: string) =>
-		`${BASE_URL}/socials/private/${socialAccountId}`,
+		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/private/${socialAccountId}`,
 };
