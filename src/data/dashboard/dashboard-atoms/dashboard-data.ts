@@ -1,12 +1,12 @@
-import { getProjectsController } from "@/backend/controllers/project/get-projects.controller";
-import { getUserController } from "@/backend/controllers/user/get-user.controller";
-import { getUserLocationController } from "@/backend/controllers/user-location/get-user-location.controller";
+import { getProjectsController } from "@/backend/controllers/home/project/get-projects.controller";
+import { getUserController } from "@/backend/controllers/home/user/get-user.controller";
+import { getUserLocationController } from "@/backend/controllers/home/user-location/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
-import { getProfileTechnologiesController } from "@/backend/controllers/profile/get-profile-technologies.controller";
+import { getProfileTechnologiesController } from "@/backend/controllers/home/profile/get-profile-technologies.controller";
 import { toast } from "sonner";
-import { getTechnologiesController } from "@/backend/controllers/technologies/get-technologies.controller";
+import { getTechnologiesController } from "@/backend/controllers/home/technologies/get-technologies.controller";
 import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../dashboard-constants";
-import { getProfilesController } from "@/backend/controllers/profile/get-profiles.controller";
+import { getProfilesController } from "@/backend/controllers/home/profile/get-profiles.controller";
 import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
 

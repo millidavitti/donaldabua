@@ -1,4 +1,4 @@
-import { deleteProfileController } from "@/backend/controllers/profile/delete-profile.controller";
+import { deleteProfileController } from "@/backend/controllers/home/profile/delete-profile.controller";
 import {
 	profile_snapshot_jotai,
 	profiles_jotai,

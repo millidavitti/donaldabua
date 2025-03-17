@@ -1,4 +1,4 @@
-import { createProfileController } from "@/backend/controllers/profile/create-profile.controller";
+import { createProfileController } from "@/backend/controllers/home/profile/create-profile.controller";
 import {
 	profile_snapshot_jotai,
 	profiles_snapshot_jotai,

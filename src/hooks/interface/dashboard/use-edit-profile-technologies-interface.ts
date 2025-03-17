@@ -1,4 +1,4 @@
-import { updateProfileTechnologiesController } from "@/backend/controllers/profile/update-profile-technologies.controller";
+import { updateProfileTechnologiesController } from "@/backend/controllers/home/profile/update-profile-technologies.controller";
 import {
 	profile_technologies_snapshot_jotai,
 	profile_technologies_jotai,
