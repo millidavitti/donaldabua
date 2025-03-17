@@ -3,6 +3,7 @@ import {
 	UserProfile,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function updateUserProfile(
 	profileId: string,
@@ -16,15 +17,12 @@ export async function updateUserProfile(
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/profiles/" + profileId,
-			{
-				method: "PUT",
-				body: JSON.stringify(update),
-				headers,
-				credentials: "include",
-			},
-		);
+		const res = await fetch(ENDPOINTS.profile.update(profileId), {
+			method: "PUT",
+			body: JSON.stringify(update),
+			headers,
+			credentials: "include",
+		});
 		const data = await res.json();
 
 		return data as APIResponse<UserProfile, "profile">;
