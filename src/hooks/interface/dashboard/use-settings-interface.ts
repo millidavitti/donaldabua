@@ -5,7 +5,7 @@ import {
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import { signOut as destroySession } from "@/backend/auth/auth";
+import { signOut as destroySession } from "@/utils/auth";
 import { toast } from "sonner";
 export default function useSettingsInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
