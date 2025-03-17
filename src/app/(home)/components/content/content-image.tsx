@@ -6,7 +6,7 @@ import {
 	ProjectImage,
 } from "@/data/home/home-atoms/home-data";
 import { useAtom, useSetAtom } from "jotai";
-import { component_to_edit_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-ui-state";
+import { component_to_edit_jotai } from "@/data/home/home-atoms/home-ui-state";
 import Button from "@/components/ui/button";
 
 interface ContentImage {
