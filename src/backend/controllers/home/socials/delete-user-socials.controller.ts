@@ -1,7 +1,8 @@
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
+
 import { APIResponse, SocialAccount } from "@/data/home/home-atoms/home-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 
 export async function deleteUserSocialsController(socialAccountId: string) {
 	const headers = new Headers();

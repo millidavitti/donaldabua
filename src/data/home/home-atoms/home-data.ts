@@ -5,7 +5,7 @@ import { getProfileTechnologiesController } from "@/backend/controllers/home/pro
 import { toast } from "sonner";
 
 import { getProfilesController } from "@/backend/controllers/home/profile/get-profiles.controller";
-import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
+import { getUserSocialsController } from "@/backend/controllers/home/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../home-constants";
 import { getUsersController } from "@/backend/controllers/home/user/get-users.controller";
