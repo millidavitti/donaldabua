@@ -5,7 +5,7 @@ import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import DeleteUserVideoOption from "./delete-user-video-option";
 import AddUserVideoOption from "./add-user-video-option";
-import { useEditUserVideoInterface } from "@/hooks/interface/dashboard-interface/use-edit-user-video-interface";
+import { useEditUserVideoInterface } from "@/hooks/interface/dashboard/use-edit-user-video-interface";
 
 export default function EditUserVideo() {
 	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =

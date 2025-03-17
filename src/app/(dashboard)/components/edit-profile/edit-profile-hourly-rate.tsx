@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditProfileHourlyRateInterface } from "@/hooks/interface/dashboard-interface/use-edit-profile-hourly-rate-interface";
+import { useEditProfileHourlyRateInterface } from "@/hooks/interface/dashboard/use-edit-profile-hourly-rate-interface";
 import { EditIcon, X } from "lucide-react";
 
 export default function EditProfileHourlyRate() {

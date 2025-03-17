@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditProfileTitleInterface } from "@/hooks/interface/dashboard-interface/use-edit-profile-title-interface";
+import { useEditProfileTitleInterface } from "@/hooks/interface/dashboard/use-edit-profile-title-interface";
 import { EditIcon, X } from "lucide-react";
 
 export default function EditProfileTitle() {

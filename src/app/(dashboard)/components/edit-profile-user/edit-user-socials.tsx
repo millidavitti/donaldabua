@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import useEditUserSocialsInterface from "@/hooks/interface/dashboard-interface/use-edit-user-socials-interface";
+import useEditUserSocialsInterface from "@/hooks/interface/dashboard/use-edit-user-socials-interface";
 import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";

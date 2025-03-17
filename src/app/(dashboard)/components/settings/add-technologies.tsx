@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import { Plus, X } from "lucide-react";
 import ProfileTechnology from "../profile-technology";
-import useAddTechnologiesInterface from "@/hooks/interface/dashboard-interface/use-add-technologies-interface";
+import useAddTechnologiesInterface from "@/hooks/interface/dashboard/use-add-technologies-interface";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import useSelectProfileInterface from "@/hooks/interface/dashboard-interface/use-select-profile-interface";
+import useSelectProfileInterface from "@/hooks/interface/dashboard/use-select-profile-interface";
 import { X } from "lucide-react";
 
 export default function SelectProfile() {

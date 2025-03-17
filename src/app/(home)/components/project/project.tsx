@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { type Project } from "@/data/atoms/app_data";
-import usePublishedProjectInterface from "@/hooks/interface/dashboard-interface/use-published-project-interface";
+import usePublishedProjectInterface from "@/hooks/interface/dashboard/use-published-project-interface";
 import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

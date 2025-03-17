@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import { usePublishProjectInterface } from "@/hooks/interface/dashboard-interface/use-publish-project-interface";
+import { usePublishProjectInterface } from "@/hooks/interface/dashboard/use-publish-project-interface";
 import React from "react";
 import { HashLoader } from "react-spinners";
 

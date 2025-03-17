@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import usePublishedProjectDeleteOption from "@/hooks/interface/dashboard-interface/use-published-project-delete-option";
+import usePublishedProjectDeleteOption from "@/hooks/interface/dashboard/use-published-project-delete-option";
 import { Trash } from "lucide-react";
 
 interface PublishedProjectDeleteOption {

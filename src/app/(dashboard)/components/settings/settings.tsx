@@ -6,7 +6,7 @@ import { SettingsIcon, X } from "lucide-react";
 import Button from "@/components/ui/button";
 import SettingsView from "./settings-view";
 import { HashLoader } from "react-spinners";
-import useSettingsInterface from "@/hooks/interface/dashboard-interface/use-settings-interface";
+import useSettingsInterface from "@/hooks/interface/dashboard/use-settings-interface";
 
 export default function Settings() {
 	const { api_task, close, display, manageTechnologies, signOut } =

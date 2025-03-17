@@ -2,7 +2,7 @@
 import Flex from "../layouts/flex";
 import Button from "./button";
 import Overlay from "../layouts/overlay";
-import useAlertDialogInterface from "@/hooks/interface/dashboard-interface/use-alert-dialog-interface";
+import useAlertDialogInterface from "@/hooks/interface/dashboard/use-alert-dialog-interface";
 import { HashLoader } from "react-spinners";
 
 export default function AlertDialog() {
