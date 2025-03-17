@@ -1,32 +1,17 @@
+import { getUsersController } from "@/backend/controllers/user/get-users.controller";
 import Flex from "@/components/layouts/flex";
-import User from "./components/user/user";
-import Sidebar from "./components/sidebar";
-import VaultHeader from "./components/vault-header";
-import ProfileSummary from "./components/profile/profile-summary";
-import ProfileProjects from "./components/profile/profile-projects";
-import ProfileTechnologies from "./components/profile/profile-technologies";
-import { Metadata } from "next";
+import Link from "next/link";
+import React from "react";
 
-export const metadata: Metadata = {
-	title: "Donald Abua",
-};
-
-export default function Home() {
+export default async function HomePage() {
+	const users = await getUsersController();
 	return (
-		<Flex className='w-full h-full gap-3' flex='column'>
-			<VaultHeader />
-			<Flex className='outline h-full gap-3' flex='column'>
-				<User />
-				{/* Main */}
-				<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
-					<Sidebar />
-					<Flex className='basis-[720px] grow-[2] gap-3' flex='column'>
-						<ProfileSummary />
-						<ProfileProjects />
-						<ProfileTechnologies />
-					</Flex>
-				</Flex>
-			</Flex>
+		<Flex>
+			{users.users.map((user) => (
+				<Link href={`/${user.id}`} key={user.id}>
+					{user.name}
+				</Link>
+			))}
 		</Flex>
 	);
 }
