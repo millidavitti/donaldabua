@@ -10,42 +10,9 @@ import { getProfilesController } from "@/backend/controllers/profile/get-profile
 import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../home-constants";
+import { getUsersController } from "@/backend/controllers/user/get-users.controller";
 
 export const defaultStore = getDefaultStore();
-
-export type Technology = {
-	id: string;
-	name: string;
-};
-export const technologies_snapshot_jotai = atom<Technology[]>([]);
-export const technologies_jotai = atom<Technology[]>([]);
-export const technologies_hay_stack_jotai = atom<Technology[]>([]);
-defaultStore.sub(technologies_snapshot_jotai, async () => {
-	// Set Technologies
-	defaultStore.set(
-		technologies_jotai,
-		defaultStore.get(technologies_snapshot_jotai),
-	);
-
-	if (defaultStore.get(profile_snapshot_jotai).id) {
-		try {
-			const { profileTechnologies, error } =
-				await getProfileTechnologiesController(
-					defaultStore.get(profile_snapshot_jotai).id,
-				);
-
-			if (error) throw new Error(error);
-			else if (profileTechnologies)
-				defaultStore.set(
-					profile_technologies_snapshot_jotai,
-					profileTechnologies,
-				);
-		} catch (error) {
-			toast.error(getErrorMessage(error));
-			console.error("---App Data:profile_technologies_jotai---\n", error);
-		}
-	}
-});
 
 export type User = {
 	id: string;
@@ -53,53 +20,28 @@ export type User = {
 	image: string;
 	video: string | null;
 };
+export const users_snapshot_jotai = atom<User[]>([]);
 export const user_snapshot_jotai = atom<User>({
 	id: "",
 	name: "",
 	image: "",
 	video: "",
 });
-// Get User On Mount
-user_snapshot_jotai.onMount = (setAtom) => {
+
+users_snapshot_jotai.onMount = (setAtom) => {
 	(async () => {
 		try {
-			const { user, error } = await getUserController();
-			if (error) {
-				setAtom({
-					id: "",
-					image: "/stud.jpg",
-					name: "Failed to fetch user",
-					video: null,
-				});
-				throw new Error(error);
-			} else if (user) setAtom(user);
-		} catch (error) {
-			console.error("---App Data:user_jotai---\n", error);
-			toast.error(getErrorMessage(error));
-		}
-
-		try {
-			const { technologies, error } = await getTechnologiesController();
+			const { users, error } = await getUsersController();
 			if (error) throw new Error(error);
-			else if (technologies)
-				defaultStore.set(technologies_snapshot_jotai, technologies);
+			else if (users) setAtom(users);
 		} catch (error) {
-			console.error("---App Data:technologies_jotai---\n", error);
-			toast.error("Unable to retrieve technologies. Please try again.");
+			console.error("---getUsers---\n", error);
+			toast.error(getErrorMessage(error));
 		}
 	})();
 };
-defaultStore.sub(user_snapshot_jotai, async () => {
-	defaultStore.set(user_name_jotai, defaultStore.get(user_snapshot_jotai).name);
-	defaultStore.set(
-		user_image_jotai,
-		defaultStore.get(user_snapshot_jotai).image,
-	);
-	defaultStore.set(
-		user_video_jotai,
-		defaultStore.get(user_snapshot_jotai).video,
-	);
 
+defaultStore.sub(user_snapshot_jotai, async () => {
 	// Get User Location
 	try {
 		const { location, error } = await getUserLocationController(
@@ -141,11 +83,6 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 		toast.error(getErrorMessage(error));
 	}
 });
-export const user_name_jotai = atom<string>("");
-
-export const user_image_jotai = atom<string>("");
-
-export const user_video_jotai = atom<string | null>("");
 
 export type UserLocation = {
 	city: string;
@@ -290,6 +227,8 @@ export const profile_availability_jotai =
 export const profile_title_jotai = atom<string>("");
 export const profile_hourly_rate_jotai = atom<number>(1);
 export const profile_overview_jotai = atom<string>("");
+
+export type Technology = { id: string; name: string };
 export const profile_technologies_jotai = atom<Technology[]>([]);
 export const profile_hay_stack_jotai = atom<Technology[]>([]);
 export const profile_technologies_snapshot_jotai = atom<Technology[]>([]);
