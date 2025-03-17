@@ -1,7 +1,7 @@
 import { APIResponse, UserLocation } from "@/data/atoms/app_data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
-import { ENDPOINTS } from "@/backend/endpoints";
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getUserLocationController(userId: string) {
 	const headers = new Headers();

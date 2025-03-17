@@ -1,6 +1,6 @@
 import { APIResponse, User } from "@/data/atoms/app_data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
-import { ENDPOINTS } from "@/backend/endpoints";
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function updateUserController(
 	userId: string,

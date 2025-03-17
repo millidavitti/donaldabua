@@ -1,8 +1,8 @@
 import { APIResponse, User } from "@/data/atoms/app_data";
-import { auth } from "@/utils/auth";
+import { auth } from "@/backend/auth/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
-import { ENDPOINTS } from "../../endpoints";
+import { ENDPOINTS } from "../../endpoints/endpoints";
 
 export async function getUserController() {
 	const headers = new Headers();
