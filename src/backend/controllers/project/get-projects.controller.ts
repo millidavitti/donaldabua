@@ -1,7 +1,4 @@
-import {
-	APIResponse,
-	Project,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { APIResponse, Project } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 

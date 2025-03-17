@@ -1,7 +1,4 @@
-import {
-	APIResponse,
-	UserLocation,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { APIResponse, UserLocation } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
