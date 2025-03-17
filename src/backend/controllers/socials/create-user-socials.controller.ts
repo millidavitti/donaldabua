@@ -1,6 +1,9 @@
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
-import { APIResponse, SocialAccount } from "@/data/atoms/app_data";
+import {
+	APIResponse,
+	SocialAccount,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function createUserSocialsController(

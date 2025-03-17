@@ -1,4 +1,7 @@
-import { APIResponse, ProjectContent } from "@/data/atoms/app_data";
+import {
+	APIResponse,
+	ProjectContent,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function createProjectContentController(

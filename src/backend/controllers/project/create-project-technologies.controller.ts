@@ -1,4 +1,7 @@
-import { APIResponse, ProjectTechnology } from "@/data/atoms/app_data";
+import {
+	APIResponse,
+	ProjectTechnology,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function createProjectTechnologiesController(
