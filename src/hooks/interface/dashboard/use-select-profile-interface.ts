@@ -1,4 +1,4 @@
-import { deleteProfileController } from "@/backend/controllers/home/profile/delete-profile.controller";
+import { deleteProfileController } from "@/backend/controllers/dashboard/profile/delete-profile.controller";
 import {
 	profile_snapshot_jotai,
 	profiles_jotai,
@@ -8,7 +8,7 @@ import {
 import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtomValue, useSetAtom } from "jotai";
-import useDialog from "../use-dialog";
+import useDialog from "../../use-dialog";
 
 export default function useSelectProfileInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
