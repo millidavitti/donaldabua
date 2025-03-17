@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
 	project_content_jotai,
 	ProjectImage,
-} from "@/data/home/home-atoms/home-data.ts";
+} from "@/data/home/home-atoms/home-data";
 import { useAtom, useSetAtom } from "jotai";
 import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import Button from "@/components/ui/button";

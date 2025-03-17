@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { project_content_jotai } from "@/data/home/home-atoms/home-data.ts";
+import { project_content_jotai } from "@/data/home/home-atoms/home-data";
 import { useAtomValue } from "jotai";
 import ContentImage from "./content-image";
 import ContentVideo from "./content-video";

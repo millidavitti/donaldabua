@@ -5,7 +5,7 @@ import {
 	DELAY,
 	SOCIAL_PLATFORM_ICONS,
 } from "@/data/dashboard/dashboard-constants";
-import { user_socials_snapshot_jotai } from "@/data/home/home-atoms/home-data.ts";
+import { user_socials_snapshot_jotai } from "@/data/home/home-atoms/home-data";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import { useAtomValue } from "jotai";
