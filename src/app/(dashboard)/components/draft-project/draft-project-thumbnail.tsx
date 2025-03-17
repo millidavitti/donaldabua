@@ -11,13 +11,13 @@ export default function DraftProjectThumbnail() {
 		<>
 			<label
 				className='text-xl font-semibold shrink-0'
-				htmlFor='project-thumbnail'
+				htmlFor='draft-project-thumbnail'
 			>
 				Thumbnail
 			</label>
 			<input
 				type='url'
-				id='project-thumbnail'
+				id='draft-project-thumbnail'
 				required
 				className={cn(
 					"outline p-3 valid:outline-emerald-600",

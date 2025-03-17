@@ -20,7 +20,8 @@ export function useDraftProjectInterface() {
 	const project_content = useAtomValue(project_content_jotai);
 
 	function gotToPreview() {
-		const formElements = document.querySelectorAll("[id^='project']");
+		const formElements = document.querySelectorAll("[id^='draft']");
+		console.log(formElements);
 		formElements.forEach((el) => {
 			const field = (el as HTMLInputElement).validity;
 			if (!field.valid) {
@@ -46,7 +47,9 @@ export function useDraftProjectInterface() {
 			else {
 				toast.info("You must provide at least one technology");
 				(
-					document.querySelector("#select-technology") as HTMLInputElement
+					document.querySelector(
+						"#select-project-technology",
+					) as HTMLInputElement
 				).focus();
 			}
 		}

@@ -8,12 +8,15 @@ export default function DraftProjectTitle() {
 	return (
 		<>
 			{/* Project Title */}
-			<label className='text-xl font-semibold shrink-0' htmlFor='project-title'>
+			<label
+				className='text-xl font-semibold shrink-0'
+				htmlFor='draft-project-title'
+			>
 				Project Title
 			</label>
 			<input
 				type='text'
-				id='project-title'
+				id='draft-project-title'
 				required
 				className={cn(
 					"outline p-3 shrink-0 valid:outline-emerald-600",
