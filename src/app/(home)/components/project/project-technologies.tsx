@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { project_technologies_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { project_technologies_jotai } from "@/data/home/home-atoms/home-data.ts";
 import { useAtomValue } from "jotai";
 
 export default function ProjectTechnologies() {

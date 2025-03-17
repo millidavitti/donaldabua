@@ -3,7 +3,7 @@ import ContentImage from "../content/content-image";
 import { createId } from "@paralleldrive/cuid2";
 import ContentBuilderVideo from "../content/content-video";
 import ContentMarkdown from "../content/content-markdown";
-import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { project_content_jotai } from "@/data/home/home-atoms/home-data.ts";
 import { useAtomValue } from "jotai";
 
 export default function ProjectContent() {

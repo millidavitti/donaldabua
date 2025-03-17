@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import {
 	project_content_jotai,
 	ProjectVideo,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+} from "@/data/home/home-atoms/home-data.ts";
 import { useState } from "react";
 import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";

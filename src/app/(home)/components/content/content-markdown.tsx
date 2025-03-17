@@ -4,7 +4,7 @@ import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashb
 import {
 	project_content_jotai,
 	ProjectMarkdown,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+} from "@/data/home/home-atoms/home-data.ts";
 import { useAtom, useSetAtom } from "jotai";
 import md from "md";
 import parse from "html-react-parser";

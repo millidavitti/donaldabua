@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Technology } from "@/data/home/home-atoms/home-data.ts";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";

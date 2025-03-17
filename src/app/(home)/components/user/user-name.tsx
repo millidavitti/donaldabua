@@ -1,4 +1,4 @@
-import { user_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { user_snapshot_jotai } from "@/data/home/home-atoms/home-data.ts";
 import { useAtomValue } from "jotai";
 
 export default function UserName() {
