@@ -1,4 +1,4 @@
-import { deleteProjectController } from "@/backend/delete-project.controller";
+import { deleteProjectController } from "@/backend/controllers/project/delete-project.controller";
 import { projects_snapshot_jotai } from "@/data/atoms/app_data";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useSetAtom } from "jotai";

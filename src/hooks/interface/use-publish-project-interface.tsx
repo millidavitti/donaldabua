@@ -13,9 +13,9 @@ import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../use-reset-project-form-fields";
-import { createProjectController } from "@/backend/create-project.controller";
+import { createProjectController } from "@/backend/controllers/project/create-project.controller";
 import { toast } from "sonner";
-import { updateProjectController } from "@/backend/update-project.controller";
+import { updateProjectController } from "@/backend/controllers/project/update-project.controller";
 
 export function usePublishProjectInterface() {
 	const projects_snapshot_setter = useSetAtom(projects_snapshot_jotai);

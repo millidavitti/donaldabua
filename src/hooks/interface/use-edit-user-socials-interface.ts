@@ -1,6 +1,6 @@
-import { createUserSocialsController } from "@/backend/create-user-socials.controller";
-import { deleteUserSocialsController } from "@/backend/delete-user-socials.controller";
-import { updateUserSocialsController } from "@/backend/update-user-socials.controller";
+import { createUserSocialsController } from "@/backend/controllers/socials/create-user-socials.controller";
+import { deleteUserSocialsController } from "@/backend/controllers/socials/delete-user-socials.controller";
+import { updateUserSocialsController } from "@/backend/controllers/socials/update-user-socials.controller";
 import {
 	social_account_jotai,
 	social_account_snapshot_jotai,

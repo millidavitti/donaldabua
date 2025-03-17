@@ -1,4 +1,4 @@
-import { updateUserLocationController } from "@/backend/update-user-location.controller";
+import { updateUserLocationController } from "@/backend/controllers/user-location/update-user-location.controller";
 import {
 	user_snapshot_jotai,
 	user_location_city_jotai,
