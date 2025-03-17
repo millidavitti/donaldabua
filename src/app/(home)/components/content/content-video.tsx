@@ -4,7 +4,7 @@ import {
 	ProjectVideo,
 } from "@/data/home/home-atoms/home-data";
 import { useState } from "react";
-import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
+import { component_to_edit_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
 import Button from "@/components/ui/button";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
