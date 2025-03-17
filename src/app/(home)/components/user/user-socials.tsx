@@ -1,10 +1,7 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import {
-	DELAY,
-	SOCIAL_PLATFORM_ICONS,
-} from "@/data/dashboard/dashboard-constants";
+import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
 import { user_socials_snapshot_jotai } from "@/data/home/home-atoms/home-data";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
