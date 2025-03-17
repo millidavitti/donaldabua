@@ -1,10 +1,8 @@
 import { getProjectsController } from "@/backend/controllers/project/get-projects.controller";
-import { getUserController } from "@/backend/controllers/user/get-user.controller";
 import { getUserLocationController } from "@/backend/controllers/user-location/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/controllers/profile/get-profile-technologies.controller";
 import { toast } from "sonner";
-import { getTechnologiesController } from "@/backend/controllers/technologies/get-technologies.controller";
 
 import { getProfilesController } from "@/backend/controllers/profile/get-profiles.controller";
 import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";

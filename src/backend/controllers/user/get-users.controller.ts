@@ -2,9 +2,7 @@ import {
 	APIResponse,
 	User,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { auth } from "@/utils/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 import { ENDPOINTS } from "../../endpoints/endpoints";
 
 export async function getUsersController() {
