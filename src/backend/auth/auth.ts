@@ -1,16 +1,14 @@
 import { NextRequest } from "next/server";
-import { getErrorMessage } from "./get-error-message";
+import { getErrorMessage } from "../../utils/get-error-message";
+import { ENDPOINTS } from "../endpoints/endpoints";
 
 export async function auth(request?: NextRequest) {
 	try {
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/ping/",
-			{
-				method: "GET",
-				credentials: "include",
-				headers: { Cookie: request?.headers.get("cookie") || "" }, // Forward cookies
-			},
-		);
+		const res = await fetch(ENDPOINTS.ping.read, {
+			method: "GET",
+			credentials: "include",
+			headers: { Cookie: request?.headers.get("cookie") || "" }, // Forward cookies
+		});
 
 		const data = await res.json();
 
