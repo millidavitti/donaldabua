@@ -5,7 +5,7 @@ import { atom, getDefaultStore } from "jotai";
 import { getProfileTechnologiesController } from "@/backend/controllers/profile/get-profile-technologies.controller";
 import { toast } from "sonner";
 import { getTechnologiesController } from "@/backend/controllers/technologies/get-technologies.controller";
-import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../dasboard-constants";
+import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../dashboard-constants";
 import { getProfilesController } from "@/backend/controllers/profile/get-profiles.controller";
 import { getUserSocialsController } from "@/backend/controllers/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
