@@ -5,7 +5,7 @@ import ViewProject from "../view-project";
 import {
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/home/home-atoms/home-data";
 import Project from "./project";
 import { HashLoader } from "react-spinners";
 

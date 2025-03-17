@@ -7,12 +7,12 @@ import {
 	DashboardView,
 	settings_view_jotai,
 	SettingsView,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import {
 	PROJECT_DRAFT_VIEWS,
 	DASHBOARD_VIEWS,
 	SETTINGS_VIEWS,
-} from "@/data/constants";
+} from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";

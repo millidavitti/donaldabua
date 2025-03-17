@@ -3,12 +3,15 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import useEditUserSocialsInterface from "@/hooks/interface/use-edit-user-socials-interface";
+import useEditUserSocialsInterface from "@/hooks/interface/dashboard/use-edit-user-socials-interface";
 import { CirclePlus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
-import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
-import { SocialPlatforms } from "@/data/atoms/app_data";
+import {
+	DELAY,
+	SOCIAL_PLATFORM_ICONS,
+} from "@/data/dashboard/dashboard-constants";
+import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

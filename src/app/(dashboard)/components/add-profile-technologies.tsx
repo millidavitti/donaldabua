@@ -1,9 +1,9 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useAddProfileTechnologiesInterface from "@/hooks/interface/use-add-profile-technologies-interface";
+import useAddProfileTechnologiesInterface from "@/hooks/interface/dashboard/use-add-profile-technologies-interface";
 import ProfileTechnology from "./profile-technology";
 import { getAnimationClass } from "@/utils/animations";
-import { DELAY } from "@/data/constants";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 
 export default function AddProfileTechnologies() {

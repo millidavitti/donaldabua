@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/use-draft-project-technologies-interface";
-import { DELAY } from "@/data/constants";
+import useDraftProjectTechnologiesInterface from "@/hooks/interface/dashboard/use-draft-project-technologies-interface";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 
@@ -18,7 +18,10 @@ export default function DraftProjectTechnologies() {
 	} = useDraftProjectTechnologiesInterface();
 	return (
 		<>
-			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+			<label
+				className='text-xl font-semibold shrink-0'
+				htmlFor='select-project-technology'
+			>
 				Technologies
 			</label>
 			{Boolean(project_technologies.length) && (
@@ -40,7 +43,7 @@ export default function DraftProjectTechnologies() {
 			<Flex flex='column' className='relative overflow-visible'>
 				<input
 					type='text'
-					id='select-technology'
+					id='select-project-technology'
 					className='outline p-3 w-full'
 					value={searchQuery}
 					onKeyDown={(e) => {

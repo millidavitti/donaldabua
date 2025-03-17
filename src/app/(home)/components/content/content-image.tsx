@@ -1,9 +1,12 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { useState } from "react";
-import { project_content_jotai, ProjectImage } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	ProjectImage,
+} from "@/data/home/home-atoms/home-data";
 import { useAtom, useSetAtom } from "jotai";
-import { component_to_edit_jotai } from "@/data/atoms/ui_state";
+import { component_to_edit_jotai } from "@/data/home/home-atoms/home-ui-state";
 import Button from "@/components/ui/button";
 
 interface ContentImage {

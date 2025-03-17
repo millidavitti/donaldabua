@@ -1,4 +1,4 @@
-import { APIResponse } from "@/data/atoms/app_data";
+import { APIResponse } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function generateCsrfToken() {

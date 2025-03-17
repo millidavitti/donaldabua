@@ -1,4 +1,7 @@
-import { APIResponse, Project } from "@/data/atoms/app_data";
+import {
+	APIResponse,
+	Project,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "../../auth/get-csrf-token.controller";
 
 export async function deleteProjectController(projectId: string) {

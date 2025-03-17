@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
-import { Technology } from "@/data/atoms/app_data";
-import { DELAY } from "@/data/constants";
+import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import { ReactNode } from "react";

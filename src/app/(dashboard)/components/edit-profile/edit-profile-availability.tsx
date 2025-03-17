@@ -2,8 +2,8 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { AVAILABILITY_OPTIONS } from "@/data/constants";
-import { useEditProfileAvailabilityInterface } from "@/hooks/interface/use-edit-profile-availability-interface";
+import { AVAILABILITY_OPTIONS } from "@/data/dashboard/dashboard-constants";
+import { useEditProfileAvailabilityInterface } from "@/hooks/interface/dashboard/use-edit-profile-availability-interface";
 import { EditIcon, X } from "lucide-react";
 
 export default function EditProfileAvailability() {

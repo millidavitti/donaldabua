@@ -6,7 +6,7 @@ import Button from "@/components/ui/button";
 import { EditIcon, X } from "lucide-react";
 import ProfileTechnology from "../profile-technology";
 import AddProfileTechnologies from "../add-profile-technologies";
-import useEditProfileTechnologiesInterface from "@/hooks/interface/use-edit-profile-technologies-interface";
+import useEditProfileTechnologiesInterface from "@/hooks/interface/dashboard/use-edit-profile-technologies-interface";
 import { HashLoader } from "react-spinners";
 
 export default function EditProfileTechnologies() {

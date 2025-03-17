@@ -1,7 +1,10 @@
 import Flex from "@/components/layouts/flex";
-import { project_content_jotai, ProjectVideo } from "@/data/atoms/app_data";
+import {
+	project_content_jotai,
+	ProjectVideo,
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import React, { useState } from "react";
-import { component_to_edit_jotai } from "@/data/atoms/ui_state";
+import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
 import Button from "@/components/ui/button";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";

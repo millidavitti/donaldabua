@@ -1,11 +1,11 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { Project } from "@/data/atoms/app_data";
+import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import PublishedProjectOptions from "./published-project-options";
 import PublishedProjectEditOption from "./options/published-project-edit-option";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";
 import usePublishedProjectInterface from "@/hooks/interface/use-published-project-interface";
-import { DELAY } from "@/data/constants";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 

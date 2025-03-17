@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { content_hover_state_jotai } from "@/data/atoms/ui_state";
+import { content_hover_state_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtomValue } from "jotai";
 import React from "react";
 import DraftProjectVideo from "./draft-project-video";

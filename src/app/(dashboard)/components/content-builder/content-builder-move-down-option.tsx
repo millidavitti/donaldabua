@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { project_content_jotai } from "@/data/atoms/app_data";
+import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useSetAtom } from "jotai";
 import { ArrowDown } from "lucide-react";
 import React from "react";

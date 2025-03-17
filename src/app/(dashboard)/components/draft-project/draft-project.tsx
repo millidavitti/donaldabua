@@ -7,7 +7,7 @@ import DraftProjectTitle from "./draft-project-title";
 import DraftProjectDescription from "./draft-project-description";
 import DraftProjectTechnologies from "./draft-project-technologies";
 import DraftProjectThumbnail from "./draft-project-thumbnail";
-import { useDraftProjectInterface } from "@/hooks/interface/use-draft-portfolio-project-info-interface";
+import { useDraftProjectInterface } from "@/hooks/interface/dashboard/use-draft-portfolio-project-info-interface";
 
 interface DraftProject {
 	children: ReactNode;

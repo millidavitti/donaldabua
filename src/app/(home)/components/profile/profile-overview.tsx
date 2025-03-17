@@ -2,7 +2,7 @@
 import Flex from "@/components/layouts/flex";
 import md from "md";
 import parse from "html-react-parser";
-import { profile_snapshot_jotai } from "@/data/atoms/app_data";
+import { profile_snapshot_jotai } from "@/data/home/home-atoms/home-data";
 import { useAtomValue } from "jotai";
 export default function ProfileOverview() {
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);

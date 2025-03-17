@@ -1,4 +1,4 @@
-import { project_description_jotai } from "@/data/atoms/app_data";
+import { project_description_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import React from "react";
@@ -9,12 +9,15 @@ export default function DraftProjectDescription() {
 	);
 	return (
 		<>
-			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
+			<label
+				className='text-xl font-semibold shrink-0'
+				htmlFor='draft-project-description'
+			>
 				Project Description
 			</label>
 			<input
 				type='text'
-				id='project-description'
+				id='draft-project-description'
 				minLength={100}
 				maxLength={250}
 				required

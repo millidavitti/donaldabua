@@ -5,12 +5,12 @@ import ViewProject from "../view-project";
 import {
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
-} from "@/data/atoms/app_data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import PublishedProject from "./published-project";
 import DraftProject from "../draft-project/draft-project";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
-import { project_form_step_jotai } from "@/data/atoms/ui_state";
+import { project_form_step_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { HashLoader } from "react-spinners";
 
 export default function PublishedProjects() {

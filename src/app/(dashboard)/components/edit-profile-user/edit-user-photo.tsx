@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditUserPhotoInterface } from "@/hooks/interface/use-edit-user-photo-interface";
+import { useEditUserPhotoInterface } from "@/hooks/interface/dashboard/use-edit-user-photo-interface";
 import { X } from "lucide-react";
 import Image from "next/image";
 

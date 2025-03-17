@@ -7,7 +7,7 @@ import DraftProject from "../draft-project/draft-project";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
 import PublishedProjects from "../published-project/published-projects";
-import { useEditProfileProjectsInterface } from "@/hooks/interface/use-edit-profile-projects-interface";
+import { useEditProfileProjectsInterface } from "@/hooks/interface/dashboard/use-edit-profile-projects-interface";
 
 export default function EditProfileProjects() {
 	const { addNewProject, project_form_step } =

@@ -2,11 +2,11 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { project_content_jotai } from "@/data/atoms/app_data";
+import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
 	content_hover_state_jotai,
 	project_draft_view_jotai,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { cn } from "@/utils/cn";
 import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";

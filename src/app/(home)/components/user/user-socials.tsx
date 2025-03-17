@@ -1,8 +1,8 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/constants";
-import { user_socials_snapshot_jotai } from "@/data/atoms/app_data";
+import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
+import { user_socials_snapshot_jotai } from "@/data/home/home-atoms/home-data";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import { useAtomValue } from "jotai";

@@ -6,7 +6,7 @@ import PublishedProjectDescription from "./published-project/published-project-d
 import PublishedProjectTechStack from "./published-project/published-project-tech-stack";
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
-import { Project } from "@/data/atoms/app_data";
+import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useResetProjectFormFields } from "@/hooks/use-reset-project-form-fields";
 
 interface ViewPortfolioProject {

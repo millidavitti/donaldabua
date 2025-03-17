@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "./backend/auth/auth";
+import { auth } from "./utils/auth";
 
 export async function middleware(request: NextRequest) {
 	const { isAuthenticated, user } = await auth(request);
