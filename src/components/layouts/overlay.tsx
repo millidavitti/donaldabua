@@ -7,7 +7,7 @@ import {
 	DashboardView,
 	settings_view_jotai,
 	SettingsView,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import {
 	PROJECT_DRAFT_VIEWS,
 	DASHBOARD_VIEWS,

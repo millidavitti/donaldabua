@@ -4,7 +4,10 @@ import {
 	profiles_snapshot_jotai,
 	user_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	dashboard_view_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useState } from "react";
 

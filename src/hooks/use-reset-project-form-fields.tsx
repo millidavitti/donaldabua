@@ -10,7 +10,7 @@ import {
 	api_task_jotai,
 	dashboard_view_jotai,
 	project_form_step_jotai,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom } from "jotai";
 
 export function useResetProjectFormFields() {

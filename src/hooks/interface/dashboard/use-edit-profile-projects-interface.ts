@@ -3,7 +3,7 @@ import { useAtom, useSetAtom } from "jotai";
 import {
 	dashboard_view_jotai,
 	project_form_step_jotai,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 
 export function useEditProfileProjectsInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);

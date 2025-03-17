@@ -6,7 +6,7 @@ import {
 	ProjectImage,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtom, useSetAtom } from "jotai";
-import { component_to_edit_jotai } from "@/data/atoms/ui_state";
+import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import Button from "@/components/ui/button";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";

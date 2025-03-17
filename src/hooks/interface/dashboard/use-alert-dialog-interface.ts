@@ -1,4 +1,7 @@
-import { dashboard_view_jotai, dialog_jotai } from "@/data/atoms/ui_state";
+import {
+	dashboard_view_jotai,
+	dialog_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
 
 export default function useAlertDialogInterface() {

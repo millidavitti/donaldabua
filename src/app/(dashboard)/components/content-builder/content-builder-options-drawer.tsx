@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { project_form_step_jotai } from "@/data/atoms/ui_state";
+import { project_form_step_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtomValue } from "jotai";
 import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";

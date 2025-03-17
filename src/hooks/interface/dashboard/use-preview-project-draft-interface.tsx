@@ -1,4 +1,4 @@
-import { project_form_step_jotai } from "@/data/atoms/ui_state";
+import { project_form_step_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom } from "jotai";
 
 export function usePreviewProjectDraftInterface() {

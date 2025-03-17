@@ -9,7 +9,10 @@ import {
 	project_snapshot_jotai,
 	projects_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	dashboard_view_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useResetProjectFormFields } from "../../use-reset-project-form-fields";

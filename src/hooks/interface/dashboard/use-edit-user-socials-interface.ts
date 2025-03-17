@@ -9,7 +9,10 @@ import {
 	user_snapshot_jotai,
 	user_socials_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	dashboard_view_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { createId } from "@paralleldrive/cuid2";

@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import React, { useState } from "react";
-import { component_to_edit_jotai } from "@/data/atoms/ui_state";
+import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import {
 	project_content_jotai,
 	ProjectMarkdown,

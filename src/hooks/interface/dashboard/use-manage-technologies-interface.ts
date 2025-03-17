@@ -3,7 +3,10 @@ import {
 	technologies_jotai,
 	technologies_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { api_task_jotai, settings_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	settings_view_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";

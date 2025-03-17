@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { component_to_edit_jotai } from "@/data/atoms/ui_state";
+import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom } from "jotai";
 import { Edit } from "lucide-react";
 import React from "react";

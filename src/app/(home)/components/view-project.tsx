@@ -7,7 +7,7 @@ import ProjectContent from "./project/project-content";
 import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import ProjectTechnologies from "./project/project-technologies";
 import ProjectThumbnail from "./project/project-thumbnail";
-import { dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom } from "jotai";
 
 interface ViewProject {

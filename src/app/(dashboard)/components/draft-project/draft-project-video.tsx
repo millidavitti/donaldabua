@@ -6,7 +6,7 @@ import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboar
 import {
 	content_hover_state_jotai,
 	project_draft_view_jotai,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";

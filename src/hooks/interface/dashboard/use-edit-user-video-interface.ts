@@ -3,7 +3,7 @@ import {
 	user_snapshot_jotai,
 	user_video_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
 import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";

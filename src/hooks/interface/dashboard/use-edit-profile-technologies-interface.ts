@@ -7,7 +7,10 @@ import {
 	technologies_snapshot_jotai,
 	defaultStore,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { api_task_jotai, dashboard_view_jotai } from "@/data/atoms/ui_state";
+import {
+	api_task_jotai,
+	dashboard_view_jotai,
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom, useAtom } from "jotai";
 import { toast } from "sonner";
 

@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { dashboard_view_jotai } from "@/data/atoms/ui_state";
+import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom } from "jotai";
 import { CirclePlus } from "lucide-react";
 

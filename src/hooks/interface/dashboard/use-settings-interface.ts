@@ -2,7 +2,7 @@ import {
 	api_task_jotai,
 	dashboard_view_jotai,
 	settings_view_jotai,
-} from "@/data/atoms/ui_state";
+} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import { signOut as destroySession } from "@/backend/auth/auth";
