@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
-import { getErrorMessage } from "../../utils/get-error-message";
-import { ENDPOINTS } from "../endpoints/endpoints";
+import { getErrorMessage } from "./get-error-message";
+import { ENDPOINTS } from "../backend/endpoints/endpoints";
 
 export async function auth(request?: NextRequest) {
 	try {
