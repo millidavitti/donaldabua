@@ -4,7 +4,7 @@ import { ENDPOINTS } from "../../../endpoints/endpoints";
 
 export async function getUsersController() {
 	try {
-		const res = await fetch(ENDPOINTS.user.list, {
+		const res = await fetch(ENDPOINTS.user.list(), {
 			method: "GET",
 			credentials: "include",
 		});

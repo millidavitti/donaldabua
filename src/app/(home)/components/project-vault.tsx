@@ -36,7 +36,7 @@ export default function ProjectVault() {
 					</Flex>
 				</Flex>
 			)}
-			<SelectUser />
+			{Boolean(user_snapshot.id) || <SelectUser />}
 		</>
 	);
 }

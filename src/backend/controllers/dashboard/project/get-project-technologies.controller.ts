@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import {
 	APIResponse,
 	Technology,
@@ -6,14 +7,9 @@ import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function getProjectTechnologiesController(projectId: string) {
 	try {
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/project-technologies/" +
-				projectId,
-			{
-				credentials: "include",
-			},
-		);
+		const res = await fetch(ENDPOINTS.projectTechnology.list(projectId), {
+			credentials: "include",
+		});
 		const data = await res.json();
 
 		return data as APIResponse<Technology[], "projectTechnologies">;
