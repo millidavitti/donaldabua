@@ -1,4 +1,4 @@
-export const PROJECT_ENDPOINTS = {
+export const PROJECT_ENDPOINT = {
 	list: (profileId: string) =>
 		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/projects/${profileId}`,
 	create: (profileId: string) =>

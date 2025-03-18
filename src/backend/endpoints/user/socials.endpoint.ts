@@ -1,4 +1,4 @@
-export const SOCIALS_ENDPOINTS = {
+export const SOCIALS_ENDPOINT = {
 	list: (userId: string) =>
 		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/${userId}`,
 	create: (userId: string) =>
