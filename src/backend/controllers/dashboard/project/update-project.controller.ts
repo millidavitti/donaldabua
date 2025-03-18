@@ -2,7 +2,7 @@ import {
 	APIResponse,
 	Project,
 	ProjectData,
-} from "@/data/home/home-atoms/home-data";
+} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 
 export async function updateProjectController(
