@@ -1,3 +1,3 @@
 export const PING_ENDPOINTS = {
-	read: () => `${process.env.BACKEND_API_ENDPOINT}/ping`,
+	read: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/ping`,
 };
