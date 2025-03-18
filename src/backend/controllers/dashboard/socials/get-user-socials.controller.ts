@@ -6,13 +6,10 @@ import {
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getUserSocialsController(userId: string) {
-	const headers = new Headers();
-
 	try {
 		const res = await fetch(ENDPOINTS.socials.list(userId), {
 			method: "GET",
 			credentials: "include",
-			headers,
 		});
 		const data = await res.json();
 		return data as APIResponse<SocialAccount[], "socials">;

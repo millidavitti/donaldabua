@@ -4,22 +4,15 @@ import {
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { auth } from "@/utils/auth";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 import { ENDPOINTS } from "../../../endpoints/endpoints";
 
 export async function getUserController() {
-	const headers = new Headers();
-
 	try {
-		const { error: err, csrfToken } = await generateCsrfToken();
-		if (err) throw new Error(err);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
 		const { user, error } = await auth();
 		if (user) {
 			const res = await fetch(ENDPOINTS.user.read(user.id), {
 				method: "GET",
 				credentials: "include",
-				headers,
 			});
 			const data = await res.json();
 

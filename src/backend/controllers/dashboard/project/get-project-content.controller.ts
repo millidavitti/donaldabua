@@ -2,23 +2,15 @@ import {
 	APIResponse,
 	ProjectContent,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 
 export async function getProjectContentController(projectId: string) {
-	const headers = new Headers();
-
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
 		const res = await fetch(
 			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
 				"/project-content/" +
 				projectId,
 			{
 				credentials: "include",
-				headers,
 			},
 		);
 		const data = await res.json();
