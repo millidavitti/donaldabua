@@ -1,6 +1,5 @@
 import { APIResponse, Technology } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getTechnologiesController() {
