@@ -1,6 +1,7 @@
 import { APIResponse, Technology } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { generateCsrfToken } from "../../../auth/get-csrf-token.controller";
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getProjectTechnologiesController(projectId: string) {
 	const headers = new Headers();
@@ -9,15 +10,10 @@ export async function getProjectTechnologiesController(projectId: string) {
 		const { error, csrfToken } = await generateCsrfToken();
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT +
-				"/project-technologies/" +
-				projectId,
-			{
-				credentials: "include",
-				headers,
-			},
-		);
+		const res = await fetch(ENDPOINTS.projectTechnology.list(projectId), {
+			credentials: "include",
+			headers,
+		});
 		const data = await res.json();
 
 		return data as APIResponse<Technology[], "projectTechnologies">;
