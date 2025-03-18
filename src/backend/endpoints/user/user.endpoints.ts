@@ -1,5 +1,3 @@
-import { Endpoint } from "../endpoints";
-
 export const USER_ENDPOINT = {
 	list: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users`,
 	read: (userId: string) =>
