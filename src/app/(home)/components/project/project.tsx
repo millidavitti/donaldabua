@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { type Project } from "@/data/home/home-atoms/home-data";
-import usePublishedProjectInterface from "@/hooks/interface/use-published-project-interface";
+import usePublishedProjectInterface from "@/hooks/interface/home/use-published-project-interface";
 import { DELAY } from "@/data/home/home-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";

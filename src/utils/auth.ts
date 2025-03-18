@@ -4,7 +4,7 @@ import { ENDPOINTS } from "../backend/endpoints/endpoints";
 
 export async function auth(request?: NextRequest) {
 	try {
-		const res = await fetch(ENDPOINTS.ping.read, {
+		const res = await fetch(ENDPOINTS.ping.read(), {
 			method: "GET",
 			credentials: "include",
 			headers: { Cookie: request?.headers.get("cookie") || "" }, // Forward cookies

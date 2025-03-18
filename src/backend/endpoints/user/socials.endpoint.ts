@@ -1,6 +1,6 @@
 export const SOCIALS_ENDPOINTS = {
 	list: (userId: string) =>
-		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/public/${userId}`,
+		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/${userId}`,
 	create: (userId: string) =>
 		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/socials/private/${userId}`,
 	update: (socialAccountId: string) =>

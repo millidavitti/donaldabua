@@ -7,14 +7,14 @@ import ProjectContent from "./project/project-content";
 import { Project } from "@/data/home/home-atoms/home-data";
 import ProjectTechnologies from "./project/project-technologies";
 import ProjectThumbnail from "./project/project-thumbnail";
-import { dashboard_view_jotai } from "@/data/home/home-atoms/home-ui-state";
+import { vault_view_jotai } from "@/data/home/home-atoms/home-ui-state";
 import { useSetAtom } from "jotai";
 
 interface ViewProject {
 	project: Project;
 }
 export default function ViewProject({ project }: ViewProject) {
-	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
+	const vault_view_setter = useSetAtom(vault_view_jotai);
 
 	return (
 		<Flex
@@ -26,7 +26,7 @@ export default function ViewProject({ project }: ViewProject) {
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
-							dashboard_view_setter(null);
+							vault_view_setter(null);
 						},
 					}}
 				>

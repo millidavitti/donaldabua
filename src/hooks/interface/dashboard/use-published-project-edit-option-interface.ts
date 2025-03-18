@@ -1,5 +1,5 @@
-import { getProjectContentController } from "@/backend/controllers/project/get-project-content.controller";
-import { getProjectTechnologiesController } from "@/backend/controllers/project/get-project-technologies.controller";
+import { getProjectContentController } from "@/backend/controllers/dashboard/project/get-project-content.controller";
+import { getProjectTechnologiesController } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import {
 	project_content_jotai,
 	project_description_jotai,

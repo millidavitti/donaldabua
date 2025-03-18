@@ -1,4 +1,4 @@
-import { updateUserController } from "@/backend/controllers/user/update-user.controller";
+import { updateUserController } from "@/backend/controllers/dashboard/user/update-user.controller";
 import {
 	user_snapshot_jotai,
 	user_video_jotai,

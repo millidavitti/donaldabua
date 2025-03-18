@@ -13,18 +13,24 @@ import {
 	DASHBOARD_VIEWS,
 	SETTINGS_VIEWS,
 } from "@/data/dashboard/dashboard-constants";
+import {
+	vault_view_jotai,
+	VaultView,
+} from "@/data/home/home-atoms/home-ui-state";
+import { VAULT_VIEWS } from "@/data/home/home-constants";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import { ReactNode } from "react";
 
 interface Overlay {
-	stateFlag: DashboardView | ProjectDraftView | SettingsView;
+	stateFlag: DashboardView | ProjectDraftView | SettingsView | VaultView;
 	children: ReactNode;
 	className?: string;
 }
 
 export default function Overlay({ stateFlag, children, className }: Overlay) {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
+	const [vault_view, vault_view_setter] = useAtom(vault_view_jotai);
 	const [project_draft_view, project_draft_view_setter] = useAtom(
 		project_draft_view_jotai,
 	);
@@ -34,6 +40,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 			? false
 			: stateFlag === settings_view ||
 			  stateFlag === project_draft_view ||
+			  stateFlag === vault_view ||
 			  stateFlag === dashboard_view;
 
 	return (
@@ -50,10 +57,12 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 						if (
 							DASHBOARD_VIEWS.includes(
 								(e.target as HTMLElement).id as DashboardView,
-							)
-						)
+							) ||
+							VAULT_VIEWS.includes((e.target as HTMLElement).id as VaultView)
+						) {
 							dashboard_view_setter(null);
-						else if (
+							vault_view_setter(null);
+						} else if (
 							PROJECT_DRAFT_VIEWS.includes(
 								(e.target as HTMLElement).id as ProjectDraftView,
 							)
