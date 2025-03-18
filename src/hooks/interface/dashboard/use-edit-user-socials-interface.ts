@@ -1,6 +1,3 @@
-import { createUserSocialsController } from "@/backend/controllers/socials/create-user-socials.controller";
-import { deleteUserSocialsController } from "@/backend/controllers/socials/delete-user-socials.controller";
-import { updateUserSocialsController } from "@/backend/controllers/socials/update-user-socials.controller";
 import {
 	social_account_jotai,
 	social_account_snapshot_jotai,
@@ -18,6 +15,9 @@ import { waitForDialog } from "@/utils/wait-for-dialog";
 import { createId } from "@paralleldrive/cuid2";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import useDialog from "../../use-dialog";
+import { createUserSocialsController } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
+import { updateUserSocialsController } from "@/backend/controllers/dashboard/socials/update-user-socials.controller";
+import { deleteUserSocialsController } from "@/backend/controllers/dashboard/socials/delete-user-socials.controller";
 
 export default function useEditUserSocialsInterface() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);

@@ -1,4 +1,4 @@
-import { updateUserProfile } from "@/backend/controllers/home/profile/update-profile.controller";
+import { updateUserProfile } from "@/backend/controllers/dashboard/profile/update-profile.controller";
 import {
 	profile_snapshot_jotai,
 	profile_title_jotai,
