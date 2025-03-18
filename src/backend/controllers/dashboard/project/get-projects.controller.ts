@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import {
 	APIResponse,
 	Project,
@@ -6,12 +7,9 @@ import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function getProjectsController(profileId: string) {
 	try {
-		const res = await fetch(
-			process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT + "/projects/" + profileId,
-			{
-				credentials: "include",
-			},
-		);
+		const res = await fetch(ENDPOINTS.project.list(profileId), {
+			credentials: "include",
+		});
 		const data = await res.json();
 
 		return data as APIResponse<Project[], "projects">;
