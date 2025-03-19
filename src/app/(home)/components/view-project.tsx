@@ -19,10 +19,10 @@ export default function ViewProject({ project }: ViewProject) {
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan'
+			className='bg-light-surface w-full max-h-[95%] neonScan'
 		>
 			{/* Header */}
-			<Flex className='justify-between items-center shrink-0'>
+			<Flex className='justify-between items-center shrink-0 border-0'>
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
@@ -34,12 +34,12 @@ export default function ViewProject({ project }: ViewProject) {
 				</InteractiveIcon>
 			</Flex>
 
-			<Flex flex='column' className='gap-3'>
+			<Flex flex='column' className='gap-3 border-0'>
 				{/* Project Title */}
 				<ProjectTitle title={project.title} />
 
-				<Flex className='gap-3 flex-wrap'>
-					<Flex flex='column' className='grow gap-3 basis-[360px]'>
+				<Flex className='flex-wrap border-0 p-0 gap-3'>
+					<Flex flex='column' className='grow gap-3 basis-[360px] self-start'>
 						<ProjectDescription description={project.description} />
 						<ProjectTechnologies />
 						<ProjectThumbnail thumbnail={project.thumbnail} />

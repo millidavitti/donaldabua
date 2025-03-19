@@ -73,7 +73,7 @@ export default function EditUserPhoto() {
 						<input
 							type='url'
 							required
-							className='p-3 outline w-full'
+							className='p-3 border w-full'
 							value={user_image}
 							onChange={(e) => {
 								capturePhotoEdit(e.target.value);

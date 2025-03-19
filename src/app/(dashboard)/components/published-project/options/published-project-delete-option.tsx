@@ -1,6 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import usePublishedProjectDeleteOption from "@/hooks/interface/dashboard/use-published-project-delete-option";
-import { Trash } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;
@@ -12,14 +12,14 @@ export default function PublishedProjectDeleteOption({
 	return (
 		<>
 			<InteractiveIcon
-				className='outline grow flex place-content-center'
+				className='border grow flex place-content-center'
 				htmlProps={{
 					onClick() {
 						deleteProject(projectID);
 					},
 				}}
 			>
-				<Trash />
+				<Trash2 className='stroke-light-error' />
 			</InteractiveIcon>
 		</>
 	);

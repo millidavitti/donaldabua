@@ -35,9 +35,9 @@ export default function EditProfileTitle() {
 					className='bg-light-surface gap-3 basis-[720px] neonScan'
 				>
 					<Flex className='justify-between items-center'>
-						<Flex flex='column'>
+						<Flex flex='column' className='border-0 p-0'>
 							<h2 className='text-2xl font-semibold'>Edit your title</h2>
-							<p>
+							<p className='max-w-[75%]'>
 								Enter a single sentence description of your professional
 								skills/experience (e.g. Expert Web Designer with Ajax
 								experience)
@@ -66,7 +66,7 @@ export default function EditProfileTitle() {
 							onChange={(e) => {
 								captureTitleEdit(e.target.value);
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save

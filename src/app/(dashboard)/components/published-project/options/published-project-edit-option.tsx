@@ -14,7 +14,7 @@ export default function PublishedProjectEditOption({
 
 	return (
 		<InteractiveIcon
-			className='outline grow flex place-content-center'
+			className='border grow flex place-content-center'
 			htmlProps={{
 				onClick() {
 					editProject(project);

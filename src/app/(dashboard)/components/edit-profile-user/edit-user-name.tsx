@@ -57,7 +57,7 @@ export default function EditUserName() {
 						<input
 							type='text'
 							required
-							className='outline p-3'
+							className='border p-3'
 							value={user_name}
 							onChange={(e) => {
 								captureNameEdit(e.target.value);

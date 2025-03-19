@@ -19,7 +19,7 @@ export default function PublishedProjects() {
 	const project_form_step = useAtomValue(project_form_step_jotai);
 	return (
 		<>
-			<Flex className='flex-wrap gap-3 min-h-[360px] max-h-[720px]'>
+			<Flex className='flex-wrap gap-3 min-h-[360px] max-h-[720px] border-0 p-0'>
 				{projects_snapshot.map((project, i) => {
 					return (
 						<PublishedProject key={project.id} project={project} index={i} />

@@ -10,7 +10,10 @@ export default function ProfileTechnologies() {
 	);
 	return (
 		<>
-			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
+			<Flex
+				flex='column'
+				className='grow shrink-0 max-h-[480px] border-0 p-0 gap-3'
+			>
 				{/* Header */}
 				<Flex className='justify-between items-center shrink-0'>
 					<h2 className='lg:text-2xl font-semibold'>Profile Technologies</h2>

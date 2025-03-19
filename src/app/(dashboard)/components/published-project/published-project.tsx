@@ -19,7 +19,7 @@ export default function PublishedProject({ project, index }: PublishedProject) {
 	return (
 		<Flex
 			className={cn(
-				"shrink-0 gap-3 grow w-full md:basis-52 relative",
+				"shrink-0 gap-3 grow w-full md:basis-52 relative border-0 p-0",
 				getAnimationClass("swing-in-top-fwd"),
 			)}
 			htmlProps={{

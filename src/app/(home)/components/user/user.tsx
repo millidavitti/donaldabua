@@ -8,7 +8,7 @@ import SelectProfile from "../select-profile";
 export default function User() {
 	return (
 		<Flex
-			className='shrink-0 gap-3 overflow-visible flex-wrap'
+			className='shrink-0 gap-3 overflow-visible flex-wrap outline-0'
 			htmlProps={{ id: "user-info" }}
 		>
 			<UserPhoto />

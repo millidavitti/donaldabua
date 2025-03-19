@@ -20,7 +20,7 @@ export default function UserHeader() {
 				<EditUserName />
 				<EditUserLocation />
 			</Flex>
-			<Flex className='gap-3 self-start flex-wrap grow'>
+			<Flex className='gap-3 self-start flex-wrap grow border-0 p-0'>
 				<CreateProfile />
 				<SelectProfile />
 			</Flex>

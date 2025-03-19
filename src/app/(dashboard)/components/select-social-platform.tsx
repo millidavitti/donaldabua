@@ -27,7 +27,7 @@ export default function SelectSocialPlatform() {
 				<input
 					type='text'
 					id='select-technology'
-					className='outline p-3 w-full shrink-0'
+					className='border p-3 w-full shrink-0'
 					required
 					value={searchQuery || platform}
 					onKeyDown={(e) => {

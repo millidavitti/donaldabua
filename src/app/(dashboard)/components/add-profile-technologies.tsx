@@ -20,7 +20,7 @@ export default function AddProfileTechnologies() {
 	return (
 		<>
 			{Boolean(profile_technologies.length) && (
-				<Flex className='gap-3 flex-wrap shrink-0 grow'>
+				<Flex className='gap-3 flex-wrap shrink-0 grow border-0 p-0'>
 					{profile_technologies.map((technology, i) => (
 						<ProfileTechnology tech={technology} key={technology.id} index={i}>
 							<X
@@ -32,11 +32,14 @@ export default function AddProfileTechnologies() {
 					))}
 				</Flex>
 			)}
-			<Flex flex='column' className='relative overflow-visible gap-3'>
+			<Flex
+				flex='column'
+				className='relative overflow-visible gap-3 border-0 p-0'
+			>
 				<input
 					type='text'
 					id='select-technology'
-					className='outline p-3 w-full shrink-0'
+					className='border p-3 w-full shrink-0'
 					value={searchQuery}
 					onKeyDown={(e) => {
 						closeSearchResult(e.key);

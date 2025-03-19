@@ -5,14 +5,16 @@ import Image from "next/image";
 
 export default function DashboardHeader() {
 	return (
-		<Flex className='justify-between items-center shrink-0'>
-			<Image
-				src='/logo.svg'
-				width={48}
-				height={48}
-				className='w-6 h-6 md:w-12 md:h-12'
-				alt='logo'
-			/>
+		<Flex className='justify-between items-center shrink-0 border-0 p-0'>
+			<a href='/' target='_blank' rel='noopener noreferrer'>
+				<Image
+					src='/logo.svg'
+					width={48}
+					height={48}
+					className='w-6 h-6 md:w-12 md:h-12'
+					alt='logo'
+				/>
+			</a>
 			<h1 className='md:text-2xl font-bold text-center'>Portfolio Dashboard</h1>
 			<Settings />
 		</Flex>

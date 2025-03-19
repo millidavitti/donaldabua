@@ -1,3 +1,4 @@
+import Flex from "@/components/layouts/flex";
 import { project_thumbnail_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 import Image from "next/image";
@@ -12,14 +13,16 @@ export default function PreviewProjectThumbnail() {
 				Thumbnail
 			</label>
 			{project_thumbnail && (
-				<Image
-					src={project_thumbnail}
-					width={1000}
-					height={1000}
-					alt='thumbnail'
-					data-is-visible={Boolean(project_thumbnail)}
-					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
-				/>
+				<Flex>
+					<Image
+						src={project_thumbnail}
+						width={1000}
+						height={1000}
+						alt='thumbnail'
+						data-is-visible={Boolean(project_thumbnail)}
+						className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+					/>
+				</Flex>
 			)}
 		</>
 	);

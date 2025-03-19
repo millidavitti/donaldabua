@@ -16,7 +16,7 @@ export default function EditProfileOverview() {
 	} = useEditProfileOverviewInterface();
 	return (
 		<>
-			<Flex className='gap-3'>
+			<Flex className='gap-3 border-0 p-0'>
 				<Flex className='grow h-[320px]'>
 					<div className='shrink-0 w-full'>{parse(md(profile_overview))}</div>
 				</Flex>
@@ -62,7 +62,7 @@ export default function EditProfileOverview() {
 							onChange={(e) => {
 								captureOverviewEdit(e.target.value);
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save

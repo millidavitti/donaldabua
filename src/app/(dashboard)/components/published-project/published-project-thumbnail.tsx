@@ -1,3 +1,4 @@
+import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import React from "react";
 
@@ -13,14 +14,16 @@ export default function PublishedProjectThumbnail({
 				Thumbnail
 			</label>
 			{thumbnail && (
-				<Image
-					src={thumbnail}
-					width={1000}
-					height={1000}
-					alt='thumbnail'
-					data-is-visible={Boolean(thumbnail)}
-					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
-				/>
+				<Flex>
+					<Image
+						src={thumbnail}
+						width={1000}
+						height={1000}
+						alt='thumbnail'
+						data-is-visible={Boolean(thumbnail)}
+						className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+					/>
+				</Flex>
 			)}
 		</>
 	);

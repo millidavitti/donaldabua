@@ -11,9 +11,9 @@ export default function EditUserVideo() {
 	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =
 		useEditUserVideoInterface();
 	return (
-		<Flex flex='column' className='h-[258px]' htmlProps={{ id: "video" }}>
-			<a href='#video'>
-				<Flex className='h-fit items-center justify-between shrink-0'>
+		<Flex flex='column' className='h-[258px] gap-3' htmlProps={{ id: "video" }}>
+			<a href='#video' className='shrink-0'>
+				<Flex className='h-fit items-center justify-between'>
 					<p className='font-semibold lg:text-2xl'>Video Introduction</p>
 					{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
 				</Flex>
@@ -56,8 +56,8 @@ export default function EditUserVideo() {
 							Please provide a YouTube link for your video introduction
 						</label>
 						<input
-							type='text'
-							className='outline p-3 grow'
+							type='url'
+							className='border p-3 grow'
 							value={user_video || ""}
 							onChange={(e) => {
 								captureVideoEdit(e.target.value);

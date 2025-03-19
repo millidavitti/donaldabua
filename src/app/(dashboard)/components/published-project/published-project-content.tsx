@@ -9,7 +9,7 @@ import { useAtomValue } from "jotai";
 export default function PublishedProjectContent() {
 	const project_content = useAtomValue(project_content_jotai);
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
+		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
 			{project_content
 				.sort((a, b) => a.position - b.position)
 				.map((component) => {

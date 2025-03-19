@@ -19,7 +19,7 @@ export default function DraftProjectTitle() {
 				id='draft-project-title'
 				required
 				className={cn(
-					"outline p-3 shrink-0 valid:outline-emerald-600",
+					"border p-3 shrink-0 valid:outline-emerald-600",
 					Boolean(project_title) && "invalid:outline-red-600",
 				)}
 				value={project_title}

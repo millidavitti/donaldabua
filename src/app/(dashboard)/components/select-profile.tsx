@@ -30,10 +30,10 @@ export default function SelectProfile() {
 						</InteractiveIcon>
 					</Flex>
 					{/* Profiles */}
-					<Flex flex='column' className='gap-3'>
+					<Flex flex='column' className='gap-3 border-0 p-0'>
 						{profiles.map((profile) => {
 							return (
-								<Flex key={profile.id} className='gap-3'>
+								<Flex key={profile.id} className='gap-3 border-0 p-0'>
 									<Button
 										onClick={() => select(profile)}
 										className='w-full shrink'

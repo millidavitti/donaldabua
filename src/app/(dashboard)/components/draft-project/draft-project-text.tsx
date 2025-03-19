@@ -21,7 +21,7 @@ export default function DraftProjectMarkdown() {
 	return (
 		<>
 			<InteractiveIcon
-				className='outline grow flex place-content-center'
+				className='border grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
 						content_hover_state_setter("hover-text-icon");
@@ -57,7 +57,7 @@ export default function DraftProjectMarkdown() {
 							required
 							minLength={500}
 							className={cn(
-								"outline p-3 valid:outline-emerald-800",
+								"border p-3 valid:outline-emerald-800",
 								Boolean(markdown) && "invalid:outline-red-800",
 							)}
 							value={markdown}

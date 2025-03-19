@@ -19,7 +19,7 @@ export default function SelectProfile() {
 			>
 				<Flex
 					flex='column'
-					className='bg-light-surface gap-3 basis-[720px] neonScan'
+					className='bg-light-surface basis-[720px] neonScan gap-3'
 				>
 					<Flex className='justify-between items-center'>
 						<h2 className='text-2xl font-semibold'>Profiles</h2>
@@ -28,17 +28,16 @@ export default function SelectProfile() {
 						</InteractiveIcon>
 					</Flex>
 					{/* Profiles */}
-					<Flex flex='column' className='gap-3'>
+					<Flex flex='column' className='gap-3 border-0 p-0'>
 						{profiles.map((profile) => {
 							return (
-								<Flex key={profile.id} className='gap-3'>
-									<Button
-										onClick={() => select(profile)}
-										className='w-full shrink'
-									>
-										{profile.title}
-									</Button>
-								</Flex>
+								<Button
+									onClick={() => select(profile)}
+									className='w-full shrink'
+									key={profile.id}
+								>
+									{profile.title}
+								</Button>
 							);
 						})}
 					</Flex>

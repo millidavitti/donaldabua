@@ -23,7 +23,7 @@ export default function DraftProjectImage() {
 	return (
 		<>
 			<InteractiveIcon
-				className='outline grow flex place-content-center'
+				className='border grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
 						content_hover_state_setter("hover-image-icon");
@@ -67,7 +67,7 @@ export default function DraftProjectImage() {
 								if (e.target.validity.valid) setImageLink(e.target.value);
 								else setImageLink("");
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 
 						{imageLink && (

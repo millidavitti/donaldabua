@@ -22,7 +22,7 @@ export default function DraftProjectVideo() {
 	return (
 		<>
 			<InteractiveIcon
-				className='outline grow flex place-content-center'
+				className='border grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
 						content_hover_state_setter("hover-video-icon");
@@ -70,7 +70,7 @@ export default function DraftProjectVideo() {
 										"Provided an invalid YouTube link: " + e.target.value,
 									);
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 
 						{videoLink && (

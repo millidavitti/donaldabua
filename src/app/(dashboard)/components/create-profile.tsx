@@ -29,8 +29,8 @@ export default function CreateProfile() {
 					flex='column'
 					className='bg-light-surface gap-3 basis-[720px] neonScan'
 				>
-					<Flex className='justify-between items-center'>
-						<Flex flex='column'>
+					<Flex className='justify-between items-center p-0'>
+						<Flex flex='column' className='border-0'>
 							<h2 className='text-2xl font-semibold'>Add Profile Title</h2>
 							<p>
 								Enter a single sentence description of your professional
@@ -61,7 +61,7 @@ export default function CreateProfile() {
 							onChange={(e) => {
 								captureProfileTitle(e.target.value);
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Create Profile{" "}
