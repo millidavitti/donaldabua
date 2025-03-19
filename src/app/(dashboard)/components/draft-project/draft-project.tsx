@@ -18,7 +18,7 @@ export default function DraftProject({ children }: DraftProject) {
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[90%] neonScan'
+			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
@@ -45,7 +45,7 @@ export default function DraftProject({ children }: DraftProject) {
 				}}
 			>
 				<DraftProjectTitle />
-				<Flex className='gap-3 flex-wrap'>
+				<Flex className='gap-3 flex-wrap border-0 p-0'>
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
 						<DraftProjectDescription />
 						<DraftProjectTechnologies />

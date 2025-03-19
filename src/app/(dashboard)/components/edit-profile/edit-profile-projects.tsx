@@ -2,7 +2,7 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
-import { CirclePlus } from "lucide-react";
+import { Plus } from "lucide-react";
 import DraftProject from "../draft-project/draft-project";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import ContentBuilder from "../content-builder/content-builder";
@@ -15,7 +15,11 @@ export default function EditProfileProjects() {
 
 	return (
 		<>
-			<Flex flex='column' className='gap-3' htmlProps={{ id: "projects" }}>
+			<Flex
+				flex='column'
+				className='gap-3 border-0 p-0'
+				htmlProps={{ id: "projects" }}
+			>
 				<a href='#projects'>
 					{/* Header */}
 					<Flex className='items-center justify-between shrink-0'>
@@ -25,7 +29,7 @@ export default function EditProfileProjects() {
 								addNewProject();
 							}}
 						>
-							<CirclePlus size={24} />
+							<Plus size={24} />
 						</InteractiveIcon>
 					</Flex>{" "}
 				</a>

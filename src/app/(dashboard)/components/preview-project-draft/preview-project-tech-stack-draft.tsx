@@ -12,7 +12,7 @@ export default function PreviewProjectTechnologies() {
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 				Tech Stack
 			</label>
-			<Flex className='gap-3 flex-wrap shrink-0'>
+			<Flex className='gap-3 flex-wrap shrink-0 border-0 p-0'>
 				{project_technologies.map((tech, i) => (
 					<ProfileTechnology tech={tech} key={tech.id} index={i} />
 				))}

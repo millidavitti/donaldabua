@@ -19,7 +19,10 @@ export default function EditProfileTechnologies() {
 	} = useEditProfileTechnologiesInterface();
 	return (
 		<>
-			<Flex flex='column' className='grow gap-3 shrink-0 max-h-[480px]'>
+			<Flex
+				flex='column'
+				className='grow gap-3 shrink-0 max-h-[480px] border-0 p-0'
+			>
 				{/* Header */}
 				<Flex className='justify-between items-center shrink-0'>
 					<h2 className='lg:text-2xl font-semibold'>Profile Technologies</h2>
@@ -76,9 +79,9 @@ export default function EditProfileTechnologies() {
 							className='text-xl font-semibold shrink-0'
 							htmlFor='tech-stack'
 						>
-							Tech
+							Technology
 						</label>
-						<Flex flex='column' className='gap-3'>
+						<Flex flex='column' className='gap-3 border-0 p-0'>
 							<AddProfileTechnologies />
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>

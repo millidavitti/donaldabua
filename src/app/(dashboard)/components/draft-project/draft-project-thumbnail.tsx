@@ -20,7 +20,7 @@ export default function DraftProjectThumbnail() {
 				id='draft-project-thumbnail'
 				required
 				className={cn(
-					"outline p-3 valid:outline-emerald-600",
+					"border p-3 valid:outline-emerald-600",
 					project_thumbnail && "invalid:outline-red-600",
 				)}
 				value={project_thumbnail}

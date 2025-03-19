@@ -16,21 +16,21 @@ export default function PreviewProjectDraft() {
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan'
+			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
 		>
 			{/* Header */}
-			<Flex className='justify-between items-center shrink-0'>
+			<Flex className='justify-between items-center shrink-0 border-0 p-0'>
 				<InteractiveIcon callback={() => goBack()}>
 					<ArrowLeftIcon size={24} />
 				</InteractiveIcon>
 			</Flex>
 
-			<Flex flex='column' className='gap-3'>
+			<Flex flex='column' className='gap-3 border-0 p-0'>
 				{/* Project Title */}
 				<PreviewProjectTitle />
 
-				<Flex className='gap-3 flex-wrap'>
-					<Flex flex='column' className='grow gap-3 basis-[360px]'>
+				<Flex className='gap-3 flex-wrap border-0 p-0'>
+					<Flex flex='column' className='grow gap-3 basis-[360px] self-start'>
 						<PreviewProjectDescription />
 						<PreviewProjectTechnologies />
 						<PreviewProjectThumbnail />

@@ -10,7 +10,7 @@ import { useAtomValue } from "jotai";
 export default function PreviewProjectContent() {
 	const portfolio_project_content = useAtomValue(project_content_jotai);
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
+		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
 			{portfolio_project_content
 				.sort((a, b) => a.position - b.position)
 				.map((component) => {

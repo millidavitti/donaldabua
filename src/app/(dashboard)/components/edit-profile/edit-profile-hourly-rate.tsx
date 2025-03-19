@@ -59,7 +59,7 @@ export default function EditProfileHourlyRate() {
 							onChange={(e) => {
 								captureHourlyRateEdit(+e.target.value);
 							}}
-							className='outline p-3'
+							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save

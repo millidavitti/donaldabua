@@ -4,7 +4,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import useEditUserSocialsInterface from "@/hooks/interface/dashboard/use-edit-user-socials-interface";
-import { CirclePlus, Trash2, X } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
 import {
@@ -40,12 +40,12 @@ export default function EditUserSocials() {
 								display("add-socials");
 							}}
 						>
-							<CirclePlus size={24} />
+							<Plus size={24} />
 						</InteractiveIcon>
 					</Flex>
 				</a>
 				{/* Added Socials */}
-				<Flex flex='column' className='gap-3 h-full'>
+				<Flex flex='column' className='gap-3 h-full border-0 p-0'>
 					{user_socials_snapshot.map((social_account, i) => (
 						<Flex
 							key={social_account.id}
@@ -109,7 +109,7 @@ export default function EditUserSocials() {
 							<input
 								type='url'
 								required
-								className='outline p-3'
+								className='border p-3'
 								value={social_account.profile}
 								onChange={(e) =>
 									capture("profile", e.target.value as SocialPlatforms)

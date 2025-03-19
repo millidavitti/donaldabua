@@ -1,5 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
+import { getAnimationClass } from "@/utils/animations";
+import { cn } from "@/utils/cn";
 import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
 
@@ -16,7 +18,10 @@ export default function PublishedProjectOptions({
 			<>
 				{isOptionsVisible ? (
 					<Flex
-						className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto '
+						className={cn(
+							"place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto",
+							getAnimationClass("swing-in-top-fwd"),
+						)}
 						htmlProps={{
 							onMouseLeave() {
 								setIsOptionsVisible(false);

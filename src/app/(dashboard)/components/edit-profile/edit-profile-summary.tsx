@@ -6,7 +6,7 @@ import EditProfileOverview from "./edit-profile-overview";
 
 export default function EditProfileSummary() {
 	return (
-		<Flex flex='column' className='gap-3'>
+		<Flex flex='column' className='gap-3 border-0 p-0'>
 			<Flex className='shrink-0 justify-between flex-wrap gap-3'>
 				<EditProfileTitle />
 				<EditProfileHourlyRate />

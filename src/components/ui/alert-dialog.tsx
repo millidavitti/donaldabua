@@ -23,7 +23,7 @@ export default function AlertDialog() {
 						This action cannot be undone. This will permanently delete and
 						remove your data from your servers.
 					</p>
-					<Flex className='gap-3 justify-end outline-none'>
+					<Flex className='gap-3 justify-end border-0 p-0'>
 						<Button
 							type='submit'
 							className='outline-1'

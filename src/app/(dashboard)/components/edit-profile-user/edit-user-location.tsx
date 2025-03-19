@@ -48,13 +48,13 @@ export default function EditUserLocation() {
 							saveLocationEdit();
 						}}
 					>
-						<Flex flex='column' className='gap-3'>
+						<Flex flex='column' className='gap-3 border-0 p-0'>
 							<label htmlFor='city'>City</label>
 							<input
 								type='text'
 								id='city'
 								required
-								className='outline p-3'
+								className='border p-3'
 								value={user_location_city}
 								onChange={(e) => captureLocationEdit("city", e.target.value)}
 							/>
@@ -63,7 +63,7 @@ export default function EditUserLocation() {
 								type='text'
 								id='country'
 								required
-								className='outline p-3'
+								className='border p-3'
 								value={user_location_country}
 								onChange={(e) => {
 									captureLocationEdit("country", e.target.value);

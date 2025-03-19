@@ -27,7 +27,7 @@ export default function Settings() {
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
-					<Flex flex='column' className='gap-3'>
+					<Flex flex='column' className='gap-3 border-0 p-0'>
 						<Button type='button' onClick={() => manageTechnologies()}>
 							Manage Technologies
 						</Button>

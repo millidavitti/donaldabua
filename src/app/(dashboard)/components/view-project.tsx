@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
 import PublishedProjectTitle from "./published-project/published-project-title";
 import PublishedProjectDescription from "./published-project/published-project-description";
-import PublishedProjectTechStack from "./published-project/published-project-tech-stack";
+import PublishedProjectTechnologies from "./published-project/published-project-tech-stack";
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
 import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
@@ -17,10 +17,10 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan'
+			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
 		>
 			{/* Header */}
-			<Flex className='justify-between items-center shrink-0'>
+			<Flex className='justify-between items-center shrink-0 border-0 p-0'>
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
@@ -36,10 +36,10 @@ export default function ViewProject({ project }: ViewPortfolioProject) {
 				{/* Project Title */}
 				<PublishedProjectTitle title={project.title} />
 
-				<Flex className='gap-3 flex-wrap'>
+				<Flex className='gap-3 flex-wrap border-0 p-0'>
 					<Flex flex='column' className='grow gap-3 basis-[360px]'>
 						<PublishedProjectDescription description={project.description} />
-						<PublishedProjectTechStack />
+						<PublishedProjectTechnologies />
 						<PublishedProjectThumbnail thumbnail={project.thumbnail} />
 					</Flex>
 					<PublishedProjectContent />
