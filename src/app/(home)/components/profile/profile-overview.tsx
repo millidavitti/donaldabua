@@ -7,14 +7,10 @@ import { useAtomValue } from "jotai";
 export default function ProfileOverview() {
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
 	return (
-		<>
-			<Flex className='gap-3'>
-				<Flex className='grow h-[320px]'>
-					<div className='shrink-0 w-full'>
-						{parse(md(profile_snapshot.overview || ""))}
-					</div>
-				</Flex>
-			</Flex>
-		</>
+		<Flex className='grow h-[320px] outline-0'>
+			<div className='shrink-0 w-full'>
+				{parse(md(profile_snapshot.overview || ""))}
+			</div>
+		</Flex>
 	);
 }

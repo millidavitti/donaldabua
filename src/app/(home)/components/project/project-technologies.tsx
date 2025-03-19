@@ -6,16 +6,15 @@ export default function ProjectTechnologies() {
 	const project_technologies = useAtomValue(project_technologies_jotai);
 
 	return (
-		<>
-			{/* Technologies */}
+		<Flex flex='column' className='gap-3 border-0 p-0 '>
 			<h2 className='text-xl font-semibold shrink-0'>Technologies</h2>
-			<Flex className='gap-3 flex-wrap shrink-0'>
+			<Flex className='gap-3 flex-wrap shrink-0 border-0 p-0'>
 				{project_technologies.map((tech) => (
 					<Flex className='gap-3 items-center' key={tech.id}>
 						<p className='shrink-0 font-medium'>{tech.name}</p>
 					</Flex>
 				))}
 			</Flex>
-		</>
+		</Flex>
 	);
 }

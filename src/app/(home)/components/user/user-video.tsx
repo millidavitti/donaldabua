@@ -6,7 +6,7 @@ export default function UserVideo() {
 	const user_snapshot = useAtomValue(user_snapshot_jotai);
 
 	return (
-		<Flex flex='column' className='h-[258px]'>
+		<Flex flex='column' className='h-[258px] outline-0 gap-3'>
 			<Flex className='h-fit items-center justify-between shrink-0'>
 				<p className='font-semibold lg:text-2xl'>Introduction</p>
 			</Flex>

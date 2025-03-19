@@ -7,9 +7,12 @@ import ProfileAvailability from "./profile/profile-availability";
 
 export default function Sidebar() {
 	return (
-		<Flex flex='column' className='grow gap-3 lg:shrink-0 lg:basis-80'>
+		<Flex
+			flex='column'
+			className='grow lg:shrink-0 lg:basis-80 p-0 border-0 gap-3'
+		>
 			<UserVideo />
-			<Flex flex='column' className='grow gap-3'>
+			<Flex flex='column' className='grow p-0 border-0 gap-3'>
 				<ProfileAvailability />
 				<UserSocials />
 			</Flex>

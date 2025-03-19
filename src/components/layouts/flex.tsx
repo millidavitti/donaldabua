@@ -6,20 +6,23 @@ interface FlexColumn {
 	className?: string;
 	htmlProps?: Partial<HTMLProps<HTMLDivElement>>;
 	flex?: "row" | "column";
+	debug?: boolean;
 }
 export default function Flex({
 	children,
 	className,
 	htmlProps,
 	flex = "row",
+	debug = false,
 }: FlexColumn) {
 	return (
 		<>
 			{flex === "column" && (
 				<div
 					className={cn(
-						"flex flex-col p-3 outline-1 outline overflow-y-auto",
+						"flex flex-col p-3 border border-border overflow-y-auto",
 						className,
+						debug && "p-3 outline-1 outline",
 					)}
 					{...htmlProps}
 				>
@@ -29,8 +32,9 @@ export default function Flex({
 			{flex === "row" && (
 				<div
 					className={cn(
-						"flex flex-row p-3 outline-1 outline overflow-x-auto",
+						"flex flex-row p-3 border border-border overflow-x-auto",
 						className,
+						debug && "p-3 outline-1 outline",
 					)}
 					{...htmlProps}
 				>

@@ -22,12 +22,15 @@ export default function ProjectVault() {
 					flex='column'
 				>
 					<VaultHeader />
-					<Flex className='outline h-full gap-3' flex='column'>
+					<Flex className='h-full gap-3 p-0 border-0' flex='column'>
 						<User />
 						{/* Main */}
-						<Flex className='grow gap-3 shrink-0 flex-wrap h-fit'>
+						<Flex className='grow shrink-0 gap-3 flex-wrap h-fit p-0 border-0'>
 							<Sidebar />
-							<Flex className='basis-[720px] grow-[2] gap-3' flex='column'>
+							<Flex
+								className='basis-[720px] grow-[2] border-0 p-0 gap-3'
+								flex='column'
+							>
 								<ProfileSummary />
 								<ProfileProjects />
 								<ProfileTechnologies />

@@ -6,7 +6,7 @@ export default function ProfileTitle() {
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between grow'>
+			<Flex className='items-center justify-between grow '>
 				<p className='font-semibold lg:text-2xl'>{profile_snapshot.title}</p>
 			</Flex>
 		</>

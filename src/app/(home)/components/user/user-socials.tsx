@@ -18,7 +18,7 @@ export default function UserSocials() {
 					</Flex>
 				</a>
 				{/* Added Socials */}
-				<Flex flex='column' className='gap-3 h-full'>
+				<Flex flex='column' className='gap-3 h-full border-0 p-0'>
 					{user_socials_snapshot.map((social_account, i) => (
 						<Flex
 							key={social_account.id}
