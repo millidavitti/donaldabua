@@ -24,7 +24,7 @@ export default function ProjectVault() {
 				if (error) throw new Error(error);
 				user_snapshot_setter(user);
 			});
-	}, []);
+	}, [params.userId]);
 	return (
 		<>
 			<Flex
