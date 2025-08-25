@@ -3,15 +3,13 @@ import {
 	dashboard_view_jotai,
 	settings_view_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
-import { useAtom, useSetAtom } from "jotai";
-import { useRouter } from "next/navigation";
-import { signOut as destroySession } from "@/backend/auth/sign-out.controller";
-import { toast } from "sonner";
+import { useAtomValue, useSetAtom } from "jotai";
+import { redirect } from "next/navigation";
+
 export default function useSettingsInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const settings_view_setter = useSetAtom(settings_view_jotai);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
-	const router = useRouter();
+	const api_task = useAtomValue(api_task_jotai);
 
 	function display() {
 		dashboard_view_setter("settings");
@@ -25,17 +23,7 @@ export default function useSettingsInterface() {
 	}
 
 	async function signOut() {
-		try {
-			api_task_setter("sign-out");
-			await destroySession();
-			router.replace("/auth/sign-in");
-			// window.location.reload();
-			router.refresh();
-		} catch (error) {
-			console.error("---signOut---\n", error);
-			toast.error("Unable to sign out");
-			api_task_setter(null);
-		}
+		redirect("/auth/sign-out");
 	}
 	return { display, close, manageTechnologies, signOut, api_task };
 }
