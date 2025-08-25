@@ -13,8 +13,8 @@ export default function SignInForm() {
 	const [formData, setFormData] = useState({ email: "" });
 
 	useEffect(() => {
-		if (params.get("status") === "Email verified")
-			toast.info("Your email has been verified", { position: "bottom-center" });
+		if (params.get("message"))
+			toast.info(params.get("message"), { position: "top-center" });
 	}, [params]);
 	return (
 		<form
@@ -22,8 +22,8 @@ export default function SignInForm() {
 				e.preventDefault();
 				setSignIn(true);
 				try {
-					const { status } = await signInController(formData);
-					toast.info(status);
+					const json = await signInController(formData);
+					toast.info(json?.message);
 					setSignIn(false);
 				} catch (error) {
 					setSignIn(false);
