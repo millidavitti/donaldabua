@@ -1,3 +1,4 @@
+import { generateErrorLog } from "@/utils/generate-error-log";
 import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function signInController(formData: { email: string }) {
@@ -5,7 +6,7 @@ export async function signInController(formData: { email: string }) {
 		const headers = new Headers();
 		headers.append("Content-type", "application/json");
 		const res = await fetch(
-			process.env.NEXT_PUBLIC_AUTH_ENDPOINT + "/magic-link/",
+			process.env.NEXT_PUBLIC_AUTH_ENDPOINT + "/send-magic-link",
 			{
 				method: "POST",
 				body: JSON.stringify(formData),
@@ -14,12 +15,11 @@ export async function signInController(formData: { email: string }) {
 			},
 		);
 
-		const { error, status } = await res.json();
+		const { error, message } = await res.json();
 
 		if (error) throw new Error(error);
-		return { status };
+		return { message };
 	} catch (error) {
-		console.error("---signInController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("sigin-controller", error);
 	}
 }
