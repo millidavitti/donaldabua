@@ -7,6 +7,7 @@ import {
 	profile_hay_stack_jotai,
 	profile_technologies_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { payload_view_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { createId } from "@paralleldrive/cuid2";
 import FuzzySearch from "fuzzy-search";
 import { useAtom, useAtomValue } from "jotai";
@@ -18,6 +19,7 @@ export default function useAddTechnologiesInterface() {
 	const technologies_hay_stack = useAtomValue<Technology[]>(
 		technologies_hay_stack_jotai,
 	);
+	const [payload_view] = useAtom(payload_view_atom);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -75,7 +77,7 @@ export default function useAddTechnologiesInterface() {
 		captureAndSearch,
 		displaySearchResult,
 		closeSearchResult,
-		technologies,
+		technologies: payload_view.data?.technologies,
 		searchResult,
 		searchQuery,
 	};
