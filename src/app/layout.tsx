@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { HydrateAtoms } from "@/components/hydrate-atoms";
+import JotaiProvider from "@/components/jotai-provider";
+import QueryClientProvider from "@/components/query-client-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -29,16 +32,22 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<Toaster
-					position='top-center'
-					toastOptions={{
-						style: {
-							borderRadius: "0px",
-							outline: "auto",
-						},
-					}}
-				/>
-				<main className='bg-light-surface'>{children}</main>
+				<QueryClientProvider>
+					<JotaiProvider>
+						<HydrateAtoms>
+							<Toaster
+								position='top-center'
+								toastOptions={{
+									style: {
+										borderRadius: "0px",
+										outline: "auto",
+									},
+								}}
+							/>
+							<main className='bg-light-surface'>{children}</main>{" "}
+						</HydrateAtoms>
+					</JotaiProvider>
+				</QueryClientProvider>
 			</body>
 		</html>
 	);
