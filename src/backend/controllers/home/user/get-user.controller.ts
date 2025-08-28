@@ -2,9 +2,9 @@ import { APIResponse, User } from "@/data/home/home-atoms/home-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "../../../endpoints/endpoints";
 
-export async function getUserController(userId: string) {
+export async function getUserController() {
 	try {
-		const res = await fetch(ENDPOINTS.user.read(userId), {
+		const res = await fetch(ENDPOINTS.user.getUser(), {
 			method: "GET",
 			credentials: "include",
 		});
