@@ -2,19 +2,14 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditUserPhotoInterface } from "@/hooks/interface/dashboard/use-edit-user-photo-interface";
+import { useEditUserPhoto } from "@/hooks/interface/dashboard/use-edit-user-photo-interface";
 import { X } from "lucide-react";
 import Image from "next/image";
 
 export default function EditUserPhoto() {
-	const {
-		edit_profile,
-		user_image,
-		cancelPhotoEdit,
-		capturePhotoEdit,
-		editPhoto,
-		savePhotoEdit,
-	} = useEditUserPhotoInterface();
+	const { edit_profile, image, cancel, capture, editPhoto, save } =
+		useEditUserPhoto();
+
 	return (
 		<Flex
 			flex='column'
@@ -28,9 +23,9 @@ export default function EditUserPhoto() {
 					},
 				}}
 			>
-				{Boolean(user_image) && (
+				{Boolean(image) && (
 					<Image
-						src={user_image}
+						src={image || "/stud.jpg"}
 						width={1000}
 						height={1000}
 						alt='donald'
@@ -52,7 +47,7 @@ export default function EditUserPhoto() {
 						<h2 className='text-2xl font-semibold'>Photo</h2>
 						<InteractiveIcon
 							callback={() => {
-								cancelPhotoEdit();
+								cancel();
 							}}
 						>
 							<X size={24} className='stroke-light-error' />
@@ -64,19 +59,19 @@ export default function EditUserPhoto() {
 						data-is-visible={edit_profile === "edit-image"}
 						onSubmit={(e) => {
 							e.preventDefault();
-							savePhotoEdit();
+							save();
 						}}
 					>
 						<label className='text-lg font-semibold' htmlFor='title'>
 							Provide a link to the to an image of yourself
 						</label>
 						<input
-							type='url'
+							// type='url'
 							required
 							className='p-3 border w-full'
-							value={user_image}
+							defaultValue={image}
 							onChange={(e) => {
-								capturePhotoEdit(e.target.value);
+								capture(e.target.value);
 							}}
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>

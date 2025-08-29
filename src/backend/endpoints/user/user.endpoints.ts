@@ -1,10 +1,7 @@
 export const USER_ENDPOINT = {
-	list: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users`,
-	read: (userId: string) =>
-		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/${userId}`,
-	create: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/private`,
-	update: (userId: string) =>
-		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/private/${userId}`,
-	delete: (userId: string) =>
-		`${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/private/${userId}`,
+	getUsers: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users`,
+	getUser: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/me`,
+	createUser: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/me`,
+	updateUser: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/me`,
+	deleteUser: () => `${process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT}/users/me`,
 };

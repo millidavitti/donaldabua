@@ -1,48 +1,57 @@
-import {
-	Technology,
-	technologies_jotai,
-	technologies_hay_stack_jotai,
-	technologies_snapshot_jotai,
-	defaultStore,
-	profile_hay_stack_jotai,
-	profile_technologies_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { payload_view_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { createId } from "@paralleldrive/cuid2";
+import { useQueryClient } from "@tanstack/react-query";
 import FuzzySearch from "fuzzy-search";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function useAddTechnologiesInterface() {
-	const [technologies, technologies_setter] = useAtom(technologies_jotai);
-	const technologies_hay_stack = useAtomValue<Technology[]>(
-		technologies_hay_stack_jotai,
-	);
+	const [payload_view] = useAtom(payload_view_atom);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
-	const [searchQuery, setSearchQuery] = useState<string>("");
+	const [technology, setTechnology] = useState<string>("");
+	const queryClient = useQueryClient();
 
 	function removeTechnology(tech: Technology) {
-		technologies_setter((technologies) =>
-			technologies.filter((technology) => {
-				return technology.id !== tech.id;
-			}),
+		const technologies = payload_view.data?.technologies as Technology[];
+		queryClient.setQueryData(
+			["payload_view"],
+			(payload_view: Record<string, unknown>) => {
+				return {
+					...payload_view,
+					technologies: technologies.filter((technology) => {
+						return technology.id !== tech.id;
+					}),
+				};
+			},
 		);
 	}
 
 	function addTechnology() {
-		const exists = defaultStore
-			.get(technologies_snapshot_jotai)
-			.some(
-				(tech) =>
-					searchQuery.toLowerCase().replaceAll(" ", "") ===
-					tech.name.toLowerCase().replaceAll(" ", ""),
+		const technologies = payload_view.data?.technologies as Technology[];
+		const hasTech = technologies.some((tech) => {
+			const incomingTech = technology.toLowerCase().replaceAll(" ", "");
+			const existingTech = tech.name.toLowerCase().replaceAll(" ", "");
+
+			return incomingTech === existingTech;
+		});
+
+		if (technology && !hasTech)
+			queryClient.setQueryData(
+				["payload_view"],
+				(payload_view: Record<string, unknown>) => {
+					return {
+						...payload_view,
+						technologies: [
+							{ id: createId(), name: technology },
+							...technologies,
+						],
+					};
+				},
 			);
-		if (searchQuery && !exists)
-			technologies_setter((technologies) => {
-				return [{ id: createId(), name: searchQuery }, ...technologies];
-			});
-		else if (exists) toast.info("Technology already exists");
-		setSearchQuery("");
+		else if (hasTech) toast.info("Technology already exists");
+		setTechnology("");
 		setSearchResult([]);
 	}
 
@@ -51,8 +60,9 @@ export default function useAddTechnologiesInterface() {
 	}
 
 	function displaySearchResult() {
+		const technologies = payload_view.data.technologies as Technology[];
 		setTimeout(() => {
-			setSearchResult(technologies_hay_stack);
+			setSearchResult(technologies);
 			document.onclick = (e) => {
 				if (!(e.target as HTMLElement).closest("#search-result"))
 					setSearchResult([]);
@@ -62,11 +72,12 @@ export default function useAddTechnologiesInterface() {
 	}
 
 	function captureAndSearch(value: string) {
-		const search = new FuzzySearch(technologies_hay_stack, ["name"]);
+		const technologies = payload_view.data.technologies as Technology[];
+		const search = new FuzzySearch(technologies, ["name"]);
 		const result = search.search(value);
-		setSearchQuery(value);
+		setTechnology(value);
 		if (value) setSearchResult(result);
-		else setSearchResult(technologies_hay_stack);
+		else setSearchResult(technologies);
 	}
 
 	return {
@@ -75,27 +86,22 @@ export default function useAddTechnologiesInterface() {
 		captureAndSearch,
 		displaySearchResult,
 		closeSearchResult,
-		technologies,
+		technologies: payload_view.data?.technologies as Technology[],
 		searchResult,
-		searchQuery,
+		searchQuery: technology,
 	};
 }
 
-defaultStore.sub(technologies_jotai, () => {
-	defaultStore.set(
-		technologies_hay_stack_jotai,
-		defaultStore.get(technologies_jotai),
-	);
-
-	defaultStore.set(
-		profile_hay_stack_jotai,
-		defaultStore
-			.get(technologies_jotai)
-			.filter(
-				(technology) =>
-					!defaultStore
-						.get(profile_technologies_jotai)
-						.some((tech) => tech.id === technology.id),
-			),
-	);
-});
+// defaultStore.sub(technologies_jotai, () => {
+// 	defaultStore.set(
+// 		profile_hay_stack_jotai,
+// 		defaultStore
+// 			.get(technologies_jotai)
+// 			.filter(
+// 				(technology) =>
+// 					!defaultStore
+// 						.get(profile_technologies_jotai)
+// 						.some((tech) => tech.id === technology.id),
+// 			),
+// 	);
+// });

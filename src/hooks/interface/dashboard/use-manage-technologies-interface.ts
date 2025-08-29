@@ -10,6 +10,7 @@ import {
 import { getErrorMessage } from "@/utils/get-error-message";
 import { useAtom, useSetAtom } from "jotai";
 import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function useManageTechnologiesInterface() {
 	const settings_view_setter = useSetAtom(settings_view_jotai);
@@ -18,7 +19,10 @@ export default function useManageTechnologiesInterface() {
 	const [technologies_snapshot, technologies_snapshot_setter] = useAtom(
 		technologies_snapshot_jotai,
 	);
+	// const [payload_view] = useAtom(payload_view_atom);
+	const qc = useQueryClient();
 	function close() {
+		qc.invalidateQueries({ queryKey: ["payload_view"] });
 		settings_view_setter(null);
 	}
 

@@ -5,26 +5,32 @@ import { signUpController } from "@/backend/auth/sign-up.controller";
 import { toast } from "sonner";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { HashLoader } from "react-spinners";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
 export default function SignUpForm() {
-	const [formData, setFormData] = useState({ email: "", name: "" });
-	const [signUp, setSignUp] = useState(false);
+	const params = useSearchParams();
+	const [credentials, setCredentials] = useState({ email: "", name: "" });
+	const [isSigningUp, setIsSigningUp] = useState(false);
+
+	useEffect(() => {
+		if (params.get("message"))
+			toast.info(params.get("message"), { position: "top-center" });
+	}, [params]);
 	return (
 		<form
 			onSubmit={async (e) => {
 				e.preventDefault();
 				try {
-					setSignUp(true);
-					await signUpController(formData);
-					setSignUp(false);
-					toast.info("A verification email has been sent");
+					setIsSigningUp(true);
+					const json = await signUpController(credentials);
+					toast.info(json.message);
+					setIsSigningUp(false);
 				} catch (error) {
-					setSignUp(false);
-					console.error("---CreateAccountButton---\n", error);
-					if (getErrorMessage(error).includes("duplicate"))
-						toast.info("Email already exists. Sign in");
-					else toast.info("Unable to create your account at the moment ");
+					generateErrorLog("SignUpForm", error, "slient");
+					toast.info(JSON.parse(getErrorMessage(error)).message);
+					setIsSigningUp(false);
 				}
 			}}
 		>
@@ -35,7 +41,9 @@ export default function SignUpForm() {
 					id='name'
 					name='name'
 					className='outline p-3'
-					onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+					onChange={(e) =>
+						setCredentials({ ...credentials, name: e.target.value })
+					}
 				/>
 				<label htmlFor='email'>Email</label>
 				<input
@@ -44,10 +52,12 @@ export default function SignUpForm() {
 					name='email'
 					className='outline p-3'
 					required
-					onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+					onChange={(e) =>
+						setCredentials({ ...credentials, email: e.target.value })
+					}
 				/>
 				<Button type='submit' htmlProps={{}}>
-					Create Account {signUp && <HashLoader size={24} />}
+					Create Account {isSigningUp && <HashLoader size={24} />}
 				</Button>
 			</Flex>
 		</form>

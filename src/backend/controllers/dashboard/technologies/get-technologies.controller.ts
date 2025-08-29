@@ -7,7 +7,7 @@ import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function getTechnologiesController() {
 	try {
-		const res = await fetch(ENDPOINTS.technology.list(), {
+		const res = await fetch(ENDPOINTS.technology.getTechnologies(), {
 			credentials: "include",
 		});
 		const data = await res.json();
