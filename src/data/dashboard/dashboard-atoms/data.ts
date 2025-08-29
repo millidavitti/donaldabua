@@ -1,5 +1,4 @@
 import { updateUserController } from "@/backend/controllers/dashboard/user/update-user.controller";
-import { generateErrorLog } from "@/utils/generate-error-log";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { atom } from "jotai";
 import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";

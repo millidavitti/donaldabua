@@ -18,7 +18,7 @@ export type Technology = {
 };
 export const technologies_snapshot_jotai = atom<Technology[]>([]);
 export const technologies_jotai = atom<Technology[]>([]);
-export const technologies_hay_stack_jotai = atom<Technology[]>([]);
+
 defaultStore.sub(technologies_snapshot_jotai, async () => {
 	// Set Technologies
 	defaultStore.set(
