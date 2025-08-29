@@ -1,5 +1,4 @@
 import { generateErrorLog } from "@/utils/generate-error-log";
-import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function signInController(formData: { email: string }) {
 	try {
@@ -20,6 +19,6 @@ export async function signInController(formData: { email: string }) {
 		if (error) throw new Error(error);
 		return { message };
 	} catch (error) {
-		generateErrorLog("sigin-controller", error);
+		generateErrorLog("@siginController", error);
 	}
 }

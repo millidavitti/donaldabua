@@ -1,22 +1,16 @@
-import {
-	APIResponse,
-	User,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { auth } from "@/utils/auth";
-import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "../../../endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
 export async function getUserController() {
 	try {
-		const res = await fetch(ENDPOINTS.user.getUser("user.id"), {
+		const res = await fetch(ENDPOINTS.user.getUser(), {
 			method: "GET",
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<User, "user">;
+		return json;
 	} catch (error) {
-		console.error("---getUserController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@getUserController", error);
 	}
 }
