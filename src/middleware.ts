@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
 		const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
 		const cookie = Cookies.get("portfolio.authenticated");
 		try {
-			await jwtVerify(cookie?.value!, secret);
+			await jwtVerify(cookie?.value as string, secret);
 			return true;
 		} catch (error) {
 			generateErrorLog("middleware", error, "slient");
