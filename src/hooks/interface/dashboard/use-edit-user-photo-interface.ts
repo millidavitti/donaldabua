@@ -1,14 +1,10 @@
-import { updateUserController } from "@/backend/controllers/dashboard/user/update-user.controller";
 import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom } from "jotai";
 import {
 	mutate_user_atom,
 	payload_view_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
-import { generateErrorLog } from "@/utils/generate-error-log";
 import { useState } from "react";
-import { toast } from "sonner";
-import { getErrorMessage } from "@/utils/get-error-message";
 
 export function useEditUserPhoto() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
