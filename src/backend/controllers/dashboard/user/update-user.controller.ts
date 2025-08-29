@@ -4,7 +4,6 @@ import { generateErrorLog } from "@/utils/generate-error-log";
 
 export async function updateUserController(update: Partial<User>) {
 	try {
-		throw new Error("New Error");
 		const res = await fetch(ENDPOINTS.user.updateUser(), {
 			method: "put",
 			body: JSON.stringify(update),
