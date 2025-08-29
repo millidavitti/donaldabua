@@ -20,7 +20,7 @@ export default function ProjectVault() {
 
 	useEffect(() => {
 		if (params.userId)
-			getUserController(params.userId as string).then(({ error, user }) => {
+			getUserController().then(({ error, user }) => {
 				if (error) throw new Error(error);
 				user_snapshot_setter(user);
 			});
