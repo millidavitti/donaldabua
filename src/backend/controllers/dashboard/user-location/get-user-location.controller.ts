@@ -5,9 +5,9 @@ import {
 import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
-export async function getUserLocationController(userId: string) {
+export async function getUserLocationController() {
 	try {
-		const res = await fetch(ENDPOINTS.location.read(userId), {
+		const res = await fetch(ENDPOINTS.location.getLocation(), {
 			credentials: "include",
 		});
 		const data = await res.json();
