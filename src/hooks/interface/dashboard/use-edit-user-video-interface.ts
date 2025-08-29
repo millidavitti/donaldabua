@@ -11,7 +11,7 @@ import { toast } from "sonner";
 export function useEditUserVideoInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [user_video, user_video_setter] = useAtom(user_video_jotai);
-	const [{ id: userId, video }, user_setter] = useAtom(user_snapshot_jotai);
+	const [{ video }, user_setter] = useAtom(user_snapshot_jotai);
 
 	function cancelVideoEdit() {
 		user_video_setter(video || "");
@@ -21,7 +21,7 @@ export function useEditUserVideoInterface() {
 	async function saveVideoEdit() {
 		try {
 			dashboard_view_setter(null);
-			const { error, user } = await updateUserController(userId, {
+			const { error, user } = await updateUserController({
 				video: user_video,
 			});
 

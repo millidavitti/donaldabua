@@ -13,7 +13,7 @@ export function useDeleteUserVideoOptionInterface() {
 	async function deleteVideo() {
 		user_video_setter(null);
 		try {
-			const { error, user } = await updateUserController(user_snapshot.id, {
+			const { error, user } = await updateUserController({
 				video: null,
 			});
 
