@@ -24,15 +24,24 @@ export default function ContentBuilder() {
 						.map((component) => {
 							if (component.type === "image")
 								return (
-									<ContentBuilderImage component={component} key={createId()} />
+									<ContentBuilderImage
+										component={component}
+										key={component.id}
+									/>
 								);
 							else if (component.type === "video")
 								return (
-									<ContentBuilderVideo component={component} key={createId()} />
+									<ContentBuilderVideo
+										component={component}
+										key={component.id}
+									/>
 								);
 							else if (component.type === "markdown")
 								return (
-									<ContentBuilderText component={component} key={createId()} />
+									<ContentBuilderText
+										component={component}
+										key={component.id}
+									/>
 								);
 						})}
 				</Flex>
