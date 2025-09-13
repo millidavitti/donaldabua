@@ -1,29 +1,11 @@
-import { updateUserController } from "@/backend/controllers/dashboard/user/update-user.controller";
-import {
-	user_snapshot_jotai,
-	user_video_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { useAtom, useSetAtom } from "jotai";
-import { toast } from "sonner";
+import { mutate_user_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { useAtom } from "jotai";
 
 export function useDeleteUserVideoOptionInterface() {
-	const user_video_setter = useSetAtom(user_video_jotai);
-	const [user_snapshot, user_snapshot_setter] = useAtom(user_snapshot_jotai);
+	const [mutate_user] = useAtom(mutate_user_atom);
 
 	async function deleteVideo() {
-		user_video_setter(null);
-		try {
-			const { error, user } = await updateUserController({
-				video: null,
-			});
-
-			if (error) throw error;
-			else user_snapshot_setter(user);
-		} catch (error) {
-			user_video_setter(user_snapshot.video);
-			toast.error("Update failed. Please try again later");
-			console.error("---deleteVideo---\n", error);
-		}
+		await mutate_user.mutateAsync({ video: null });
 	}
 
 	return { deleteVideo };
