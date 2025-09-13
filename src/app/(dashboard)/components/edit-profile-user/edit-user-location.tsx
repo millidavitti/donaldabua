@@ -11,14 +11,13 @@ export default function EditUserLocation() {
 		editLocation,
 		captureLocationEdit,
 		saveLocationEdit,
-		user_location_city,
-		user_location_country,
+		location,
 	} = useEditUserLocationInterface();
 	return (
 		<Flex className='gap-3'>
 			<MapPin />
 			<p onClick={editLocation} className='cursor-pointer font-medium'>
-				{user_location_city}, {user_location_country}
+				{location?.city}, {location?.country}
 			</p>
 			{/* <p>{new Date().toTimeString()}</p> */}
 
@@ -55,7 +54,7 @@ export default function EditUserLocation() {
 								id='city'
 								required
 								className='border p-3'
-								value={user_location_city}
+								defaultValue={location?.city}
 								onChange={(e) => captureLocationEdit("city", e.target.value)}
 							/>
 							<label htmlFor='country'>Country</label>
@@ -64,7 +63,7 @@ export default function EditUserLocation() {
 								id='country'
 								required
 								className='border p-3'
-								value={user_location_country}
+								defaultValue={location?.country}
 								onChange={(e) => {
 									captureLocationEdit("country", e.target.value);
 								}}

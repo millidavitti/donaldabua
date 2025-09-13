@@ -10,5 +10,5 @@ export function validateAndEmbedYouTubeUrl(value: string) {
 				.replace(/\?[^=]+=([^&]+)(&[^=]+=([^&]+))*/, "")
 				.replace(/\?.*$/, "")
 				.replace(/\&.*$/, "")
-		: null;
+		: "";
 }

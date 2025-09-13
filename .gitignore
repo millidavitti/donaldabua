@@ -42,3 +42,4 @@ next-env.d.ts
 diff.txt
 .open-next/*
 .wrangler/*
+task.yaml

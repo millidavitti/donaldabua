@@ -8,20 +8,20 @@ import AddUserVideoOption from "./add-user-video-option";
 import { useEditUserVideoInterface } from "@/hooks/interface/dashboard/use-edit-user-video-interface";
 
 export default function EditUserVideo() {
-	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, user_video } =
+	const { cancelVideoEdit, captureVideoEdit, saveVideoEdit, video } =
 		useEditUserVideoInterface();
 	return (
 		<Flex flex='column' className='h-[258px] gap-3' htmlProps={{ id: "video" }}>
 			<a href='#video' className='shrink-0'>
 				<Flex className='h-fit items-center justify-between'>
 					<p className='font-semibold lg:text-2xl'>Video Introduction</p>
-					{user_video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
+					{video ? <DeleteUserVideoOption /> : <AddUserVideoOption />}
 				</Flex>
 			</a>
-			{Boolean(user_video) && (
+			{Boolean(video) && (
 				<iframe
-					src={user_video!}
-					data-is-visible={Boolean(user_video)}
+					src={video!}
+					data-is-visible={Boolean(video)}
 					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline'
 					loading='lazy'
 				/>
@@ -58,7 +58,7 @@ export default function EditUserVideo() {
 						<input
 							type='url'
 							className='border p-3 grow'
-							value={user_video || ""}
+							defaultValue={video}
 							onChange={(e) => {
 								captureVideoEdit(e.target.value);
 							}}

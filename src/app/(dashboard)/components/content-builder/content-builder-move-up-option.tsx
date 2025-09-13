@@ -17,21 +17,21 @@ export default function ContentBuilderMoveUpOption({
 			htmlProps={{
 				onClick() {
 					project_content_setter((content) => {
-						return content.map((comp, i, arr) => {
+						return content.map((component, i, arr) => {
 							if (i === position - 1) {
-								if (comp.position + 1 >= arr.length) return comp;
+								if (component.position + 1 >= arr.length) return component;
 								return {
-									...comp,
-									position: comp.position + 1,
+									...component,
+									position: component.position + 1,
 								};
 							} else if (i === position) {
-								if (comp.position - 1 < 0) return comp;
+								if (component.position - 1 < 0) return component;
 								return {
-									...comp,
-									position: comp.position - 1,
+									...component,
+									position: component.position - 1,
 								};
 							}
-							return comp;
+							return component;
 						});
 					});
 				},

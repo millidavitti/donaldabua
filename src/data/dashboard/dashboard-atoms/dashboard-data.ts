@@ -101,9 +101,7 @@ defaultStore.sub(user_snapshot_jotai, async () => {
 
 	// Get User Location
 	try {
-		const { location, error } = await getUserLocationController(
-			defaultStore.get(user_snapshot_jotai).id,
-		);
+		const { location, error } = await getUserLocationController();
 		if (error) throw new Error(error);
 		else if (location) defaultStore.set(user_location_snapshot_jotai, location);
 	} catch (error) {

@@ -3,8 +3,9 @@ import { getErrorMessage } from "@/utils/get-error-message";
 import { atom } from "jotai";
 import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";
 import { toast } from "sonner";
-import { User } from "./dashboard-data";
+import { User, UserLocation } from "./dashboard-data";
 import { queryClient } from "@/components/query-client";
+import { updateUserLocationController } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -24,6 +25,23 @@ export const mutate_user_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_user"],
 	mutationFn: async (user: Partial<User>) => {
 		const json = await updateUserController(user);
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		console.error(error);
+	},
+	onSettled: async () => {
+		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
+	},
+}));
+
+export const mutate_location_atom = atomWithMutation(() => ({
+	mutationKey: ["mutate_location"],
+	mutationFn: async (location: Partial<UserLocation>) => {
+		console.log("location:", location);
+		const json = await updateUserLocationController(location);
 		toast.info(json.message);
 	},
 	onError: (error) => {
