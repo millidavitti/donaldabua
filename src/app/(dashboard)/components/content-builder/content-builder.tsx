@@ -1,12 +1,10 @@
 import Flex from "@/components/layouts/flex";
-import React from "react";
 import DraftProjectContentOptions from "../draft-project/draft-project-content-options";
 import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
 import ContentBuilderVideo from "./content-builder-video";
 import ContentBuilderText from "./content-builder-text";
-import { createId } from "@paralleldrive/cuid2";
 
 export default function ContentBuilder() {
 	const project_content = useAtomValue(project_content_jotai);
