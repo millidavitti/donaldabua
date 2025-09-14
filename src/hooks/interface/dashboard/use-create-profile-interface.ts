@@ -5,7 +5,7 @@ import {
 	user_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
@@ -15,7 +15,7 @@ export default function useCreateProfileInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const user_snapshot = useAtomValue(user_snapshot_jotai);
 	const profile_snapshot_setter = useSetAtom(profile_snapshot_jotai);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_atom);
 	const profiles_snapshot_setter = useSetAtom(profiles_snapshot_jotai);
 	const [profileTitle, setProfileTitle] = useState("");
 

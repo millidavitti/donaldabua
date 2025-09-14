@@ -10,7 +10,7 @@ import {
 	projects_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { createId } from "@paralleldrive/cuid2";
@@ -27,7 +27,7 @@ export function usePublishProjectInterface() {
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
 	const project_content = useAtomValue(project_content_jotai);
 	const project_technologies = useAtomValue(project_technologies_jotai);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_atom);
 	const resetProjectFormFields = useResetProjectFormFields();
 
 	async function publishProject() {
