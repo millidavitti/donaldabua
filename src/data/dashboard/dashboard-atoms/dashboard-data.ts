@@ -167,7 +167,7 @@ export const user_location_city_jotai = atom<string>("City");
 export const user_location_country_jotai = atom<string>("Country");
 
 export type SocialAccount = {
-	id: string;
+	id?: string;
 	platform: SocialPlatforms;
 	profile: string;
 };
@@ -179,14 +179,14 @@ export const social_account_snapshot_jotai = atom<SocialAccount>({
 	platform: "Facebook",
 	profile: "",
 });
-export const social_account_jotai = atom<SocialAccount>({
+export const input_socials_atom = atom<SocialAccount>({
 	id: "",
 	platform: "Facebook",
 	profile: "",
 });
 defaultStore.sub(social_account_snapshot_jotai, () => {
 	defaultStore.set(
-		social_account_jotai,
+		input_socials_atom,
 		defaultStore.get(social_account_snapshot_jotai),
 	);
 });
