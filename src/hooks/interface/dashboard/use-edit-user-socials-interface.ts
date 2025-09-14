@@ -7,7 +7,7 @@ import {
 	user_socials_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { getErrorMessage } from "@/utils/get-error-message";
@@ -29,7 +29,7 @@ export default function useEditUserSocialsInterface() {
 	const [user_socials_snapshot, user_socials_snapshot_setter] = useAtom(
 		user_socials_snapshot_jotai,
 	);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_atom);
 	const { closeDialog, displayDialog } = useDialog();
 
 	function display(view: "add-socials" | "update-socials") {

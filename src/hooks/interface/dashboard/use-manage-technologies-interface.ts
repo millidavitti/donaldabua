@@ -1,47 +1,30 @@
-import { updateTechnologiesController } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
-import {
-	technologies_jotai,
-	technologies_snapshot_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import {
-	api_task_jotai,
-	settings_view_jotai,
-} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { settings_view_atom } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtom, useSetAtom } from "jotai";
-import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+	mutate_technologies_atom,
+	payload_view_atom,
+} from "@/data/dashboard/dashboard-atoms/data";
 
-export default function useManageTechnologiesInterface() {
-	const settings_view_setter = useSetAtom(settings_view_jotai);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
-	const [technologies, technologies_setter] = useAtom(technologies_jotai);
-	const [technologies_snapshot, technologies_snapshot_setter] = useAtom(
-		technologies_snapshot_jotai,
-	);
-	// const [payload_view] = useAtom(payload_view_atom);
+export default function useManageTechnologies() {
+	const settings_view_setter = useSetAtom(settings_view_atom);
+	const [mutate_technologies] = useAtom(mutate_technologies_atom);
+	const [payload_view] = useAtom(payload_view_atom);
 	const qc = useQueryClient();
-	function close() {
+
+	const close = () => {
 		qc.invalidateQueries({ queryKey: ["payload_view"] });
 		settings_view_setter(null);
-	}
+	};
 
-	async function updateTechnologies() {
-		try {
-			api_task_setter("create-technologies");
-			const { error, technologies: savedTechnologies } =
-				await updateTechnologiesController(technologies);
+	const updateTechnologies = async () => {
+		const technologies = payload_view.data.technologies;
+		await mutate_technologies.mutateAsync(technologies);
+	};
 
-			if (error) throw new Error(error);
-			else if (savedTechnologies) technologies_snapshot_setter(technologies);
-			api_task_setter(null);
-			settings_view_setter(null);
-		} catch (error) {
-			console.error("---updateTechnologies---\n", error);
-			toast.error(getErrorMessage(error));
-			technologies_setter(technologies_snapshot);
-			api_task_setter(null);
-		}
-	}
-	return { updateTechnologies, api_task, close };
+	return {
+		updateTechnologies,
+		isPending: mutate_technologies.isPending,
+		close,
+	};
 }

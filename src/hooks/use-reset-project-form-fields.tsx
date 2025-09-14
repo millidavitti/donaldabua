@@ -7,7 +7,7 @@ import {
 	project_title_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
 	project_form_step_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
@@ -22,7 +22,7 @@ export function useResetProjectFormFields() {
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
-	const api_task_setter = useSetAtom(api_task_jotai);
+	const api_task_setter = useSetAtom(api_task_atom);
 
 	function resetProjectFormFields() {
 		project_title_setter("");

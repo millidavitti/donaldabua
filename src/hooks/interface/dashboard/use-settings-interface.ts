@@ -1,15 +1,15 @@
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
-	settings_view_jotai,
+	settings_view_atom,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtomValue, useSetAtom } from "jotai";
 import { redirect } from "next/navigation";
 
 export default function useSettings() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
-	const settings_view_setter = useSetAtom(settings_view_jotai);
-	const api_task = useAtomValue(api_task_jotai);
+	const settings_view_setter = useSetAtom(settings_view_atom);
+	const api_task = useAtomValue(api_task_atom);
 
 	function display() {
 		dashboard_view_setter("settings");

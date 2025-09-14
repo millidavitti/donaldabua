@@ -4,7 +4,7 @@ import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getTechnologiesController() {
 	try {
-		const res = await fetch(ENDPOINTS.technology.getTechnologies(), {
+		const res = await fetch(ENDPOINTS.technologies.read(), {
 			credentials: "include",
 		});
 		const data = await res.json();

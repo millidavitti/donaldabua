@@ -1,31 +1,21 @@
-import {
-	APIResponse,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
 export async function updateTechnologiesController(technologies: Technology[]) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.technology.update(), {
-			method: "POST",
+		const res = await fetch(ENDPOINTS.technologies.update(), {
+			method: "PATCH",
 			body: JSON.stringify(technologies),
-			headers,
+			headers: {
+				"Content-type": "application/json",
+			},
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<Technology[], "technologies">;
+		return json;
 	} catch (error) {
-		console.error("---createTechnologiesController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@updateTechnologiesController", error);
 	}
 }

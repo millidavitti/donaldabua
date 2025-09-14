@@ -8,7 +8,7 @@ import {
 	defaultStore,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
-	api_task_jotai,
+	api_task_atom,
 	dashboard_view_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom, useAtom } from "jotai";
@@ -22,7 +22,7 @@ export default function useEditProfileTechnologiesInterface() {
 		profile_technologies_jotai,
 	);
 	const technologies_setter = useSetAtom(technologies_jotai);
-	const [api_task, api_task_setter] = useAtom(api_task_jotai);
+	const [api_task, api_task_setter] = useAtom(api_task_atom);
 
 	const profile_snapshot = defaultStore.get(profile_snapshot_jotai);
 

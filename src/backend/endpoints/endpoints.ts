@@ -19,5 +19,5 @@ export const ENDPOINTS = {
 	project: PROJECT_ENDPOINT,
 	projectContent: PROJECT_CONTENT_ENDPOINT,
 	projectTechnology: PROJECT_TECHNOLOGY_ENDPOINT,
-	technology: TECHNOLOGY_ENDPOINT,
+	technologies: TECHNOLOGY_ENDPOINT,
 };

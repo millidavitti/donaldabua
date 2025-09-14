@@ -4,12 +4,11 @@ import Overlay from "@/components/layouts/overlay";
 import AddTechnologies from "../add-technologies";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
-import useManageTechnologiesInterface from "@/hooks/interface/dashboard/use-manage-technologies-interface";
+import useManageTechnologies from "@/hooks/interface/dashboard/use-manage-technologies-interface";
 import { HashLoader } from "react-spinners";
 
 export default function ManageTechnologies() {
-	const { close, updateTechnologies, api_task } =
-		useManageTechnologiesInterface();
+	const { close, updateTechnologies, isPending } = useManageTechnologies();
 	return (
 		<Overlay stateFlag='manage-technologies'>
 			<Flex
@@ -31,7 +30,7 @@ export default function ManageTechnologies() {
 				>
 					<AddTechnologies />
 					<Button type='submit' className='bg-black text-light-surface'>
-						Save {api_task && <HashLoader size={24} color='#fff' />}
+						Save {isPending && <HashLoader size={24} color='#fff' />}
 					</Button>
 				</form>
 			</Flex>

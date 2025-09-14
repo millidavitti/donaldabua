@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export default function useAddTechnologiesInterface() {
 	const [payload_view] = useAtom(payload_view_atom);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
-	const [technology, setTechnology] = useState<string>("");
+	const [inputTechnology, setInputTechnology] = useState<string>("");
 	const queryClient = useQueryClient();
 
 	function removeTechnology(tech: Technology) {
@@ -30,28 +30,28 @@ export default function useAddTechnologiesInterface() {
 
 	function addTechnology() {
 		const technologies = payload_view.data?.technologies as Technology[];
-		const hasTech = technologies.some((tech) => {
-			const incomingTech = technology.toLowerCase().replaceAll(" ", "");
+		const hasInputTechnology = technologies.some((tech) => {
+			const incomingTech = inputTechnology.toLowerCase().replaceAll(" ", "");
 			const existingTech = tech.name.toLowerCase().replaceAll(" ", "");
 
 			return incomingTech === existingTech;
 		});
 
-		if (technology && !hasTech)
+		if (inputTechnology && !hasInputTechnology)
 			queryClient.setQueryData(
 				["payload_view"],
 				(payload_view: Record<string, unknown>) => {
 					return {
 						...payload_view,
 						technologies: [
-							{ id: createId(), name: technology },
+							{ id: createId(), name: inputTechnology },
 							...technologies,
 						],
 					};
 				},
 			);
-		else if (hasTech) toast.info("Technology already exists");
-		setTechnology("");
+		else if (hasInputTechnology) toast.info("Technology already exists");
+		setInputTechnology("");
 		setSearchResult([]);
 	}
 
@@ -75,7 +75,7 @@ export default function useAddTechnologiesInterface() {
 		const technologies = payload_view.data.technologies as Technology[];
 		const search = new FuzzySearch(technologies, ["name"]);
 		const result = search.search(value);
-		setTechnology(value);
+		setInputTechnology(value);
 		if (value) setSearchResult(result);
 		else setSearchResult(technologies);
 	}
@@ -88,7 +88,7 @@ export default function useAddTechnologiesInterface() {
 		closeSearchResult,
 		technologies: payload_view.data?.technologies as Technology[],
 		searchResult,
-		searchQuery: technology,
+		searchQuery: inputTechnology,
 	};
 }
 

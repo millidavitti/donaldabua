@@ -12,7 +12,7 @@ export type ProjectDraftView = (typeof PROJECT_DRAFT_VIEWS)[number];
 export const project_draft_view_jotai = atom<ProjectDraftView>(null);
 
 export type SettingsView = (typeof SETTINGS_VIEWS)[number];
-export const settings_view_jotai = atom<SettingsView>(null);
+export const settings_view_atom = atom<SettingsView>(null);
 
 export const content_hover_state_jotai = atom<
 	"hover-image-icon" | "hover-video-icon" | "hover-text-icon" | null
@@ -34,7 +34,7 @@ export type ApiTask =
 	| "update-social-account"
 	| "sign-out"
 	| null;
-export const api_task_jotai = atom<ApiTask>(null);
+export const api_task_atom = atom<ApiTask>(null);
 
 export type Dialog = "cancel" | "continue" | null;
 export const dialog_jotai = atom<Dialog>(null);
