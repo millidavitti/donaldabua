@@ -1,82 +1,59 @@
 import {
-	social_account_jotai,
+	input_socials_atom,
 	social_account_snapshot_jotai,
 	SocialAccount,
 	SocialPlatforms,
-	user_snapshot_jotai,
 	user_socials_snapshot_jotai,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import {
-	api_task_atom,
-	dashboard_view_jotai,
-} from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
+import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { waitForDialog } from "@/utils/wait-for-dialog";
-import { createId } from "@paralleldrive/cuid2";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import useDialog from "../../use-dialog";
-import { createUserSocialsController } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
 import { updateUserSocialsController } from "@/backend/controllers/dashboard/socials/update-user-socials.controller";
 import { deleteUserSocialsController } from "@/backend/controllers/dashboard/socials/delete-user-socials.controller";
+import {
+	mutate_socials_atom,
+	payload_view_atom,
+} from "@/data/dashboard/dashboard-atoms/data";
 
-export default function useEditUserSocialsInterface() {
+export default function useEditUserSocials() {
 	const [dashboard_view, dashboard_view_setter] = useAtom(dashboard_view_jotai);
-	const [social_account, social_account_setter] = useAtom(social_account_jotai);
+	const [input_socials, set_input_socials] = useAtom(input_socials_atom);
 	const social_account_snapshot_setter = useSetAtom(
 		social_account_snapshot_jotai,
 	);
-	const user_snapshot = useAtomValue(user_snapshot_jotai);
+
 	const [user_socials_snapshot, user_socials_snapshot_setter] = useAtom(
 		user_socials_snapshot_jotai,
 	);
-	const [api_task, api_task_setter] = useAtom(api_task_atom);
+
 	const { closeDialog, displayDialog } = useDialog();
-
-	function display(view: "add-socials" | "update-socials") {
+	const [mutate_socials] = useAtom(mutate_socials_atom);
+	const [payload_view] = useAtom(payload_view_atom);
+	const display = (view: "add-socials" | "update-socials") => {
 		dashboard_view_setter(view);
-	}
+	};
 
-	function close() {
+	const close = () => {
 		dashboard_view_setter(null);
-		social_account_setter({ id: "", profile: "", platform: "Facebook" });
-	}
+		set_input_socials({ profile: "", platform: "Facebook" });
+	};
 
-	async function save(view: "add-socials" | "update-socials") {
+	const save = async (view: "add-socials" | "update-socials") => {
 		if (view === "add-socials") await addSocialAccount();
 		else if (view === "update-socials") await updateSocialAccount();
-	}
+	};
 
-	async function addSocialAccount() {
-		try {
-			api_task_setter("add-social-account");
-			const { error, socialAccount } = await createUserSocialsController(
-				user_snapshot.id,
-				{ ...social_account, id: createId() },
-			);
-			if (error) throw new Error(error);
-			else if (socialAccount) {
-				user_socials_snapshot_setter((user_socials_snapshot) => [
-					socialAccount,
-					...user_socials_snapshot,
-				]);
-			}
-			api_task_setter(null);
-			close();
-		} catch (error) {
-			api_task_setter(null);
-			console.error(
-				"---useEditUserSocialsInterface:addSocialAccount---\n",
-				error,
-			);
-		}
-	}
+	const addSocialAccount = async () => {
+		await mutate_socials.mutateAsync(input_socials);
+	};
 
-	async function updateSocialAccount() {
+	const updateSocialAccount = async () => {
 		try {
-			api_task_setter("update-social-account");
 			const { error, socialAccount } = await updateUserSocialsController(
-				social_account.id,
-				social_account,
+				input_socials.id!,
+				input_socials,
 			);
 
 			if (error) throw new Error(error);
@@ -88,36 +65,35 @@ export default function useEditUserSocialsInterface() {
 					}),
 				);
 			}
-			api_task_setter(null);
+
 			close();
 		} catch (error) {
-			api_task_setter(null);
 			console.error(
 				"---useEditUserSocialsInterface:updateSocialAccount---\n",
 				error,
 			);
 		}
-	}
+	};
 
-	function capture(field: "profile", value: SocialPlatforms) {
-		if (field === "profile")
-			social_account_setter((social_account) => {
-				return { ...social_account, profile: value };
-			});
-	}
+	const capture = (value: SocialPlatforms) => {
+		set_input_socials((input_socials) => {
+			delete input_socials.id;
+			return { ...input_socials, profile: value };
+		});
+	};
 
-	function update(socialAccount: SocialAccount) {
+	const update = (socialAccount: SocialAccount) => {
 		social_account_snapshot_setter(socialAccount);
 		display("update-socials");
-	}
+	};
 
-	async function remove(socialAccount: SocialAccount) {
+	const remove = async (socialAccount: SocialAccount) => {
 		displayDialog();
 
 		if (await new Promise(waitForDialog()))
 			try {
 				const { error, socialAccount: removed } =
-					await deleteUserSocialsController(socialAccount.id);
+					await deleteUserSocialsController(socialAccount.id!);
 				if (error) throw new Error(error);
 				else if (removed)
 					user_socials_snapshot_setter((user_socials) =>
@@ -131,18 +107,19 @@ export default function useEditUserSocialsInterface() {
 			}
 
 		closeDialog();
-	}
+	};
 
 	return {
 		display,
 		close,
 		capture,
-		social_account,
+		inputSocials: input_socials,
 		save,
 		user_socials_snapshot,
-		api_task,
+		isPending: mutate_socials.isPending,
 		update,
 		dashboard_view,
 		remove,
+		socials: payload_view.data?.socials as SocialAccount[],
 	};
 }

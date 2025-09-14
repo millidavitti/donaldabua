@@ -4,7 +4,7 @@ import {
 	defaultStore,
 	technologies_jotai,
 	SocialPlatforms,
-	social_account_jotai,
+	input_socials_atom,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { SOCIAL_PLATFORMS } from "@/data/dashboard/dashboard-constants";
 import FuzzySearch from "fuzzy-search";
@@ -16,11 +16,11 @@ export default function useSelectSocialPlatformInterface() {
 	const [searchResult, setSearchResult] =
 		useState<SocialPlatforms[]>(platforms);
 	const [searchQuery, setSearchQuery] = useState<string>("");
-	const [social_account, social_account_setter] = useAtom(social_account_jotai);
+	const [input_socials, set_input_socials] = useAtom(input_socials_atom);
 
 	function addTechnology(platform: SocialPlatforms) {
-		social_account_setter((social_account) => {
-			return { ...social_account, platform };
+		set_input_socials((input_socials) => {
+			return { ...input_socials, platform };
 		});
 		setSearchQuery("");
 		setSearchResult([]);
@@ -44,7 +44,7 @@ export default function useSelectSocialPlatformInterface() {
 	function captureAndSearch(value: string) {
 		const search = new FuzzySearch(platforms);
 		const result = search.search(value);
-		social_account_setter((social_account) => {
+		set_input_socials((social_account) => {
 			return { ...social_account, platform: "Facebook" };
 		});
 		setSearchQuery(value);
@@ -59,7 +59,7 @@ export default function useSelectSocialPlatformInterface() {
 		closeSearchResult,
 		searchResult,
 		searchQuery,
-		platform: social_account.platform,
+		platform: input_socials.platform,
 	};
 }
 
