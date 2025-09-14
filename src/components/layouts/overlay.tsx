@@ -5,7 +5,7 @@ import {
 	dashboard_view_jotai,
 	ProjectDraftView,
 	DashboardView,
-	settings_view_jotai,
+	settings_view_atom,
 	SettingsView,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import {
@@ -34,7 +34,7 @@ export default function Overlay({ stateFlag, children, className }: Overlay) {
 	const [project_draft_view, project_draft_view_setter] = useAtom(
 		project_draft_view_jotai,
 	);
-	const [settings_view, settings_view_setter] = useAtom(settings_view_jotai);
+	const [settings_view, settings_view_setter] = useAtom(settings_view_atom);
 	const view =
 		stateFlag === null
 			? false
