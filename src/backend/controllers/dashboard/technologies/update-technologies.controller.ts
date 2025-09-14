@@ -1,9 +1,4 @@
-import {
-	APIResponse,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
