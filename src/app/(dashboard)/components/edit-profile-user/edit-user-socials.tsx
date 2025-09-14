@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import useEditUserSocialsInterface from "@/hooks/interface/dashboard/use-edit-user-socials-interface";
+import useEditUserSocials from "@/hooks/interface/dashboard/use-edit-user-socials-interface";
 import { Plus, Trash2, X } from "lucide-react";
 import SelectSocialPlatform from "../select-social-platform";
 import Image from "next/image";
@@ -22,13 +22,13 @@ export default function EditUserSocials() {
 		close,
 		display,
 		save,
-		social_account,
-		user_socials_snapshot,
-		api_task,
+		inputSocials,
+		socials,
+		isPending,
 		update,
 		dashboard_view,
 		remove,
-	} = useEditUserSocialsInterface();
+	} = useEditUserSocials();
 	return (
 		<>
 			<Flex flex='column' className='grow gap-3' htmlProps={{ id: "socials" }}>
@@ -46,9 +46,9 @@ export default function EditUserSocials() {
 				</a>
 				{/* Added Socials */}
 				<Flex flex='column' className='gap-3 h-full border-0 p-0'>
-					{user_socials_snapshot.map((social_account, i) => (
+					{socials?.map((account, i) => (
 						<Flex
-							key={social_account.id}
+							key={account.id}
 							className={cn(
 								"group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between",
 								getAnimationClass("swing-in-top-fwd"),
@@ -57,19 +57,19 @@ export default function EditUserSocials() {
 						>
 							<span
 								className='flex w-full gap-3 active:scale-95 transition cursor-pointer'
-								onClick={() => update(social_account)}
+								onClick={() => update(account)}
 							>
 								<Image
-									src={SOCIAL_PLATFORM_ICONS[social_account.platform]}
+									src={SOCIAL_PLATFORM_ICONS[account.platform]}
 									width={24}
 									height={24}
-									alt={social_account.platform}
+									alt={account.platform}
 								/>
-								{social_account.platform}
+								{account.platform}
 							</span>
 							<Trash2
 								className='stroke-light-error active:scale-95 transition group-hover:block hidden cursor-pointer'
-								onClick={() => remove(social_account)}
+								onClick={() => remove(account)}
 							/>
 						</Flex>
 					))}
@@ -110,20 +110,15 @@ export default function EditUserSocials() {
 								type='url'
 								required
 								className='border p-3'
-								value={social_account.profile}
-								onChange={(e) =>
-									capture("profile", e.target.value as SocialPlatforms)
-								}
+								defaultValue={inputSocials.profile}
+								onChange={(e) => capture(e.target.value as SocialPlatforms)}
 							/>
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							{dashboard_view === "add-socials"
 								? "Add Account"
 								: "Update Account"}{" "}
-							{(api_task === "add-social-account" ||
-								api_task === "update-social-account") && (
-								<HashLoader color='#fff' size={24} />
-							)}
+							{isPending && <HashLoader color='#fff' size={24} />}
 						</Button>
 					</form>
 				</Flex>
