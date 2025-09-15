@@ -196,7 +196,7 @@ defaultStore.sub(user_socials_snapshot_jotai, () => {
 
 export type ProfileAvailabilityOptions = (typeof AVAILABILITY_OPTIONS)[number];
 
-export type UserProfile = {
+export type Profile = {
 	id: string;
 	availability: ProfileAvailabilityOptions;
 	title: string;
@@ -204,7 +204,7 @@ export type UserProfile = {
 	overview: string;
 };
 
-export const profile_snapshot_jotai = atom<UserProfile>({
+export const profile_snapshot_jotai = atom<Profile>({
 	id: "",
 	title: "",
 	hourlyRate: 1,
@@ -270,8 +270,8 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 	}
 });
 
-export const profiles_snapshot_jotai = atom<UserProfile[]>([]);
-export const profiles_jotai = atom<UserProfile[]>([]);
+export const profiles_snapshot_jotai = atom<Profile[]>([]);
+export const profiles_jotai = atom<Profile[]>([]);
 defaultStore.sub(profiles_snapshot_jotai, async () => {
 	defaultStore.set(profiles_jotai, defaultStore.get(profiles_snapshot_jotai));
 });

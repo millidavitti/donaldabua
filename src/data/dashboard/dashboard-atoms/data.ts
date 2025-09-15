@@ -5,6 +5,7 @@ import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";
 import { toast } from "sonner";
 import {
 	input_social_atom,
+	Profile,
 	Social,
 	Technology,
 	User,
@@ -18,6 +19,8 @@ import { dashboard_view_jotai, settings_view_atom } from "./dashboard-ui-state";
 import { createSocial } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
 import { updateSocial } from "@/backend/controllers/dashboard/socials/update-user-socials.controller";
 import { deleteSocial } from "@/backend/controllers/dashboard/socials/delete-user-socials.controller";
+import { createProfile } from "@/backend/controllers/dashboard/profile/create-profile.controller";
+import { atomWithReset } from "jotai/utils";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -120,6 +123,27 @@ export const delete_social_atom = atomWithMutation(() => ({
 	mutationKey: ["delete_social"],
 	mutationFn: async (socialId: string) => {
 		const json = await deleteSocial(socialId);
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		console.error(error);
+	},
+	onSettled: async () => {
+		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
+		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
+	},
+}));
+
+export const input_profile_atom = atomWithReset<Partial<Profile>>({
+	title: "",
+});
+
+export const create_profile_atom = atomWithMutation(() => ({
+	mutationKey: ["create_social"],
+	mutationFn: async (profile: Partial<Profile>) => {
+		const json = await createProfile(profile);
 		toast.info(json.message);
 	},
 	onError: (error) => {
