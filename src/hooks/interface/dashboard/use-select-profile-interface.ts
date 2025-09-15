@@ -3,7 +3,7 @@ import {
 	profile_snapshot_jotai,
 	profiles_jotai,
 	profiles_snapshot_jotai,
-	UserProfile,
+	Profile,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { dashboard_view_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { waitForDialog } from "@/utils/wait-for-dialog";
@@ -25,7 +25,7 @@ export default function useSelectProfileInterface() {
 		dashboard_view_setter(null);
 	}
 
-	function select(profile: UserProfile) {
+	function select(profile: Profile) {
 		profile_snapshot_setter(profile);
 		close();
 	}
