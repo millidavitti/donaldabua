@@ -1,28 +1,15 @@
-import { getErrorMessage } from "@/utils/get-error-message";
-
-import {
-	APIResponse,
-	SocialAccount,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function deleteUserSocialsController(socialAccountId: string) {
-	const headers = new Headers();
+export async function deleteSocial(socialId: string) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.socials.delete(socialAccountId), {
+		const res = await fetch(ENDPOINTS.socials.delete(socialId), {
 			method: "DELETE",
 			credentials: "include",
-			headers,
 		});
-		const data = await res.json();
-		return data as APIResponse<SocialAccount, "socialAccount">;
+		const json = await res.json();
+		return json;
 	} catch (error) {
-		console.error("---deleteUserSocialsController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@deleteSocials.controller", error);
 	}
 }
