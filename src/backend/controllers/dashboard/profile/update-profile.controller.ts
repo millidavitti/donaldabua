@@ -1,13 +1,13 @@
 import {
 	APIResponse,
-	UserProfile,
+	Profile,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function updateUserProfile(
 	profileId: string,
-	update: Partial<UserProfile>,
+	update: Partial<Profile>,
 ) {
 	const headers = new Headers();
 	headers.append("Content-type", "application/json");
@@ -25,7 +25,7 @@ export async function updateUserProfile(
 		});
 		const data = await res.json();
 
-		return data as APIResponse<UserProfile, "profile">;
+		return data as APIResponse<Profile, "profile">;
 	} catch (error) {
 		console.error("---updateUserProfile---\n", error);
 		throw error;
