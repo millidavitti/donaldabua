@@ -1,35 +1,26 @@
-import { getErrorMessage } from "@/utils/get-error-message";
-
-import {
-	APIResponse,
-	SocialAccount,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Social } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function createUserSocialsController(
-	userId: string,
-	socialAccount: SocialAccount,
-) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
+export async function createSocial(socials: Social) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
+		delete socials.id;
 
-		const res = await fetch(ENDPOINTS.socials.create(userId), {
+		const res = await fetch(ENDPOINTS.socials.create(), {
 			method: "POST",
 			credentials: "include",
-			headers,
-			body: JSON.stringify(socialAccount),
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify(socials),
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<SocialAccount, "socialAccount">;
+		return json;
 	} catch (error) {
-		console.error("---createUserSocialsController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog(
+			"createSocials@src/backend/controllers/dashboard/socials",
+			error,
+		);
 	}
 }

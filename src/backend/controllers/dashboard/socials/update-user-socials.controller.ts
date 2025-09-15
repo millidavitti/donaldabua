@@ -1,32 +1,23 @@
-import { getErrorMessage } from "@/utils/get-error-message";
-import {
-	APIResponse,
-	SocialAccount,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Social } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateUserSocialsController(
-	socialAccountId: string,
-	update: Partial<SocialAccount>,
-) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
+export async function updateSocial(socials: Partial<Social>) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.socials.update(socialAccountId), {
-			method: "PUT",
-			body: JSON.stringify(update),
-			headers,
+		const res = await fetch(ENDPOINTS.socials.update(), {
+			method: "PATCH",
+			body: JSON.stringify(socials),
+			headers: {
+				"Content-type": "application/json",
+			},
 			credentials: "include",
 		});
-		const data = await res.json();
-		return data as APIResponse<SocialAccount, "socialAccount">;
+		const json = await res.json();
+		return json;
 	} catch (error) {
-		console.error("---updateUserSocialsController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog(
+			"updateSocials@src/backend/controllers/dashboard/socials",
+			error,
+		);
 	}
 }

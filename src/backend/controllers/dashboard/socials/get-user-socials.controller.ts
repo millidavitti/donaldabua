@@ -1,7 +1,7 @@
 import { getErrorMessage } from "@/utils/get-error-message";
 import {
 	APIResponse,
-	SocialAccount,
+	Social,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
@@ -12,7 +12,7 @@ export async function getUserSocialsController(userId: string) {
 			credentials: "include",
 		});
 		const data = await res.json();
-		return data as APIResponse<SocialAccount[], "socials">;
+		return data as APIResponse<Social[], "socials">;
 	} catch (error) {
 		console.error("---getUserSocialsController---\n", error);
 		throw new Error(getErrorMessage(error));

@@ -1,4 +1,4 @@
-import { defaultStore } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { jotaiStore } from "@/components/jotai-store";
 import { dialog_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 
 export function waitForDialog() {
@@ -6,10 +6,10 @@ export function waitForDialog() {
 		setTimeout(() => resolve(false), 30000);
 
 		const checkTask = () => {
-			if (defaultStore.get(dialog_jotai) === "continue") {
+			if (jotaiStore.get(dialog_jotai) === "continue") {
 				console.log("Continued");
 				resolve(true);
-			} else if (defaultStore.get(dialog_jotai) === "cancel") {
+			} else if (jotaiStore.get(dialog_jotai) === "cancel") {
 				console.log("Canceled");
 				resolve(false);
 			} else {
