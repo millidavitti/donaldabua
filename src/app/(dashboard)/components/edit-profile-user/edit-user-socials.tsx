@@ -1,20 +1,15 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import Button from "@/components/ui/button";
 import useEditSocials from "@/hooks/interface/dashboard/use-edit-socials.interface";
-import { Plus, Trash2, X } from "lucide-react";
-import SelectSocialPlatform from "../select-social-platform";
+import { Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import {
 	DELAY,
 	SOCIAL_PLATFORM_ICONS,
 } from "@/data/dashboard/dashboard-constants";
-import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
-import Modal from "@/components/layouts/modal";
 
 export default function EditUserSocials() {
 	const { socials, remove, toggleForm, Modal } = useEditSocials();
