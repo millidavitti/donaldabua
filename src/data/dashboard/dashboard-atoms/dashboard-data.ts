@@ -9,6 +9,7 @@ import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../dashboard-constants";
 import { getProfilesController } from "@/backend/controllers/dashboard/profile/get-profiles.controller";
 import { getUserSocialsController } from "@/backend/controllers/dashboard/socials/get-user-socials.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
+import { atomWithReset } from "jotai/utils";
 
 export const defaultStore = getDefaultStore();
 
@@ -166,7 +167,7 @@ defaultStore.sub(user_location_snapshot_jotai, () => {
 export const user_location_city_jotai = atom<string>("City");
 export const user_location_country_jotai = atom<string>("Country");
 
-export type SocialAccount = {
+export type Social = {
 	id?: string;
 	platform: SocialPlatforms;
 	profile: string;
@@ -174,25 +175,18 @@ export type SocialAccount = {
 
 export type SocialPlatforms = (typeof SOCIAL_PLATFORMS)[number];
 
-export const social_account_snapshot_jotai = atom<SocialAccount>({
+export const social_atom = atom<Social | null>(null);
+export const input_social_atom = atomWithReset<Social>({
 	id: "",
 	platform: "Facebook",
 	profile: "",
 });
-export const input_socials_atom = atom<SocialAccount>({
-	id: "",
-	platform: "Facebook",
-	profile: "",
-});
-defaultStore.sub(social_account_snapshot_jotai, () => {
-	defaultStore.set(
-		input_socials_atom,
-		defaultStore.get(social_account_snapshot_jotai),
-	);
+defaultStore.sub(social_atom, () => {
+	defaultStore.set(input_social_atom, defaultStore.get(social_atom)!);
 });
 
-export const user_socials_snapshot_jotai = atom<SocialAccount[]>([]);
-export const user_socials_jotai = atom<SocialAccount[]>([]);
+export const user_socials_snapshot_jotai = atom<Social[]>([]);
+export const user_socials_jotai = atom<Social[]>([]);
 defaultStore.sub(user_socials_snapshot_jotai, () => {
 	defaultStore.set(
 		user_socials_jotai,

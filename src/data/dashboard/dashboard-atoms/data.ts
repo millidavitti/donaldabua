@@ -4,8 +4,8 @@ import { atom } from "jotai";
 import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";
 import { toast } from "sonner";
 import {
-	input_socials_atom,
-	SocialAccount,
+	input_social_atom,
+	Social,
 	Technology,
 	User,
 	UserLocation,
@@ -15,7 +15,9 @@ import { updateUserLocationController } from "@/backend/controllers/dashboard/us
 import { updateTechnologiesController } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
 import { jotaiStore } from "@/components/jotai-store";
 import { dashboard_view_jotai, settings_view_atom } from "./dashboard-ui-state";
-import { createSocials } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
+import { createSocial } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
+import { updateSocial } from "@/backend/controllers/dashboard/socials/update-user-socials.controller";
+import { deleteSocial } from "@/backend/controllers/dashboard/socials/delete-user-socials.controller";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -79,11 +81,27 @@ export const mutate_technologies_atom = atomWithMutation(() => ({
 	},
 }));
 
-export const mutate_socials_atom = atomWithMutation(() => ({
-	mutationKey: ["mutate_socials"],
-	mutationFn: async (socials: SocialAccount) => {
-		const json = await createSocials(socials);
-		console.log("json: ", json);
+export const create_social_atom = atomWithMutation(() => ({
+	mutationKey: ["create_social"],
+	mutationFn: async (socials: Social) => {
+		const json = await createSocial(socials);
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		console.error(error);
+	},
+	onSettled: async () => {
+		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
+		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
+	},
+}));
+
+export const mutate_social_atom = atomWithMutation(() => ({
+	mutationKey: ["mutate_social"],
+	mutationFn: async (social: Social) => {
+		const json = await updateSocial(social);
 		toast.info(json.message);
 	},
 	onError: (error) => {
@@ -94,6 +112,23 @@ export const mutate_socials_atom = atomWithMutation(() => ({
 	onSettled: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(dashboard_view_jotai, null);
-		jotaiStore.set(input_socials_atom, { platform: "Facebook", profile: "" });
+		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
+	},
+}));
+
+export const delete_social_atom = atomWithMutation(() => ({
+	mutationKey: ["delete_social"],
+	mutationFn: async (socialId: string) => {
+		const json = await deleteSocial(socialId);
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		console.error(error);
+	},
+	onSettled: async () => {
+		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
+		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
 	},
 }));
