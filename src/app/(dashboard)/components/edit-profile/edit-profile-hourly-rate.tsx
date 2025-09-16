@@ -1,72 +1,19 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import Overlay from "@/components/layouts/overlay";
-import Button from "@/components/ui/button";
-import { useEditProfileHourlyRateInterface } from "@/hooks/interface/dashboard/use-edit-profile-hourly-rate-interface";
-import { EditIcon, X } from "lucide-react";
+import { useEditHourlyRate } from "@/hooks/interface/dashboard/use-edit-hourly-rate.interface";
+import { EditIcon } from "lucide-react";
 
 export default function EditProfileHourlyRate() {
-	const {
-		cancelHourlyRateEdit,
-		captureHourlyRateEdit,
-		editHourlyRate,
-		profile_hourly_rate,
-		saveHourlyRateEdit,
-	} = useEditProfileHourlyRateInterface();
+	const { start, hourlyRate, Modal } = useEditHourlyRate();
 	return (
 		<>
-			<Flex className='h-fit items-center justify-between grow'>
-				<p className='font-semibold lg:text-2xl'>${profile_hourly_rate}/hr</p>
-				<InteractiveIcon
-					callback={() => {
-						editHourlyRate();
-					}}
-				>
+			{Modal}
+			<Flex className='h-fit items-center justify-between shrink-0 ml-auto'>
+				<p className='font-semibold lg:text-2xl'>${hourlyRate}/hr</p>
+				<InteractiveIcon callback={start}>
 					<EditIcon size={24} />
 				</InteractiveIcon>
 			</Flex>
-			{/* Overlays */}
-			<Overlay
-				stateFlag='edit-hourly-rate'
-				className='flex justify-center items-center'
-			>
-				<Flex
-					flex='column'
-					className='bg-light-surface gap-3 basis-[480px] neonScan'
-				>
-					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Set hourly rate</h2>
-						<InteractiveIcon callback={() => cancelHourlyRateEdit()}>
-							<X size={24} className='stroke-light-error' />
-						</InteractiveIcon>
-					</Flex>
-
-					<form
-						className='flex flex-col gap-3'
-						onSubmit={(e) => {
-							e.preventDefault();
-							saveHourlyRateEdit();
-						}}
-					>
-						<label className='text-xl font-semibold' htmlFor='title'>
-							Your title
-						</label>
-						<input
-							type='number'
-							id='title'
-							required
-							value={profile_hourly_rate || ""}
-							onChange={(e) => {
-								captureHourlyRateEdit(+e.target.value);
-							}}
-							className='border p-3'
-						/>
-						<Button type='submit' className='bg-black text-light-surface'>
-							Save
-						</Button>
-					</form>
-				</Flex>
-			</Overlay>
 		</>
 	);
 }
