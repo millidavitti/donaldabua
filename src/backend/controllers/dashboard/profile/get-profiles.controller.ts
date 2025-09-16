@@ -1,6 +1,6 @@
 import {
 	APIResponse,
-	UserProfile,
+	Profile,
 } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
@@ -13,7 +13,7 @@ export async function getProfilesController(userId: string) {
 		});
 		const data = await res.json();
 
-		return data as APIResponse<UserProfile[], "profiles">;
+		return data as APIResponse<Profile[], "profiles">;
 	} catch (error) {
 		console.error("---getProfilesController---\n", error);
 		throw new Error(getErrorMessage(error));

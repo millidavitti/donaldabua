@@ -1,34 +1,21 @@
-import {
-	APIResponse,
-	UserProfile,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { Profile } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function createProfileController(
-	userId: string,
-	profile: Partial<UserProfile>,
-) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
+export async function createProfile(profile: Partial<Profile>) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.profile.create(userId), {
+		const res = await fetch(ENDPOINTS.profile.create(), {
 			method: "POST",
 			body: JSON.stringify(profile),
-			headers,
+			headers: {
+				"Content-type": "application/json",
+			},
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<UserProfile, "profile">;
+		return json;
 	} catch (error) {
-		console.error("---createProfileController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@createProfile.controller", error);
 	}
 }

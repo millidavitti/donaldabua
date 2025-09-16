@@ -1,33 +1,19 @@
-import {
-	APIResponse,
-	UserProfile,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { Profile } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateUserProfile(
-	profileId: string,
-	update: Partial<UserProfile>,
-) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
+export async function updateProfile(update: Partial<Profile>) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.profile.update(profileId), {
-			method: "PUT",
+		const res = await fetch(ENDPOINTS.profile.update(), {
+			method: "PATCH",
 			body: JSON.stringify(update),
-			headers,
+			headers: { "Content-type": "application/json" },
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<UserProfile, "profile">;
+		return json;
 	} catch (error) {
-		console.error("---updateUserProfile---\n", error);
-		throw error;
+		generateErrorLog("@updateProfile.controller", error);
 	}
 }

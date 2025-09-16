@@ -1,28 +1,21 @@
-import {
-	APIResponse,
-	UserProfile,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { Profile } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function deleteProfileController(profileId: string) {
-	const headers = new Headers();
-
+export async function deleteProfile(profile: Partial<Profile>) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-		const res = await fetch(ENDPOINTS.profile.delete(profileId), {
+		const res = await fetch(ENDPOINTS.profile.delete(), {
 			method: "DELETE",
 			credentials: "include",
-			headers,
+			body: JSON.stringify(profile),
+			headers: {
+				"Content-Type": "application/json",
+			},
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<UserProfile, "profile">;
+		return json;
 	} catch (error) {
-		console.error("---deleteProfileController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@deleteProfile.controller", error);
 	}
 }
