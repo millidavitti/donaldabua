@@ -194,11 +194,11 @@ defaultStore.sub(user_socials_snapshot_jotai, () => {
 	);
 });
 
-export type ProfileAvailabilityOptions = (typeof AVAILABILITY_OPTIONS)[number];
+export type Availability = (typeof AVAILABILITY_OPTIONS)[number];
 
 export type Profile = {
 	id: string;
-	availability: ProfileAvailabilityOptions;
+	availability: Availability;
 	title: string;
 	hourlyRate: number;
 	overview: string;
@@ -276,8 +276,7 @@ defaultStore.sub(profiles_snapshot_jotai, async () => {
 	defaultStore.set(profiles_jotai, defaultStore.get(profiles_snapshot_jotai));
 });
 
-export const profile_availability_jotai =
-	atom<ProfileAvailabilityOptions>("None");
+export const profile_availability_jotai = atom<Availability>("None");
 export const profile_title_jotai = atom<string>("");
 export const profile_hourly_rate_jotai = atom<number>(1);
 export const profile_overview_jotai = atom<string>("");
