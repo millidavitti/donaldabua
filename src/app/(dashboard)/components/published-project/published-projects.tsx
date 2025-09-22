@@ -42,7 +42,7 @@ export default function PublishedProjects() {
 				className='flex justify-center items-center'
 			>
 				{project_form_step === "draft-project-info" ? (
-					<DraftProject>
+					<DraftProject close={() => {}}>
 						<ContentBuilder />
 					</DraftProject>
 				) : (
