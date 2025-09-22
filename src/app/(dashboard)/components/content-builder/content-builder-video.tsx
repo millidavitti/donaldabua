@@ -1,19 +1,12 @@
 import Flex from "@/components/layouts/flex";
-import {
-	project_content_jotai,
-	ProjectVideo,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import React, { useState } from "react";
-import { component_to_edit_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
-import { useAtom, useSetAtom } from "jotai";
+import { ProjectVideo } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import Button from "@/components/ui/button";
-import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
-import { toast } from "sonner";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
+import useContentBuilderVideo from "@/hooks/interface/dashboard/use-content-builder-video.interface";
 
 interface ContentBuilderVideo {
 	component: ProjectVideo;
@@ -21,23 +14,19 @@ interface ContentBuilderVideo {
 export default function ContentBuilderVideo({
 	component,
 }: ContentBuilderVideo) {
-	const [component_to_edit, component_to_edit_setter] = useAtom(
-		component_to_edit_jotai,
-	);
-	const [videoLink, setVideoLink] = useState(component.url);
-	const project_content_setter = useSetAtom(project_content_jotai);
+	const { componentId, edit, save, captureInput } = useContentBuilderVideo();
 	return (
 		<Flex flex='column' className='relative'>
 			<ContentBuilderOptionsDrawer>
-				<ContentBuilderEditOption componentID={component.id} />
+				<ContentBuilderEditOption edit={() => edit(component.id)} />
 				<ContentBuilderDeleteOption componentID={component.id} />
 				<ContentBuilderMoveUpOption position={component.position} />
 				<ContentBuilderMoveDownOption position={component.position} />
 			</ContentBuilderOptionsDrawer>
-			{component_to_edit === component.id || (
+			{componentId === component.id || (
 				<iframe src={component.url} className='aspect-[16/9]' loading='lazy' />
 			)}
-			{component_to_edit === component.id && (
+			{componentId === component.id && (
 				<Flex flex='column' className='bg-light-surface gap-3'>
 					<Flex flex='column' className='gap-3'>
 						<label className='text-xl font-semibold' htmlFor='title'>
@@ -47,33 +36,14 @@ export default function ContentBuilderVideo({
 							type='url'
 							id='title'
 							required
-							value={videoLink}
-							onChange={(e) => {
-								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-								if (youtubeEmbed) setVideoLink(youtubeEmbed);
-								else
-									toast.info(
-										"Provided an invalid YouTube link: " + e.target.value,
-									);
-							}}
+							defaultValue={component.url}
+							onChange={(e) => captureInput(e.currentTarget.value)}
 							className='outline p-3'
 						/>
 
 						<Button
 							className='bg-black text-light-surface'
-							onClick={() => {
-								project_content_setter((content) => {
-									return content.map((obj) => {
-										if (component.id === obj.id)
-											return {
-												...obj,
-												url: videoLink,
-											};
-										return obj;
-									});
-								});
-								component_to_edit_setter(null);
-							}}
+							onClick={() => save(component.id)}
 						>
 							Save
 						</Button>

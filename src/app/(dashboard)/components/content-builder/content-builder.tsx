@@ -1,13 +1,14 @@
 import Flex from "@/components/layouts/flex";
 import DraftProjectContentOptions from "../draft-project/draft-project-content-options";
-import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
 import ContentBuilderVideo from "./content-builder-video";
-import ContentBuilderText from "./content-builder-text";
+import ContentBuilderMarkdown from "./content-builder-markdown";
 
 export default function ContentBuilder() {
-	const project_content = useAtomValue(project_content_jotai);
+	const input_project_content = useAtomValue(input_project_content_atom);
+
 	return (
 		<Flex
 			flex='column'
@@ -15,9 +16,9 @@ export default function ContentBuilder() {
 			htmlProps={{ id: "content-builder" }}
 		>
 			<DraftProjectContentOptions />
-			{Boolean(project_content.length) && (
+			{Boolean(input_project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3'>
-					{project_content
+					{input_project_content
 						.sort((a, b) => a.position - b.position)
 						.map((component) => {
 							if (component.type === "image")
@@ -36,7 +37,7 @@ export default function ContentBuilder() {
 								);
 							else if (component.type === "markdown")
 								return (
-									<ContentBuilderText
+									<ContentBuilderMarkdown
 										component={component}
 										key={component.id}
 									/>
