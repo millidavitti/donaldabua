@@ -19,7 +19,7 @@ export default function DraftProjectDescription() {
 				maxLength={250}
 				required
 				className={cn(
-					"border p-3 valid:outline-emerald-600",
+					"border p-3 valid:outline-emerald-600 shrink-0",
 					Boolean(input_project.description) && "invalid:outline-red-600",
 				)}
 				value={input_project.description}

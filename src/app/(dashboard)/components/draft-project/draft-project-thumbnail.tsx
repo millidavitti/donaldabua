@@ -18,7 +18,7 @@ export default function DraftProjectThumbnail() {
 				id='draft-project-thumbnail'
 				required
 				className={cn(
-					"border p-3 valid:outline-emerald-600",
+					"border p-3 valid:outline-emerald-600 shrink-0",
 					input_project.thumbnail && "invalid:outline-red-600",
 				)}
 				value={input_project.thumbnail}
@@ -35,7 +35,7 @@ export default function DraftProjectThumbnail() {
 					width={1000}
 					height={1000}
 					alt='thumbnail'
-					className='aspect-[16/9] outline-2 outline neonScan'
+					className='aspect-[16/9] shrink-0 neonScan'
 				/>
 			)}
 		</>

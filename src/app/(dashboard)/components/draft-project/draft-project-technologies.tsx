@@ -27,10 +27,10 @@ export default function DraftProjectTechnologies() {
 			{Boolean(input_project_technologies.length) && (
 				<Flex className='gap-3 shrink-0 overflow-x-auto border-0 p-0'>
 					{input_project_technologies.map((tech) => (
-						<Flex className='gap-3 items-center shrink-0' key={tech.id}>
+						<Flex className='gap-3 items-center shrink-0 p-1' key={tech.id}>
 							<p className='shrink-0 font-medium'>{tech.name}</p>
 							<X
-								size={24}
+								size={16}
 								className='stroke-light-error cursor-pointer active:scale-[.95]'
 								onClick={() => {
 									remove(tech);
@@ -40,25 +40,26 @@ export default function DraftProjectTechnologies() {
 					))}
 				</Flex>
 			)}
-			<Flex flex='column' className='relative overflow-visible border-0 p-0'>
+			<Flex
+				flex='column'
+				className='overflow-visible h-0 gap-3 mb-12 border-0 p-0'
+			>
 				<input
 					type='text'
 					id='select-project-technology'
-					className='border p-3 w-full'
+					className='border p-3 w-full shrink-0'
 					value={searchQuery}
 					onKeyDown={(e) => {
-						close(e.key);
+						if (e.key === "Escape") close();
 					}}
-					onChange={(e) => {
-						search(e.target.value);
-					}}
+					onChange={(e) => search(e.target.value)}
 				/>
 
 				{/* Search Result */}
 				{Boolean(searchResult.length) && (
 					<Flex
 						flex='column'
-						className='absolute gap-3 bg-light-surface top-16 inset-x-0 mx-3 max-h-[320px] z-10'
+						className='gap-3 bg-light-surface mx-3 max-h-[320px] z-10 shrink-0'
 						htmlProps={{
 							id: "search-result",
 						}}
