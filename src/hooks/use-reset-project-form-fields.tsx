@@ -1,35 +1,34 @@
-import {
-	project_content_jotai,
-	project_description_jotai,
-	project_snapshot_jotai,
-	project_technologies_jotai,
-	project_thumbnail_jotai,
-	project_title_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { project_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
 	api_task_atom,
 	dashboard_view_jotai,
 	project_form_step_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useSetAtom } from "jotai";
+import { useResetAtom } from "jotai/utils";
+import {
+	input_project_atom,
+	input_project_content_atom,
+	input_project_technologies_atom,
+} from "@/data/dashboard/dashboard-atoms/data";
 
 export function useResetProjectFormFields() {
-	const project_title_setter = useSetAtom(project_title_jotai);
-	const project_description_setter = useSetAtom(project_description_jotai);
-	const project_content_setter = useSetAtom(project_content_jotai);
-	const project_technologies_setter = useSetAtom(project_technologies_jotai);
-	const project_thumbnail_setter = useSetAtom(project_thumbnail_jotai);
+	const reset_input_project = useResetAtom(input_project_atom);
+	const reset_input_project_content = useResetAtom(input_project_content_atom);
+	const reset_input_project_technologies = useResetAtom(
+		input_project_technologies_atom,
+	);
+
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
 	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const api_task_setter = useSetAtom(api_task_atom);
 
 	function resetProjectFormFields() {
-		project_title_setter("");
-		project_description_setter("");
-		project_content_setter([]);
-		project_technologies_setter([]);
-		project_thumbnail_setter("");
+		reset_input_project();
+		reset_input_project_content();
+		reset_input_project_technologies();
+
 		project_form_step_setter(null);
 		dashboard_view_setter(null);
 		project_snapshot_setter(null);
