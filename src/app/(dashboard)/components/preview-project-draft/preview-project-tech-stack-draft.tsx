@@ -1,10 +1,12 @@
 import Flex from "@/components/layouts/flex";
-import { project_technologies_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { useAtomValue } from "jotai";
 import ProfileTechnology from "../profile-technology";
+import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
 
 export default function PreviewProjectTechnologies() {
-	const project_technologies = useAtomValue(project_technologies_jotai);
+	const input_project_technologies = useAtomValue(
+		input_project_technologies_atom,
+	);
 
 	return (
 		<>
@@ -13,7 +15,7 @@ export default function PreviewProjectTechnologies() {
 				Tech Stack
 			</label>
 			<Flex className='gap-3 flex-wrap shrink-0 border-0 p-0'>
-				{project_technologies.map((tech, i) => (
+				{input_project_technologies.map((tech, i) => (
 					<ProfileTechnology tech={tech} key={tech.id} index={i} />
 				))}
 			</Flex>
