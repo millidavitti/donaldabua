@@ -1,27 +1,22 @@
-import { useResetProjectFormFields } from "../../use-reset-project-form-fields";
 import { useAtomValue, useSetAtom } from "jotai";
 import {
 	component_to_edit_jotai,
 	dashboard_view_jotai,
 	project_form_step_jotai,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
-import {
-	project_content_jotai,
-	project_technologies_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { project_content_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { toast } from "sonner";
+import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
 
 export function useDraftProjectInterface() {
 	const dashboard_view = useAtomValue(dashboard_view_jotai);
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
-	const resetProjectFormFields = useResetProjectFormFields();
 	const component_to_edit_setter = useSetAtom(component_to_edit_jotai);
-	const project_technologies = useAtomValue(project_technologies_jotai);
+	const project_technologies = useAtomValue(input_project_technologies_atom);
 	const project_content = useAtomValue(project_content_jotai);
 
 	function gotToPreview() {
 		const formElements = document.querySelectorAll("[id^='draft']");
-		console.log(formElements);
 		formElements.forEach((el) => {
 			const field = (el as HTMLInputElement).validity;
 			if (!field.valid) {
@@ -56,13 +51,8 @@ export function useDraftProjectInterface() {
 		component_to_edit_setter(null);
 	}
 
-	function closeProjectForm() {
-		resetProjectFormFields();
-	}
 	return {
-		resetProjectFormFields,
 		gotToPreview,
-		closeProjectForm,
 		edit_profile: dashboard_view,
 	};
 }
