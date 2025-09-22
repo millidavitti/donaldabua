@@ -7,14 +7,13 @@ import DraftProjectTitle from "./draft-project-title";
 import DraftProjectDescription from "./draft-project-description";
 import DraftProjectTechnologies from "./draft-project-technologies";
 import DraftProjectThumbnail from "./draft-project-thumbnail";
-import { useDraftProjectInterface } from "@/hooks/interface/dashboard/use-draft-portfolio-project-info-interface";
+import { useDraftProject } from "@/hooks/interface/dashboard/use-draft-project.interface";
 
 interface DraftProject {
 	children: ReactNode;
-	close: () => void;
 }
-export default function DraftProject({ children, close }: DraftProject) {
-	const { edit_profile, gotToPreview } = useDraftProjectInterface();
+export default function DraftProject({ children }: DraftProject) {
+	const { edit_profile, previewDraft, close } = useDraftProject();
 	return (
 		<Flex
 			flex='column'
@@ -53,7 +52,7 @@ export default function DraftProject({ children, close }: DraftProject) {
 					</Flex>
 					{children}
 				</Flex>
-				<Button onClick={gotToPreview} className='bg-black text-light-surface'>
+				<Button onClick={previewDraft} className='bg-black text-light-surface'>
 					Next
 				</Button>
 			</form>

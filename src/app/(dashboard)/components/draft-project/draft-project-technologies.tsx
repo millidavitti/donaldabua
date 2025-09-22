@@ -5,6 +5,7 @@ import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import Button from "@/components/ui/button";
+import ProfileTechnology from "../profile-technology";
 
 export default function DraftProjectTechnologies() {
 	const {
@@ -26,17 +27,16 @@ export default function DraftProjectTechnologies() {
 			</label>
 			{Boolean(input_project_technologies.length) && (
 				<Flex className='gap-3 shrink-0 overflow-x-auto border-0 p-0'>
-					{input_project_technologies.map((tech) => (
-						<Flex className='gap-3 items-center shrink-0 p-1' key={tech.id}>
-							<p className='shrink-0 font-medium'>{tech.name}</p>
+					{input_project_technologies.map((tech, i) => (
+						<ProfileTechnology key={tech.id} tech={tech} index={i}>
 							<X
-								size={16}
+								size={20}
 								className='stroke-light-error cursor-pointer active:scale-[.95]'
 								onClick={() => {
 									remove(tech);
 								}}
 							/>
-						</Flex>
+						</ProfileTechnology>
 					))}
 				</Flex>
 			)}

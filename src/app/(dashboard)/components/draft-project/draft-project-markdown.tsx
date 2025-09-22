@@ -1,9 +1,9 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { VideoIcon } from "lucide-react";
-import useDraftProjectVideo from "@/hooks/interface/dashboard/use-draft-project-video.interface";
+import { Text } from "lucide-react";
+import useDraftProjectMarkdown from "@/hooks/interface/dashboard/use-draft-project-markdown.interface";
 
-export default function DraftProjectVideo() {
-	const { Modal, set_content_hover_state, start } = useDraftProjectVideo();
+export default function DraftProjectMarkdown() {
+	const { Modal, set_content_hover_state, start } = useDraftProjectMarkdown();
 	return (
 		<>
 			{Modal}
@@ -11,7 +11,7 @@ export default function DraftProjectVideo() {
 				className='border grow flex place-content-center'
 				htmlProps={{
 					onMouseEnter() {
-						set_content_hover_state("hover-video-icon");
+						set_content_hover_state("hover-text-icon");
 					},
 					onMouseLeave() {
 						set_content_hover_state(null);
@@ -21,7 +21,7 @@ export default function DraftProjectVideo() {
 					},
 				}}
 			>
-				<VideoIcon />
+				<Text />
 			</InteractiveIcon>
 		</>
 	);
