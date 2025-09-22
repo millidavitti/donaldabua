@@ -1,21 +1,21 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/dashboard/use-draft-project-technologies-interface";
+import useDraftProjectTechnologies from "@/hooks/interface/dashboard/use-draft-project-technologies.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
+import Button from "@/components/ui/button";
 
 export default function DraftProjectTechnologies() {
 	const {
-		addTechnology,
-		captureAndSearch,
-		closeSearchResult,
-		displaySearchResult,
-		project_technologies,
-		removeTechnology,
+		select,
+		search,
+		close,
+		input_project_technologies,
+		remove,
 		searchQuery,
 		searchResult,
-	} = useDraftProjectTechnologiesInterface();
+	} = useDraftProjectTechnologies();
 	return (
 		<>
 			<label
@@ -24,16 +24,16 @@ export default function DraftProjectTechnologies() {
 			>
 				Technologies
 			</label>
-			{Boolean(project_technologies.length) && (
-				<Flex className='gap-3 shrink-0 overflow-x-auto no-scrollbar border-0 p-0'>
-					{project_technologies.map((tech) => (
+			{Boolean(input_project_technologies.length) && (
+				<Flex className='gap-3 shrink-0 overflow-x-auto border-0 p-0'>
+					{input_project_technologies.map((tech) => (
 						<Flex className='gap-3 items-center shrink-0' key={tech.id}>
 							<p className='shrink-0 font-medium'>{tech.name}</p>
 							<X
 								size={24}
 								className='stroke-light-error cursor-pointer active:scale-[.95]'
 								onClick={() => {
-									removeTechnology(tech);
+									remove(tech);
 								}}
 							/>
 						</Flex>
@@ -47,11 +47,10 @@ export default function DraftProjectTechnologies() {
 					className='border p-3 w-full'
 					value={searchQuery}
 					onKeyDown={(e) => {
-						closeSearchResult(e.key);
+						close(e.key);
 					}}
-					onFocus={() => displaySearchResult()}
 					onChange={(e) => {
-						captureAndSearch(e.target.value);
+						search(e.target.value);
 					}}
 				/>
 
@@ -59,7 +58,7 @@ export default function DraftProjectTechnologies() {
 				{Boolean(searchResult.length) && (
 					<Flex
 						flex='column'
-						className='absolute gap-3 bg-light-surface top-16 inset-x-0 mx-3 max-h-36 z-10 no-scrollbar'
+						className='absolute gap-3 bg-light-surface top-16 inset-x-0 mx-3 max-h-[320px] z-10'
 						htmlProps={{
 							id: "search-result",
 						}}
@@ -74,7 +73,7 @@ export default function DraftProjectTechnologies() {
 									)}
 									htmlProps={{
 										onClick() {
-											addTechnology(tech);
+											select(tech);
 										},
 										style: { animationDelay: i * DELAY + "ms" },
 									}}
@@ -83,6 +82,12 @@ export default function DraftProjectTechnologies() {
 								</Flex>
 							);
 						})}
+						<Button
+							className='sticky bottom-0 bg-black text-white'
+							onClick={() => close()}
+						>
+							Cancel
+						</Button>
 					</Flex>
 				)}
 			</Flex>

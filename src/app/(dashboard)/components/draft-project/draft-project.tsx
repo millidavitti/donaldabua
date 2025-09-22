@@ -11,10 +11,10 @@ import { useDraftProjectInterface } from "@/hooks/interface/dashboard/use-draft-
 
 interface DraftProject {
 	children: ReactNode;
+	close: () => void;
 }
-export default function DraftProject({ children }: DraftProject) {
-	const { edit_profile, closeProjectForm, gotToPreview } =
-		useDraftProjectInterface();
+export default function DraftProject({ children, close }: DraftProject) {
+	const { edit_profile, gotToPreview } = useDraftProjectInterface();
 	return (
 		<Flex
 			flex='column'
@@ -24,13 +24,13 @@ export default function DraftProject({ children }: DraftProject) {
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>
 					{edit_profile === "edit-published-project"
-						? "Edit Published Project"
-						: "Add New Project"}
+						? "Update Project"
+						: "Draft Project"}
 				</h2>
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
-							closeProjectForm();
+							close();
 						},
 					}}
 				>
@@ -41,24 +41,19 @@ export default function DraftProject({ children }: DraftProject) {
 				className='flex flex-col gap-3'
 				onSubmit={(e) => {
 					e.preventDefault();
-					closeProjectForm();
+					close();
 				}}
 			>
 				<DraftProjectTitle />
 				<Flex className='gap-3 flex-wrap border-0 p-0'>
 					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
 						<DraftProjectDescription />
-						<DraftProjectTechnologies />
 						<DraftProjectThumbnail />
+						<DraftProjectTechnologies />
 					</Flex>
 					{children}
 				</Flex>
-				<Button
-					onClick={() => {
-						gotToPreview();
-					}}
-					className='bg-black text-light-surface'
-				>
+				<Button onClick={gotToPreview} className='bg-black text-light-surface'>
 					Next
 				</Button>
 			</form>
