@@ -6,6 +6,8 @@ import { toast } from "sonner";
 import {
 	input_social_atom,
 	Profile,
+	Project,
+	ProjectContent,
 	Social,
 	Technology,
 	User,
@@ -211,3 +213,13 @@ export const delete_profile_atom = atomWithMutation(() => ({
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 	},
 }));
+
+export const input_project_atom = atomWithReset<Project>({
+	description: "",
+	id: "",
+	thumbnail: "",
+	title: "",
+});
+export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
+
+export const input_project_content_atom = atomWithReset<ProjectContent[]>([]);
