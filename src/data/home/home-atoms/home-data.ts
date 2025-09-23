@@ -270,7 +270,7 @@ export const project_snapshot_jotai = atom<Project | null>(null);
 export const project_title_jotai = atom<string>("");
 export const project_description_jotai = atom<string>("");
 export const project_thumbnail_jotai = atom<string>("");
-export const project_content_jotai = atom<ProjectContent>([]);
+
 export const project_hay_stack_jotai = atom<Technology[]>([]);
 export const project_technologies_jotai = atom<Technology[]>([]);
 defaultStore.sub(project_technologies_jotai, () => {

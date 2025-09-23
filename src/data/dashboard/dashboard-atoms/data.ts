@@ -222,4 +222,4 @@ export const input_project_atom = atomWithReset<Project>({
 });
 export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
 
-export const input_project_content_atom = atomWithReset<ProjectContent[]>([]);
+export const input_project_content_atom = atomWithReset<ProjectContent>([]);
