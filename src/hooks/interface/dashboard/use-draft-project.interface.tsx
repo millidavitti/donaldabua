@@ -4,14 +4,14 @@ import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/dat
 import { toast } from "sonner";
 import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useEditProjects } from "./use-edit-projects.interface";
-import { useResetProjectFormFields } from "@/hooks/use-reset-project-form-fields";
+import { useResetProjectDraft } from "@/hooks/use-reset-project-draft";
 
 export function useDraftProject() {
 	const dashboard_view = useAtomValue(dashboard_view_jotai);
 	const project_technologies = useAtomValue(input_project_technologies_atom);
 	const project_content = useAtomValue(input_project_content_atom);
 	const set_context = useSetAtom(useEditProjects.context_atom);
-	const resetProjectFormFields = useResetProjectFormFields();
+	const resetProjectFormFields = useResetProjectDraft();
 
 	const close = () => {
 		set_context(null);

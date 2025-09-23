@@ -1,4 +1,4 @@
-import { useResetProjectFormFields } from "../../use-reset-project-form-fields";
+import { useResetProjectDraft } from "../../use-reset-project-draft";
 import ContentBuilder from "@/app/(dashboard)/components/content-builder/content-builder";
 import DraftProject from "@/app/(dashboard)/components/draft-project/draft-project";
 import PreviewProjectDraft from "@/app/(dashboard)/components/preview-project-draft/preview-project-draft";
@@ -6,7 +6,7 @@ import Modal from "@/components/layouts/modal";
 import { atom, useAtom } from "jotai";
 
 export function useEditProjects() {
-	const resetProjectFormFields = useResetProjectFormFields();
+	const resetProjectFormFields = useResetProjectDraft();
 	const [context, set_context] = useAtom(useEditProjects.context_atom);
 
 	function start() {
