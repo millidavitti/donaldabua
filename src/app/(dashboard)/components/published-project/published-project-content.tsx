@@ -1,6 +1,5 @@
 import Flex from "@/components/layouts/flex";
 import ContentBuilderImage from "../content-builder/content-builder-image";
-import { createId } from "@paralleldrive/cuid2";
 import ContentBuilderVideo from "../content-builder/content-builder-video";
 import ContentBuilderMarkdown from "../content-builder/content-builder-markdown";
 import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
