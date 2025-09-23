@@ -1,26 +1,24 @@
 import Flex from "@/components/layouts/flex";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import Overlay from "@/components/layouts/overlay";
 import ViewProject from "../view-project";
-import {
-	project_snapshot_jotai,
-	projects_snapshot_jotai,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { project_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import PublishedProject from "./published-project";
 import DraftProject from "../draft-project/draft-project";
 import ContentBuilder from "../content-builder/content-builder";
 import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
 import { project_form_step_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { HashLoader } from "react-spinners";
+import { projects_atom } from "@/data/dashboard/dashboard-atoms/data";
 
-export default function PublishedProjects() {
-	const projects_snapshot = useAtomValue(projects_snapshot_jotai);
+export default function Projects() {
 	const project_snapshot = useAtomValue(project_snapshot_jotai);
 	const project_form_step = useAtomValue(project_form_step_jotai);
+	const [projects] = useAtom(projects_atom);
 	return (
 		<>
 			<Flex className='flex-wrap gap-3 min-h-[360px] max-h-[720px] border-0 p-0'>
-				{projects_snapshot.map((project, i) => {
+				{projects.data?.map((project, i) => {
 					return (
 						<PublishedProject key={project.id} project={project} index={i} />
 					);
