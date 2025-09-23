@@ -1,4 +1,4 @@
-import { updateUserController } from "@/backend/controllers/dashboard/user/update-user.controller";
+import { updateUser } from "@/backend/controllers/dashboard/user/update-user.controller";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { atom } from "jotai";
 import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";
@@ -14,8 +14,8 @@ import {
 	UserLocation,
 } from "./dashboard-data";
 import { queryClient } from "@/components/query-client";
-import { updateUserLocationController } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
-import { updateTechnologiesController } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
+import { updateLocation } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
+import { updateTechnologies } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
 import { jotaiStore } from "@/components/jotai-store";
 import { dashboard_view_jotai, settings_view_atom } from "./dashboard-ui-state";
 import { createSocial } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
@@ -25,6 +25,10 @@ import { createProfile } from "@/backend/controllers/dashboard/profile/create-pr
 import { atomWithReset } from "jotai/utils";
 import { updateProfile } from "@/backend/controllers/dashboard/profile/update-profile.controller";
 import { deleteProfile } from "@/backend/controllers/dashboard/profile/delete-profile.controller";
+import { createProject } from "@/backend/controllers/dashboard/project/create-project.controller";
+import { getProjects } from "@/backend/controllers/dashboard/project/get-projects.controller";
+import { createId } from "@paralleldrive/cuid2";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -41,15 +45,16 @@ export const payload_view_atom = atomWithQuery(() => ({
 export const mutate_user_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_user"],
 	mutationFn: async (user: Partial<User>) => {
-		const json = await updateUserController(user);
+		const json = await updateUser(user);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@mutate_user_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 	},
 }));
@@ -57,15 +62,16 @@ export const mutate_user_atom = atomWithMutation(() => ({
 export const mutate_location_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_location"],
 	mutationFn: async (location: Partial<UserLocation>) => {
-		const json = await updateUserLocationController(location);
+		const json = await updateLocation(location);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@create_project_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 	},
 }));
@@ -75,14 +81,16 @@ export const technologies_jotai = atom([]);
 export const mutate_technologies_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_technologies"],
 	mutationFn: async (technologies: Technology[]) => {
-		await updateTechnologiesController(technologies);
+		const json = await updateTechnologies(technologies);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
+		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@mutate_technologies_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(settings_view_atom, null);
 	},
@@ -92,14 +100,15 @@ export const create_social_atom = atomWithMutation(() => ({
 	mutationKey: ["create_social"],
 	mutationFn: async (socials: Social) => {
 		const json = await createSocial(socials);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@create_social_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
 	},
@@ -109,14 +118,15 @@ export const mutate_social_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_social"],
 	mutationFn: async (social: Social) => {
 		const json = await updateSocial(social);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@mutate_social_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(dashboard_view_jotai, null);
 		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
@@ -127,14 +137,15 @@ export const delete_social_atom = atomWithMutation(() => ({
 	mutationKey: ["delete_social"],
 	mutationFn: async (socialId: string) => {
 		const json = await deleteSocial(socialId);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@delete_social_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
 	},
@@ -148,14 +159,15 @@ export const create_profile_atom = atomWithMutation(() => ({
 	mutationKey: ["create_social"],
 	mutationFn: async (profile: Partial<Profile>) => {
 		const json = await createProfile(profile);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@create_profile_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 		jotaiStore.set(input_social_atom, { platform: "Facebook", profile: "" });
 	},
@@ -186,14 +198,15 @@ export const mutate_profile_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_profile"],
 	mutationFn: async (profile: Partial<Profile>) => {
 		const json = await updateProfile(profile);
+		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
 	},
 	onError: (error) => {
 		const message = getErrorMessage(error);
 		toast.error(message);
-		console.error(error);
+		generateErrorLog("@mutate_profile_atom", error, "slient");
 	},
-	onSettled: async () => {
+	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["payload_view"] });
 	},
 }));
@@ -216,10 +229,46 @@ export const delete_profile_atom = atomWithMutation(() => ({
 
 export const input_project_atom = atomWithReset<Project>({
 	description: "",
-	id: "",
+	id: createId(),
 	thumbnail: "",
 	title: "",
 });
 export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
 
 export const input_project_content_atom = atomWithReset<ProjectContent>([]);
+
+export const projects_atom = atomWithQuery((get) => ({
+	queryKey: ["projects", get(profile_atom)],
+	queryFn: async () => {
+		const profileId = jotaiStore.get(profile_atom).id;
+		const json = await getProjects(profileId);
+		return json.data as Project[];
+	},
+}));
+
+export const create_project_atom = atomWithMutation(() => ({
+	mutationKey: ["create_project"],
+	mutationFn: async (payload: {
+		project: Project;
+		content: ProjectContent;
+		technologies: Technology[];
+	}) => {
+		const profileId = jotaiStore.get(profile_atom).id;
+		const json = await createProject(profileId, {
+			project: payload.project,
+			content: payload.content,
+			technologies: payload.technologies,
+		});
+
+		if (!json.message) throw new Error("Bad Request", { cause: json });
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		generateErrorLog("@create_project_atom", error, "slient");
+	},
+	onSuccess: async () => {
+		await queryClient.invalidateQueries({ queryKey: ["projects"] });
+	},
+}));

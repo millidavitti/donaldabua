@@ -1,4 +1,4 @@
-import { getProjectsController } from "@/backend/controllers/dashboard/project/get-projects.controller";
+import { getProjects } from "@/backend/controllers/dashboard/project/get-projects.controller";
 import { getUserController } from "@/backend/controllers/dashboard/user/get-user.controller";
 import { getUserLocationController } from "@/backend/controllers/dashboard/user-location/get-user-location.controller";
 import { atom, getDefaultStore } from "jotai";
@@ -246,7 +246,7 @@ defaultStore.sub(profile_snapshot_jotai, async () => {
 	}
 
 	try {
-		const { projects, error } = await getProjectsController(
+		const { projects, error } = await getProjects(
 			defaultStore.get(profile_snapshot_jotai).id,
 		);
 		if (error) throw new Error(error);
