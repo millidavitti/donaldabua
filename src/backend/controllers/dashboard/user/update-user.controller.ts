@@ -2,9 +2,9 @@ import { User } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateUserController(update: Partial<User>) {
+export async function updateUser(update: Partial<User>) {
 	try {
-		const res = await fetch(ENDPOINTS.user.updateUser(), {
+		const res = await fetch(ENDPOINTS.user.update(), {
 			method: "put",
 			body: JSON.stringify(update),
 			headers: {
@@ -15,6 +15,6 @@ export async function updateUserController(update: Partial<User>) {
 		const json = await res.json();
 		return json;
 	} catch (error) {
-		generateErrorLog("@updateUserController", error);
+		generateErrorLog("@updateUser.controller", error);
 	}
 }

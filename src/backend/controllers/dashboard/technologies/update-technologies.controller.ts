@@ -2,7 +2,7 @@ import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateTechnologiesController(technologies: Technology[]) {
+export async function updateTechnologies(technologies: Technology[]) {
 	try {
 		const res = await fetch(ENDPOINTS.technologies.update(), {
 			method: "PATCH",
@@ -16,6 +16,6 @@ export async function updateTechnologiesController(technologies: Technology[]) {
 
 		return json;
 	} catch (error) {
-		generateErrorLog("@updateTechnologiesController", error);
+		generateErrorLog("@updateTechnologies.controller", error);
 	}
 }
