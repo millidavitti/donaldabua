@@ -7,13 +7,13 @@ import PublishedProjectTechnologies from "./published-project/published-project-
 import PublishedProjectThumbnail from "./published-project/published-project-thumbnail";
 import PublishedProjectContent from "./published-project/published-project-content";
 import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { useResetProjectFormFields } from "@/hooks/use-reset-project-form-fields";
+import { useResetProjectDraft } from "@/hooks/use-reset-project-draft";
 
 interface ViewPortfolioProject {
 	project: Project;
 }
 export default function ViewProject({ project }: ViewPortfolioProject) {
-	const resetProjectFormFields = useResetProjectFormFields();
+	const resetProjectFormFields = useResetProjectDraft();
 	return (
 		<Flex
 			flex='column'
