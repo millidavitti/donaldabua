@@ -2,7 +2,7 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Plus } from "lucide-react";
-import PublishedProjects from "../published-project/published-projects";
+import Projects from "../published-project/projects";
 import { useEditProjects } from "@/hooks/interface/dashboard/use-edit-projects.interface";
 
 export default function EditProjects() {
@@ -26,7 +26,7 @@ export default function EditProjects() {
 					</Flex>
 				</a>
 				{/* Projects */}
-				<PublishedProjects />
+				<Projects />
 			</Flex>
 		</>
 	);
