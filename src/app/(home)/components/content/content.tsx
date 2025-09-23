@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { project_content_jotai } from "@/data/home/home-atoms/home-data";
+import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtomValue } from "jotai";
 import ContentImage from "./content-image";
 import ContentVideo from "./content-video";
@@ -7,7 +7,7 @@ import ContentMarkdown from "./content-markdown";
 import { createId } from "@paralleldrive/cuid2";
 
 export default function Content() {
-	const project_content = useAtomValue(project_content_jotai);
+	const project_content = useAtomValue(input_project_content_atom);
 	return (
 		<Flex
 			flex='column'
