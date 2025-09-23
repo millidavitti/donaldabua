@@ -6,10 +6,16 @@ export function generateErrorLog(
 	error: unknown,
 	mode: "slient" | "throw" = "throw",
 ) {
-	const log = `🚨 ${chalk.red.bold("[Client][Error]")}: ${chalk.blue.bold(
+	const log = `🚨 ${chalk.red.bold("[Error]")}: ${chalk.blue.bold(
 		fnName,
 	)} - | ${chalk.cyan.bold("Message")}: ${chalk.bold(getErrorMessage(error))}`;
 	console.error(log);
 	console.error(error);
+	console.error(
+		"Cause:",
+		(error as Record<string, unknown>).cause ||
+			chalk.italic("Cause not available"),
+	);
+
 	if (mode === "throw") throw error;
 }
