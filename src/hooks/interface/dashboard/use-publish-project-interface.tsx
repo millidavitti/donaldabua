@@ -1,7 +1,7 @@
 import {
 	defaultStore,
 	profile_snapshot_jotai,
-	project_content_jotai,
+	input_project_content_atom,
 	project_description_jotai,
 	project_technologies_jotai,
 	project_thumbnail_jotai,
@@ -25,7 +25,7 @@ export function usePublishProjectInterface() {
 	const project_snapshot = useAtomValue(project_snapshot_jotai);
 	const dashboard_view = useAtomValue(dashboard_view_jotai);
 	const profile_snapshot = useAtomValue(profile_snapshot_jotai);
-	const project_content = useAtomValue(project_content_jotai);
+	const project_content = useAtomValue(input_project_content_atom);
 	const project_technologies = useAtomValue(project_technologies_jotai);
 	const [api_task, api_task_setter] = useAtom(api_task_atom);
 	const resetProjectFormFields = useResetProjectFormFields();

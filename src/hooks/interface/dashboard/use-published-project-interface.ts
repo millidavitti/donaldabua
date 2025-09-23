@@ -1,7 +1,7 @@
 import { getProjectContentController } from "@/backend/controllers/dashboard/project/get-project-content.controller";
 import { getProjectTechnologiesController } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import {
-	project_content_jotai,
+	input_project_content_atom,
 	project_technologies_jotai,
 	Project,
 	project_snapshot_jotai,
@@ -13,7 +13,7 @@ import { toast } from "sonner";
 export default function usePublishedProjectInterface() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
-	const project_content_setter = useSetAtom(project_content_jotai);
+	const project_content_setter = useSetAtom(input_project_content_atom);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
 
 	async function viewProject(project: Project) {

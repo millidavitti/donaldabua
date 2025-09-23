@@ -3,21 +3,19 @@ import ContentBuilder from "@/app/(dashboard)/components/content-builder/content
 import DraftProject from "@/app/(dashboard)/components/draft-project/draft-project";
 import PreviewProjectDraft from "@/app/(dashboard)/components/preview-project-draft/preview-project-draft";
 import Modal from "@/components/layouts/modal";
-import { useState } from "react";
+import { atom, useAtom } from "jotai";
 
 export function useEditProjects() {
 	const resetProjectFormFields = useResetProjectFormFields();
-	const [context, setContext] = useState<
-		"draft-project" | "preview-draft" | null
-	>(null);
+	const [context, set_context] = useAtom(useEditProjects.context_atom);
 
 	function start() {
 		resetProjectFormFields();
-		setContext("draft-project");
+		set_context("draft-project");
 	}
 
 	const close = () => {
-		setContext(null);
+		set_context(null);
 		resetProjectFormFields();
 	};
 	return {
@@ -25,7 +23,7 @@ export function useEditProjects() {
 		Modal: context && (
 			<Modal close={close}>
 				{context === "draft-project" && (
-					<DraftProject close={close}>
+					<DraftProject>
 						<ContentBuilder />
 					</DraftProject>
 				)}
@@ -34,3 +32,7 @@ export function useEditProjects() {
 		),
 	};
 }
+
+useEditProjects.context_atom = atom<"draft-project" | "preview-draft" | null>(
+	null,
+);

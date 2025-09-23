@@ -1,7 +1,7 @@
 import { getProjectContentController } from "@/backend/controllers/dashboard/project/get-project-content.controller";
 import { getProjectTechnologiesController } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import {
-	project_content_jotai,
+	input_project_content_atom,
 	project_description_jotai,
 	project_technologies_jotai,
 	project_thumbnail_jotai,
@@ -24,7 +24,7 @@ export function usePublishedProjectEditOptionInterface() {
 	const project_description_setter = useSetAtom(project_description_jotai);
 	const project_technologies_setter = useSetAtom(project_technologies_jotai);
 	const project_thumbnail_setter = useSetAtom(project_thumbnail_jotai);
-	const project_content_setter = useSetAtom(project_content_jotai);
+	const project_content_setter = useSetAtom(input_project_content_atom);
 
 	async function editProject(project: Project) {
 		dashboard_view_setter("edit-published-project");
