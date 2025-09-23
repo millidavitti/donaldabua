@@ -1,20 +1,15 @@
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import {
-	APIResponse,
-	Project,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function getProjectsController(profileId: string) {
+export async function getProjects(profileId: string) {
 	try {
 		const res = await fetch(ENDPOINTS.project.list(profileId), {
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<Project[], "projects">;
+		return json;
 	} catch (error) {
-		console.error("---getProjectsController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@getProjects.controller:", error);
 	}
 }
