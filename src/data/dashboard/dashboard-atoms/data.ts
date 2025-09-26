@@ -29,6 +29,8 @@ import { createProject } from "@/backend/controllers/dashboard/project/create-pr
 import { getProjects } from "@/backend/controllers/dashboard/project/get-projects.controller";
 import { createId } from "@paralleldrive/cuid2";
 import { generateErrorLog } from "@/utils/generate-error-log";
+import { getProjectTechnologies } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
+import { getProjectContent } from "@/backend/controllers/dashboard/project/get-project-content.controller";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -253,6 +255,7 @@ export const create_project_atom = atomWithMutation(() => ({
 		content: ProjectContent;
 		technologies: Technology[];
 	}) => {
+		console.log(payload.content);
 		const profileId = jotaiStore.get(profile_atom).id;
 		const json = await createProject(profileId, {
 			project: payload.project,
@@ -270,5 +273,27 @@ export const create_project_atom = atomWithMutation(() => ({
 	},
 	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["projects"] });
+	},
+}));
+
+export const project_atom = atom<Project | null>(null);
+export const project_technologies_atom = atomWithQuery((get) => ({
+	queryKey: ["project_technologies", get(project_atom)],
+	queryFn: async () => {
+		const projectId = jotaiStore.get(project_atom)?.id;
+		if (!projectId) return [];
+		const json = await getProjectTechnologies(projectId);
+		return json.data as Technology[];
+	},
+}));
+
+export const project_content_atom = atomWithQuery((get) => ({
+	queryKey: ["project_content", get(project_atom)],
+	queryFn: async () => {
+		const projectId = jotaiStore.get(project_atom)?.id;
+		if (!projectId) return [];
+		const json = await getProjectContent(projectId);
+		console.log(json.data);
+		return json.data as ProjectContent;
 	},
 }));
