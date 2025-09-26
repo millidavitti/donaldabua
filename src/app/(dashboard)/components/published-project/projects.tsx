@@ -1,40 +1,18 @@
 import Flex from "@/components/layouts/flex";
-import { useAtom, useAtomValue } from "jotai";
-import Overlay from "@/components/layouts/overlay";
-import ViewProject from "../view-project";
-import { project_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import PublishedProject from "./published-project";
-import DraftProject from "../draft-project/draft-project";
-import ContentBuilder from "../content-builder/content-builder";
-import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
-import { project_form_step_jotai } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
-import { HashLoader } from "react-spinners";
-import { projects_atom } from "@/data/dashboard/dashboard-atoms/data";
+import Project from "./published-project";
+import useProjects from "@/hooks/interface/dashboard/use-projects.interface";
 
 export default function Projects() {
-	const project_snapshot = useAtomValue(project_snapshot_jotai);
-	const project_form_step = useAtomValue(project_form_step_jotai);
-	const [projects] = useAtom(projects_atom);
+	const { projects } = useProjects();
 	return (
 		<>
 			<Flex className='flex-wrap gap-3 min-h-[360px] max-h-[720px] border-0 p-0'>
-				{projects.data?.map((project, i) => {
-					return (
-						<PublishedProject key={project.id} project={project} index={i} />
-					);
+				{projects?.map((project, i) => {
+					return <Project key={project.id} project={project} index={i} />;
 				})}
 			</Flex>
 
-			<Overlay
-				stateFlag='view-project'
-				className='flex justify-center items-center'
-			>
-				{project_snapshot ? (
-					<ViewProject project={project_snapshot} />
-				) : (
-					<HashLoader />
-				)}
-			</Overlay>
+			{/* 
 			<Overlay
 				stateFlag='edit-published-project'
 				className='flex justify-center items-center'
@@ -50,7 +28,7 @@ export default function Projects() {
 				{project_form_step === "preview-project-draft" && (
 					<PreviewProjectDraft />
 				)}
-			</Overlay>
+			</Overlay> */}
 		</>
 	);
 }

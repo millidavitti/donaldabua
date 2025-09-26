@@ -2,14 +2,16 @@ import Flex from "@/components/layouts/flex";
 import ContentBuilderImage from "../content-builder/content-builder-image";
 import ContentBuilderVideo from "../content-builder/content-builder-video";
 import ContentBuilderMarkdown from "../content-builder/content-builder-markdown";
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
-import { useAtomValue } from "jotai";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 
-export default function PublishedProjectContent() {
-	const project_content = useAtomValue(input_project_content_atom);
+export default function PublishedProjectContent({
+	content,
+}: {
+	content: ProjectContent;
+}) {
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
-			{project_content
+			{content
 				.sort((a, b) => a.position - b.position)
 				.map((component) => {
 					if (component.type === "image")

@@ -1,10 +1,11 @@
 import Flex from "@/components/layouts/flex";
-import { project_technologies_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { useAtomValue } from "jotai";
+import { Technology } from "@/data/home/home-atoms/home-data";
 
-export default function PublishedProjectTechnologies() {
-	const project_technologies = useAtomValue(project_technologies_jotai);
-
+export default function PublishedProjectTechnologies({
+	technologies,
+}: {
+	technologies: Technology[];
+}) {
 	return (
 		<>
 			{/* Technologies */}
@@ -12,7 +13,7 @@ export default function PublishedProjectTechnologies() {
 				Technologies
 			</label>
 			<Flex className='gap-3 flex-wrap shrink-0 border-0 p-0'>
-				{project_technologies.map((tech) => (
+				{technologies.map((tech) => (
 					<Flex className='gap-3 items-center' key={tech.id}>
 						<p className='shrink-0 font-medium'>{tech.name}</p>
 					</Flex>
