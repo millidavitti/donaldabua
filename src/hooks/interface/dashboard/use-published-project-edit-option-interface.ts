@@ -1,5 +1,5 @@
-import { getProjectContentController } from "@/backend/controllers/dashboard/project/get-project-content.controller";
-import { getProjectTechnologiesController } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
+import { getProjectContent } from "@/backend/controllers/dashboard/project/get-project-content.controller";
+import { getProjectTechnologies } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import {
 	input_project_content_atom,
 	project_description_jotai,
@@ -37,8 +37,8 @@ export function usePublishedProjectEditOptionInterface() {
 				{ projectTechnologies, error: projectTechnologiesError },
 				{ projectContent, error: projectContentError },
 			] = await Promise.all([
-				getProjectTechnologiesController(project.id),
-				getProjectContentController(project.id),
+				getProjectTechnologies(project.id),
+				getProjectContent(project.id),
 			]);
 
 			if (projectTechnologiesError || projectContentError)

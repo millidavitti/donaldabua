@@ -1,6 +1,5 @@
 import {
 	defaultStore,
-	input_project_content_atom,
 	project_description_jotai,
 	project_thumbnail_jotai,
 	project_title_jotai,
@@ -16,6 +15,7 @@ import {
 	create_project_atom,
 	input_project_atom,
 	input_project_technologies_atom,
+	input_project_content_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import { useEditProjects } from "./use-edit-projects.interface";
 
