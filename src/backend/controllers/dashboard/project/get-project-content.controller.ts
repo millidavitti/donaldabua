@@ -1,19 +1,15 @@
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import {
-	APIResponse,
-	ProjectContent,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function getProjectContentController(projectId: string) {
+export async function getProjectContent(projectId: string) {
 	try {
 		const res = await fetch(ENDPOINTS.projectContent.list(projectId), {
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<ProjectContent, "projectContent">;
+		return json;
 	} catch (error) {
-		console.error("---getProjectContentController---\n", error);
-		throw error;
+		generateErrorLog("@getProjectContent.controller:", error);
 	}
 }

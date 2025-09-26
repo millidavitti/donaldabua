@@ -1,20 +1,16 @@
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import {
-	APIResponse,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { getErrorMessage } from "@/utils/get-error-message";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function getProjectTechnologiesController(projectId: string) {
+export async function getProjectTechnologies(projectId: string) {
 	try {
-		const res = await fetch(ENDPOINTS.projectTechnology.list(projectId), {
+		const res = await fetch(ENDPOINTS.projectTechnologies.list(projectId), {
+			method: "GET",
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<Technology[], "projectTechnologies">;
+		return json;
 	} catch (error) {
-		console.error("---getProjectTechnologiesController---\n", error);
-		throw new Error(getErrorMessage(error));
+		generateErrorLog("@getProjectTechnologies.controller", error);
 	}
 }
