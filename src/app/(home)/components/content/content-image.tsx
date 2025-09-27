@@ -1,15 +1,15 @@
 import Flex from "@/components/layouts/flex";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 import Image from "next/image";
-import { ProjectImage } from "@/data/home/home-atoms/home-data";
 
 interface ContentImage {
-	component: ProjectImage;
+	component: ProjectContent;
 }
 export default function ContentImage({ component }: ContentImage) {
 	return (
 		<Flex flex='column' className='relative outline-0 border'>
 			<Image
-				src={component.url}
+				src={component.url!}
 				width={1000}
 				height={1000}
 				alt=''

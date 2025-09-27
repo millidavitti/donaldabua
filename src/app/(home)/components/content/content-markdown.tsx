@@ -1,10 +1,10 @@
 import Flex from "@/components/layouts/flex";
-import { ProjectMarkdown } from "@/data/home/home-atoms/home-data";
 import md from "md";
 import parse from "html-react-parser";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 
 interface ContentMarkdown {
-	component: ProjectMarkdown;
+	component: ProjectContent;
 }
 export default function ContentMarkdown({ component }: ContentMarkdown) {
 	return (
