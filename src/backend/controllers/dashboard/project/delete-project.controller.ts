@@ -1,7 +1,4 @@
-import {
-	APIResponse,
-	Project,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { APIResponse, Project } from "@/data/dashboard/dashboard-atoms/types";
 import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 

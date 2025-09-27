@@ -2,7 +2,7 @@ import {
 	Project,
 	ProjectContent,
 	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+} from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
@@ -11,7 +11,7 @@ export async function createProject(
 	project: {
 		project: Project;
 		technologies: Technology[];
-		content: ProjectContent;
+		content: ProjectContent[];
 	},
 ) {
 	try {
