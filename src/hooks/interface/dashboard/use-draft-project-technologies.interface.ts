@@ -24,14 +24,16 @@ export default function useDraftProjectTechnologies() {
 	const technologies = payload_view.data?.technologies as Technology[];
 	const search = (searchQuery: string) => {
 		const tech = new FuzzySearch(technologies, ["name"]);
-		const searchResult = [
-			...new Set([
-				...tech.search(searchQuery).map((t) => t.id),
-				...technologies.map((t) => t.id),
-			]).symmetricDifference(
-				new Set(input_project_technologies.map((t) => t.id)),
-			),
-		].map((id) => technologies.find((tech) => tech.id === id)!);
+		const symmetricDifference = new Set([
+			...tech.search(searchQuery).map((t) => t.id),
+			...technologies.map((t) => t.id),
+		]).symmetricDifference(
+			new Set(input_project_technologies.map((t) => t.id)),
+		);
+
+		const searchResult = technologies.filter((tech) =>
+			symmetricDifference.has(tech.id),
+		);
 
 		setSearchQuery(searchQuery);
 		setSearchResult(searchResult);
