@@ -30,6 +30,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { generateErrorLog } from "@/utils/generate-error-log";
 import { getProjectTechnologies } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import { getProjectContent } from "@/backend/controllers/dashboard/project/get-project-content.controller";
+import { updateProject } from "@/backend/controllers/dashboard/project/update-project.controller";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -260,7 +261,6 @@ export const create_project_atom = atomWithMutation(() => ({
 		content: ProjectContent[];
 		technologies: Technology[];
 	}) => {
-		console.log(payload.content);
 		const profileId = jotaiStore.get(profile_atom).id;
 		const json = await createProject(profileId, {
 			project: payload.project,
@@ -278,6 +278,34 @@ export const create_project_atom = atomWithMutation(() => ({
 	},
 	onSuccess: async () => {
 		await queryClient.invalidateQueries({ queryKey: ["projects"] });
+	},
+}));
+
+export const mutate_project_atom = atomWithMutation(() => ({
+	mutationKey: ["mutate_project"],
+	mutationFn: async (payload: {
+		project: Project;
+		content: ProjectContent[];
+		technologies: Technology[];
+	}) => {
+		const json = await updateProject({
+			project: payload.project,
+			content: payload.content,
+			technologies: payload.technologies,
+		});
+
+		if (!json.message) throw new Error("Bad Request", { cause: json });
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		generateErrorLog("@mutate_project_atom", error, "slient");
+	},
+	onSuccess: async () => {
+		await queryClient.invalidateQueries({
+			queryKey: ["projects", "project_technologies", "project_content"],
+		});
 	},
 }));
 
