@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { ProjectImage } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 import Button from "@/components/ui/button";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
@@ -10,7 +10,7 @@ import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 import { useContentBuilderImage } from "@/hooks/interface/dashboard/use-content-builder-image.interface";
 
 interface ContentBuilderImage {
-	component: ProjectImage;
+	component: ProjectContent;
 }
 export default function ContentBuilderImage({
 	component,
@@ -26,7 +26,7 @@ export default function ContentBuilderImage({
 			</ContentBuilderOptionsDrawer>
 			{componentId === component.id || (
 				<Image
-					src={component.url}
+					src={component.url!}
 					width={1000}
 					height={1000}
 					alt=''
@@ -43,7 +43,7 @@ export default function ContentBuilderImage({
 							type='url'
 							id='title'
 							required
-							defaultValue={component.url}
+							defaultValue={component.url!}
 							onChange={(e) => captureInput(e.target.value)}
 							className='outline p-3'
 						/>

@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { ProjectMarkdown } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 import md from "md";
 import parse from "html-react-parser";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
@@ -10,7 +10,7 @@ import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
 import { useContentBuilderMarkdown } from "@/hooks/interface/dashboard/use-content-builder-markdown.interface";
 
 interface ContentBuilderMarkdown {
-	component: ProjectMarkdown;
+	component: ProjectContent;
 }
 export default function ContentBuilderMarkdown({
 	component,
@@ -38,7 +38,7 @@ export default function ContentBuilderMarkdown({
 			{componentId === component.id || parse(md(component.markdown))}
 			{componentId === component.id && (
 				<textarea
-					defaultValue={component.markdown}
+					defaultValue={component.markdown!}
 					className='shrink-0 p-3 neonScan'
 					rows={30}
 					onChange={(e) => {
