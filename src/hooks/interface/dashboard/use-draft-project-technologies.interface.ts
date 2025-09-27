@@ -1,4 +1,4 @@
-import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Technology } from "@/data/dashboard/dashboard-atoms/types";
 import {
 	input_project_technologies_atom,
 	payload_view_atom,

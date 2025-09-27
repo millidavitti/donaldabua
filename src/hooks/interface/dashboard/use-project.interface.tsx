@@ -1,4 +1,4 @@
-import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Project } from "@/data/dashboard/dashboard-atoms/types";
 import { useAtom } from "jotai";
 import {
 	project_atom,
@@ -22,6 +22,11 @@ export default function useProject() {
 	const [project_content] = useAtom(project_content_atom);
 	const [project, set_project] = useAtom(project_atom);
 	const [context, setContext] = useState<"view-project" | null>(null);
+	const isProjectReady =
+		project &&
+		!(project_technologies.isFetching || project_content.isFetching) &&
+		project_technologies.isSuccess &&
+		project_content.isSuccess;
 
 	const view = async (project: Project) => {
 		setContext("view-project");
@@ -36,42 +41,38 @@ export default function useProject() {
 		view,
 		Modal: context && (
 			<Modal close={close}>
-				{project &&
-					project_technologies.isSuccess &&
-					project_content.isSuccess && (
-						<Flex
-							flex='column'
-							className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
-						>
-							{/* Header */}
-							<Flex className='justify-between items-center shrink-0 border-0 p-0'>
-								<InteractiveIcon callback={close}>
-									<ArrowLeftIcon size={24} />
-								</InteractiveIcon>
-							</Flex>
+				{isProjectReady && (
+					<Flex
+						flex='column'
+						className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
+					>
+						{/* Header */}
+						<Flex className='justify-between items-center shrink-0 border-0 p-0'>
+							<InteractiveIcon callback={close}>
+								<ArrowLeftIcon size={24} />
+							</InteractiveIcon>
+						</Flex>
 
-							<Flex flex='column' className='gap-3'>
-								{/* Project Title */}
-								<PublishedProjectTitle title={project.title} />
+						<Flex flex='column' className='gap-3'>
+							{/* Project Title */}
+							<PublishedProjectTitle title={project.title} />
 
-								<Flex className='gap-3 flex-wrap border-0 p-0'>
-									<Flex flex='column' className='grow gap-3 basis-[360px]'>
-										<PublishedProjectDescription
-											description={project.description}
-										/>
-										<PublishedProjectTechnologies
-											technologies={project_technologies.data}
-										/>
-										<PublishedProjectThumbnail thumbnail={project.thumbnail} />
-									</Flex>
-									<PublishedProjectContent content={project_content.data} />
+							<Flex className='gap-3 flex-wrap border-0 p-0'>
+								<Flex flex='column' className='grow gap-3 basis-[360px]'>
+									<PublishedProjectDescription
+										description={project.description}
+									/>
+									<PublishedProjectTechnologies
+										technologies={project_technologies.data}
+									/>
+									<PublishedProjectThumbnail thumbnail={project.thumbnail} />
 								</Flex>
+								<PublishedProjectContent content={project_content.data} />
 							</Flex>
 						</Flex>
-					)}
-				{(project_technologies.isSuccess && project_content.isSuccess) || (
-					<HashLoader size={48} color='#fff' />
+					</Flex>
 				)}
+				{isProjectReady || <HashLoader size={48} color='#fff' />}
 			</Modal>
 		),
 	};

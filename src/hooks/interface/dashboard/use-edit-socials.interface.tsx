@@ -1,14 +1,14 @@
 import {
-	input_social_atom,
 	Social,
 	SocialPlatforms,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+} from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom } from "jotai";
 import useDialog from "../../use-dialog";
 import {
 	create_social_atom,
 	delete_social_atom,
+	input_social_atom,
 	mutate_social_atom,
 	payload_view_atom,
 } from "@/data/dashboard/dashboard-atoms/data";

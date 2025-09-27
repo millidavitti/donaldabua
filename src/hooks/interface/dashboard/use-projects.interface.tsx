@@ -1,4 +1,4 @@
-import { Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Project } from "@/data/dashboard/dashboard-atoms/types";
 import { projects_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtom } from "jotai";
 
