@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import Project from "./published-project";
+import Project from "./project";
 import useProjects from "@/hooks/interface/dashboard/use-projects.interface";
 
 export default function Projects() {

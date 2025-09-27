@@ -1,8 +1,8 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { type Project } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { type Project } from "@/data/dashboard/dashboard-atoms/types";
 import PublishedProjectOptions from "./published-project-options";
-import PublishedProjectEditOption from "./options/published-project-edit-option";
+import ProjectEdit from "./options/project-edit";
 import PublishedProjectDeleteOption from "./options/published-project-delete-option";
 import useProject from "@/hooks/interface/dashboard/use-project.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
@@ -52,7 +52,7 @@ export default function Project({
 					<p className='text-lg font-semibold'>{project.title}</p>
 				</Flex>
 				<PublishedProjectOptions>
-					<PublishedProjectEditOption project={project} />
+					<ProjectEdit project={project} />
 					<PublishedProjectDeleteOption projectID={project.id} />
 				</PublishedProjectOptions>
 			</Flex>

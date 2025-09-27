@@ -2,12 +2,12 @@ import Flex from "@/components/layouts/flex";
 import ContentBuilderImage from "../content-builder/content-builder-image";
 import ContentBuilderVideo from "../content-builder/content-builder-video";
 import ContentBuilderMarkdown from "../content-builder/content-builder-markdown";
-import { ProjectContent } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 
 export default function PublishedProjectContent({
 	content,
 }: {
-	content: ProjectContent;
+	content: ProjectContent[];
 }) {
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
