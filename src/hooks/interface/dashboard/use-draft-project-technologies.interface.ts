@@ -13,52 +13,50 @@ export default function useDraftProjectTechnologies() {
 	const [input_project_technologies, set_input_project_technologies] = useAtom(
 		input_project_technologies_atom,
 	);
+
 	const [payload_view] = useAtom(payload_view_atom);
 
-	function remove(tech: Technology) {
-		const technologies = input_project_technologies.filter(
-			(technology) => technology.id !== tech.id,
-		);
-		const searchResult = [
-			...new Set(
-				payload_view.data?.technologies as Technology[],
-			).symmetricDifference(new Set(technologies)),
-		];
-		setSearchResult(searchResult);
-		set_input_project_technologies(technologies);
-	}
-
-	function close() {
+	const close = () => {
 		setSearchResult([]);
 		setSearchQuery("");
-	}
+	};
 
-	function search(searchQuery: string) {
-		const technologies = new FuzzySearch(
-			payload_view.data?.technologies as Technology[],
-			["name"],
-		);
+	const technologies = payload_view.data?.technologies as Technology[];
+	const search = (searchQuery: string) => {
+		const tech = new FuzzySearch(technologies, ["name"]);
 		const searchResult = [
 			...new Set([
-				...technologies.search(searchQuery),
-				...(payload_view.data?.technologies as Technology[]),
-			]).symmetricDifference(new Set(input_project_technologies)),
-		];
+				...tech.search(searchQuery).map((t) => t.id),
+				...technologies.map((t) => t.id),
+			]).symmetricDifference(
+				new Set(input_project_technologies.map((t) => t.id)),
+			),
+		].map((id) => technologies.find((tech) => tech.id === id)!);
+
 		setSearchQuery(searchQuery);
 		setSearchResult(searchResult);
-	}
+	};
 
-	function select(technology: Technology) {
+	const select = (technology: Technology) => {
 		const technologies = new Set([technology, ...input_project_technologies]);
 		const searchResult = [
-			...new Set(
-				payload_view.data?.technologies as Technology[],
-			).symmetricDifference(new Set(technologies)),
+			...new Set(technologies).symmetricDifference(new Set(technologies)),
 		];
 
 		setSearchResult(searchResult);
 		set_input_project_technologies([...technologies]);
-	}
+	};
+
+	const remove = (tech: Technology) => {
+		const technologies = input_project_technologies.filter(
+			(technology) => technology.id !== tech.id,
+		);
+		const searchResult = [
+			...new Set(technologies).symmetricDifference(new Set(technologies)),
+		];
+		setSearchResult(searchResult);
+		set_input_project_technologies(technologies);
+	};
 
 	return {
 		remove,

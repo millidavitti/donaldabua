@@ -16,7 +16,7 @@ export function useEditProjects() {
 	const [project_content] = useAtom(project_content_atom);
 	const [project_technologies] = useAtom(project_technologies_atom);
 	const isProjectReady =
-		context === "draft-project" &&
+		(context === "draft-project" || context === "update-project") &&
 		!(project_technologies.isFetching || project_content.isFetching);
 	const start = () => {
 		resetProjectFormFields();
@@ -36,13 +36,17 @@ export function useEditProjects() {
 						<ContentBuilder />
 					</DraftProject>
 				)}
-				{isProjectReady || <HashLoader size={48} color='#fff' />}
-				{context === "preview-draft" && <PreviewProjectDraft />}
+				{isProjectReady ||
+					context === "preview-draft" ||
+					context === "preview-update" || <HashLoader size={48} color='#fff' />}
+				{(context === "preview-draft" || context === "preview-update") && (
+					<PreviewProjectDraft />
+				)}
 			</Modal>
 		),
 	};
 }
 
-useEditProjects.context_atom = atom<"draft-project" | "preview-draft" | null>(
-	null,
-);
+useEditProjects.context_atom = atom<
+	"draft-project" | "preview-draft" | "update-project" | "preview-update" | null
+>(null);

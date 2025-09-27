@@ -1,10 +1,11 @@
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { useResetProjectDraft } from "../../use-reset-project-draft";
 import {
 	create_project_atom,
 	input_project_atom,
 	input_project_technologies_atom,
 	input_project_content_atom,
+	mutate_project_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import { useEditProjects } from "./use-edit-projects.interface";
 
@@ -16,13 +17,14 @@ export function usePublishProject() {
 
 	const resetProjectDraft = useResetProjectDraft();
 	const [create_project] = useAtom(create_project_atom);
+	const [mutate_project] = useAtom(mutate_project_atom);
 	const input_project = useAtomValue(input_project_atom);
-	const set_context = useSetAtom(useEditProjects.context_atom);
+	const [context, set_context] = useAtom(useEditProjects.context_atom);
 	const close = () => {
 		set_context(null);
 		resetProjectDraft();
 	};
-	const publish = async () => {
+	const create = async () => {
 		await create_project.mutateAsync({
 			content: input_project_content,
 			project: input_project,
@@ -31,11 +33,31 @@ export function usePublishProject() {
 		close();
 	};
 
-	async function savePublishedProjectEdit() {}
+	const update = async () => {
+		await mutate_project.mutateAsync({
+			content: input_project_content,
+			project: input_project,
+			technologies: input_project_technologies,
+		});
+		close();
+	};
+
+	const publish = async () => {
+		switch (context) {
+			case "preview-draft":
+				await create();
+				break;
+			case "preview-update":
+				await update();
+				break;
+			default:
+				break;
+		}
+	};
 
 	return {
 		publish,
 		isPending: create_project.isPending,
-		savePublishedProjectEdit,
+		context,
 	};
 }

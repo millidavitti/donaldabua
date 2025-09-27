@@ -30,7 +30,7 @@ export function useProjectEdit() {
 		set_input_project(project);
 		set_input_project_technologies(project_technologies.data as Technology[]);
 		set_input_project_content(project_content.data as ProjectContent[]);
-		set_context("draft-project");
+		set_context("update-project");
 	};
 
 	return {
