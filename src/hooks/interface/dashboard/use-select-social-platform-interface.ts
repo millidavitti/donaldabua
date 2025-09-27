@@ -8,10 +8,12 @@ export default function useSelectSocialPlatformInterface() {
 	const platforms = [...SOCIAL_PLATFORMS];
 	const [searchResult, setSearchResult] =
 		useState<SocialPlatforms[]>(platforms);
-	const [searchQuery, setSearchQuery] = useState<string>("");
-	const [input_socials, set_input_socials] = useAtom(input_social_atom);
+	const [searchQuery] = useState<string>("");
+	const [input_socials] = useAtom(input_social_atom);
 
-	function addTechnology(platform: SocialPlatforms) {}
+	function addTechnology(platform: SocialPlatforms) {
+		console.log(platform);
+	}
 
 	function closeSearchResult(key: string) {
 		if (key === "Escape") setSearchResult([]);
@@ -19,7 +21,9 @@ export default function useSelectSocialPlatformInterface() {
 
 	function displaySearchResult() {}
 
-	function captureAndSearch(value: string) {}
+	function captureAndSearch(searchQuery: string) {
+		console.log(searchQuery);
+	}
 
 	return {
 		addTechnology,
