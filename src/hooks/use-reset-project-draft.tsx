@@ -1,4 +1,3 @@
-import { project_snapshot_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
 import {
 	api_task_atom,
 	dashboard_view_jotai,
@@ -20,7 +19,6 @@ export function useResetProjectDraft() {
 	);
 
 	const project_form_step_setter = useSetAtom(project_form_step_jotai);
-	const project_snapshot_setter = useSetAtom(project_snapshot_jotai);
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const api_task_setter = useSetAtom(api_task_atom);
 
@@ -31,7 +29,6 @@ export function useResetProjectDraft() {
 
 		project_form_step_setter(null);
 		dashboard_view_setter(null);
-		project_snapshot_setter(null);
 		api_task_setter(null);
 	}
 	return resetProjectFormFields;
