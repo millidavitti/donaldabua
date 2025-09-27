@@ -3,7 +3,7 @@ import Image from "next/image";
 import { type Project } from "@/data/dashboard/dashboard-atoms/types";
 import PublishedProjectOptions from "./published-project-options";
 import ProjectEdit from "./options/project-edit";
-import PublishedProjectDeleteOption from "./options/published-project-delete-option";
+import ProjectDelete from "./options/project-delete";
 import useProject from "@/hooks/interface/dashboard/use-project.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
@@ -53,7 +53,7 @@ export default function Project({
 				</Flex>
 				<PublishedProjectOptions>
 					<ProjectEdit project={project} />
-					<PublishedProjectDeleteOption projectID={project.id} />
+					<ProjectDelete projectID={project.id} />
 				</PublishedProjectOptions>
 			</Flex>
 		</>

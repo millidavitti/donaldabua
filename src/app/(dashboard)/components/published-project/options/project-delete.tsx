@@ -1,14 +1,14 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import usePublishedProjectDeleteOption from "@/hooks/interface/dashboard/use-published-project-delete-option";
+import useProjectDelete from "@/hooks/interface/dashboard/use-project-delete";
 import { Trash2 } from "lucide-react";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;
 }
-export default function PublishedProjectDeleteOption({
+export default function ProjectDelete({
 	projectID,
 }: PublishedProjectDeleteOption) {
-	const { deleteProject } = usePublishedProjectDeleteOption();
+	const { deleteProject } = useProjectDelete();
 	return (
 		<>
 			<InteractiveIcon
