@@ -1,7 +1,7 @@
 import {
 	APIResponse,
 	Technology,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+} from "@/data/dashboard/dashboard-atoms/types";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
