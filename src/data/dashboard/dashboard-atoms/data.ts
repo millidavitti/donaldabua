@@ -31,6 +31,7 @@ import { generateErrorLog } from "@/utils/generate-error-log";
 import { getProjectTechnologies } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import { getProjectContent } from "@/backend/controllers/dashboard/project/get-project-content.controller";
 import { updateProject } from "@/backend/controllers/dashboard/project/update-project.controller";
+import { deleteProject } from "@/backend/controllers/dashboard/project/delete-project.controller";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -305,6 +306,26 @@ export const mutate_project_atom = atomWithMutation(() => ({
 	onSuccess: async () => {
 		await queryClient.invalidateQueries({
 			queryKey: ["projects", "project_technologies", "project_content"],
+		});
+	},
+}));
+
+export const delete_project_atom = atomWithMutation(() => ({
+	mutationKey: ["delete_project"],
+	mutationFn: async (projectId: string) => {
+		const json = await deleteProject(projectId);
+
+		if (!json.message) throw new Error("Bad Request", { cause: json });
+		toast.info(json.message);
+	},
+	onError: (error) => {
+		const message = getErrorMessage(error);
+		toast.error(message);
+		generateErrorLog("@delete_project_atom", error, "slient");
+	},
+	onSuccess: async () => {
+		await queryClient.invalidateQueries({
+			queryKey: ["projects"],
 		});
 	},
 }));
