@@ -13,7 +13,7 @@ interface DraftProject {
 	children: ReactNode;
 }
 export default function DraftProject({ children }: DraftProject) {
-	const { edit_profile, previewDraft, close } = useDraftProject();
+	const { context, previewDraft, close } = useDraftProject();
 	return (
 		<Flex
 			flex='column'
@@ -22,9 +22,7 @@ export default function DraftProject({ children }: DraftProject) {
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>
-					{edit_profile === "edit-published-project"
-						? "Update Project"
-						: "Draft Project"}
+					{context === "update-project" ? "Update Project" : "Draft Project"}
 				</h2>
 				<InteractiveIcon
 					htmlProps={{

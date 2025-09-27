@@ -15,7 +15,7 @@ export default function ContentBuilderOptionsDrawer({
 	const context = useAtomValue(useEditProjects.context_atom);
 	return (
 		<>
-			{context === "draft-project" && (
+			{(context === "draft-project" || context === "update-project") && (
 				<>
 					{isOptionsVisible ? (
 						<Flex

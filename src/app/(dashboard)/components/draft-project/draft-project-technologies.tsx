@@ -31,7 +31,7 @@ export default function DraftProjectTechnologies() {
 						<ProfileTechnology key={tech.id} tech={tech} index={i}>
 							<X
 								size={20}
-								className='stroke-light-error cursor-pointer active:scale-[.95]'
+								className='stroke-light-error cursor-pointer active:scale-[.95] shrink-0'
 								onClick={() => {
 									remove(tech);
 								}}
@@ -52,6 +52,7 @@ export default function DraftProjectTechnologies() {
 					onKeyDown={(e) => {
 						if (e.key === "Escape") close();
 					}}
+					onFocus={() => search("")}
 					onChange={(e) => search(e.target.value)}
 				/>
 

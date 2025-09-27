@@ -4,14 +4,15 @@ import React from "react";
 import { HashLoader } from "react-spinners";
 
 export default function PublishProject() {
-	const { publish, isPending } = usePublishProject();
+	const { context, publish, isPending } = usePublishProject();
 	return (
 		<Button
 			type='button'
 			className='bg-black text-light-surface'
 			onClick={publish}
 		>
-			Publish {isPending && <HashLoader color='#ffffff' size={24} />}
+			Publish {context === "preview-draft" ? "Draft" : "Update"}{" "}
+			{isPending && <HashLoader color='#ffffff' size={24} />}
 		</Button>
 	);
 }
