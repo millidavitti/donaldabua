@@ -4,7 +4,6 @@ import { atom } from "jotai";
 import { atomWithMutation, atomWithQuery } from "jotai-tanstack-query";
 import { toast } from "sonner";
 import {
-	input_social_atom,
 	Profile,
 	Project,
 	ProjectContent,
@@ -12,7 +11,7 @@ import {
 	Technology,
 	User,
 	UserLocation,
-} from "./dashboard-data";
+} from "./types";
 import { queryClient } from "@/components/query-client";
 import { updateLocation } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
 import { updateTechnologies } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
@@ -97,6 +96,12 @@ export const mutate_technologies_atom = atomWithMutation(() => ({
 		jotaiStore.set(settings_view_atom, null);
 	},
 }));
+
+export const input_social_atom = atomWithReset<Social>({
+	id: "",
+	platform: "Facebook",
+	profile: "",
+});
 
 export const create_social_atom = atomWithMutation(() => ({
 	mutationKey: ["create_social"],
@@ -237,7 +242,7 @@ export const input_project_atom = atomWithReset<Project>({
 });
 export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
 
-export const input_project_content_atom = atomWithReset<ProjectContent>([]);
+export const input_project_content_atom = atomWithReset<ProjectContent[]>([]);
 
 export const projects_atom = atomWithQuery((get) => ({
 	queryKey: ["projects", get(profile_atom)],
@@ -252,7 +257,7 @@ export const create_project_atom = atomWithMutation(() => ({
 	mutationKey: ["create_project"],
 	mutationFn: async (payload: {
 		project: Project;
-		content: ProjectContent;
+		content: ProjectContent[];
 		technologies: Technology[];
 	}) => {
 		console.log(payload.content);
@@ -278,22 +283,27 @@ export const create_project_atom = atomWithMutation(() => ({
 
 export const project_atom = atom<Project | null>(null);
 export const project_technologies_atom = atomWithQuery((get) => ({
-	queryKey: ["project_technologies", get(project_atom)],
+	queryKey: ["project_technologies", get(project_atom)?.id],
 	queryFn: async () => {
 		const projectId = jotaiStore.get(project_atom)?.id;
 		if (!projectId) return [];
 		const json = await getProjectTechnologies(projectId);
+
+		jotaiStore.set(input_project_technologies_atom, json.data);
+
 		return json.data as Technology[];
 	},
 }));
 
 export const project_content_atom = atomWithQuery((get) => ({
-	queryKey: ["project_content", get(project_atom)],
+	queryKey: ["project_content", get(project_atom)?.id],
 	queryFn: async () => {
 		const projectId = jotaiStore.get(project_atom)?.id;
 		if (!projectId) return [];
 		const json = await getProjectContent(projectId);
-		console.log(json.data);
-		return json.data as ProjectContent;
+
+		jotaiStore.set(input_project_content_atom, json.data);
+
+		return json.data as ProjectContent[];
 	},
 }));
