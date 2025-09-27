@@ -82,7 +82,7 @@ export default function EditProfileTechnologies() {
 							Technology
 						</label>
 						<Flex flex='column' className='gap-3 border-0 p-0'>
-							<AddProfileTechnologies />
+							{/* <AddProfileTechnologies /> */}
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save
