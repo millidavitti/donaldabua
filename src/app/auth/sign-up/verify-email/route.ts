@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 			status: 302,
 			headers: {
 				...Object.fromEntries(res.headers.entries()),
-				Location: `${process.env.ORIGIN}/auth/sign-in?message=${json.message}`,
+				Location: `/auth/sign-in?message=${json.message}`,
 			},
 		});
 	} catch (error) {
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: `${process.env.ORIGIN}/auth/sign-up?message=${
+				Location: `/auth/sign-up?message=${
 					JSON.parse(getErrorMessage(error)).message
 				}`,
 			},
