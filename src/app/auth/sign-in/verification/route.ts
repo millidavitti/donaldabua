@@ -5,7 +5,8 @@ export async function GET(req: NextRequest) {
 	try {
 		const res = await fetch(`${process.env.AUTH_ENDPOINT!}/sign-in`, {
 			method: "get",
-			headers: req.headers,
+			headers: {
+     Cookie: req.headers.get("Cookie") ?? "",
 			credentials: "include",
 		});
 
