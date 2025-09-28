@@ -6,17 +6,14 @@ export async function GET(req: NextRequest) {
 	const Cookies = await cookies();
 
 	try {
-		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_AUTH_ENDPOINT!}/sign-in`,
-			{
-				method: "get",
-				headers: {
-					...req.headers,
-					Cookie: Cookies.toString(),
-				},
-				credentials: "include",
+		const res = await fetch(`${process.env.AUTH_ENDPOINT!}/sign-in`, {
+			method: "get",
+			headers: {
+				...req.headers,
+				Cookie: Cookies.toString(),
 			},
-		);
+			credentials: "include",
+		});
 
 		const json = await res.json();
 		const headers = Object.fromEntries(res.headers.entries());
