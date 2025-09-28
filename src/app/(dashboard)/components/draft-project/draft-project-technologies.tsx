@@ -1,21 +1,22 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
-import useDraftProjectTechnologiesInterface from "@/hooks/interface/dashboard/use-draft-project-technologies-interface";
+import useDraftProjectTechnologies from "@/hooks/interface/dashboard/use-draft-project-technologies.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
+import Button from "@/components/ui/button";
+import ProfileTechnology from "../profile-technology";
 
 export default function DraftProjectTechnologies() {
 	const {
-		addTechnology,
-		captureAndSearch,
-		closeSearchResult,
-		displaySearchResult,
-		project_technologies,
-		removeTechnology,
+		select,
+		search,
+		close,
+		input_project_technologies,
+		remove,
 		searchQuery,
 		searchResult,
-	} = useDraftProjectTechnologiesInterface();
+	} = useDraftProjectTechnologies();
 	return (
 		<>
 			<label
@@ -24,42 +25,42 @@ export default function DraftProjectTechnologies() {
 			>
 				Technologies
 			</label>
-			{Boolean(project_technologies.length) && (
-				<Flex className='gap-3 shrink-0 overflow-x-auto no-scrollbar border-0 p-0'>
-					{project_technologies.map((tech) => (
-						<Flex className='gap-3 items-center shrink-0' key={tech.id}>
-							<p className='shrink-0 font-medium'>{tech.name}</p>
+			{Boolean(input_project_technologies.length) && (
+				<Flex className='gap-3 shrink-0 overflow-x-auto border-0 p-0'>
+					{input_project_technologies.map((tech, i) => (
+						<ProfileTechnology key={tech.id} tech={tech} index={i}>
 							<X
-								size={24}
-								className='stroke-light-error cursor-pointer active:scale-[.95]'
+								size={20}
+								className='stroke-light-error cursor-pointer active:scale-[.95] shrink-0'
 								onClick={() => {
-									removeTechnology(tech);
+									remove(tech);
 								}}
 							/>
-						</Flex>
+						</ProfileTechnology>
 					))}
 				</Flex>
 			)}
-			<Flex flex='column' className='relative overflow-visible border-0 p-0'>
+			<Flex
+				flex='column'
+				className='overflow-visible h-0 gap-3 mb-12 border-0 p-0'
+			>
 				<input
 					type='text'
 					id='select-project-technology'
-					className='border p-3 w-full'
+					className='border p-3 w-full shrink-0'
 					value={searchQuery}
 					onKeyDown={(e) => {
-						closeSearchResult(e.key);
+						if (e.key === "Escape") close();
 					}}
-					onFocus={() => displaySearchResult()}
-					onChange={(e) => {
-						captureAndSearch(e.target.value);
-					}}
+					onFocus={() => search("")}
+					onChange={(e) => search(e.target.value)}
 				/>
 
 				{/* Search Result */}
 				{Boolean(searchResult.length) && (
 					<Flex
 						flex='column'
-						className='absolute gap-3 bg-light-surface top-16 inset-x-0 mx-3 max-h-36 z-10 no-scrollbar'
+						className='gap-3 bg-light-surface mx-3 max-h-[320px] z-10 shrink-0'
 						htmlProps={{
 							id: "search-result",
 						}}
@@ -74,7 +75,7 @@ export default function DraftProjectTechnologies() {
 									)}
 									htmlProps={{
 										onClick() {
-											addTechnology(tech);
+											select(tech);
 										},
 										style: { animationDelay: i * DELAY + "ms" },
 									}}
@@ -83,6 +84,12 @@ export default function DraftProjectTechnologies() {
 								</Flex>
 							);
 						})}
+						<Button
+							className='sticky bottom-0 bg-black text-white'
+							onClick={() => close()}
+						>
+							Cancel
+						</Button>
 					</Flex>
 				)}
 			</Flex>

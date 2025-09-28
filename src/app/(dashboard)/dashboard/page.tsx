@@ -4,7 +4,7 @@ import Sidebar from "../components/sidebar";
 import DashboardHeader from "../components/dashboard-header";
 import AlertDialog from "@/components/ui/alert-dialog";
 import EditProfileSummary from "../components/edit-profile/edit-profile-summary";
-import EditProfileProjects from "../components/edit-profile/edit-profile-projects";
+import EditProjects from "../components/edit-profile/edit-profile-projects";
 import EditProfileTechnologies from "../components/edit-profile/edit-profile-technologies";
 
 export default function Dashboard() {
@@ -21,7 +21,7 @@ export default function Dashboard() {
 						flex='column'
 					>
 						<EditProfileSummary />
-						<EditProfileProjects />
+						<EditProjects />
 						<EditProfileTechnologies />
 					</Flex>
 				</Flex>

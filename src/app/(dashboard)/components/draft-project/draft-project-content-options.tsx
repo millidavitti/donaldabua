@@ -4,7 +4,7 @@ import { useAtomValue } from "jotai";
 import React from "react";
 import DraftProjectVideo from "./draft-project-video";
 import DraftProjectImage from "./draft-project-image";
-import DraftProjectMarkdown from "./draft-project-text";
+import DraftProjectMarkdown from "./draft-project-markdown";
 
 export default function DraftProjectContentOptions() {
 	const content_hover_state = useAtomValue(content_hover_state_jotai);

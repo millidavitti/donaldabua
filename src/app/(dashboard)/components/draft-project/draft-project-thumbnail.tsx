@@ -1,12 +1,10 @@
-import { project_thumbnail_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import Image from "next/image";
 
 export default function DraftProjectThumbnail() {
-	const [project_thumbnail, project_thumbnail_setter] = useAtom(
-		project_thumbnail_jotai,
-	);
+	const [input_project, set_input_project] = useAtom(input_project_atom);
 	return (
 		<>
 			<label
@@ -20,24 +18,24 @@ export default function DraftProjectThumbnail() {
 				id='draft-project-thumbnail'
 				required
 				className={cn(
-					"border p-3 valid:outline-emerald-600",
-					project_thumbnail && "invalid:outline-red-600",
+					"border p-3 valid:outline-emerald-600 shrink-0",
+					input_project.thumbnail && "invalid:outline-red-600",
 				)}
-				value={project_thumbnail}
+				value={input_project.thumbnail}
 				placeholder='Paste a valid Cloudinary link'
 				onChange={(e) => {
-					if (e.target.validity.valid) project_thumbnail_setter(e.target.value);
-					else project_thumbnail_setter("");
+					if (e.target.validity.valid)
+						set_input_project({ ...input_project, thumbnail: e.target.value });
+					// else 						set_input_project({ ...input_project, thumbnail: e.target.value });
 				}}
 			/>
-			{project_thumbnail && (
+			{input_project.thumbnail && (
 				<Image
-					src={project_thumbnail}
+					src={input_project.thumbnail}
 					width={1000}
 					height={1000}
 					alt='thumbnail'
-					data-is-visible={Boolean(project_thumbnail)}
-					className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+					className='aspect-[16/9] shrink-0 neonScan'
 				/>
 			)}
 		</>

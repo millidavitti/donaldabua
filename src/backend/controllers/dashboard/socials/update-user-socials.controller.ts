@@ -1,4 +1,4 @@
-import { Social } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Social } from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 

@@ -1,34 +1,31 @@
 import {
-	APIResponse,
 	Project,
-	ProjectData,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+	ProjectContent,
+	Technology,
+} from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function createProjectController(
+export async function createProject(
 	profileId: string,
-	projectData: ProjectData,
+	project: {
+		project: Project;
+		technologies: Technology[];
+		content: ProjectContent[];
+	},
 ) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
 		const res = await fetch(ENDPOINTS.project.create(profileId), {
 			method: "POST",
-			body: JSON.stringify(projectData),
-			headers,
+			body: JSON.stringify(project),
+			headers: {
+				"Content-type": "application/json",
+			},
 			credentials: "include",
 		});
-		const data = await res.json();
-
-		return data as APIResponse<Project, "project">;
+		const json = await res.json();
+		return json;
 	} catch (error) {
-		console.error("---createProjectController---\n", error);
-		throw error;
+		generateErrorLog("@createProject.controller", error);
 	}
 }

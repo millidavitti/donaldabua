@@ -1,8 +1,5 @@
 import { getErrorMessage } from "@/utils/get-error-message";
-import {
-	APIResponse,
-	Social,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { APIResponse, Social } from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 
 export async function getUserSocialsController(userId: string) {

@@ -1,20 +1,16 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import Overlay from "@/components/layouts/overlay";
 import { Plus } from "lucide-react";
-import DraftProject from "../draft-project/draft-project";
-import PreviewProjectDraft from "../preview-project-draft/preview-project-draft";
-import ContentBuilder from "../content-builder/content-builder";
-import PublishedProjects from "../published-project/published-projects";
-import { useEditProfileProjectsInterface } from "@/hooks/interface/dashboard/use-edit-profile-projects-interface";
+import Projects from "../published-project/projects";
+import { useEditProjects } from "@/hooks/interface/dashboard/use-edit-projects.interface";
 
-export default function EditProfileProjects() {
-	const { addNewProject, project_form_step } =
-		useEditProfileProjectsInterface();
+export default function EditProjects() {
+	const { start, Modal } = useEditProjects();
 
 	return (
 		<>
+			{Modal}
 			<Flex
 				flex='column'
 				className='gap-3 border-0 p-0'
@@ -24,32 +20,14 @@ export default function EditProfileProjects() {
 					{/* Header */}
 					<Flex className='items-center justify-between shrink-0'>
 						<p className='font-semibold lg:text-2xl'>Projects</p>
-						<InteractiveIcon
-							callback={() => {
-								addNewProject();
-							}}
-						>
+						<InteractiveIcon callback={start}>
 							<Plus size={24} />
 						</InteractiveIcon>
-					</Flex>{" "}
+					</Flex>
 				</a>
 				{/* Projects */}
-				<PublishedProjects />
+				<Projects />
 			</Flex>
-
-			<Overlay
-				stateFlag='edit-portfolio'
-				className='flex justify-center items-center'
-			>
-				{project_form_step === "draft-project-info" && (
-					<DraftProject>
-						<ContentBuilder />
-					</DraftProject>
-				)}
-				{project_form_step === "preview-project-draft" && (
-					<PreviewProjectDraft />
-				)}
-			</Overlay>
 		</>
 	);
 }

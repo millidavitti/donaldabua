@@ -1,4 +1,4 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom, useSetAtom } from "jotai";
 import useDialog from "../../use-dialog";

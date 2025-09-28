@@ -1,4 +1,4 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { useAtom, useAtomValue } from "jotai";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";

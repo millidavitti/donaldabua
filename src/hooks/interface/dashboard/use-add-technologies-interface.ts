@@ -1,4 +1,4 @@
-import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Technology } from "@/data/dashboard/dashboard-atoms/types";
 import { payload_view_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { createId } from "@paralleldrive/cuid2";
 import { useQueryClient } from "@tanstack/react-query";

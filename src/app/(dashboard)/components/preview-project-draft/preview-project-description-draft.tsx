@@ -1,16 +1,15 @@
-import { project_description_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtomValue } from "jotai";
-import React from "react";
 
 export default function PreviewProjectDescription() {
-	const project_description = useAtomValue(project_description_jotai);
+	const input_project = useAtomValue(input_project_atom);
 
 	return (
 		<>
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 				Project Description
 			</label>
-			<p>{project_description}</p>
+			<p>{input_project.description}</p>
 		</>
 	);
 }

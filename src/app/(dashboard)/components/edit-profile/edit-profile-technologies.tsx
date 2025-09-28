@@ -5,7 +5,6 @@ import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
 import { EditIcon, X } from "lucide-react";
 import ProfileTechnology from "../profile-technology";
-import AddProfileTechnologies from "../add-profile-technologies";
 import useEditProfileTechnologiesInterface from "@/hooks/interface/dashboard/use-edit-profile-technologies-interface";
 import { HashLoader } from "react-spinners";
 
@@ -82,7 +81,7 @@ export default function EditProfileTechnologies() {
 							Technology
 						</label>
 						<Flex flex='column' className='gap-3 border-0 p-0'>
-							<AddProfileTechnologies />
+							{/* <AddProfileTechnologies /> */}
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>
 							Save

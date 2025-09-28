@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { Technology } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { Technology } from "@/data/dashboard/dashboard-atoms/types";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
@@ -17,12 +17,12 @@ export default function ProfileTechnology({
 	return (
 		<Flex
 			className={cn(
-				"gap-3 items-center self-start",
+				"gap-3 items-center self-start shrink-0",
 				getAnimationClass("swing-in-top-fwd"),
 			)}
 			htmlProps={{ style: { animationDelay: index * DELAY + "ms" } }}
 		>
-			<p className='shrink-0 font-medium'>{tech.name}</p>
+			<p className='font-medium'>{tech.name}</p>
 			{children}
 		</Flex>
 	);

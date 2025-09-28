@@ -10,7 +10,7 @@ export async function getProjectTechnologiesController(projectId: string) {
 		const { error, csrfToken } = await generateCsrfToken();
 		if (error) throw new Error(error);
 		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-		const res = await fetch(ENDPOINTS.projectTechnology.list(projectId), {
+		const res = await fetch(ENDPOINTS.projectTechnologies.list(projectId), {
 			credentials: "include",
 			headers,
 		});

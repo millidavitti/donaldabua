@@ -1,12 +1,9 @@
-import { project_description_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
-import React from "react";
 
 export default function DraftProjectDescription() {
-	const [project_description, project_description_setter] = useAtom(
-		project_description_jotai,
-	);
+	const [input_project, set_input_project] = useAtom(input_project_atom);
 	return (
 		<>
 			<label
@@ -22,12 +19,12 @@ export default function DraftProjectDescription() {
 				maxLength={250}
 				required
 				className={cn(
-					"border p-3 valid:outline-emerald-600",
-					Boolean(project_description) && "invalid:outline-red-600",
+					"border p-3 valid:outline-emerald-600 shrink-0",
+					Boolean(input_project.description) && "invalid:outline-red-600",
 				)}
-				value={project_description}
+				value={input_project.description}
 				onChange={(e) => {
-					project_description_setter(e.target.value);
+					set_input_project({ ...input_project, description: e.target.value });
 				}}
 			/>
 		</>

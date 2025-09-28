@@ -1,12 +1,10 @@
-import { UserLocation } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { UserLocation } from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateUserLocationController(
-	update: Partial<UserLocation>,
-) {
+export async function updateLocation(update: Partial<UserLocation>) {
 	try {
-		const res = await fetch(ENDPOINTS.location.updateLocation(), {
+		const res = await fetch(ENDPOINTS.location.update(), {
 			method: "PATCH",
 			body: JSON.stringify(update),
 			headers: {
@@ -18,6 +16,6 @@ export async function updateUserLocationController(
 
 		return json;
 	} catch (error) {
-		generateErrorLog("@updateUserLocationController", error);
+		generateErrorLog("@updateLocaton.controller", error);
 	}
 }

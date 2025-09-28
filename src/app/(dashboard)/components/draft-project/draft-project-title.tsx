@@ -1,9 +1,9 @@
-import { project_title_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-data";
+import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 
 export default function DraftProjectTitle() {
-	const [project_title, project_title_setter] = useAtom(project_title_jotai);
+	const [input_project, set_input_project] = useAtom(input_project_atom);
 
 	return (
 		<>
@@ -20,11 +20,11 @@ export default function DraftProjectTitle() {
 				required
 				className={cn(
 					"border p-3 shrink-0 valid:outline-emerald-600",
-					Boolean(project_title) && "invalid:outline-red-600",
+					Boolean(input_project.title) && "invalid:outline-red-600",
 				)}
-				value={project_title}
+				value={input_project.title}
 				onChange={(e) => {
-					project_title_setter(e.target.value);
+					set_input_project({ ...input_project, title: e.target.value });
 				}}
 			/>
 		</>

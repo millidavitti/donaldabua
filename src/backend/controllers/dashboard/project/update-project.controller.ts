@@ -1,34 +1,19 @@
-import {
-	APIResponse,
-	Project,
-	ProjectData,
-} from "@/data/dashboard/dashboard-atoms/dashboard-data";
-import { generateCsrfToken } from "@/backend/auth/get-csrf-token.controller";
+import { ProjectData } from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
+import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateProjectController(
-	projectId: string,
-	update: ProjectData,
-) {
-	const headers = new Headers();
-	headers.append("Content-type", "application/json");
-
+export async function updateProject(update: ProjectData) {
 	try {
-		const { error, csrfToken } = await generateCsrfToken();
-		if (error) throw new Error(error);
-		else if (csrfToken) headers.append("x-csrf-token", csrfToken);
-
-		const res = await fetch(ENDPOINTS.project.update(projectId), {
-			method: "PUT",
+		const res = await fetch(ENDPOINTS.project.update(), {
+			method: "PATCH",
 			body: JSON.stringify(update),
-			headers,
+			headers: { "Content-Type": "application/json" },
 			credentials: "include",
 		});
-		const data = await res.json();
+		const json = await res.json();
 
-		return data as APIResponse<Project, "update">;
+		return json;
 	} catch (error) {
-		console.error("---updateProjectController---\n", error);
-		throw error;
+		generateErrorLog("@updateProject.controller", error);
 	}
 }

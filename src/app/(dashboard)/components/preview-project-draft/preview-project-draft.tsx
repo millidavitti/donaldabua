@@ -8,10 +8,10 @@ import PreviewProjectTechnologies from "./preview-project-tech-stack-draft";
 import PreviewProjectThumbnail from "./preview-project-thumbnail-draft";
 import PreviewProjectContent from "./preview-project-content-draft";
 import PublishProject from "./publish-project-draft";
-import { usePreviewProjectDraftInterface } from "@/hooks/interface/dashboard/use-preview-project-draft-interface";
+import { usePreviewProjectDraft } from "@/hooks/interface/dashboard/use-preview-project-draft.interface";
 
 export default function PreviewProjectDraft() {
-	const { goBack } = usePreviewProjectDraftInterface();
+	const { draftProject } = usePreviewProjectDraft();
 
 	return (
 		<Flex
@@ -20,7 +20,7 @@ export default function PreviewProjectDraft() {
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0 border-0 p-0'>
-				<InteractiveIcon callback={() => goBack()}>
+				<InteractiveIcon callback={draftProject}>
 					<ArrowLeftIcon size={24} />
 				</InteractiveIcon>
 			</Flex>

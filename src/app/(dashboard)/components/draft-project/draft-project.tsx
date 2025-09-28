@@ -7,30 +7,27 @@ import DraftProjectTitle from "./draft-project-title";
 import DraftProjectDescription from "./draft-project-description";
 import DraftProjectTechnologies from "./draft-project-technologies";
 import DraftProjectThumbnail from "./draft-project-thumbnail";
-import { useDraftProjectInterface } from "@/hooks/interface/dashboard/use-draft-portfolio-project-info-interface";
+import { useDraftProject } from "@/hooks/interface/dashboard/use-draft-project.interface";
 
 interface DraftProject {
 	children: ReactNode;
 }
 export default function DraftProject({ children }: DraftProject) {
-	const { edit_profile, closeProjectForm, gotToPreview } =
-		useDraftProjectInterface();
+	const { context, previewDraft, close } = useDraftProject();
 	return (
 		<Flex
 			flex='column'
-			className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
+			className='bg-light-surface gap-3 w-full h-[570px] neonScan border-0'
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0'>
 				<h2 className='text-2xl font-semibold'>
-					{edit_profile === "edit-published-project"
-						? "Edit Published Project"
-						: "Add New Project"}
+					{context === "update-project" ? "Update Project" : "Draft Project"}
 				</h2>
 				<InteractiveIcon
 					htmlProps={{
 						onClick() {
-							closeProjectForm();
+							close();
 						},
 					}}
 				>
@@ -41,24 +38,19 @@ export default function DraftProject({ children }: DraftProject) {
 				className='flex flex-col gap-3'
 				onSubmit={(e) => {
 					e.preventDefault();
-					closeProjectForm();
+					close();
 				}}
 			>
-				<DraftProjectTitle />
 				<Flex className='gap-3 flex-wrap border-0 p-0'>
-					<Flex flex='column' className='grow gap-3 basis-[360px] h-fit'>
+					<Flex flex='column' className='grow gap-3 basis-[360px] h-full'>
+						<DraftProjectTitle />
 						<DraftProjectDescription />
 						<DraftProjectTechnologies />
 						<DraftProjectThumbnail />
 					</Flex>
 					{children}
 				</Flex>
-				<Button
-					onClick={() => {
-						gotToPreview();
-					}}
-					className='bg-black text-light-surface'
-				>
+				<Button onClick={previewDraft} className='bg-black text-light-surface'>
 					Next
 				</Button>
 			</form>
