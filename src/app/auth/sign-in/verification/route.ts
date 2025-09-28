@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
 			method: "get",
 			headers: {
      Cookie: req.headers.get("Cookie") ?? "",}, 
-			credentials: "include",
+			
 		});
 
 		const json = await res.json();
