@@ -1,17 +1,11 @@
 import { getErrorMessage } from "@/utils/get-error-message";
-import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-	const Cookies = await cookies();
-
 	try {
 		const res = await fetch(`${process.env.AUTH_ENDPOINT!}/sign-in`, {
 			method: "get",
-			headers: {
-				...req.headers,
-				Cookie: Cookies.toString(),
-			},
+			headers: req.headers,
 			credentials: "include",
 		});
 
