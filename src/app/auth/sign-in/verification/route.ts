@@ -1,3 +1,4 @@
+import { generateErrorLog } from "@/utils/generate-error-log";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { NextRequest } from "next/server";
 
@@ -6,7 +7,6 @@ export async function GET(req: NextRequest) {
 		const res = await fetch(`${process.env.AUTH_ENDPOINT!}/sign-in`, {
 			method: "get",
 			headers: req.headers,
-			credentials: "include",
 		});
 
 		const json = await res.json();
@@ -20,7 +20,11 @@ export async function GET(req: NextRequest) {
 			},
 		});
 	} catch (error) {
-		console.error("---Sing In Verification Route---\n", error);
+		generateErrorLog(
+			"@src/app/auth/sign-in/verification/route.ts",
+			error,
+			"slient",
+		);
 		return new Response(null, {
 			status: 302,
 			headers: {
