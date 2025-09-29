@@ -7,19 +7,19 @@ export async function middleware(request: NextRequest) {
 	const Cookies = await cookies();
 	const isAuth = await (async () => {
 		const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
-		const cookie = Cookies.get("portfolio.authenticated");
+		const cookie = Cookies.get("__Host-portfolio.authenticated");
 		try {
 			await jwtVerify(cookie?.value as string, secret);
 			return true;
 		} catch (error) {
 			generateErrorLog("middleware", error, "slient");
-			Cookies.delete("portfolio.authenticated");
+			Cookies.delete("__Host-portfolio.authenticated");
 			return false;
 		}
 	})();
 
 	if (isAuth) {
-		Cookies.delete("portfolio.authenticating");
+		Cookies.delete("__Host-portfolio.authenticating");
 		if (
 			request.nextUrl.pathname === "/auth/sign-in" ||
 			request.nextUrl.pathname === "/auth/sign-up"
