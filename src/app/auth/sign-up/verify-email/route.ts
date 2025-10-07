@@ -2,8 +2,6 @@ import { generateErrorLog } from "@/utils/generate-error-log";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { NextRequest } from "next/server";
 
-export const runtime = 'edge';
-
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
