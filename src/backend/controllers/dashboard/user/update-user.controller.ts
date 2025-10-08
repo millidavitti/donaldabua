@@ -5,7 +5,7 @@ import { generateErrorLog } from "@/utils/generate-error-log";
 export async function updateUser(update: Partial<User>) {
 	try {
 		const res = await fetch(ENDPOINTS.user.update(), {
-			method: "put",
+			method: "PATCH",
 			body: JSON.stringify(update),
 			headers: {
 				"content-type": "application/json",
