@@ -11,10 +11,11 @@ export async function GET(req: NextRequest) {
 				method: "GET",
 				headers: {
 					Cookie: req.headers.get("Cookie") ?? "",
+					"Content-Type": "appilcation/json",
 				},
 			},
 		);
-
+		console.log("Response: ", await res.clone().text());
 		const json = await res.json();
 
 		return new Response(null, {
