@@ -6,34 +6,33 @@ import {
 } from "@/data/dashboard/dashboard-atoms/data";
 import { useState } from "react";
 
-export function useEditUserLocationInterface() {
+export function useEditUserLocation() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const [location, setLocation] = useState({ city: "", country: "" });
 
 	const [payload_view] = useAtom(payload_view_atom);
 	const [mutate_location] = useAtom(mutate_location_atom);
 
-	function editLocation() {
+	const start = () => {
 		dashboard_view_setter("edit-location");
-	}
-	function cancelLocationEdit() {
+	};
+	const close = () => {
 		dashboard_view_setter(null);
-	}
+	};
 
-	async function saveLocationEdit() {
+	const save = async () => {
 		dashboard_view_setter(null);
 		await mutate_location.mutateAsync(location);
-	}
+	};
 
-	function captureLocationEdit(key: "city" | "country", value: string) {
-		console.log(key, value);
-		setLocation({ ...payload_view.data?.location, [key]: value });
-	}
+	const captureInput = (key: "city" | "country", value: string) => {
+		setLocation((prev) => ({ ...prev, [key]: value }));
+	};
 	return {
 		location: payload_view.data?.location,
-		editLocation,
-		cancelLocationEdit,
-		saveLocationEdit,
-		captureLocationEdit,
+		start,
+		close,
+		save,
+		captureInput,
 	};
 }
