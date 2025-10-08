@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
 			`${process.env.AUTH_ENDPOINT!}/verify-email/${searchParams.get("token")}`,
 			{ method: "GET", headers: req.headers },
 		);
-
+		console.log("Res Clone: ", await res.clone().text());
 		const json = await res.json();
 
 		return new Response(null, {
