@@ -65,7 +65,6 @@ export const mutate_user_atom = atomWithMutation(() => ({
 export const mutate_location_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_location"],
 	mutationFn: async (location: Partial<UserLocation>) => {
-		console.log(location);
 		const json = await updateLocation(location);
 		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);
