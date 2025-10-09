@@ -1,5 +1,5 @@
 main = ".open-next/worker.js"
-name = "portfolio"
+name = "app"
 compatibility_date = "2025-10-07"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
