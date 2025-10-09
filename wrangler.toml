@@ -11,6 +11,6 @@ binding = "ASSETS"
 enabled = true
 
 [vars]
-NEXT_PUBLIC_AUTH_ENDPOINT = https://portfolio-api.roninubermensch.workers.dev/auth
-AUTH_ENDPOINT = https://portfolio-api.roninubermensch.workers.dev/auth
-NEXT_PUBLIC_BACKEND_API_ENDPOINT = https://portfolio-api.roninubermensch.workers.dev/api/v1
+NEXT_PUBLIC_AUTH_ENDPOINT = "https://portfolio-api.roninubermensch.workers.dev/auth"
+AUTH_ENDPOINT = "https://portfolio-api.roninubermensch.workers.dev/auth"
+NEXT_PUBLIC_BACKEND_API_ENDPOINT = "https://portfolio-api.roninubermensch.workers.dev/api/v1"
