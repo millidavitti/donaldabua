@@ -9,8 +9,3 @@ binding = "ASSETS"
 
 [observability.logs]
 enabled = true
-
-[vars]
-NEXT_PUBLIC_AUTH_ENDPOINT = "https://api.roninubermensch.workers.dev/auth"
-AUTH_ENDPOINT = "https://api.roninubermensch.workers.dev/auth"
-NEXT_PUBLIC_BACKEND_API_ENDPOINT = "https://api.roninubermensch.workers.dev/api/v1"
