@@ -5,16 +5,16 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
-		const res = await fetch(
-			`${process.env.AUTH_ENDPOINT!}/verify-email/${searchParams.get("token")}`,
-			{
-				method: "GET",
-				headers: {
-					Cookie: req.headers.get("Cookie") ?? "",
-					"Content-Type": "appilcation/json",
-				},
+		const endpoint = `${process.env
+			.AUTH_ENDPOINT!}/verify-email/${searchParams.get("token")}`;
+
+		const res = await fetch(endpoint, {
+			method: "GET",
+			headers: {
+				Cookie: req.headers.get("Cookie") ?? "",
+				"Content-Type": "appilcation/json",
 			},
-		);
+		});
 
 		const json = await res.json();
 

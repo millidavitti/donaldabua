@@ -4,7 +4,8 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 	try {
-		const res = await fetch(`${process.env.AUTH_ENDPOINT!}/sign-in`, {
+		const endpoint = `${process.env.AUTH_ENDPOINT!}/sign-in`;
+		const res = await fetch(endpoint, {
 			method: "get",
 			headers: req.headers,
 		});
