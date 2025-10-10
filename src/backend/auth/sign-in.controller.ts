@@ -2,7 +2,8 @@ import { generateErrorLog } from "@/utils/generate-error-log";
 
 export async function signInController(formData: { email: string }) {
 	try {
-		const endpoint = process.env.NEXT_PUBLIC_AUTH_ENDPOINT + "/send-magic-link";
+		const endpoint =
+			process.env.NEXT_PUBLIC_AUTH_ENDPOINT ?? "" + "/send-magic-link";
 		console.log("Endpoint: ", endpoint);
 		const res = await fetch(endpoint, {
 			method: "POST",
