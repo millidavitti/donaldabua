@@ -6,38 +6,33 @@ import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import { HashLoader } from "react-spinners";
-import {
-	create_profile_atom,
-	input_profile_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
-import { useResetAtom } from "jotai/utils";
+import { create_profile_atom } from "@/data/dashboard/dashboard-atoms/data";
 
 export default function useCreateProfile() {
-	const [input_profile, set_input_profile] = useAtom(input_profile_atom);
-	const reset_input_profile = useResetAtom(input_profile_atom);
-	const [context, setContext] = useState<"create" | null>(null);
+	const [inputTitle, setInputTitle] = useState("");
+	const [context, setContext] = useState<"create-profile" | null>(null);
 	const [create_profile] = useAtom(create_profile_atom);
 	const isPending = create_profile.isPending;
 
-	function viewForm() {
-		setContext("create");
-	}
+	const start = () => {
+		setContext("create-profile");
+	};
 
-	function close() {
+	const close = () => {
 		setContext(null);
-		reset_input_profile();
-	}
+		setInputTitle("");
+	};
 
-	async function createProfile() {
-		await create_profile.mutateAsync(input_profile);
+	async function createProfile(title: string) {
+		await create_profile.mutateAsync({ title });
 		close();
 	}
 
-	function captureInput(value: string) {
-		set_input_profile({ title: value });
-	}
+	const captureInput = (title: string) => {
+		setInputTitle(title);
+	};
 	return {
-		viewForm,
+		start,
 		Modal: context && (
 			<Modal>
 				<Flex
@@ -53,7 +48,7 @@ export default function useCreateProfile() {
 								experience)
 							</p>
 						</Flex>
-						<InteractiveIcon callback={() => close()}>
+						<InteractiveIcon callback={close}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
@@ -62,7 +57,7 @@ export default function useCreateProfile() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							createProfile();
+							createProfile(inputTitle);
 						}}
 					>
 						<label className='text-xl font-semibold' htmlFor='title'>
@@ -72,14 +67,14 @@ export default function useCreateProfile() {
 							type='text'
 							id='title'
 							required
-							value={input_profile.title}
+							value={inputTitle}
 							onChange={(e) => {
-								captureInput(e.target.value);
+								captureInput(e.currentTarget.value);
 							}}
 							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
-							Create Profile{" "}
+							Create Profile
 							{isPending && <HashLoader size={24} color='#fff' />}
 						</Button>
 					</form>

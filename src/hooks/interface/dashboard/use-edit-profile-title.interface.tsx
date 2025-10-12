@@ -1,4 +1,3 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { useAtom } from "jotai";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -7,38 +6,41 @@ import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useState } from "react";
 import {
-	input_profile_atom,
 	mutate_profile_atom,
 	profile_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
 export function useEditProfileTitle() {
-	const [input_profile, set_input_profile] = useAtom(input_profile_atom);
+	const [inputTitle, setInputTitle] = useState<string | null>(null);
 	const [context, setContext] = useState<"edit-title" | null>(null);
 	const [mutate_profile] = useAtom(mutate_profile_atom);
 	const [profile] = useAtom(profile_atom);
+	const title = profile?.title;
 	const isPending = mutate_profile.isPending;
-	function start() {
+
+	const start = () => {
 		setContext("edit-title");
-	}
+	};
 
-	function close() {
+	const close = () => {
 		setContext(null);
-	}
+		setInputTitle(null);
+	};
 
-	async function update(profile: Partial<Profile>) {
-		await mutate_profile.mutateAsync(profile);
+	const captureInput = (title: string) => {
+		setInputTitle(title);
+	};
+
+	async function update(title: string) {
+		await mutate_profile.mutateAsync({ id: profile.id, title });
 		close();
 	}
 
-	function captureInput(value: string) {
-		set_input_profile({ id: profile.id, title: value });
-	}
 	return {
 		start,
 		close,
-		title: profile?.title,
+		title,
 		Modal: context && (
 			<Modal>
 				<Flex
@@ -63,7 +65,7 @@ export function useEditProfileTitle() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							update(input_profile);
+							update(inputTitle ?? title);
 						}}
 					>
 						<label className='text-xl font-semibold' htmlFor='title'>
@@ -73,13 +75,17 @@ export function useEditProfileTitle() {
 							type='text'
 							id='title'
 							required
-							defaultValue={profile.title}
+							value={inputTitle ?? title}
 							onChange={(e) => {
 								captureInput(e.target.value);
 							}}
 							className='border p-3'
 						/>
-						<Button type='submit' className='bg-black text-light-surface'>
+						<Button
+							type='submit'
+							className='bg-black text-light-surface'
+							htmlProps={{ disabled: isPending }}
+						>
 							Save {isPending && <HashLoader color='#fff' size={24} />}
 						</Button>
 					</form>
