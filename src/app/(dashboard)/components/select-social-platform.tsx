@@ -9,15 +9,8 @@ import { cn } from "@/utils/cn";
 import Image from "next/image";
 
 export default function SelectSocialPlatform() {
-	const {
-		addTechnology,
-		captureAndSearch,
-		closeSearchResult,
-		displaySearchResult,
-		searchQuery,
-		searchResult,
-		platform,
-	} = useSelectSocialPlatformInterface();
+	const { select, search, closeSearchResult, searchResult, platform } =
+		useSelectSocialPlatformInterface();
 	return (
 		<>
 			<Flex flex='column' className='relative overflow-visible gap-3'>
@@ -29,13 +22,13 @@ export default function SelectSocialPlatform() {
 					id='select-technology'
 					className='border p-3 w-full shrink-0'
 					required
-					value={searchQuery || platform}
+					defaultValue={platform}
 					onKeyDown={(e) => {
 						closeSearchResult(e.key);
 					}}
-					onFocus={() => displaySearchResult()}
+					onFocus={(e) => search(e.currentTarget.value)}
 					onChange={(e) => {
-						captureAndSearch(e.target.value);
+						search(e.currentTarget.value);
 					}}
 				/>
 
@@ -58,7 +51,7 @@ export default function SelectSocialPlatform() {
 									)}
 									htmlProps={{
 										onClick() {
-											addTechnology(socialPlatforms);
+											select(socialPlatforms);
 										},
 										style: { animationDelay: i * DELAY + "ms" },
 									}}
