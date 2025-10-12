@@ -1,4 +1,3 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { useAtom, useAtomValue } from "jotai";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -7,34 +6,36 @@ import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useState } from "react";
 import {
-	input_profile_atom,
 	mutate_profile_atom,
 	profile_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
 export function useEditHourlyRate() {
-	const [input_profile, set_input_profile] = useAtom(input_profile_atom);
+	const [inputHourlyRate, setInputHourlyRate] = useState<number | null>(null);
 	const profile = useAtomValue(profile_atom);
 	const [mutate_profile] = useAtom(mutate_profile_atom);
-	const [context, setContext] = useState<"update" | null>(null);
+	const isPending = mutate_profile.isPending;
+	const [context, setContext] = useState<"update-hourly-rate" | null>(null);
+	const hourlyRate = profile?.hourlyRate;
 
-	function start() {
-		setContext("update");
-	}
+	const start = () => {
+		setContext("update-hourly-rate");
+	};
 
-	function close() {
+	const close = () => {
 		setContext(null);
-	}
+		setInputHourlyRate(null);
+	};
 
-	async function update(profile: Partial<Profile>) {
-		await mutate_profile.mutateAsync(profile);
+	async function update(hourlyRate: number) {
+		await mutate_profile.mutateAsync({ id: profile.id, hourlyRate });
 		close();
 	}
 
-	function captureInput(value: number) {
-		set_input_profile({ id: profile.id, hourlyRate: value });
-	}
+	const captureInput = (hourlyRate: number) => {
+		setInputHourlyRate(hourlyRate);
+	};
 
 	return {
 		start,
@@ -56,7 +57,7 @@ export function useEditHourlyRate() {
 						className='flex flex-col gap-3'
 						onSubmit={(e) => {
 							e.preventDefault();
-							update(input_profile);
+							update(inputHourlyRate!);
 						}}
 					>
 						<label className='text-xl font-semibold' htmlFor='title'>
@@ -66,17 +67,14 @@ export function useEditHourlyRate() {
 							type='number'
 							id='title'
 							required
-							defaultValue={profile?.hourlyRate}
+							value={inputHourlyRate ?? hourlyRate}
 							onChange={(e) => {
 								captureInput(+e.target.value);
 							}}
 							className='border p-3'
 						/>
 						<Button type='submit' className='bg-black text-light-surface'>
-							Save{" "}
-							{mutate_profile.isPending && (
-								<HashLoader color='#fff' size={24} />
-							)}
+							Save {isPending && <HashLoader color='#fff' size={24} />}
 						</Button>
 					</form>
 				</Flex>

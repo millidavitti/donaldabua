@@ -160,10 +160,6 @@ export const delete_social_atom = atomWithMutation(() => ({
 	},
 }));
 
-export const input_profile_atom = atomWithReset<Partial<Profile>>({
-	title: "",
-});
-
 export const create_profile_atom = atomWithMutation(() => ({
 	mutationKey: ["create_social"],
 	mutationFn: async (profile: Partial<Profile>) => {

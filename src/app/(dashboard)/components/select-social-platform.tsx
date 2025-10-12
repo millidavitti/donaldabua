@@ -3,14 +3,20 @@ import {
 	DELAY,
 	SOCIAL_PLATFORM_ICONS,
 } from "@/data/dashboard/dashboard-constants";
-import useSelectSocialPlatformInterface from "@/hooks/interface/dashboard/use-select-social-platform-interface";
+import useSelectSocialPlatform from "@/hooks/interface/dashboard/use-select-social-platform.interface";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 
 export default function SelectSocialPlatform() {
-	const { select, search, closeSearchResult, searchResult, platform } =
-		useSelectSocialPlatformInterface();
+	const {
+		select,
+		search,
+		closeSearchResult,
+		searchResult,
+		searchQuery,
+		platform,
+	} = useSelectSocialPlatform();
 	return (
 		<>
 			<Flex flex='column' className='relative overflow-visible gap-3'>
@@ -22,11 +28,14 @@ export default function SelectSocialPlatform() {
 					id='select-technology'
 					className='border p-3 w-full shrink-0'
 					required
-					defaultValue={platform}
+					value={searchQuery ?? platform}
 					onKeyDown={(e) => {
 						closeSearchResult(e.key);
 					}}
-					onFocus={(e) => search(e.currentTarget.value)}
+					onFocus={(e) => {
+						e.currentTarget.select();
+						search(e.currentTarget.value);
+					}}
 					onChange={(e) => {
 						search(e.currentTarget.value);
 					}}
@@ -41,28 +50,28 @@ export default function SelectSocialPlatform() {
 							id: "search-result",
 						}}
 					>
-						{searchResult.map((socialPlatforms, i) => {
+						{searchResult.map((platform, i) => {
 							return (
 								<Flex
-									key={socialPlatforms}
+									key={platform}
 									className={cn(
 										"shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container gap-3 font-semibold",
 										getAnimationClass("swing-in-top-fwd"),
 									)}
 									htmlProps={{
 										onClick() {
-											select(socialPlatforms);
+											select(platform);
 										},
 										style: { animationDelay: i * DELAY + "ms" },
 									}}
 								>
 									<Image
-										src={SOCIAL_PLATFORM_ICONS[socialPlatforms]}
+										src={SOCIAL_PLATFORM_ICONS[platform]}
 										width={24}
 										height={24}
-										alt={socialPlatforms}
+										alt={platform}
 									/>
-									{socialPlatforms}
+									{platform}
 								</Flex>
 							);
 						})}

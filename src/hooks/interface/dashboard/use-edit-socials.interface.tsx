@@ -39,36 +39,34 @@ export default function useEditSocials() {
 		reset_input_social();
 	};
 
-	const toggleForm = (ctx: "create" | "update", social?: Social) => {
+	const start = (ctx: "create" | "update", social?: Social) => {
 		setContext(ctx);
 		if (ctx === "update") set_input_social(social!);
 	};
 
-	const create = async () => {
+	const captureInput = (url: SocialPlatforms) => {
+		set_input_social({ ...input_social, profile: url });
+	};
+
+	async function create() {
 		await create_social.mutateAsync(input_social);
 		setContext(null);
-	};
+	}
 
-	const capture = (value: SocialPlatforms) => {
-		set_input_social((input_social) => {
-			return { ...input_social, profile: value };
-		});
-	};
-
-	const update = async (inputSocial: Social) => {
+	async function update(inputSocial: Social) {
 		await mutate_social.mutateAsync(inputSocial);
 		setContext(null);
-	};
+	}
 
-	const remove = async (social: Social) => {
+	async function remove(social: Social) {
 		displayDialog();
 		if (await new Promise(waitForDialog()))
 			await delete_social.mutateAsync(social.id!);
 		closeDialog();
-	};
+	}
 
 	return {
-		toggleForm,
+		start,
 		remove,
 		socials: payload_view.data?.socials as Social[],
 		isFetching,
@@ -104,8 +102,10 @@ export default function useEditSocials() {
 								type='url'
 								required
 								className='border p-3'
-								defaultValue={input_social.profile}
-								onChange={(e) => capture(e.target.value as SocialPlatforms)}
+								value={input_social.profile}
+								onChange={(e) =>
+									captureInput(e.target.value as SocialPlatforms)
+								}
 							/>
 						</Flex>
 						<Button type='submit' className='bg-black text-light-surface'>

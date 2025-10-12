@@ -5,13 +5,15 @@ import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-export default function useSelectSocialPlatformInterface() {
+export default function useSelectSocialPlatform() {
 	const [searchResult, setSearchResult] = useState<SocialPlatforms[]>([]);
+	const [searchQuery, setSearchQuery] = useState<string | null>(null);
 	const [input_socials, set_input_socials] = useAtom(input_social_atom);
 
 	function select(platform: SocialPlatforms) {
 		set_input_socials({ ...input_socials, platform });
 		setSearchResult([]);
+		setSearchQuery(null);
 	}
 
 	function closeSearchResult(key: string) {
@@ -23,6 +25,7 @@ export default function useSelectSocialPlatformInterface() {
 		const searchResult = platforms.search(searchQuery);
 
 		setSearchResult(searchResult);
+		setSearchQuery(searchQuery);
 	}
 
 	return {
@@ -30,6 +33,7 @@ export default function useSelectSocialPlatformInterface() {
 		search,
 		closeSearchResult,
 		searchResult,
+		searchQuery,
 		platform: input_socials.platform,
 	};
 }

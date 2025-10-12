@@ -1,4 +1,4 @@
-import { Profile, Availability } from "@/data/dashboard/dashboard-atoms/types";
+import { Availability } from "@/data/dashboard/dashboard-atoms/types";
 import { useAtom, useAtomValue } from "jotai";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -8,37 +8,38 @@ import { AVAILABILITY_OPTIONS } from "@/data/home/home-constants";
 import { X } from "lucide-react";
 import { useState } from "react";
 import {
-	input_profile_atom,
 	mutate_profile_atom,
 	profile_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
 export function useEditAvailability() {
-	const [input_profile, set_input_profile] = useAtom(input_profile_atom);
 	const profile = useAtomValue(profile_atom);
+	const availability = profile?.availability;
+	const [inputAvailability, setInputAvailability] =
+		useState<Availability>(availability);
 	const [mutate_profile] = useAtom(mutate_profile_atom);
+	const isPending = mutate_profile.isPending;
 	const [context, setContext] = useState<"update" | null>(null);
 
 	function start() {
 		setContext("update");
-		set_input_profile({ availability: profile.availability });
 	}
 	function close() {
 		setContext(null);
 	}
 	function cpatureInput(availability: Availability) {
-		set_input_profile({ id: profile.id, availability });
+		setInputAvailability(availability);
 	}
 
-	async function update(profile: Partial<Profile>) {
-		await mutate_profile.mutateAsync(profile);
+	async function update(availability: Availability) {
+		await mutate_profile.mutateAsync({ id: profile.id, availability });
 		close();
 	}
 
 	return {
 		start,
-		availability: profile?.availability,
+		availability,
 		Modal: context && (
 			<Modal>
 				<Flex flex='column' className='bg-light-surface gap-3 neonScan'>
@@ -56,32 +57,34 @@ export function useEditAvailability() {
 						className='flex flex-col'
 						onSubmit={(e) => {
 							e.preventDefault();
-							update(input_profile);
+							update(inputAvailability!);
 						}}
 					>
 						{/* Availability */}
 						<Flex flex='column' className='gap-3'>
 							{AVAILABILITY_OPTIONS.map((option) => (
-								<Flex className='gap-3' key={option}>
+								<Flex className='gap-3 py-0' key={option}>
 									<input
 										type='radio'
 										id={option}
 										name='availability'
 										value={option}
 										required
-										checked={input_profile.availability === option}
+										checked={inputAvailability === option}
 										onChange={(e) =>
 											cpatureInput(e.target.value as Availability)
 										}
 									/>
-									<label htmlFor={option}>{option}</label>
+									<label
+										htmlFor={option}
+										className='w-full h-full py-3 cursor-pointer'
+									>
+										{option}
+									</label>
 								</Flex>
 							))}
 							<Button type='submit' className='bg-black text-light-surface'>
-								Save{" "}
-								{mutate_profile.isPending && (
-									<HashLoader color='#fff' size={24} />
-								)}
+								Save {isPending && <HashLoader color='#fff' size={24} />}
 							</Button>
 						</Flex>
 					</form>
