@@ -32,6 +32,7 @@ export default function useEditSocials() {
 	const [delete_social] = useAtom(delete_social_atom);
 	const [context, setContext] = useState<"create" | "update" | null>(null);
 	const isPending = create_social.isPending || mutate_social.isPending;
+	const isFetching = payload_view.isFetching;
 
 	const close = () => {
 		setContext(null);
@@ -43,10 +44,10 @@ export default function useEditSocials() {
 		if (ctx === "update") set_input_social(social!);
 	};
 
-	async function create() {
+	const create = async () => {
 		await create_social.mutateAsync(input_social);
 		setContext(null);
-	}
+	};
 
 	const capture = (value: SocialPlatforms) => {
 		set_input_social((input_social) => {
@@ -54,10 +55,10 @@ export default function useEditSocials() {
 		});
 	};
 
-	async function update(inputSocial: Social) {
+	const update = async (inputSocial: Social) => {
 		await mutate_social.mutateAsync(inputSocial);
 		setContext(null);
-	}
+	};
 
 	const remove = async (social: Social) => {
 		displayDialog();
@@ -70,8 +71,9 @@ export default function useEditSocials() {
 		toggleForm,
 		remove,
 		socials: payload_view.data?.socials as Social[],
+		isFetching,
 		Modal: context && (
-			<Modal>
+			<Modal close={close}>
 				<Flex
 					flex='column'
 					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'

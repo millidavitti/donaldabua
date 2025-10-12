@@ -1,37 +1,35 @@
 import { input_social_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/types";
 import { SOCIAL_PLATFORMS } from "@/data/dashboard/dashboard-constants";
+import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";
 
 export default function useSelectSocialPlatformInterface() {
-	const platforms = [...SOCIAL_PLATFORMS];
-	const [searchResult, setSearchResult] =
-		useState<SocialPlatforms[]>(platforms);
-	const [searchQuery] = useState<string>("");
-	const [input_socials] = useAtom(input_social_atom);
+	const [searchResult, setSearchResult] = useState<SocialPlatforms[]>([]);
+	const [input_socials, set_input_socials] = useAtom(input_social_atom);
 
-	function addTechnology(platform: SocialPlatforms) {
-		console.log(platform);
+	function select(platform: SocialPlatforms) {
+		set_input_socials({ ...input_socials, platform });
+		setSearchResult([]);
 	}
 
 	function closeSearchResult(key: string) {
 		if (key === "Escape") setSearchResult([]);
 	}
 
-	function displaySearchResult() {}
+	function search(searchQuery: string) {
+		const platforms = new FuzzySearch(SOCIAL_PLATFORMS);
+		const searchResult = platforms.search(searchQuery);
 
-	function captureAndSearch(searchQuery: string) {
-		console.log(searchQuery);
+		setSearchResult(searchResult);
 	}
 
 	return {
-		addTechnology,
-		captureAndSearch,
-		displaySearchResult,
+		select,
+		search,
 		closeSearchResult,
 		searchResult,
-		searchQuery,
 		platform: input_socials.platform,
 	};
 }
