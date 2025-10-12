@@ -6,6 +6,10 @@ export async function deleteProject(projectId: string) {
 		const res = await fetch(ENDPOINTS.project.delete(projectId), {
 			method: "DELETE",
 			credentials: "include",
+			// This is because of a bug in Honno csrf middleware
+			headers: {
+				"Content-Type": "application/json",
+			},
 		});
 		const json = await res.json();
 
