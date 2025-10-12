@@ -2,7 +2,7 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import useEditSocials from "@/hooks/interface/dashboard/use-edit-socials.interface";
-import { Plus, Trash2 } from "lucide-react";
+import { PackageOpen, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import {
 	DELAY,
@@ -10,9 +10,10 @@ import {
 } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
+import { HashLoader } from "react-spinners";
 
 export default function EditUserSocials() {
-	const { socials, remove, toggleForm, Modal } = useEditSocials();
+	const { socials, remove, toggleForm, Modal, isFetching } = useEditSocials();
 
 	return (
 		<>
@@ -61,6 +62,17 @@ export default function EditUserSocials() {
 							/>
 						</Flex>
 					))}
+					{!Boolean(socials?.length) && !isFetching && (
+						<Flex flex='column' className='m-auto border-none items-center'>
+							<PackageOpen size={32} />
+							<p className='font-medium'>You have no socials</p>
+						</Flex>
+					)}
+					{isFetching && (
+						<Flex flex='column' className='m-auto border-none items-center'>
+							<HashLoader size={24} />
+						</Flex>
+					)}
 				</Flex>
 			</Flex>
 		</>

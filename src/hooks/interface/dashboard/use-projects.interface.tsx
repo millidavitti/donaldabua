@@ -4,5 +4,8 @@ import { useAtom } from "jotai";
 
 export default function useProjects() {
 	const [projects] = useAtom(projects_atom);
-	return { projects: projects.data as Project[] };
+	return {
+		projects: projects.data as Project[],
+		isFetching: projects.isFetching,
+	};
 }
