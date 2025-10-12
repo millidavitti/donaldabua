@@ -13,7 +13,7 @@ import { getAnimationClass } from "@/utils/animations";
 import { HashLoader } from "react-spinners";
 
 export default function EditUserSocials() {
-	const { socials, remove, toggleForm, Modal, isFetching } = useEditSocials();
+	const { socials, remove, start, Modal, isFetching } = useEditSocials();
 
 	return (
 		<>
@@ -24,7 +24,7 @@ export default function EditUserSocials() {
 						<p className='font-semibold lg:text-2xl'>Socials</p>
 						<InteractiveIcon
 							callback={() => {
-								toggleForm("create");
+								start("create");
 							}}
 						>
 							<Plus size={24} />
@@ -45,7 +45,7 @@ export default function EditUserSocials() {
 							<span
 								className='flex w-full gap-3 active:scale-95 transition cursor-pointer'
 								onClick={() => {
-									toggleForm("update", social);
+									start("update", social);
 								}}
 							>
 								<Image
