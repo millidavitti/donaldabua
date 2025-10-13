@@ -23,18 +23,19 @@ export default function useSelectProfile() {
 	const { closeDialog, displayDialog } = useDialog();
 	const [context, setContext] = useState<"view-profiles" | null>(null);
 
-	function view() {
+	const view = () => {
 		setContext("view-profiles");
-	}
+	};
 
-	function close() {
+	const close = () => {
 		setContext(null);
-	}
+	};
 
-	function select(profile: Profile) {
+	const select = (profile: Profile) => {
+		localStorage.setItem("last-viewed-profile", profile.id);
 		set_profile(profile);
 		close();
-	}
+	};
 
 	async function remove(profile: Partial<Profile>) {
 		if (profiles?.length < 1) return;
@@ -61,10 +62,16 @@ export default function useSelectProfile() {
 					{/* Profiles */}
 					<Flex flex='column' className='gap-3 border-0 p-0'>
 						{profiles?.map((profile, i) => {
+							const lastViewed = localStorage.getItem("last-viewed-profile");
+							const isFirstProfile = !i;
 							return (
 								<Flex
 									key={profile.id}
-									className={cn("gap-3 border-0 p-0", i || "hidden")}
+									className={cn(
+										"gap-3 border-0 p-0",
+										(profile.id === lastViewed || isFirstProfile) &&
+											"hidden pointer-events-none",
+									)}
 								>
 									<Button
 										onClick={() => select(profile)}
