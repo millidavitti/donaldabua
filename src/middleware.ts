@@ -13,13 +13,21 @@ export async function middleware(request: NextRequest) {
 			return true;
 		} catch (error) {
 			generateErrorLog("middleware", error, "slient");
-			Cookies.delete("__Secure-portfolio.authenticated");
+			Cookies.delete({
+				path: "/",
+				secure: true,
+				name: "__Secure-portfolio.authenticated",
+			});
 			return false;
 		}
 	})();
 
 	if (isAuth) {
-		Cookies.delete("__Secure-portfolio.authenticating");
+		Cookies.delete({
+			path: "/",
+			secure: true,
+			name: "__Secure-portfolio.authenticating",
+		});
 		if (
 			request.nextUrl.pathname === "/auth/sign-in" ||
 			request.nextUrl.pathname === "/auth/sign-up"
