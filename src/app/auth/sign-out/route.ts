@@ -9,6 +9,9 @@ export async function GET() {
 			path: "/",
 			secure: true,
 			name: "__Secure-portfolio.authenticated",
+			domain: process.env.COOKIE_DOMAIN,
+			httpOnly: true,
+			sameSite: "none",
 		});
 		redirect("/auth/sign-in");
 	} catch (error) {
