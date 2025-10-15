@@ -17,6 +17,9 @@ export async function middleware(request: NextRequest) {
 				path: "/",
 				secure: true,
 				name: "__Secure-portfolio.authenticated",
+				domain: process.env.COOKIE_DOMAIN,
+				httpOnly: true,
+				sameSite: "none",
 			});
 			return false;
 		}
@@ -27,6 +30,9 @@ export async function middleware(request: NextRequest) {
 			path: "/",
 			secure: true,
 			name: "__Secure-portfolio.authenticating",
+			domain: process.env.COOKIE_DOMAIN,
+			httpOnly: true,
+			sameSite: "none",
 		});
 		if (
 			request.nextUrl.pathname === "/auth/sign-in" ||
