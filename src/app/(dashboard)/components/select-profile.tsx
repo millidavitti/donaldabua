@@ -7,7 +7,7 @@ export default function SelectProfile() {
 		<>
 			{Modal}
 			<Button type='button' onClick={view} className='self-start'>
-				View Profiles
+				Select Profile
 			</Button>
 		</>
 	);

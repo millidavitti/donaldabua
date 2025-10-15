@@ -179,7 +179,22 @@ export const create_profile_atom = atomWithMutation(() => ({
 }));
 
 export const profile_atom = atom<Profile, Profile[], void>(
-	(get) => get(payload_view_atom).data?.profiles[0] as Profile,
+	(get) => {
+		const profileId = (() => {
+			if (typeof window !== "undefined") {
+				const id = localStorage.getItem("last-viewed-profile");
+				if (!id) return;
+				return id;
+			}
+		})();
+
+		if (profileId)
+			return (get(payload_view_atom).data?.profiles as Profile[])?.find(
+				(profile) => profile.id === profileId,
+			) as Profile;
+
+		return get(payload_view_atom).data?.profiles[0] as Profile;
+	},
 	async (_, __, update) => {
 		await queryClient.cancelQueries({ queryKey: ["payload_view"] });
 		queryClient.setQueryData(

@@ -15,37 +15,20 @@ interface ContentBuilderMarkdown {
 export default function ContentBuilderMarkdown({
 	component,
 }: ContentBuilderMarkdown) {
-	const { componentId, edit, save, captureInput } = useContentBuilderMarkdown();
+	const { edit, Modal } = useContentBuilderMarkdown();
 	return (
-		<Flex
-			flex='column'
-			className='gap-3 relative'
-			htmlProps={{
-				onKeyDown(e) {
-					if (e.key === "Enter" && e.ctrlKey) {
-						save(component.id);
-					}
-				},
-			}}
-		>
+		<Flex flex='column' className='gap-3 relative'>
 			<ContentBuilderOptionsDrawer>
-				<ContentBuilderEditOption edit={() => edit(component.id)} />
+				<ContentBuilderEditOption
+					edit={() => edit(component.id, component.markdown!)}
+				/>
 				<ContentBuilderDeleteOption componentID={component.id} />
 				<ContentBuilderMoveUpOption position={component.position} />
 				<ContentBuilderMoveDownOption position={component.position} />
 			</ContentBuilderOptionsDrawer>
 
-			{componentId === component.id || parse(md(component.markdown))}
-			{componentId === component.id && (
-				<textarea
-					defaultValue={component.markdown!}
-					className='shrink-0 p-3 neonScan'
-					rows={30}
-					onChange={(e) => {
-						captureInput(e.target.value);
-					}}
-				/>
-			)}
+			{parse(md(component.markdown))}
+			{Modal}
 		</Flex>
 	);
 }

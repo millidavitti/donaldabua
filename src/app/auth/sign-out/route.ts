@@ -1,16 +1,17 @@
 import { generateErrorLog } from "@/utils/generate-error-log";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function GET() {
 	try {
 		const Cookies = await cookies();
-		Cookies.delete("portfolio.authenticated");
-
-		return new Response(null);
+		Cookies.delete({
+			path: "/",
+			secure: true,
+			name: "__Secure-portfolio.authenticated",
+		});
+		redirect("/auth/sign-in");
 	} catch (error) {
 		generateErrorLog("app/auth/sign-out", error);
-	} finally {
-		redirect("/auth/sign-in");
 	}
 }

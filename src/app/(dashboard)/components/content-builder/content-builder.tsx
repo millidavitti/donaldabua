@@ -17,7 +17,7 @@ export default function ContentBuilder() {
 		>
 			<DraftProjectContentOptions />
 			{Boolean(input_project_content.length) && (
-				<Flex flex='column' className='h-fit gap-3'>
+				<Flex flex='column' className='h-fit gap-3 p-0 border-none'>
 					{input_project_content
 						.sort((a, b) => a.position - b.position)
 						.map((component) => {

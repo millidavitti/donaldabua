@@ -4,13 +4,13 @@ import {
 	settings_view_atom,
 } from "@/data//dashboard/dashboard-atoms/dashboard-ui-state";
 import { useAtomValue, useSetAtom } from "jotai";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function useSettings() {
 	const dashboard_view_setter = useSetAtom(dashboard_view_jotai);
 	const settings_view_setter = useSetAtom(settings_view_atom);
 	const api_task = useAtomValue(api_task_atom);
-
+	const router = useRouter();
 	function display() {
 		dashboard_view_setter("settings");
 	}
@@ -23,7 +23,7 @@ export default function useSettings() {
 	}
 
 	async function signOut() {
-		redirect("/auth/sign-out");
+		router.replace("/auth/sign-out");
 	}
 	return { display, close, manageTechnologies, signOut, api_task };
 }
