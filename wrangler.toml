@@ -9,3 +9,7 @@ binding = "ASSETS"
 
 [observability.logs]
 enabled = true
+
+[vars]
+COOKIE_DOMAIN = .roninubermensch.workers.dev
+AUTH_ENDPOINT = https://api.roninubermensch.workers.dev/auth
