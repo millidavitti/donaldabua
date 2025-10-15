@@ -1,6 +1,6 @@
 import { Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import useDialog from "../../use-dialog";
 import {
 	delete_profile_atom,
@@ -20,8 +20,11 @@ export default function useSelectProfile() {
 	const [delete_profile] = useAtom(delete_profile_atom);
 	const [payload_view] = useAtom(payload_view_atom);
 	const profiles = payload_view.data?.profiles as Profile[];
+	const profile = useAtomValue(profile_atom);
+	const activeProfile = profile;
 	const { closeDialog, displayDialog } = useDialog();
 	const [context, setContext] = useState<"view-profiles" | null>(null);
+	const hasOneProfile = profiles?.length - 1 < 1;
 
 	const view = () => {
 		setContext("view-profiles");
@@ -61,16 +64,16 @@ export default function useSelectProfile() {
 					</Flex>
 					{/* Profiles */}
 					<Flex flex='column' className='gap-3 border-0 p-0'>
-						{profiles?.map((profile, i) => {
+						{profiles?.map((profile) => {
 							const lastViewed = localStorage.getItem("last-viewed-profile");
-							const isFirstProfile = !i;
+							const isSelected =
+								profile.id === lastViewed || profile.id == activeProfile.id;
 							return (
 								<Flex
 									key={profile.id}
 									className={cn(
 										"gap-3 border-0 p-0",
-										(profile.id === lastViewed || isFirstProfile) &&
-											"hidden pointer-events-none",
+										isSelected && "hidden pointer-events-none",
 									)}
 								>
 									<Button
@@ -89,6 +92,9 @@ export default function useSelectProfile() {
 								</Flex>
 							);
 						})}
+						{hasOneProfile && (
+							<p className='font-medium mx-auto'>No more profiles</p>
+						)}
 					</Flex>
 				</Flex>
 			</Modal>
