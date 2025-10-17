@@ -29,12 +29,12 @@ export default function ProjectOptions({
 						htmlProps={{
 							onClick() {
 								setIsOptionsVisible(true);
-								document.onclick = () => {
-									setIsOptionsVisible(false);
-									document.onclick = null;
-								};
+								document.addEventListener(
+									"click",
+									() => setIsOptionsVisible(false),
+									{ once: true },
+								);
 							},
-							id: "published-portfolio-project-option",
 						}}
 					>
 						<EllipsisIcon />
