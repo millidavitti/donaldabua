@@ -18,14 +18,7 @@ export default function ContentBuilderOptionsDrawer({
 			{(context === "draft-project" || context === "update-project") && (
 				<>
 					{isOptionsVisible ? (
-						<Flex
-							className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto neonScan z-10'
-							htmlProps={{
-								onMouseLeave() {
-									setIsOptionsVisible(false);
-								},
-							}}
-						>
+						<Flex className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto z-10'>
 							{children}
 						</Flex>
 					) : (
@@ -34,6 +27,10 @@ export default function ContentBuilderOptionsDrawer({
 							htmlProps={{
 								onClick() {
 									setIsOptionsVisible(true);
+									document.onclick = () => {
+										setIsOptionsVisible(false);
+										document.onclick = null;
+									};
 								},
 							}}
 						>
