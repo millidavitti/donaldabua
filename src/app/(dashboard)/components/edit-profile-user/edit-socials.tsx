@@ -12,7 +12,7 @@ import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import { HashLoader } from "react-spinners";
 
-export default function EditUserSocials() {
+export default function EditSocials() {
 	const { socials, remove, start, Modal, isFetching } = useEditSocials();
 
 	return (

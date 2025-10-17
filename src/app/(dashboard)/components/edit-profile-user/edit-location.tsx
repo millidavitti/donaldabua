@@ -2,11 +2,11 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Overlay from "@/components/layouts/overlay";
 import Button from "@/components/ui/button";
-import { useEditUserLocation } from "@/hooks/interface/dashboard/use-edit-user-location.interface";
+import { useEdiLocation } from "@/hooks/interface/dashboard/use-edit-user-location.interface";
 import { MapPin, X } from "lucide-react";
 
-export default function EditUserLocation() {
-	const { close, start, captureInput, save, location } = useEditUserLocation();
+export default function EditLocation() {
+	const { close, start, captureInput, save, location } = useEdiLocation();
 	return (
 		<Flex className='gap-3'>
 			<MapPin />
