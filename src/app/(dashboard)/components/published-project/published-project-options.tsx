@@ -7,7 +7,7 @@ import { ReactNode, useState } from "react";
 interface PublishedPortfolioProjectOptions {
 	children: ReactNode;
 }
-export default function PublishedProjectOptions({
+export default function ProjectOptions({
 	children,
 }: PublishedPortfolioProjectOptions) {
 	const [isOptionsVisible, setIsOptionsVisible] = useState(false);
@@ -20,11 +20,6 @@ export default function PublishedProjectOptions({
 						className={cn(
 							"place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto",
 						)}
-						htmlProps={{
-							onMouseLeave() {
-								setIsOptionsVisible(false);
-							},
-						}}
 					>
 						{children}
 					</Flex>
@@ -34,6 +29,10 @@ export default function PublishedProjectOptions({
 						htmlProps={{
 							onClick() {
 								setIsOptionsVisible(true);
+								document.onclick = () => {
+									setIsOptionsVisible(false);
+									document.onclick = null;
+								};
 							},
 							id: "published-portfolio-project-option",
 						}}

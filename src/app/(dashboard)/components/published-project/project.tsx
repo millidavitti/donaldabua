@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { type Project } from "@/data/dashboard/dashboard-atoms/types";
-import PublishedProjectOptions from "./published-project-options";
+import ProjectOptions from "./published-project-options";
 import ProjectEdit from "./options/project-edit";
 import ProjectDelete from "./options/project-delete";
 import useProject from "@/hooks/interface/dashboard/use-project.interface";
@@ -23,7 +23,7 @@ export default function Project({
 			{Modal}
 			<Flex
 				className={cn(
-					"shrink-0 gap-3 grow w-full md:basis-52 relative border-0 p-0",
+					"shrink-0 gap-3 grow w-full md:basis-52 h-fit relative border-0 p-0 mb-3 break-inside-avoid",
 					getAnimationClass("swing-in-top-fwd"),
 				)}
 				htmlProps={{
@@ -51,10 +51,10 @@ export default function Project({
 					</Flex>
 					<p className='text-lg font-semibold'>{project.title}</p>
 				</Flex>
-				<PublishedProjectOptions>
+				<ProjectOptions>
 					<ProjectEdit project={project} />
 					<ProjectDelete projectID={project.id} />
-				</PublishedProjectOptions>
+				</ProjectOptions>
 			</Flex>
 		</>
 	);

@@ -24,11 +24,15 @@ export function useEditAvailability() {
 
 	function start() {
 		setContext("update");
+		document.onkeydown = (e) => {
+   if (e.key === "Escape") close();
+		};
 	}
 	function close() {
 		setContext(null);
+		document.onkeydown = null;
 	}
-	function cpatureInput(availability: Availability) {
+	function captureInput(availability: Availability) {
 		setInputAvailability(availability);
 	}
 
@@ -72,7 +76,7 @@ export function useEditAvailability() {
 										required
 										checked={inputAvailability === option}
 										onChange={(e) =>
-											cpatureInput(e.target.value as Availability)
+											captureInput(e.target.value as Availability)
 										}
 									/>
 									<label

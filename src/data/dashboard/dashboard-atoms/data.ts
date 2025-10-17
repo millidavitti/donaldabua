@@ -26,12 +26,12 @@ import { updateProfile } from "@/backend/controllers/dashboard/profile/update-pr
 import { deleteProfile } from "@/backend/controllers/dashboard/profile/delete-profile.controller";
 import { createProject } from "@/backend/controllers/dashboard/project/create-project.controller";
 import { getProjects } from "@/backend/controllers/dashboard/project/get-projects.controller";
-import { createId } from "@paralleldrive/cuid2";
 import { generateErrorLog } from "@/utils/generate-error-log";
 import { getProjectTechnologies } from "@/backend/controllers/dashboard/project/get-project-technologies.controller";
 import { getProjectContent } from "@/backend/controllers/dashboard/project/get-project-content.controller";
 import { updateProject } from "@/backend/controllers/dashboard/project/update-project.controller";
 import { deleteProject } from "@/backend/controllers/dashboard/project/delete-project.controller";
+import { createId } from "@paralleldrive/cuid2";
 
 const api = process.env.NEXT_PUBLIC_BACKEND_API_ENDPOINT!;
 export const payload_view_atom = atomWithQuery(() => ({
@@ -249,7 +249,7 @@ export const delete_profile_atom = atomWithMutation(() => ({
 
 export const input_project_atom = atomWithReset<Project>({
 	description: "",
-	id: createId(),
+	id: "createId()",
 	thumbnail: "",
 	title: "",
 });
@@ -264,6 +264,7 @@ export const projects_atom = atomWithQuery((get) => ({
 		const json = await getProjects(profileId);
 		return json.data as Project[];
 	},
+	initialData: [],
 }));
 
 export const create_project_atom = atomWithMutation(() => ({
@@ -274,6 +275,7 @@ export const create_project_atom = atomWithMutation(() => ({
 		technologies: Technology[];
 	}) => {
 		const profileId = jotaiStore.get(profile_atom).id;
+		payload.project.id = createId();
 		const json = await createProject(profileId, {
 			project: payload.project,
 			content: payload.content,

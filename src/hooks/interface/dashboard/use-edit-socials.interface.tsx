@@ -37,11 +37,15 @@ export default function useEditSocials() {
 	const close = () => {
 		setContext(null);
 		reset_input_social();
+		document.onkeydown = null;
 	};
 
 	const start = (ctx: "create" | "update", social?: Social) => {
 		setContext(ctx);
 		if (ctx === "update") set_input_social(social!);
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const captureInput = (url: SocialPlatforms) => {

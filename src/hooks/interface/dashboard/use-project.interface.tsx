@@ -31,11 +31,15 @@ export default function useProject() {
 	const view = async (project: Project) => {
 		setContext("view-project");
 		set_project(project);
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		set_project(null);
+		document.onkeydown = null;
 	};
 	return {
 		view,
@@ -45,6 +49,12 @@ export default function useProject() {
 					<Flex
 						flex='column'
 						className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
+						htmlProps={{
+							onKeyDown(e) {
+								console.log("🚀 ~ useProject ~ e:", e.key);
+								if (e.key === "Escape") close();
+							},
+						}}
 					>
 						{/* Header */}
 						<Flex className='justify-between items-center shrink-0 border-0 p-0'>

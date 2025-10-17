@@ -5,7 +5,6 @@ import DashboardHeader from "../components/dashboard-header";
 import AlertDialog from "@/components/ui/alert-dialog";
 import EditProfileSummary from "../components/edit-profile/edit-profile-summary";
 import EditProjects from "../components/edit-profile/edit-profile-projects";
-import EditProfileTechnologies from "../components/edit-profile/edit-profile-technologies";
 
 export default function Dashboard() {
 	return (
@@ -22,7 +21,7 @@ export default function Dashboard() {
 					>
 						<EditProfileSummary />
 						<EditProjects />
-						<EditProfileTechnologies />
+						{/* <EditProfileTechnologies /> */}
 					</Flex>
 				</Flex>
 			</Flex>
