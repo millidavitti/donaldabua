@@ -21,11 +21,15 @@ export function useEditProfileOverview() {
 
 	const start = () => {
 		setContext("update");
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		setInputOverview(null);
+		document.onkeydown = null;
 	};
 
 	async function update(overview: string) {

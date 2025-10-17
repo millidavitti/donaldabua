@@ -21,11 +21,15 @@ export function useEditProfileTitle() {
 
 	const start = () => {
 		setContext("edit-title");
+		document.onkeydown = (e) => {
+   if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		setInputTitle(null);
+		document.onkeydown = null;
 	};
 
 	const captureInput = (title: string) => {

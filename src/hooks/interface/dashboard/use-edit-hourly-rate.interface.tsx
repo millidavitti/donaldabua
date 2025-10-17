@@ -21,11 +21,15 @@ export function useEditHourlyRate() {
 
 	const start = () => {
 		setContext("update-hourly-rate");
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		setInputHourlyRate(null);
+		document.onkeydown = null;
 	};
 
 	async function update(hourlyRate: number) {
