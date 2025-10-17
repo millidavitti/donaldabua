@@ -258,7 +258,7 @@ export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
 export const input_project_content_atom = atomWithReset<ProjectContent[]>([]);
 
 export const projects_atom = atomWithQuery((get) => ({
-	queryKey: ["projects", get(profile_atom)],
+	queryKey: ["projects", get(profile_atom)?.id],
 	queryFn: async () => {
 		const profileId = jotaiStore.get(profile_atom).id;
 		const json = await getProjects(profileId);
@@ -316,9 +316,15 @@ export const mutate_project_atom = atomWithMutation(() => ({
 		toast.error(message);
 		generateErrorLog("@mutate_project_atom", error, "slient");
 	},
-	onSuccess: async () => {
-		await queryClient.invalidateQueries({
-			queryKey: ["projects", "project_technologies", "project_content"],
+	onSuccess: async (_, __, ___, ctx) => {
+		await ctx.client.invalidateQueries({
+			queryKey: ["projects"],
+		});
+		await ctx.client.invalidateQueries({
+			queryKey: ["project_technologies"],
+		});
+		await ctx.client.invalidateQueries({
+			queryKey: ["project_content"],
 		});
 	},
 }));
