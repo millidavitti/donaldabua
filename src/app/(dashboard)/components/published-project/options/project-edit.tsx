@@ -1,14 +1,13 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Project } from "@/data/dashboard/dashboard-atoms/types";
-import { useProjectEdit } from "@/hooks/interface/dashboard/use-project-edit.interface";
+import { useEditProjects } from "@/hooks/interface/dashboard/use-edit-projects.interface";
 import { Edit } from "lucide-react";
-import React from "react";
 
 interface ProjectEdit {
 	project: Project;
 }
 export default function ProjectEdit({ project }: ProjectEdit) {
-	const { edit } = useProjectEdit();
+	const { edit } = useEditProjects();
 
 	return (
 		<>
