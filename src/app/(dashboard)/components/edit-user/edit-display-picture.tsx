@@ -12,11 +12,7 @@ export default function EditDisplayPicture() {
 		>
 			<Flex
 				className='rounded-full shrink-0 p-0 h-24 w-24 cursor-pointer active:scale-[.99] overflow-clip'
-				htmlProps={{
-					onClick() {
-						edit();
-					},
-				}}
+				onClick={edit}
 			>
 				{Boolean(image) && (
 					<Image

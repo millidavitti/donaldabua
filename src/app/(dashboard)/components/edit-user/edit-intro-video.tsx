@@ -6,7 +6,7 @@ import { Plus, Trash2 } from "lucide-react";
 export default function EditIntroVideo() {
 	const { Modal, video, start, remove } = useEditIntroVideo();
 	return (
-		<Flex flex='column' className='h-[258px] gap-3' htmlProps={{ id: "video" }}>
+		<Flex flex='column' className='h-[258px] gap-3' htmlprops={{ id: "video" }}>
 			<a href='#video' className='shrink-0'>
 				<Flex className='h-fit items-center justify-between'>
 					<p className='font-semibold lg:text-2xl'>Video Introduction</p>

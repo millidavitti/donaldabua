@@ -18,7 +18,7 @@ export default function EditSocials() {
 	return (
 		<>
 			{Modal}
-			<Flex flex='column' className='grow gap-3' htmlProps={{ id: "socials" }}>
+			<Flex flex='column' className='grow gap-3' htmlprops={{ id: "socials" }}>
 				<a href='#socials' className='shrink-0'>
 					<Flex className='h-fit items-center justify-between'>
 						<p className='font-semibold lg:text-2xl'>Socials</p>
@@ -40,7 +40,7 @@ export default function EditSocials() {
 								"group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between",
 								getAnimationClass("swing-in-top-fwd"),
 							)}
-							htmlProps={{ style: { animationDelay: i * DELAY + "ms" } }}
+							htmlprops={{ style: { animationDelay: i * DELAY + "ms" } }}
 						>
 							<span
 								className='flex w-full gap-3 active:scale-95 transition cursor-pointer'
