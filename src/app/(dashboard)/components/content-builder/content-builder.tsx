@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import DraftContentOptions from "../draft/draft-content-options";
+import ContentTypes from "./content-types";
 import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
@@ -10,8 +10,12 @@ export default function ContentBuilder() {
 	const input_project_content = useAtomValue(input_project_content_atom);
 
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
-			<DraftContentOptions />
+		<Flex
+			flex='column'
+			className='basis-[360px] grow-[2] gap-3'
+			id='content-builder'
+		>
+			<ContentTypes />
 			{Boolean(input_project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3 p-0 border-none'>
 					{input_project_content
