@@ -10,32 +10,30 @@ interface ContentBuilderMoveDownOption {
 export default function ContentBuilderMoveDownOption({
 	position,
 }: ContentBuilderMoveDownOption) {
-	const project_content_setter = useSetAtom(input_project_content_atom);
+	const set_project_content = useSetAtom(input_project_content_atom);
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
-			htmlProps={{
-				onClick() {
-					project_content_setter((content) => {
-						return content.map((comp, i, arr) => {
-							if (i === position) {
-								if (comp.position + 1 >= arr.length) return comp;
-								return {
-									...comp,
-									position: comp.position + 1,
-								};
-							} else if (i === position + 1) {
-								if (comp.position - 1 < 0) return comp;
-								return {
-									...comp,
-									position: comp.position - 1,
-								};
-							}
-							return comp;
-						});
+			onClick={() =>
+				set_project_content((content) => {
+					return content.map((comp, i, arr) => {
+						if (i === position) {
+							if (comp.position + 1 >= arr.length) return comp;
+							return {
+								...comp,
+								position: comp.position + 1,
+							};
+						} else if (i === position + 1) {
+							if (comp.position - 1 < 0) return comp;
+							return {
+								...comp,
+								position: comp.position - 1,
+							};
+						}
+						return comp;
 					});
-				},
-			}}
+				})
+			}
 		>
 			<ArrowDown />
 		</InteractiveIcon>

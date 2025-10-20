@@ -24,17 +24,15 @@ export default function ContentBuilderOptionsDrawer({
 					) : (
 						<InteractiveIcon
 							className='place-content-center flex-wrap gap-3 p-0 bg-light-surface absolute top-0 inset-x-0 w-fit ml-auto mr-3 mt-3 z-10'
-							htmlProps={{
-								onClick() {
-									setIsOptionsVisible(true);
-									document.addEventListener(
-										"click",
-										() => setIsOptionsVisible(false),
-										{
-											once: true,
-										},
-									);
-								},
+							onClick={() => {
+								setIsOptionsVisible(true);
+								document.addEventListener(
+									"click",
+									() => setIsOptionsVisible(false),
+									{
+										once: true,
+									},
+								);
 							}}
 						>
 							<EllipsisIcon />
