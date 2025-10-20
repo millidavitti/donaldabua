@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import DraftProjectContentOptions from "../draft-project/draft-project-content-options";
+import DraftContentOptions from "../draft/draft-content-options";
 import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useAtomValue } from "jotai";
 import ContentBuilderImage from "./content-builder-image";
@@ -11,7 +11,7 @@ export default function ContentBuilder() {
 
 	return (
 		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
-			<DraftProjectContentOptions />
+			<DraftContentOptions />
 			{Boolean(input_project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3 p-0 border-none'>
 					{input_project_content
