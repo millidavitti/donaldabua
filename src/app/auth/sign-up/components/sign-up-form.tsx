@@ -56,7 +56,7 @@ export default function SignUpForm() {
 						setCredentials({ ...credentials, email: e.target.value })
 					}
 				/>
-				<Button type='submit' htmlProps={{}}>
+				<Button type='submit'>
 					Create Account {isSigningUp && <HashLoader size={24} />}
 				</Button>
 			</Flex>
