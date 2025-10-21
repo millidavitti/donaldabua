@@ -61,9 +61,7 @@ export default function DraftTechnologies() {
 					<Flex
 						flex='column'
 						className='gap-3 bg-light-surface mx-3 max-h-[320px] z-10 shrink-0'
-						htmlprops={{
-							id: "search-result",
-						}}
+						id='search-result'
 					>
 						{searchResult.map((tech, i) => {
 							return (
