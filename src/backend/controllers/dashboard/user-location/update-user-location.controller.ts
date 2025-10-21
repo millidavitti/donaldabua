@@ -1,8 +1,8 @@
-import { UserLocation } from "@/data/dashboard/dashboard-atoms/types";
+import { Location } from "@/data/dashboard/dashboard-atoms/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
-export async function updateLocation(update: Partial<UserLocation>) {
+export async function updateLocation(update: Partial<Location>) {
 	try {
 		const res = await fetch(ENDPOINTS.location.update(), {
 			method: "PATCH",
