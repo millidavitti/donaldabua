@@ -10,7 +10,7 @@ import {
 	Social,
 	Technology,
 	User,
-	UserLocation,
+	Location,
 } from "./types";
 import { queryClient } from "@/components/query-client";
 import { updateLocation } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
@@ -64,7 +64,7 @@ export const mutate_user_atom = atomWithMutation(() => ({
 
 export const mutate_location_atom = atomWithMutation(() => ({
 	mutationKey: ["mutate_location"],
-	mutationFn: async (location: Partial<UserLocation>) => {
+	mutationFn: async (location: Partial<Location>) => {
 		const json = await updateLocation(location);
 		if (!json.message) throw new Error("Bad Request", { cause: json });
 		toast.info(json.message);

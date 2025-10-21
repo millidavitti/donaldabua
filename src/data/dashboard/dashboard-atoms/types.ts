@@ -12,7 +12,7 @@ export type User = {
 	video: string | null;
 };
 
-export type UserLocation = {
+export type Location = {
 	city: string;
 	country: string;
 };
