@@ -1,10 +1,13 @@
 import Flex from "@/components/layouts/flex";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { useEditAvailability } from "@/hooks/interface/dashboard/use-edit-availability.interface";
-import { EditIcon } from "lucide-react";
+import { useAvailability } from "@/hooks/interface/dashboard/use-edit-availability.interface";
+import { ReactNode } from "react";
 
-export default function EditAvailability() {
-	const { availability, Modal, start } = useEditAvailability();
+interface Availability {
+	children?: (start: () => void) => ReactNode;
+}
+
+export default function Availability({ children }: Availability) {
+	const { availability, Modal, start } = useAvailability();
 	return (
 		<>
 			{Modal}
@@ -12,9 +15,7 @@ export default function EditAvailability() {
 				<a href='#availability'>
 					<Flex className='h-fit items-center justify-between'>
 						<p className='font-semibold lg:text-2xl'>Availability</p>
-						<InteractiveIcon callback={start}>
-							<EditIcon size={24} />
-						</InteractiveIcon>
+						{children && children(start)}
 					</Flex>
 				</a>
 				<Flex>

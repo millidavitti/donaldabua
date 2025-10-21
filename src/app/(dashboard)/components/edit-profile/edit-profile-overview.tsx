@@ -1,11 +1,15 @@
+"use client";
 import Flex from "@/components/layouts/flex";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { EditIcon } from "lucide-react";
 import md from "md";
 import parse from "html-react-parser";
-import { useEditProfileOverview } from "@/hooks/interface/dashboard/use-edit-profile-overview.interface";
-export default function EditProfileOverview() {
-	const { start, overview, Modal } = useEditProfileOverview();
+import { useOverview } from "@/hooks/interface/dashboard/use-edit-profile-overview.interface";
+import { ReactNode } from "react";
+export default function Overview({
+	children,
+}: {
+	children?: (start: () => void) => ReactNode;
+}) {
+	const { start, overview, Modal } = useOverview();
 	return (
 		<>
 			{Modal}
@@ -13,9 +17,7 @@ export default function EditProfileOverview() {
 				<Flex className='grow h-[320px]'>
 					<div className='shrink-0 w-full'>{parse(md(overview))}</div>
 				</Flex>
-				<InteractiveIcon callback={start} className='self-start'>
-					<EditIcon size={24} />
-				</InteractiveIcon>
+				{children && children(start)}
 			</Flex>
 		</>
 	);

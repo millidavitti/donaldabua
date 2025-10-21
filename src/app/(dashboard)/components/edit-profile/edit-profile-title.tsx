@@ -1,18 +1,20 @@
+"use client";
 import Flex from "@/components/layouts/flex";
-import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { useEditProfileTitle } from "@/hooks/interface/dashboard/use-edit-profile-title.interface";
-import { EditIcon } from "lucide-react";
+import { useEditProfileTitle as useProfileTitle } from "@/hooks/interface/dashboard/use-edit-profile-title.interface";
+import { ReactNode } from "react";
 
-export default function EditProfileTitle() {
-	const { start, title, Modal } = useEditProfileTitle();
+export default function ProfileTitle({
+	children,
+}: {
+	children?: (start: () => void) => ReactNode;
+}) {
+	const { start, title, Modal } = useProfileTitle();
 	return (
 		<>
 			{Modal}
 			<Flex className='h-fit items-center justify-between w-full'>
 				<p className='font-semibold lg:text-2xl'>{title}</p>
-				<InteractiveIcon callback={start}>
-					<EditIcon size={24} />
-				</InteractiveIcon>
+				{children && children(start)}
 			</Flex>
 		</>
 	);
