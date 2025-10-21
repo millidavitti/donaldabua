@@ -1,20 +1,19 @@
 import { cn } from "@/utils/cn";
 import { HTMLProps, ReactNode } from "react";
 
-interface FlexColumn {
+interface Flex extends Omit<HTMLProps<HTMLDivElement>, "classID"> {
 	children?: ReactNode;
 	className?: string;
-	htmlProps?: Partial<HTMLProps<HTMLDivElement>>;
 	flex?: "row" | "column";
 	debug?: boolean;
 }
 export default function Flex({
 	children,
 	className,
-	htmlProps,
 	flex = "row",
 	debug = false,
-}: FlexColumn) {
+	...props
+}: Flex) {
 	return (
 		<>
 			{flex === "column" && (
@@ -24,7 +23,7 @@ export default function Flex({
 						className,
 						debug && "p-3 outline-1 outline",
 					)}
-					{...htmlProps}
+					{...props}
 				>
 					{children}
 				</div>
@@ -36,7 +35,7 @@ export default function Flex({
 						className,
 						debug && "p-3 outline-1 outline",
 					)}
-					{...htmlProps}
+					{...props}
 				>
 					{children}
 				</div>

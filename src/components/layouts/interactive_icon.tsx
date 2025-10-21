@@ -1,26 +1,26 @@
 import { HTMLProps, MouseEventHandler, ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
-interface InteractiveIcon {
+interface InteractiveIcon extends Omit<HTMLProps<HTMLDivElement>, "classID"> {
 	children: ReactNode;
 	className?: string;
 	callback?: MouseEventHandler<HTMLDivElement> | undefined;
-	htmlProps?: Partial<HTMLProps<HTMLDivElement>>;
+	htmlprops?: Partial<HTMLProps<HTMLDivElement>>;
 }
 export default function InteractiveIcon({
 	children,
 	className,
 	callback,
-	htmlProps,
+	...props
 }: InteractiveIcon) {
 	return (
 		<div
 			className={cn(
-				"p-1 cursor-pointer active:scale-95 transition stroke-light-surface-on-surface shrink-0",
+				"flex p-1 cursor-pointer active:scale-95 transition stroke-light-surface-on-surface shrink-0",
 				className,
 			)}
 			onClick={callback}
-			{...htmlProps}
+			{...props}
 		>
 			{children}
 		</div>

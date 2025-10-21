@@ -22,7 +22,7 @@ export default function Item({
 				"p-3 py-2 rounded-lg cursor-pointer gap-3 data-[is-selected=true]:bg-light-primary-primary-container text-light-primary-on-primary-container text data-[is-selected=true]:font-semibold active:scale-95 transition shrink-0 w-fit md:w-full",
 				className,
 			)}
-			htmlProps={{
+			htmlprops={{
 				...{ "data-is-selected": isSelected },
 				onClick,
 			}}
