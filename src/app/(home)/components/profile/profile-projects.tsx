@@ -5,11 +5,7 @@ import PublishedProjects from "../project/projects";
 export default function ProfileProjects() {
 	return (
 		<>
-			<Flex
-				flex='column'
-				className='border-0 p-0 gap-3'
-				htmlProps={{ id: "projects" }}
-			>
+			<Flex flex='column' className='border-0 p-0 gap-3'>
 				<a href='#projects'>
 					{/* Header */}
 					<Flex className='items-center justify-between shrink-0'>

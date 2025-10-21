@@ -18,23 +18,21 @@ export default function ContentBuilderOptionsDrawer({
 			{(context === "draft-project" || context === "update-project") && (
 				<>
 					{isOptionsVisible ? (
-						<Flex
-							className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto neonScan z-10'
-							htmlProps={{
-								onMouseLeave() {
-									setIsOptionsVisible(false);
-								},
-							}}
-						>
+						<Flex className='place-content-center flex-wrap gap-3 absolute bg-light-surface top-0 inset-x-0 w-fit ml-auto z-10'>
 							{children}
 						</Flex>
 					) : (
 						<InteractiveIcon
 							className='place-content-center flex-wrap gap-3 p-0 bg-light-surface absolute top-0 inset-x-0 w-fit ml-auto mr-3 mt-3 z-10'
-							htmlProps={{
-								onClick() {
-									setIsOptionsVisible(true);
-								},
+							onClick={() => {
+								setIsOptionsVisible(true);
+								document.addEventListener(
+									"click",
+									() => setIsOptionsVisible(false),
+									{
+										once: true,
+									},
+								);
 							}}
 						>
 							<EllipsisIcon />

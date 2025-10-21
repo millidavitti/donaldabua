@@ -73,7 +73,11 @@ export const SOCIAL_PLATFORM_ICONS = {
 	Tumblr: "/social-media-icons/tumblr.svg",
 } as const;
 
-export const DELAY = 200;
+export const DELAY = 150;
 
-export const ANIMATIONS = ["neonScan", "swing-in-top-fwd"] as const;
+export const ANIMATIONS = [
+	"neonScan",
+	"swing-in-top-fwd",
+	"slide-left",
+] as const;
 export type AnimationClass = (typeof ANIMATIONS)[number];

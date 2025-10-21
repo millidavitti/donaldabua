@@ -63,11 +63,17 @@ export default function useAddTechnologiesInterface() {
 		const technologies = payload_view.data.technologies as Technology[];
 		setTimeout(() => {
 			setSearchResult(technologies);
-			document.onclick = (e) => {
-				if (!(e.target as HTMLElement).closest("#search-result"))
-					setSearchResult([]);
-				document.onclick = null;
-			};
+
+			document.addEventListener(
+				"click",
+				(e) => {
+					if (!(e.target as HTMLElement).closest("#search-result"))
+						setSearchResult([]);
+				},
+				{
+					once: true,
+				},
+			);
 		}, 200);
 	}
 

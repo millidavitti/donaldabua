@@ -10,11 +10,7 @@ export default function ContentBuilderEditOption({
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
-			htmlProps={{
-				onClick() {
-					edit();
-				},
-			}}
+			onClick={edit}
 		>
 			<Edit />
 		</InteractiveIcon>

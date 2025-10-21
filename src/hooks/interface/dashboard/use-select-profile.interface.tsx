@@ -28,10 +28,14 @@ export default function useSelectProfile() {
 
 	const view = () => {
 		setContext("view-profiles");
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
+		document.onkeydown = null;
 	};
 
 	const select = (profile: Profile) => {

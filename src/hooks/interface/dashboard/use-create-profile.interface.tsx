@@ -16,11 +16,15 @@ export default function useCreateProfile() {
 
 	const start = () => {
 		setContext("create-profile");
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		setInputTitle("");
+		document.onkeydown = null;
 	};
 
 	async function createProfile(title: string) {

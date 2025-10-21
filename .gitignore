@@ -44,3 +44,5 @@ diff.txt
 .wrangler/*
 task.yaml
 .npmrc
+.vscode/settings.json
+.zed/settings.json

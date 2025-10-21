@@ -1,16 +1,16 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import Overlay from "@/components/layouts/overlay";
 import AddTechnologies from "../add-technologies";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import useManageTechnologies from "@/hooks/interface/dashboard/use-manage-technologies-interface";
 import { HashLoader } from "react-spinners";
+import Modal from "@/components/layouts/modal";
 
-export default function ManageTechnologies() {
-	const { close, updateTechnologies, isPending } = useManageTechnologies();
+export default function ManageTechnologies({ close }: { close: () => void }) {
+	const { updateTechnologies, isPending } = useManageTechnologies();
 	return (
-		<Overlay stateFlag='manage-technologies'>
+		<Modal close={close}>
 			<Flex
 				flex='column'
 				className='bg-light-surface gap-3 basis-[720px] neonScan'
@@ -34,6 +34,6 @@ export default function ManageTechnologies() {
 					</Button>
 				</form>
 			</Flex>
-		</Overlay>
+		</Modal>
 	);
 }

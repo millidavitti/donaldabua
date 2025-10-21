@@ -49,6 +49,8 @@ export type Project = {
 	title: string;
 	description: string;
 	thumbnail: string;
+	repository: string;
+	deployment: string;
 };
 
 export type APIResponse<T, K extends string> = {

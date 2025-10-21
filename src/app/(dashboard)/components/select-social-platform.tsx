@@ -46,9 +46,7 @@ export default function SelectSocialPlatform() {
 					<Flex
 						flex='column'
 						className='gap-3 bg-light-surface max-h-36 no-scrollbar'
-						htmlProps={{
-							id: "search-result",
-						}}
+						id='search-result'
 					>
 						{searchResult.map((platform, i) => {
 							return (
@@ -58,12 +56,8 @@ export default function SelectSocialPlatform() {
 										"shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container gap-3 font-semibold",
 										getAnimationClass("swing-in-top-fwd"),
 									)}
-									htmlProps={{
-										onClick() {
-											select(platform);
-										},
-										style: { animationDelay: i * DELAY + "ms" },
-									}}
+									style={{ animationDelay: i * DELAY + "ms" }}
+									onClick={() => select(platform)}
 								>
 									<Image
 										src={SOCIAL_PLATFORM_ICONS[platform]}

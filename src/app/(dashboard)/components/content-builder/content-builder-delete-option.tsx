@@ -14,16 +14,14 @@ export default function ContentBuilderDeleteOption({
 	return (
 		<InteractiveIcon
 			className='outline grow flex place-content-center'
-			htmlProps={{
-				onClick() {
-					project_content_setter((content) => {
-						return content
-							.filter((obj) => componentID !== obj.id)
-							.map((obj, i) => {
-								return { ...obj, position: i };
-							});
-					});
-				},
+			onClick={() => {
+				project_content_setter((content) => {
+					return content
+						.filter((obj) => componentID !== obj.id)
+						.map((obj, i) => {
+							return { ...obj, position: i };
+						});
+				});
 			}}
 		>
 			<Trash />

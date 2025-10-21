@@ -20,7 +20,7 @@ export default function ProfileTechnology({
 				"gap-3 items-center self-start",
 				getAnimationClass("swing-in-top-fwd"),
 			)}
-			htmlProps={{ style: { animationDelay: index * DELAY + "ms" } }}
+			style={{ animationDelay: index * DELAY + "ms" }}
 		>
 			<p className='shrink-0 font-medium'>{tech.name}</p>
 			{children}

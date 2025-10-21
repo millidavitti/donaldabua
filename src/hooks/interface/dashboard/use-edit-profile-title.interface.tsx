@@ -21,11 +21,15 @@ export function useEditProfileTitle() {
 
 	const start = () => {
 		setContext("edit-title");
+		document.onkeydown = (e) => {
+			if (e.key === "Escape") close();
+		};
 	};
 
 	const close = () => {
 		setContext(null);
 		setInputTitle(null);
+		document.onkeydown = null;
 	};
 
 	const captureInput = (title: string) => {
@@ -84,7 +88,7 @@ export function useEditProfileTitle() {
 						<Button
 							type='submit'
 							className='bg-black text-light-surface'
-							htmlProps={{ disabled: isPending }}
+							disabled={isPending}
 						>
 							Save {isPending && <HashLoader color='#fff' size={24} />}
 						</Button>

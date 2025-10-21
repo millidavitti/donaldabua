@@ -8,11 +8,7 @@ import ContentMarkdown from "./content-markdown";
 export default function Content() {
 	const project_content = useAtomValue(input_project_content_atom);
 	return (
-		<Flex
-			flex='column'
-			className='basis-[360px] grow-[2] gap-3'
-			htmlProps={{ id: "content-builder" }}
-		>
+		<Flex flex='column' className='basis-[360px] grow-[2] gap-3'>
 			{Boolean(project_content.length) && (
 				<Flex flex='column' className='h-fit gap-3'>
 					{project_content

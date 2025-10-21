@@ -1,0 +1,72 @@
+import Flex from "@/components/layouts/flex";
+import Image from "next/image";
+import { type Project } from "@/data/dashboard/dashboard-atoms/types";
+import ProjectOptions from "./project-options";
+import ProjectEdit from "./options/project-edit";
+import ProjectDelete from "./options/project-delete";
+import useProject from "@/hooks/interface/dashboard/use-project.interface";
+import { DELAY } from "@/data/dashboard/dashboard-constants";
+import { cn } from "@/utils/cn";
+import { getAnimationClass } from "@/utils/animations";
+import { ExternalLink } from "lucide-react";
+import Repository from "@/components/repository";
+import InteractiveIcon from "@/components/layouts/interactive_icon";
+
+export default function Project({
+	project,
+	index,
+}: {
+	project: Project;
+	index: number;
+}) {
+	const { view, Modal } = useProject();
+
+	return (
+		<>
+			{Modal}
+
+			<Flex
+				flex='column'
+				className={cn(
+					"group grow md:basis-[320px] relative mb-3 gap-3 hover:shadow-lg transition hover:border-black h-fit",
+					getAnimationClass("swing-in-top-fwd"),
+				)}
+				style={{ animationDelay: index * DELAY + "ms" }}
+			>
+				<ProjectOptions>
+					<ProjectEdit project={project} />
+					<ProjectDelete projectID={project.id} />
+				</ProjectOptions>
+				<Flex flex='column' className='border-none p-0 gap-3'>
+					<Flex className='w-full h-40 shrink-0'>
+						<Image
+							src={project.thumbnail}
+							width={1000}
+							height={1000}
+							alt='portfolio-project-thumbnail'
+							className='object-cover'
+						/>
+					</Flex>
+					<p
+						className='text-lg font-semibold opacity-80 group-hover:opacity-100 transition-all active:scale-[.95] border-[1.2px] border-r-0 pb-3 pl-3 w-full border-t-0 group-hover:text-[#006494] truncate group-hover:shadow-md cursor-pointer'
+						onClick={() => view(project)}
+					>
+						{project.title}
+					</p>
+					<Flex className='items-center p-0 border-none gap-0'>
+						<a href={project.repository} target='_blank'>
+							<InteractiveIcon className='hover:outline-offset-[-1px] hover:outline'>
+								<Repository size={28} className='stroke-none' />
+							</InteractiveIcon>
+						</a>
+						<a href={project.deployment} target='_blank'>
+							<InteractiveIcon className='hover:border hover:border-r-[3px]'>
+								<ExternalLink className='group-hover:stroke-[#809BCE]' />
+							</InteractiveIcon>
+						</a>
+					</Flex>
+				</Flex>
+			</Flex>
+		</>
+	);
+}

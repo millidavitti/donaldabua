@@ -23,13 +23,7 @@ export default function ViewProject({ project }: ViewProject) {
 		>
 			{/* Header */}
 			<Flex className='justify-between items-center shrink-0 border-0'>
-				<InteractiveIcon
-					htmlProps={{
-						onClick() {
-							vault_view_setter(null);
-						},
-					}}
-				>
+				<InteractiveIcon onClick={() => vault_view_setter(null)}>
 					<ArrowLeftIcon size={24} />
 				</InteractiveIcon>
 			</Flex>

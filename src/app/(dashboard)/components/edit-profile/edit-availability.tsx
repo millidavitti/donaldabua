@@ -8,7 +8,7 @@ export default function EditAvailability() {
 	return (
 		<>
 			{Modal}
-			<Flex flex='column' className='gap-3' htmlProps={{ id: "availability" }}>
+			<Flex flex='column' className='gap-3'>
 				<a href='#availability'>
 					<Flex className='h-fit items-center justify-between'>
 						<p className='font-semibold lg:text-2xl'>Availability</p>
