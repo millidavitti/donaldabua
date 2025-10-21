@@ -11,7 +11,7 @@ export default function UserSocials() {
 	const user_socials_snapshot = useAtomValue(user_socials_snapshot_jotai);
 	return (
 		<>
-			<Flex flex='column' className='grow gap-3' htmlProps={{ id: "socials" }}>
+			<Flex flex='column' className='grow gap-3'>
 				<a href='#socials' className='shrink-0'>
 					<Flex className='h-fit items-center justify-between'>
 						<p className='font-semibold lg:text-2xl'>Socials</p>
@@ -26,7 +26,7 @@ export default function UserSocials() {
 								"group shrink-0 bg-light-surface-surface-container gap-3 font-semibold justify-between",
 								getAnimationClass("swing-in-top-fwd"),
 							)}
-							htmlProps={{ style: { animationDelay: i * DELAY + "ms" } }}
+							style={{ animationDelay: i * DELAY + "ms" }}
 						>
 							<a
 								href={social_account.profile}

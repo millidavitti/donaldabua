@@ -20,12 +20,8 @@ export default function Project({ project, index }: IProject) {
 				"shrink-0 gap-3 grow md:basis-52 cursor-pointer transition active:scale-[0.98]",
 				getAnimationClass("swing-in-top-fwd"),
 			)}
-			htmlProps={{
-				style: { animationDelay: index * DELAY + "ms" },
-				onClick() {
-					viewProject(project);
-				},
-			}}
+			style={{ animationDelay: index * DELAY + "ms" }}
+			onClick={() => viewProject(project)}
 		>
 			<Flex className='w-full h-40 shrink-0 p-0'>
 				<Image
