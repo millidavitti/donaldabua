@@ -88,7 +88,7 @@ export function useEditProfileTitle() {
 						<Button
 							type='submit'
 							className='bg-black text-light-surface'
-							htmlprops={{ disabled: isPending }}
+							disabled={isPending}
 						>
 							Save {isPending && <HashLoader color='#fff' size={24} />}
 						</Button>
