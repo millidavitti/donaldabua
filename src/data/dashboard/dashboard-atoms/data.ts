@@ -252,6 +252,8 @@ export const input_project_atom = atomWithReset<Project>({
 	id: "createId()",
 	thumbnail: "",
 	title: "",
+	deployment: "",
+	repository: "",
 });
 export const input_project_technologies_atom = atomWithReset<Technology[]>([]);
 
