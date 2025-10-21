@@ -3,8 +3,12 @@ import UserHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
 import DashboardHeader from "../components/dashboard-header";
 import AlertDialog from "@/components/ui/alert-dialog";
-import EditProfileSummary from "../components/edit-profile/edit-profile-summary";
 import EditProjects from "../components/edit-profile/edit-profile-projects";
+import InteractiveIcon from "@/components/layouts/interactive_icon";
+import { EditIcon } from "lucide-react";
+import HourlyRate from "../components/edit-profile/edit-profile-hourly-rate";
+import Overview from "../components/edit-profile/edit-profile-overview";
+import ProfileTitle from "../components/edit-profile/edit-profile-title";
 
 export default function Dashboard() {
 	return (
@@ -19,7 +23,31 @@ export default function Dashboard() {
 						className='basis-[720px] grow-[2] gap-3 border-0 p-0'
 						flex='column'
 					>
-						<EditProfileSummary />
+						<Flex flex='column' className='gap-3 border-0 p-0'>
+							<Flex className='shrink-0 justify-between flex-wrap lg:flex-nowrap gap-3 p-0 border-none'>
+								<ProfileTitle>
+									{(start) => (
+										<InteractiveIcon onClick={start}>
+											<EditIcon size={24} />
+										</InteractiveIcon>
+									)}
+								</ProfileTitle>
+								<HourlyRate>
+									{(start) => (
+										<InteractiveIcon onClick={start}>
+											<EditIcon size={24} />
+										</InteractiveIcon>
+									)}
+								</HourlyRate>
+							</Flex>
+							<Overview>
+								{(start) => (
+									<InteractiveIcon onClick={start} className='self-start'>
+										<EditIcon size={24} />
+									</InteractiveIcon>
+								)}
+							</Overview>
+						</Flex>
 						<EditProjects />
 						{/* <EditProfileTechnologies /> */}
 					</Flex>
