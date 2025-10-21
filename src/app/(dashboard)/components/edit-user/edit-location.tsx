@@ -1,17 +1,22 @@
 import Flex from "@/components/layouts/flex";
-import { useEditLocation } from "@/hooks/interface/dashboard/use-edit-location.interface";
+import { type Location } from "@/data/dashboard/dashboard-atoms/types";
+import { useEditLocation as useLocation } from "@/hooks/interface/dashboard/use-edit-location.interface";
 import { MapPin } from "lucide-react";
+import { ReactNode } from "react";
 
-export default function EditLocation() {
-	const { start, location, Modal } = useEditLocation();
+export default function Location({
+	children,
+}: {
+	children: (location: Location | undefined, start?: () => void) => ReactNode;
+}) {
+	const { start, location, Modal } = useLocation();
 	return (
-		<Flex className='gap-3'>
-			<MapPin />
-			<p onClick={start} className='cursor-pointer font-medium'>
-				{location?.city}, {location?.country}
-			</p>
-
+		<>
 			{Modal}
-		</Flex>
+			<Flex className='gap-3'>
+				<MapPin />
+				{children(location, start)}
+			</Flex>
+		</>
 	);
 }

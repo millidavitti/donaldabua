@@ -1,15 +1,15 @@
-import { useEditName } from "@/hooks/interface/dashboard/use-edit-name.interface";
+import { useEditName as useName } from "@/hooks/interface/dashboard/use-edit-name.interface";
+import { ReactNode } from "react";
 
-export default function EditName() {
-	const { name, edit, Modal } = useEditName();
+export default function Name({
+	children,
+}: {
+	children: (name: string | undefined, edit?: () => void) => ReactNode;
+}) {
+	const { name, edit, Modal } = useName();
 	return (
 		<>
-			<h2
-				className='font-bold text-4xl cursor-pointer data-[is-visible=false]:absolute data-[is-visible=true]:hidden h-10'
-				onClick={edit}
-			>
-				{name}
-			</h2>
+			{children(name, edit)}
 			{Modal}
 		</>
 	);
