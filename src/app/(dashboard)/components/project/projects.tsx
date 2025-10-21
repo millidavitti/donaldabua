@@ -4,8 +4,14 @@ import useProjects from "@/hooks/interface/dashboard/use-projects.interface";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
+import { Project as TProject } from "@/data/dashboard/dashboard-atoms/types";
+import { ReactNode } from "react";
 
-export default function Projects() {
+export default function Projects({
+	children,
+}: {
+	children?: (project: TProject) => ReactNode;
+}) {
 	const { projects, isFetching, hasProjects, hasProject, isEmpty } =
 		useProjects();
 
@@ -20,7 +26,11 @@ export default function Projects() {
 				)}
 			>
 				{projects.map((project, i) => {
-					return <Project key={project.id} project={project} index={i} />;
+					return (
+						<Project key={project.id} project={project} index={i}>
+							{children}
+						</Project>
+					);
 				})}
 			</div>
 			{isEmpty && !isFetching && (

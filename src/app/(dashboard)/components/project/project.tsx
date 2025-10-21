@@ -1,9 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { type Project } from "@/data/dashboard/dashboard-atoms/types";
-import ProjectOptions from "./project-options";
-import ProjectEdit from "./options/project-edit";
-import ProjectDelete from "./options/project-delete";
 import useProject from "@/hooks/interface/dashboard/use-project.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
@@ -11,13 +8,16 @@ import { getAnimationClass } from "@/utils/animations";
 import { ExternalLink } from "lucide-react";
 import Repository from "@/components/repository";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
+import { ReactNode } from "react";
 
 export default function Project({
 	project,
 	index,
+	children,
 }: {
 	project: Project;
 	index: number;
+	children?: (project: Project) => ReactNode;
 }) {
 	const { view, Modal } = useProject();
 
@@ -33,10 +33,7 @@ export default function Project({
 				)}
 				style={{ animationDelay: index * DELAY + "ms" }}
 			>
-				<ProjectOptions>
-					<ProjectEdit project={project} />
-					<ProjectDelete projectID={project.id} />
-				</ProjectOptions>
+				{children && children(project)}
 				<Flex flex='column' className='border-none p-0 gap-3'>
 					<Flex className='w-full h-40 shrink-0'>
 						<Image
