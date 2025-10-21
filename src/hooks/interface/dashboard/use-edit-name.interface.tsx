@@ -78,7 +78,7 @@ export function useEditName() {
 						<Button
 							type='submit'
 							className='bg-black text-light-surface'
-							htmlProps={{ disabled: isPending }}
+							htmlprops={{ disabled: isPending }}
 						>
 							Save
 						</Button>

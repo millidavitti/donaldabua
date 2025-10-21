@@ -10,7 +10,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function useDraftProjectImage() {
+export default function useDraftImage() {
 	const set_input_project_content = useSetAtom(input_project_content_atom);
 	const set_content_hover_state = useSetAtom(content_hover_state_jotai);
 	const [url, setUrl] = useState("");

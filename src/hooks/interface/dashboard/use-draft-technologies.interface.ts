@@ -7,7 +7,7 @@ import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-export default function useDraftProjectTechnologies() {
+export default function useDraftTechnologies() {
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [input_project_technologies, set_input_project_technologies] = useAtom(

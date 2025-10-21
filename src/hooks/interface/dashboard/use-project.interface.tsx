@@ -6,16 +6,18 @@ import {
 	project_technologies_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
 import Modal from "@/components/layouts/modal";
-import PublishedProjectContent from "@/app/(dashboard)/components/published-project/published-project-content";
-import PublishedProjectDescription from "@/app/(dashboard)/components/published-project/published-project-description";
-import PublishedProjectTechnologies from "@/app/(dashboard)/components/published-project/published-project-tech-stack";
-import PublishedProjectThumbnail from "@/app/(dashboard)/components/published-project/published-project-thumbnail";
-import PublishedProjectTitle from "@/app/(dashboard)/components/published-project/published-project-title";
+import ProjectContent from "@/app/(dashboard)/components/project/project-content";
+import ProjectDescription from "@/app/(dashboard)/components/project/project-description";
+import ProjectTechnologies from "@/app/(dashboard)/components/project/project-technologies";
+import ProjectThumbnail from "@/app/(dashboard)/components/project/project-thumbnail";
+import ProjectTitle from "@/app/(dashboard)/components/project/project-title";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ArrowLeftIcon } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { useState } from "react";
+import ProjectDeployment from "@/app/(dashboard)/components/project/project-deployment";
+import ProjectRepository from "@/app/(dashboard)/components/project/project-repository";
 
 export default function useProject() {
 	const [project_technologies] = useAtom(project_technologies_atom);
@@ -49,12 +51,6 @@ export default function useProject() {
 					<Flex
 						flex='column'
 						className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
-						htmlProps={{
-							onKeyDown(e) {
-								console.log("🚀 ~ useProject ~ e:", e.key);
-								if (e.key === "Escape") close();
-							},
-						}}
 					>
 						{/* Header */}
 						<Flex className='justify-between items-center shrink-0 border-0 p-0'>
@@ -65,19 +61,19 @@ export default function useProject() {
 
 						<Flex flex='column' className='gap-3'>
 							{/* Project Title */}
-							<PublishedProjectTitle title={project.title} />
+							<ProjectTitle title={project.title} />
 
 							<Flex className='gap-3 flex-wrap border-0 p-0'>
 								<Flex flex='column' className='grow gap-3 basis-[360px]'>
-									<PublishedProjectDescription
-										description={project.description}
-									/>
-									<PublishedProjectTechnologies
+									<ProjectDescription description={project.description} />
+									<ProjectTechnologies
 										technologies={project_technologies.data}
 									/>
-									<PublishedProjectThumbnail thumbnail={project.thumbnail} />
+									<ProjectThumbnail thumbnail={project.thumbnail} />
+									<ProjectDeployment deployment={project.deployment} />
+									<ProjectRepository repository={project.repository} />
 								</Flex>
-								<PublishedProjectContent content={project_content.data} />
+								<ProjectContent content={project_content.data} />
 							</Flex>
 						</Flex>
 					</Flex>

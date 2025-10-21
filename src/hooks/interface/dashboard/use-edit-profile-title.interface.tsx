@@ -22,7 +22,7 @@ export function useEditProfileTitle() {
 	const start = () => {
 		setContext("edit-title");
 		document.onkeydown = (e) => {
-   if (e.key === "Escape") close();
+			if (e.key === "Escape") close();
 		};
 	};
 
@@ -88,7 +88,7 @@ export function useEditProfileTitle() {
 						<Button
 							type='submit'
 							className='bg-black text-light-surface'
-							htmlProps={{ disabled: isPending }}
+							htmlprops={{ disabled: isPending }}
 						>
 							Save {isPending && <HashLoader color='#fff' size={24} />}
 						</Button>

@@ -1,7 +1,7 @@
 import { useResetProjectDraft } from "../../use-reset-project-draft";
 import ContentBuilder from "@/app/(dashboard)/components/content-builder/content-builder";
-import DraftProject from "@/app/(dashboard)/components/draft-project/draft-project";
-import PreviewProjectDraft from "@/app/(dashboard)/components/preview-project-draft/preview-project-draft";
+import Draft from "@/app/(dashboard)/components/draft";
+import DraftPreview from "@/app/(dashboard)/components/draft-preview/index";
 import Modal from "@/components/layouts/modal";
 import {
 	input_project_atom,
@@ -63,17 +63,17 @@ export function useEditProjects() {
 		start,
 		edit,
 		Modal: context && (
-			<Modal close={close}>
+			<Modal>
 				{isProjectReady && (
-					<DraftProject>
+					<Draft>
 						<ContentBuilder />
-					</DraftProject>
+					</Draft>
 				)}
 				{isProjectReady ||
 					context === "preview-draft" ||
 					context === "preview-update" || <HashLoader size={48} color='#fff' />}
 				{(context === "preview-draft" || context === "preview-update") && (
-					<PreviewProjectDraft />
+					<DraftPreview />
 				)}
 			</Modal>
 		),

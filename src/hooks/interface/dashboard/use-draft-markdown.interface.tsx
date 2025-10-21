@@ -4,36 +4,36 @@ import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { content_hover_state_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-ui-state";
-import { validateAndEmbedYouTubeUrl } from "@/utils/validate-and-embed-youtube-url";
+import { cn } from "@/utils/cn";
 import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { X } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
 
-export default function useDraftProjectVideo() {
-	const [url, setUrl] = useState("");
-	const set_content_hover_state = useSetAtom(content_hover_state_jotai);
+export default function useDraftMarkdown() {
 	const set_input_project_content = useSetAtom(input_project_content_atom);
+	const set_content_hover_state = useSetAtom(content_hover_state_jotai);
+	const [markdown, setMarkdown] = useState("");
 	const [context, setContext] = useState<"add-project-video" | null>(null);
+
 	const start = () => {
 		setContext("add-project-video");
 	};
-	const add = (url: string) => {
+	const add = (markdown: string) => {
 		set_input_project_content((content) => [
 			...content,
 			{
 				id: createId(),
-				url,
+				markdown,
 				position: content.length,
-				type: "video",
+				type: "markdown",
 			},
 		]);
 		close();
 	};
 	const close = () => {
-		setUrl("");
 		setContext(null);
+		setMarkdown("");
 	};
 	return {
 		start,
@@ -45,47 +45,35 @@ export default function useDraftProjectVideo() {
 					className='bg-light-surface gap-3 basis-[720px] neonScan'
 				>
 					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Link to a Video</h2>
+						<h2 className='text-2xl font-semibold'>Markdown</h2>
 						<InteractiveIcon callback={close}>
 							<X size={24} className='stroke-light-error' />
 						</InteractiveIcon>
 					</Flex>
 					{/* Nested Form */}
 					<Flex flex='column' className='gap-3'>
-						<label className='text-xl font-semibold' htmlFor='title'>
-							Paste a link to your YouTube
-						</label>
-
-						<input
-							type='url'
-							id='add-portfolio-project-video'
+						<textarea
+							id='add-portfolio-project-text'
 							required
-							value={url}
+							minLength={500}
+							className={cn(
+								"border p-3 valid:outline-emerald-800",
+								Boolean(markdown) && "invalid:outline-red-800",
+							)}
+							value={markdown}
 							onChange={(e) => {
-								const youtubeEmbed = validateAndEmbedYouTubeUrl(e.target.value);
-								if (youtubeEmbed) setUrl(youtubeEmbed);
-								else
-									toast.info(
-										"Provided an invalid YouTube link: " + e.target.value,
-									);
+								setMarkdown(e.target.value);
 							}}
-							className='border p-3'
+							rows={10}
 						/>
-
-						{url && (
-							<iframe
-								src={url}
-								className='aspect-[16/9] outline-2 outline neonScan'
-								loading='lazy'
-							/>
-						)}
 						<Button
 							className='bg-black text-light-surface'
 							onClick={() => {
 								const formElement = document.querySelector(
-									"#add-portfolio-project-video",
+									"#add-portfolio-project-text",
 								);
-								if ((formElement as HTMLInputElement).validity.valid) add(url);
+								if ((formElement as HTMLInputElement).validity.valid)
+									add(markdown);
 							}}
 						>
 							Add
