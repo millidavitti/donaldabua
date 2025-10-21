@@ -1,17 +1,14 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import EditDisplayPicture from "./edit-profile-user/edit-display-picture";
-import EditName from "./edit-profile-user/edit-name";
-import EditLocation from "./edit-profile-user/edit-location";
+import EditDisplayPicture from "./edit-user/edit-display-picture";
+import EditName from "./edit-user/edit-name";
+import EditLocation from "./edit-user/edit-location";
 import CreateProfile from "./create-profile";
 import SelectProfile from "./select-profile";
 
 export default function UserHeader() {
 	return (
-		<Flex
-			className='shrink-0 gap-3 overflow-visible flex-wrap'
-			htmlProps={{ id: "user-info" }}
-		>
+		<Flex className='shrink-0 gap-3 overflow-visible flex-wrap' id='user-info'>
 			<EditDisplayPicture />
 			<Flex
 				flex='column'

@@ -55,9 +55,7 @@ export default function AddProfileTechnologies() {
 					<Flex
 						flex='column'
 						className='gap-3 bg-light-surface max-h-36 no-scrollbar'
-						htmlProps={{
-							id: "search-result",
-						}}
+						id='search-result'
 					>
 						{searchResult.map((tech, i) => {
 							return (
@@ -67,12 +65,8 @@ export default function AddProfileTechnologies() {
 										"shrink-0 active:scale-95 transition cursor-pointer bg-light-surface-surface-container",
 										getAnimationClass("swing-in-top-fwd"),
 									)}
-									htmlProps={{
-										style: { animationDelay: i * DELAY + "ms" },
-										onClick() {
-											addTechnology(tech);
-										},
-									}}
+									style={{ animationDelay: i * DELAY + "ms" }}
+									onClick={() => addTechnology(tech)}
 								>
 									{tech.name}
 								</Flex>
