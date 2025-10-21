@@ -11,7 +11,7 @@ import {
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
-export function useEditProfileOverview() {
+export function useOverview() {
 	const [inputOverview, setInputOverview] = useState<string | null>(null);
 	const profile = useAtomValue(profile_atom);
 	const overview = profile?.overview ?? "";

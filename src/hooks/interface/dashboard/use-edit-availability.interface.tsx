@@ -13,7 +13,7 @@ import {
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
-export function useEditAvailability() {
+export function useAvailability() {
 	const profile = useAtomValue(profile_atom);
 	const availability = profile?.availability;
 	const [inputAvailability, setInputAvailability] =
@@ -25,7 +25,7 @@ export function useEditAvailability() {
 	function start() {
 		setContext("update");
 		document.onkeydown = (e) => {
-   if (e.key === "Escape") close();
+			if (e.key === "Escape") close();
 		};
 	}
 	function close() {

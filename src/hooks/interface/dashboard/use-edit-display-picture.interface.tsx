@@ -15,7 +15,7 @@ export function useEditDisplayPicture() {
 	const [mutate_user] = useAtom(mutate_user_atom);
 	const [inputImage, setInputImage] = useState<string | null>(null);
 	const [context, setContext] = useState<"edit-display-picture" | null>(null);
-	const image = payload_view.data?.user.image;
+	const image: string | undefined = payload_view.data?.user.image;
 	const edit = () => {
 		setContext("edit-display-picture");
 		document.onkeydown = (e) => {
@@ -38,7 +38,7 @@ export function useEditDisplayPicture() {
 		setInputImage(value);
 	};
 	return {
-		image: payload_view.data?.user.image,
+		image,
 		edit,
 
 		Modal: context && (

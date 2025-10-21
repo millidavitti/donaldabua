@@ -1,4 +1,4 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/types";
+import { type Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import useDialog from "../../use-dialog";
@@ -12,9 +12,16 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { cn } from "@/utils/cn";
-import { X, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { X } from "lucide-react";
+import { memo, ReactNode, useState } from "react";
+import { SelectProfile } from "@/app/(dashboard)/components/select-profile";
 
+export interface Profiles {
+	children?: (
+		profileId: string,
+		remove: (profile: Partial<Profile>) => void,
+	) => ReactNode;
+}
 export default function useSelectProfile() {
 	const set_profile = useSetAtom(profile_atom);
 	const [delete_profile] = useAtom(delete_profile_atom);
@@ -54,54 +61,56 @@ export default function useSelectProfile() {
 	}
 	return {
 		view,
-		Modal: context && (
-			<Modal>
-				<Flex
-					flex='column'
-					className='bg-light-surface gap-3 basis-[720px] neonScan'
-				>
-					<Flex className='justify-between items-center'>
-						<h2 className='text-2xl font-semibold'>Profiles</h2>
-						<InteractiveIcon callback={() => close()}>
-							<X size={24} className='stroke-light-error' />
-						</InteractiveIcon>
-					</Flex>
-					{/* Profiles */}
-					<Flex flex='column' className='gap-3 border-0 p-0'>
-						{profiles?.map((profile) => {
-							const lastViewed = localStorage.getItem("last-viewed-profile");
-							const isSelected =
-								profile.id === lastViewed || profile.id == activeProfile.id;
-							return (
-								<Flex
-									key={profile.id}
-									className={cn(
-										"gap-3 border-0 p-0",
-										isSelected && "hidden pointer-events-none",
-									)}
-								>
-									<Button
-										onClick={() => select(profile)}
-										className='w-full shrink'
-									>
-										{profile.title}
-									</Button>
-									<Trash2
-										className={cn(
-											"stroke-light-error shrink-0 self-center cursor-pointer active:scale-95 transition",
-											profiles?.length < 2 && "hidden",
-										)}
-										onClick={() => remove({ id: profile.id })}
-									/>
-								</Flex>
-							);
-						})}
-						{hasOneProfile && (
-							<p className='font-medium mx-auto'>No more profiles</p>
-						)}
-					</Flex>
-				</Flex>
-			</Modal>
-		),
+		remove,
+		profile,
+		Modal:
+			context &&
+			memo(function Profiles({ children }: Profiles) {
+				return (
+					<Modal close={close}>
+						<Flex
+							flex='column'
+							className='bg-light-surface gap-3 basis-[720px] neonScan'
+						>
+							<Flex className='justify-between items-center'>
+								<h2 className='text-2xl font-semibold'>Profiles</h2>
+								<InteractiveIcon callback={() => close()}>
+									<X size={24} className='stroke-light-error' />
+								</InteractiveIcon>
+							</Flex>
+							{/* Profiles */}
+							<Flex flex='column' className='gap-3 border-0 p-0'>
+								{profiles?.map((profile) => {
+									const lastViewed = localStorage.getItem(
+										"last-viewed-profile",
+									);
+									const isSelected =
+										profile.id === lastViewed || profile.id == activeProfile.id;
+									return (
+										<Flex
+											key={profile.id}
+											className={cn(
+												"gap-3 border-0 p-0",
+												isSelected && "hidden pointer-events-none",
+											)}
+										>
+											<Button
+												onClick={() => select(profile)}
+												className='w-full shrink'
+											>
+												{profile.title}
+											</Button>
+											{children && children(profile.id, remove)}
+										</Flex>
+									);
+								})}
+								{hasOneProfile && (
+									<p className='font-medium mx-auto'>No more profiles</p>
+								)}
+							</Flex>
+						</Flex>
+					</Modal>
+				);
+			}),
 	};
 }

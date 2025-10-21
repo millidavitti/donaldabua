@@ -22,7 +22,7 @@ import Modal from "@/components/layouts/modal";
 import { X } from "lucide-react";
 import { useResetAtom } from "jotai/utils";
 
-export default function useEditSocials() {
+export default function useSocials() {
 	const [input_social, set_input_social] = useAtom(input_social_atom);
 	const reset_input_social = useResetAtom(input_social_atom);
 	const { closeDialog, displayDialog } = useDialog();

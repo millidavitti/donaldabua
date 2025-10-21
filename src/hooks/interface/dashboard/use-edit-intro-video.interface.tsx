@@ -12,12 +12,12 @@ import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 
-export function useEditIntroVideo() {
-	const [video, setVideo] = useState("");
+export function useIntroVideo() {
+	const [inputVideo, setInputVideo] = useState<string | null>(null);
 	const [payload_view] = useAtom(payload_view_atom);
 	const [mutate_user] = useAtom(mutate_user_atom);
 	const [context, setContext] = useState<"add-intro-video" | null>(null);
-
+	const video: string = payload_view.data?.user.video || "";
 	const start = () => {
 		setContext("add-intro-video");
 		document.onkeydown = (e) => {
@@ -26,11 +26,12 @@ export function useEditIntroVideo() {
 	};
 	function close() {
 		setContext(null);
+		setInputVideo(null);
 		document.onkeydown = null;
 	}
 
 	async function save() {
-		await mutate_user.mutateAsync({ video });
+		await mutate_user.mutateAsync({ video: inputVideo });
 		close();
 	}
 
@@ -40,12 +41,12 @@ export function useEditIntroVideo() {
 
 	function captureInput(url: string) {
 		const youtubeEmbed = validateAndEmbedYouTubeUrl(url);
-		if (youtubeEmbed) setVideo(youtubeEmbed);
+		if (youtubeEmbed) setInputVideo(youtubeEmbed);
 		else toast.info("Provide a valid YouTube link: " + url);
 	}
 
 	return {
-		video: payload_view.data?.user.video || "",
+		video,
 		start,
 		remove,
 		Modal: context && (
@@ -78,7 +79,7 @@ export function useEditIntroVideo() {
 						<input
 							type='url'
 							className='border p-3 grow'
-							defaultValue={video}
+							value={inputVideo ?? video}
 							onChange={(e) => {
 								captureInput(e.target.value);
 							}}
