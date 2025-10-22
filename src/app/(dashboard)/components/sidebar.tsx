@@ -2,13 +2,10 @@
 import Flex from "@/components/layouts/flex";
 
 import IntroVideo from "./edit-user/edit-intro-video";
-import Socials from "./edit-user/edit-socials";
+import Socials, { Social } from "./edit-user/edit-socials";
 import Availability from "./edit-profile/edit-availability";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Trash2, Plus, EditIcon } from "lucide-react";
-import { DELAY } from "@/data/home/home-constants";
-import Social from "./edit-user/social";
-import SocialsHeader from "./edit-user/socials-header";
 
 export default function Sidebar() {
 	return (
@@ -41,30 +38,13 @@ export default function Sidebar() {
 					)}
 				</Availability>
 				<Socials>
-					{(socials, start, remove) => (
-						<>
-							<SocialsHeader>
-								<InteractiveIcon
-									onClick={() => {
-										start("create");
-									}}
-								>
-									<Plus size={24} />
-								</InteractiveIcon>
-							</SocialsHeader>
-							{/* Socials*/}
-							<Flex flex='column' className='gap-3 border-0 p-0'>
-								{socials?.map((social, i) => (
-									<div
-										style={{ animationDelay: i * DELAY + "ms" }}
-										key={social.id}
-									>
-										<Social social={social} remove={remove} start={start} />
-									</div>
-								))}
-							</Flex>
-						</>
-					)}
+					<InteractiveIcon slot='create'>
+						<Plus size={24} />
+					</InteractiveIcon>
+					<Social slot='update' />
+					<InteractiveIcon slot='remove' className='p-0'>
+						<Trash2 className='stroke-light-error active:scale-95 transition group-hover:block hidden cursor-pointer' />
+					</InteractiveIcon>
 				</Socials>
 			</Flex>
 		</Flex>
