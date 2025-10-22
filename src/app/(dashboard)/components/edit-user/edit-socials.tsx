@@ -6,7 +6,6 @@ import { HashLoader } from "react-spinners";
 import { cloneElement, ReactNode } from "react";
 import { type Social } from "@/data/dashboard/dashboard-atoms/types";
 import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
-import SocialsHeader from "./socials-header";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -23,11 +22,14 @@ export default function Socials({ children }: Socials) {
 		<>
 			{Modal}
 			<Flex flex='column' className='gap-3 grow'>
-				<SocialsHeader>
-					<Slot slot='create'>
-						{(slot) => cloneElement(slot, { onClick: () => start("create") })}
-					</Slot>
-				</SocialsHeader>
+				<a href='#socials' className='shrink-0'>
+					<Flex className='items-center justify-between h-fit'>
+						<p className='font-semibold lg:text-2xl'>Socials</p>
+						<Slot slot='create'>
+							{(slot) => cloneElement(slot, { onClick: () => start("create") })}
+						</Slot>
+					</Flex>
+				</a>
 				{/* Socials*/}
 				<Flex flex='column' className='gap-3 p-0 border-0'>
 					{socials?.map((social, i) => (
