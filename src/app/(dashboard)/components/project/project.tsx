@@ -28,13 +28,13 @@ export default function Project({
 			<Flex
 				flex='column'
 				className={cn(
-					"group grow md:basis-[320px] relative mb-3 gap-3 hover:shadow-lg transition hover:border-black h-fit",
+					"group grow md:basis-[320px] mb-3 gap-3 hover:shadow-lg transition hover:border-black h-fit",
 					getAnimationClass("swing-in-top-fwd"),
 				)}
 				style={{ animationDelay: index * DELAY + "ms" }}
 			>
 				{children && children(project)}
-				<Flex flex='column' className='border-none p-0 gap-3'>
+				<Flex flex='column' className='gap-3 p-0 border-none'>
 					<Flex className='w-full h-40 shrink-0'>
 						<Image
 							src={project.thumbnail}
@@ -45,12 +45,12 @@ export default function Project({
 						/>
 					</Flex>
 					<p
-						className='text-lg font-semibold opacity-80 group-hover:opacity-100 transition-all active:scale-[.95] border-[1.2px] border-r-0 pb-3 pl-3 w-full border-t-0 group-hover:text-[#006494] truncate group-hover:shadow-md cursor-pointer'
+						className='text-lg w-full font-semibold opacity-80 group-hover:opacity-100 transition-all active:scale-[.95] border-[1.2px] border-t-0 pb-3 pl-3 group-hover:text-[#006494] truncate group-hover:shadow-md cursor-pointer'
 						onClick={() => view(project)}
 					>
 						{project.title}
 					</p>
-					<Flex className='items-center p-0 border-none gap-0'>
+					<Flex className='items-center gap-0 p-0 border-none'>
 						<a href={project.repository} target='_blank'>
 							<InteractiveIcon className='hover:outline-offset-[-1px] hover:outline'>
 								<Repository size={28} className='stroke-none' />

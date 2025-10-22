@@ -22,7 +22,7 @@ export default function Projects({
 					"gap-3 border-0 p-0 shrink-0",
 					hasProject && "w-[240px]",
 					hasProjects &&
-						"grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))]",
+						"grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))] z-0",
 				)}
 			>
 				{projects.map((project, i) => {
@@ -34,7 +34,7 @@ export default function Projects({
 				})}
 			</div>
 			{isEmpty && !isFetching && (
-				<Flex flex='column' className='m-auto border-none items-center'>
+				<Flex flex='column' className='items-center m-auto border-none'>
 					<PackageOpen size={32} />
 					<p className='font-medium'>You have no projects </p>
 				</Flex>
@@ -42,7 +42,7 @@ export default function Projects({
 			{isFetching && (
 				<Flex
 					flex='column'
-					className='m-auto self-center border-none items-center'
+					className='items-center self-center m-auto border-none'
 				>
 					<HashLoader size={24} />
 				</Flex>
