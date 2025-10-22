@@ -76,28 +76,12 @@ export default function useSocials(children?: ReactNode) {
 		slots[props.slot] = el;
 	});
 
-	function Slot({
-		children,
-		slot,
-	}: {
-		slot: string;
-		children: (
-			slot: ReactElement<Record<string, unknown> | HTMLElement>,
-		) => ReactNode;
-	}) {
-		const component = slots[slot] as ReactElement<
-			Record<string, unknown> | HTMLElement
-		>;
-		if (!component) return;
-		return children(component);
-	}
-
 	return {
 		start,
 		remove,
 		socials: payload_view.data?.socials as Social[],
 		isFetching,
-		Slot,
+		slots,
 		Modal: context && (
 			<Modal close={close}>
 				<Flex

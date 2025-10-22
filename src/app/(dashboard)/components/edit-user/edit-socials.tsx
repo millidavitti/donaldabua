@@ -9,13 +9,14 @@ import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
+import Slot from "@/components/layouts/Slot";
 
 interface Socials {
 	children: ReactNode;
 }
 
 export default function Socials({ children }: Socials) {
-	const { socials, remove, start, isFetching, Modal, Slot } =
+	const { socials, remove, start, isFetching, slots, Modal } =
 		useSocials(children);
 
 	return (
@@ -25,7 +26,7 @@ export default function Socials({ children }: Socials) {
 				<a href='#socials' className='shrink-0'>
 					<Flex className='items-center justify-between h-fit'>
 						<p className='font-semibold lg:text-2xl'>Socials</p>
-						<Slot slot='create'>
+						<Slot slot='create' slots={slots}>
 							{(slot) => cloneElement(slot, { onClick: () => start("create") })}
 						</Slot>
 					</Flex>
@@ -41,7 +42,7 @@ export default function Socials({ children }: Socials) {
 								getAnimationClass("swing-in-top-fwd"),
 							)}
 						>
-							<Slot slot='update'>
+							<Slot slot='update' slots={slots}>
 								{(slot) =>
 									cloneElement(slot, {
 										onClick: () => start("update", social),
@@ -49,14 +50,14 @@ export default function Socials({ children }: Socials) {
 									})
 								}
 							</Slot>
-							<Slot slot='link'>
+							<Slot slot='link' slots={slots}>
 								{(slot) => (
 									<a href={social.profile} target='_blank' className='w-full'>
 										{cloneElement(slot, { social })}
 									</a>
 								)}
 							</Slot>
-							<Slot slot='remove'>
+							<Slot slot='remove' slots={slots}>
 								{(slot) =>
 									cloneElement(slot, { onClick: () => remove(social) })
 								}
