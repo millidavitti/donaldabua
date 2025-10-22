@@ -1,3 +1,4 @@
+"use client";
 import Flex from "@/components/layouts/flex";
 import UserHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
