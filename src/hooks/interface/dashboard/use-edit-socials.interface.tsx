@@ -12,7 +12,7 @@ import {
 	mutate_social_atom,
 	payload_view_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
-import { useState } from "react";
+import { Children, ReactElement, ReactNode, useState } from "react";
 import Button from "@/components/ui/button";
 import { HashLoader } from "react-spinners";
 import SelectSocialPlatform from "@/app/(dashboard)/components/select-social-platform";
@@ -22,7 +22,8 @@ import Modal from "@/components/layouts/modal";
 import { X } from "lucide-react";
 import { useResetAtom } from "jotai/utils";
 
-export default function useSocials() {
+export default function useSocials(children?: ReactNode) {
+	const slots: { [key: string | "update"]: ReactElement } = {};
 	const [input_social, set_input_social] = useAtom(input_social_atom);
 	const reset_input_social = useResetAtom(input_social_atom);
 	const { closeDialog, displayDialog } = useDialog();
@@ -69,18 +70,41 @@ export default function useSocials() {
 		closeDialog();
 	}
 
+	Children.forEach(children, (child) => {
+		const el = child as ReactElement;
+		const props = el.props as HTMLElement;
+		slots[props.slot] = el;
+	});
+
+	function Slot({
+		children,
+		slot,
+	}: {
+		slot: string;
+		children: (
+			slot: ReactElement<Record<string, unknown> | HTMLElement>,
+		) => ReactNode;
+	}) {
+		const component = slots[slot] as ReactElement<
+			Record<string, unknown> | HTMLElement
+		>;
+		if (!component) return;
+		return children(component);
+	}
+
 	return {
 		start,
 		remove,
 		socials: payload_view.data?.socials as Social[],
 		isFetching,
+		Slot,
 		Modal: context && (
 			<Modal close={close}>
 				<Flex
 					flex='column'
 					className='bg-light-surface gap-3 basis-[720px] max-h-[80%] neonScan'
 				>
-					<Flex className='justify-between items-center shrink-0'>
+					<Flex className='items-center justify-between shrink-0'>
 						<h2 className='text-2xl font-semibold'>
 							{context === "create" ? "Add Socials" : "Update Socials"}
 						</h2>
@@ -105,7 +129,7 @@ export default function useSocials() {
 							<input
 								type='url'
 								required
-								className='border p-3'
+								className='p-3 border'
 								value={input_social.profile}
 								onChange={(e) =>
 									captureInput(e.target.value as SocialPlatforms)

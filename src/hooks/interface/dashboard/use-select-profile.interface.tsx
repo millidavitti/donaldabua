@@ -14,7 +14,6 @@ import Button from "@/components/ui/button";
 import { cn } from "@/utils/cn";
 import { X } from "lucide-react";
 import { memo, ReactNode, useState } from "react";
-import { SelectProfile } from "@/app/(dashboard)/components/select-profile";
 
 export interface Profiles {
 	children?: (
