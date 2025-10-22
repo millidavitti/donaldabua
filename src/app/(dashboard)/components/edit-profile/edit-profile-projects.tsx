@@ -18,7 +18,7 @@ export default function EditProjects() {
 				flex='column'
 				className='gap-3 border-0 relative p-0 h-[540px] overflow-y-auto'
 			>
-				<a href='#projects' className='sticky top-0 shrink-0'>
+				<a href='#projects' className='sticky top-0 z-10 shrink-0'>
 					<Flex className='items-center justify-between bg-light-surface shrink-0'>
 						<p className='font-semibold lg:text-2xl'>Projects</p>
 						<InteractiveIcon callback={start}>
