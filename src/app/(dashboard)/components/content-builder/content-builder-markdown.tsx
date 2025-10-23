@@ -7,7 +7,7 @@ import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
-import { useContentBuilderMarkdown } from "@/hooks/interface/dashboard/use-content-builder-markdown.interface";
+import { useContentBuilderMarkdown } from "@/app/(dashboard)/components/content-builder/interfaces/use-content-builder-markdown.interface";
 
 interface ContentBuilderMarkdown {
 	component: ProjectContent;

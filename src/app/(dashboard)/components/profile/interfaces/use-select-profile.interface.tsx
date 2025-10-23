@@ -1,7 +1,7 @@
 import { type Profile } from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import useDialog from "../../use-dialog";
+import useDialog from "../../../../../hooks/use-dialog";
 import {
 	delete_profile_atom,
 	payload_view_atom,
@@ -71,14 +71,14 @@ export default function useSelectProfile() {
 							flex='column'
 							className='bg-light-surface gap-3 basis-[720px] neonScan'
 						>
-							<Flex className='justify-between items-center'>
+							<Flex className='items-center justify-between'>
 								<h2 className='text-2xl font-semibold'>Profiles</h2>
 								<InteractiveIcon callback={() => close()}>
 									<X size={24} className='stroke-light-error' />
 								</InteractiveIcon>
 							</Flex>
 							{/* Profiles */}
-							<Flex flex='column' className='gap-3 border-0 p-0'>
+							<Flex flex='column' className='gap-3 p-0 border-0'>
 								{profiles?.map((profile) => {
 									const lastViewed = localStorage.getItem(
 										"last-viewed-profile",
@@ -104,7 +104,7 @@ export default function useSelectProfile() {
 									);
 								})}
 								{hasOneProfile && (
-									<p className='font-medium mx-auto'>No more profiles</p>
+									<p className='mx-auto font-medium'>No more profiles</p>
 								)}
 							</Flex>
 						</Flex>

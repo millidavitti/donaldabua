@@ -1,6 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ImageIcon } from "lucide-react";
-import useDraftImage from "@/hooks/interface/dashboard/use-draft-image.interface";
+import useDraftImage from "@/app/(dashboard)/components/draft/interfaces/use-draft-image.interface";
 
 export default function DraftImage() {
 	const { Modal, set_content_hover_state, start } = useDraftImage();

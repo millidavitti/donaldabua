@@ -1,9 +1,9 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
-import useProjectDelete from "@/hooks/interface/dashboard/use-project-delete";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import { Trash2 } from "lucide-react";
+import useProjectDelete from "../interfaces/use-project-delete";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;

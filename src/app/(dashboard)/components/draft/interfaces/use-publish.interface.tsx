@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from "jotai";
-import { useResetDraft } from "../../use-reset-project-draft";
+import { useResetDraft } from "../../../../../hooks/use-reset-project-draft";
 import {
 	create_project_atom,
 	input_project_atom,
@@ -9,7 +9,7 @@ import {
 } from "@/data/dashboard/dashboard-atoms/data";
 import { useProjectDraft } from "@/app/(dashboard)/components/profile/interfaces/use-projects.interface";
 
-export function usePublishProject() {
+export function usePublish() {
 	const input_project_content = useAtomValue(input_project_content_atom);
 	const input_project_technologies = useAtomValue(
 		input_project_technologies_atom,

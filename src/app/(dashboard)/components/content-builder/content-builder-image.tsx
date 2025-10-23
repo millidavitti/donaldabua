@@ -7,7 +7,7 @@ import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
-import { useContentBuilderImage } from "@/hooks/interface/dashboard/use-content-builder-image.interface";
+import { useContentBuilderImage } from "@/app/(dashboard)/components/content-builder/interfaces/use-content-builder-image.interface";
 
 interface ContentBuilderImage {
 	component: ProjectContent;

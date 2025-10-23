@@ -7,7 +7,7 @@ import DraftTitle from "./draft-title";
 import DraftDescription from "./draft-description";
 import DraftTechnologies from "./draft-technologies";
 import DraftThumbnail from "./draft-thumbnail";
-import { useDraft } from "@/hooks/interface/dashboard/use-draft.interface";
+import { useDraft } from "@/app/(dashboard)/components/draft/interfaces/use-draft.interface";
 import DraftRepository from "./draft-repository";
 import DraftDeployment from "./draft-deployment";
 

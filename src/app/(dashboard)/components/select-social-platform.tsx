@@ -3,7 +3,7 @@ import {
 	DELAY,
 	SOCIAL_PLATFORM_ICONS,
 } from "@/data/dashboard/dashboard-constants";
-import useSelectSocialPlatform from "@/hooks/interface/dashboard/use-select-social-platform.interface";
+import useSelectSocialPlatform from "@/app/(dashboard)/components/user/interfaces/use-select-social-platform.interface";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";

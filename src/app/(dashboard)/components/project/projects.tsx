@@ -1,11 +1,11 @@
 import Flex from "@/components/layouts/flex";
 import Project from "./project";
-import useProjects from "@/hooks/interface/dashboard/use-projects.interface";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
 import { Project as TProject } from "@/data/dashboard/dashboard-atoms/types";
 import { ReactNode } from "react";
+import useProjects from "./interfaces/use-projects.interface";
 
 export default function Projects({
 	children,

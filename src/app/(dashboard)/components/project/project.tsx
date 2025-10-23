@@ -1,7 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
 import { type Project } from "@/data/dashboard/dashboard-atoms/types";
-import useProject from "@/hooks/interface/dashboard/use-project.interface";
 import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
@@ -9,6 +8,7 @@ import { ExternalLink } from "lucide-react";
 import Repository from "@/components/repository";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ReactNode } from "react";
+import useProject from "./interfaces/use-project.interface";
 
 export default function Project({
 	project,

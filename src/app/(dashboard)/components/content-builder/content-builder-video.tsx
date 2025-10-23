@@ -5,7 +5,7 @@ import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
-import useContentBuilderVideo from "@/hooks/interface/dashboard/use-content-builder-video.interface";
+import useContentBuilderVideo from "@/app/(dashboard)/components/content-builder/interfaces/use-content-builder-video.interface";
 import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
 
 interface ContentBuilderVideo {

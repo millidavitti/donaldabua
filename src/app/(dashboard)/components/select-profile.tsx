@@ -1,6 +1,6 @@
 import Button from "@/components/ui/button";
 import { Profile } from "@/data/dashboard/dashboard-atoms/types";
-import useSelectProfile from "@/hooks/interface/dashboard/use-select-profile.interface";
+import useSelectProfile from "@/app/(dashboard)/components/profile/interfaces/use-select-profile.interface";
 import { ReactNode } from "react";
 
 export interface SelectProfile {
