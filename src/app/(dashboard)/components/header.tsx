@@ -1,9 +1,8 @@
 import Flex from "@/components/layouts/flex";
-import React from "react";
-import Settings from "./settings/settings";
+import { ReactNode } from "react";
 import Image from "next/image";
 
-export default function Header() {
+export default function Header({ children }: { children?: ReactNode }) {
 	return (
 		<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 			<a href='/' target='_blank' rel='noopener noreferrer'>
@@ -15,8 +14,8 @@ export default function Header() {
 					alt='logo'
 				/>
 			</a>
-			<h1 className='font-bold text-center md:text-2xl'>Portfolio Dashboard</h1>
-			<Settings />
+			<h1 className='mr-auto font-bold text-center md:text-2xl'>Portfolio</h1>
+			{children}
 		</Flex>
 	);
 }
