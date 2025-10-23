@@ -23,6 +23,7 @@ export default function AddTechnologies() {
 				<Flex className='flex-wrap gap-3 p-0 border-0 shrink-0 grow'>
 					{technologies.map((technology, index) => (
 						<Flex
+							key={index}
 							className={cn(
 								"gap-3 items-center self-start shrink-0",
 								getAnimationClass("swing-in-top-fwd"),
