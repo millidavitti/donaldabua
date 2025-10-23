@@ -19,6 +19,7 @@ export default function DraftPreviewTechnologies() {
 			<Flex className='flex-wrap gap-3 p-0 border-0 shrink-0'>
 				{input_project_technologies.map((tech, index) => (
 					<Flex
+						key={index}
 						className={cn(
 							"gap-3 items-center self-start shrink-0",
 							getAnimationClass("swing-in-top-fwd"),
