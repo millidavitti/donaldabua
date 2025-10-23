@@ -1,4 +1,4 @@
-import { Location } from "@/data/dashboard/dashboard-atoms/types";
+import { Location } from "@/data/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 
