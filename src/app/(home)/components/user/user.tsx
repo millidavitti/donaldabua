@@ -1,9 +1,9 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import DisplayPicture from "@/app/(dashboard)/components/edit-user/edit-display-picture";
+import DisplayPicture from "@/app/(dashboard)/components/user/edit-display-picture";
 import Image from "next/image";
-import Name from "@/app/(dashboard)/components/edit-user/edit-name";
-import Location from "@/app/(dashboard)/components/edit-user/edit-location";
+import Name from "@/app/(dashboard)/components/user/edit-name";
+import Location from "@/app/(dashboard)/components/user/edit-location";
 import SelectProfile from "@/app/(dashboard)/components/select-profile";
 
 export default function User() {

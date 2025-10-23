@@ -1,11 +1,11 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 
-import IntroVideo from "@/app/(dashboard)/components/edit-user/edit-intro-video";
-import Availability from "@/app/(dashboard)/components/edit-profile/edit-availability";
+import IntroVideo from "@/app/(dashboard)/components/user/edit-intro-video";
+import Availability from "@/app/(dashboard)/components/profile/edit-availability";
 import Socials, {
 	Social,
-} from "@/app/(dashboard)/components/edit-user/edit-socials";
+} from "@/app/(dashboard)/components/user/edit-socials";
 
 export default function Sidebar() {
 	return (
