@@ -1,7 +1,7 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import { useHourlyRate } from "@/hooks/interface/dashboard/use-edit-hourly-rate.interface";
 import { ReactNode } from "react";
+import { useHourlyRate } from "../user/interfaces/use-hourly-rate.interface";
 
 export default function HourlyRate({
 	children,

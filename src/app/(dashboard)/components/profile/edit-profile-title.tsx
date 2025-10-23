@@ -1,7 +1,7 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import { useEditProfileTitle as useProfileTitle } from "@/hooks/interface/dashboard/use-edit-profile-title.interface";
 import { ReactNode } from "react";
+import { useProfileTitle } from "./interfaces/use-profile-title.interface";
 
 export default function ProfileTitle({
 	children,

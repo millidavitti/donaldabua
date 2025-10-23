@@ -8,12 +8,12 @@ import PreviewProjectTechnologies from "./draft-preview-technologies";
 import DraftPreviewThumbnail from "./draft-preview-thumbnail";
 import DraftPreviewContent from "./draft-preview-content";
 import PublishDraft from "./publish-draft";
-import { usePreviewProjectDraft } from "@/hooks/interface/dashboard/use-preview-project-draft.interface";
+import { useDraftPreview } from "@/app/(dashboard)/components/draft-preview/interfaces/use-draft-preview.interface";
 import DraftPreviewRepository from "./draft-preview-repository";
 import DraftPreviewDeployment from "./draft-preview-deployment";
 
 export default function DraftPreview() {
-	const { draftProject } = usePreviewProjectDraft();
+	const { draftProject } = useDraftPreview();
 
 	return (
 		<Flex

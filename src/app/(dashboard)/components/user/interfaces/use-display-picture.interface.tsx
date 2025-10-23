@@ -10,7 +10,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { X } from "lucide-react";
 import Button from "@/components/ui/button";
 
-export function useEditDisplayPicture() {
+export function useDisplayPicture() {
 	const [payload_view] = useAtom(payload_view_atom);
 	const [mutate_user] = useAtom(mutate_user_atom);
 	const [inputImage, setInputImage] = useState<string | null>(null);
@@ -47,7 +47,7 @@ export function useEditDisplayPicture() {
 					flex='column'
 					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
 				>
-					<Flex className='justify-between items-center'>
+					<Flex className='items-center justify-between'>
 						<h2 className='text-2xl font-semibold'>Photo</h2>
 						<InteractiveIcon
 							callback={() => {
@@ -71,7 +71,7 @@ export function useEditDisplayPicture() {
 						<input
 							// type='url'
 							required
-							className='p-3 border w-full'
+							className='w-full p-3 border'
 							value={inputImage ?? image}
 							onChange={(e) => {
 								capture(e.target.value);

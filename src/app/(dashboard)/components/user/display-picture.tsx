@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
-import { useEditDisplayPicture as useDisplayPicture } from "@/hooks/interface/dashboard/use-edit-display-picture.interface";
 import { ReactNode } from "react";
+import { useDisplayPicture } from "./interfaces/use-display-picture.interface";
 
 export default function DisplayPicture({
 	children,

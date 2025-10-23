@@ -1,5 +1,5 @@
-import { useEditName as useName } from "@/hooks/interface/dashboard/use-edit-name.interface";
 import { ReactNode } from "react";
+import { useName } from "./interfaces/use-name.interface";
 
 export default function Name({
 	children,

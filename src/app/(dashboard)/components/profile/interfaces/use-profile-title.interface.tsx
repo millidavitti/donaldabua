@@ -11,7 +11,7 @@ import {
 } from "@/data/dashboard/dashboard-atoms/data";
 import { HashLoader } from "react-spinners";
 
-export function useEditProfileTitle() {
+export function useProfileTitle() {
 	const [inputTitle, setInputTitle] = useState<string | null>(null);
 	const [context, setContext] = useState<"edit-title" | null>(null);
 	const [mutate_profile] = useAtom(mutate_profile_atom);
@@ -51,8 +51,8 @@ export function useEditProfileTitle() {
 					flex='column'
 					className='bg-light-surface gap-3 basis-[720px] neonScan'
 				>
-					<Flex className='justify-between items-center'>
-						<Flex flex='column' className='border-0 p-0'>
+					<Flex className='items-center justify-between'>
+						<Flex flex='column' className='p-0 border-0'>
 							<h2 className='text-2xl font-semibold'>Edit your title</h2>
 							<p className='max-w-[75%]'>
 								Enter a single sentence description of your professional
@@ -83,7 +83,7 @@ export function useEditProfileTitle() {
 							onChange={(e) => {
 								captureInput(e.target.value);
 							}}
-							className='border p-3'
+							className='p-3 border'
 						/>
 						<Button
 							type='submit'

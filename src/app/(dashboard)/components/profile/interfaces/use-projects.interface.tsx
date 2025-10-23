@@ -1,4 +1,3 @@
-import { useResetProjectDraft } from "../../use-reset-project-draft";
 import ContentBuilder from "@/app/(dashboard)/components/content-builder/content-builder";
 import Draft from "@/app/(dashboard)/components/draft";
 import DraftPreview from "@/app/(dashboard)/components/draft-preview/index";
@@ -16,12 +15,13 @@ import {
 	ProjectContent,
 	Technology,
 } from "@/data/dashboard/dashboard-atoms/types";
+import { useResetDraft } from "@/hooks/use-reset-project-draft";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HashLoader } from "react-spinners";
 
-export function useEditProjects() {
-	const resetProjectFormFields = useResetProjectDraft();
-	const [context, set_context] = useAtom(useEditProjects.context_atom);
+export function useProjectDraft() {
+	const resetProjectFormFields = useResetDraft();
+	const [context, set_context] = useAtom(useProjectDraft.context_atom);
 	const [project_content] = useAtom(project_content_atom);
 	const [project_technologies] = useAtom(project_technologies_atom);
 	const isProjectReady =
@@ -80,6 +80,6 @@ export function useEditProjects() {
 	};
 }
 
-useEditProjects.context_atom = atom<
+useProjectDraft.context_atom = atom<
 	"draft-project" | "preview-draft" | "update-project" | "preview-update" | null
 >(null);

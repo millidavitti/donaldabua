@@ -4,7 +4,6 @@ import {
 } from "@/data/dashboard/dashboard-atoms/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom } from "jotai";
-import useDialog from "../../use-dialog";
 import {
 	create_social_atom,
 	delete_social_atom,
@@ -21,6 +20,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import { X } from "lucide-react";
 import { useResetAtom } from "jotai/utils";
+import useDialog from "@/hooks/use-dialog";
 
 export default function useSocials(children?: ReactNode) {
 	const slots: { [key: string | "update"]: ReactElement } = {};

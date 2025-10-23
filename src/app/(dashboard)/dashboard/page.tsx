@@ -4,7 +4,7 @@ import UserHeader from "../components/profile-header";
 import Sidebar from "../components/sidebar";
 import DashboardHeader from "../components/dashboard-header";
 import AlertDialog from "@/components/ui/alert-dialog";
-import EditProjects from "../components/profile/edit-profile-projects";
+import ProjectDraft from "../components/profile/edit-profile-projects";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { EditIcon } from "lucide-react";
 import HourlyRate from "../components/profile/edit-profile-hourly-rate";
@@ -49,7 +49,7 @@ export default function Dashboard() {
 								)}
 							</Overview>
 						</Flex>
-						<EditProjects />
+						<ProjectDraft />
 						{/* <EditProfileTechnologies /> */}
 					</Flex>
 				</Flex>

@@ -8,8 +8,8 @@ import { EditIcon } from "lucide-react";
 
 export default function EditProfileSummary() {
 	return (
-		<Flex flex='column' className='gap-3 border-0 p-0'>
-			<Flex className='shrink-0 justify-between flex-wrap lg:flex-nowrap gap-3 p-0 border-none'>
+		<Flex flex='column' className='gap-3 p-0 border-0'>
+			<Flex className='flex-wrap justify-between gap-3 p-0 border-none shrink-0 lg:flex-nowrap'>
 				<ProfileTitle>
 					{(start) => (
 						<InteractiveIcon onClick={start}>

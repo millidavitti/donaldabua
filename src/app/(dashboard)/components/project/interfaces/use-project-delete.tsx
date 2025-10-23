@@ -1,7 +1,7 @@
 import { waitForDialog } from "@/utils/wait-for-dialog";
-import useDialog from "../../use-dialog";
 import { useAtom } from "jotai";
 import { delete_project_atom } from "@/data/dashboard/dashboard-atoms/data";
+import useDialog from "@/hooks/use-dialog";
 
 export default function useProjectDelete() {
 	const { closeDialog, displayDialog } = useDialog();

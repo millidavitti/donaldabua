@@ -1,8 +1,8 @@
 import Flex from "@/components/layouts/flex";
 import { type Location } from "@/data/dashboard/dashboard-atoms/types";
-import { useEditLocation as useLocation } from "@/hooks/interface/dashboard/use-edit-location.interface";
 import { MapPin } from "lucide-react";
 import { ReactNode } from "react";
+import { useLocation } from "./interfaces/use-location.interface";
 
 export default function Location({
 	children,

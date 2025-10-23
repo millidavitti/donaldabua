@@ -1,6 +1,5 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import useSocials from "@/hooks/interface/dashboard/use-edit-socials.interface";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cloneElement, ReactNode } from "react";
@@ -10,6 +9,7 @@ import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Slot from "@/components/layouts/Slot";
+import useSocials from "./interfaces/use-socials.interface";
 
 interface Socials {
 	children: ReactNode;

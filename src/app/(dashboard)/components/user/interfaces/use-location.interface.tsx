@@ -10,7 +10,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 
-export function useEditLocation() {
+export function useLocation() {
 	const [inputLocation, setInputLocation] = useState({
 		city: null,
 		country: null,
@@ -54,7 +54,7 @@ export function useEditLocation() {
 					flex='column'
 					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
 				>
-					<Flex className='justify-between items-center'>
+					<Flex className='items-center justify-between'>
 						<h2 className='text-2xl font-semibold'>Location</h2>
 						<InteractiveIcon callback={close}>
 							<X size={24} className='stroke-light-error' />
@@ -68,13 +68,13 @@ export function useEditLocation() {
 							save();
 						}}
 					>
-						<Flex flex='column' className='gap-3 border-0 p-0'>
+						<Flex flex='column' className='gap-3 p-0 border-0'>
 							<label htmlFor='city'>City</label>
 							<input
 								type='text'
 								id='city'
 								required
-								className='border p-3'
+								className='p-3 border'
 								value={inputLocation?.city ?? location.city}
 								onChange={(e) => captureInput("city", e.target.value)}
 							/>
@@ -83,7 +83,7 @@ export function useEditLocation() {
 								type='text'
 								id='country'
 								required
-								className='border p-3'
+								className='p-3 border'
 								value={inputLocation?.country ?? location.country}
 								onChange={(e) => {
 									captureInput("country", e.target.value);

@@ -2,8 +2,8 @@
 import Flex from "@/components/layouts/flex";
 import md from "md";
 import parse from "html-react-parser";
-import { useOverview } from "@/hooks/interface/dashboard/use-edit-profile-overview.interface";
 import { ReactNode } from "react";
+import { useOverview } from "./interfaces/use-profile-overview.interface";
 export default function Overview({
 	children,
 }: {

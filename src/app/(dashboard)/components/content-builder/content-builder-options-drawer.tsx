@@ -1,9 +1,9 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { useEditProjects } from "@/hooks/interface/dashboard/use-edit-projects.interface";
 import { useAtomValue } from "jotai";
 import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
+import { useProjectDraft } from "../profile/interfaces/use-projects.interface";
 
 interface ContentBuilderOptionsDrawer {
 	children: ReactNode;
@@ -12,7 +12,7 @@ export default function ContentBuilderOptionsDrawer({
 	children,
 }: ContentBuilderOptionsDrawer) {
 	const [isOptionsVisible, setIsOptionsVisible] = useState(false);
-	const context = useAtomValue(useEditProjects.context_atom);
+	const context = useAtomValue(useProjectDraft.context_atom);
 	return (
 		<>
 			{(context === "draft-project" || context === "update-project") && (

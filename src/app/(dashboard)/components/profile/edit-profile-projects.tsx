@@ -3,13 +3,13 @@ import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Plus } from "lucide-react";
 import Projects from "../project/projects";
-import { useEditProjects } from "@/hooks/interface/dashboard/use-edit-projects.interface";
 import ProjectDelete from "../project/options/project-delete";
 import ProjectEdit from "../project/options/project-edit";
 import ProjectOptions from "../project/project-options";
+import { useProjectDraft } from "./interfaces/use-projects.interface";
 
-export default function EditProjects() {
-	const { start, Modal } = useEditProjects();
+export default function ProjectDraft() {
+	const { start, Modal } = useProjectDraft();
 
 	return (
 		<>

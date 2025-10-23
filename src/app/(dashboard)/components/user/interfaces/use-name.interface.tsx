@@ -10,7 +10,7 @@ import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 
-export function useEditName() {
+export function useName() {
 	const [inputName, setInputName] = useState<string | null>(null);
 	const [mutate_user] = useAtom(mutate_user_atom);
 	const [payload_view] = useAtom(payload_view_atom);
@@ -45,7 +45,7 @@ export function useEditName() {
 					flex='column'
 					className='bg-light-surface gap-3 neonScan max-w-[480px] w-full'
 				>
-					<Flex className='justify-between items-center'>
+					<Flex className='items-center justify-between'>
 						<h2 className='text-2xl font-semibold'>Name</h2>
 						<InteractiveIcon
 							callback={() => {
@@ -69,7 +69,7 @@ export function useEditName() {
 						<input
 							type='text'
 							required
-							className='border p-3'
+							className='p-3 border'
 							value={inputName ?? payload_view.data?.user.name}
 							onChange={(e) => {
 								captureInput(e.target.value);
