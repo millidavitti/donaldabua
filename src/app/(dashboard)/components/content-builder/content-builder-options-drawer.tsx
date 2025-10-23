@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { useAtomValue } from "jotai";
 import { EllipsisIcon } from "lucide-react";
 import { ReactNode, useState } from "react";
-import { useProjectDraft } from "../profile/interfaces/use-projects.interface";
+import { usePortfolio } from "../profile/interfaces/use-portfolio.interface";
 
 interface ContentBuilderOptionsDrawer {
 	children: ReactNode;
@@ -12,7 +12,7 @@ export default function ContentBuilderOptionsDrawer({
 	children,
 }: ContentBuilderOptionsDrawer) {
 	const [isOptionsVisible, setIsOptionsVisible] = useState(false);
-	const context = useAtomValue(useProjectDraft.context_atom);
+	const context = useAtomValue(usePortfolio.context_atom);
 	return (
 		<>
 			{(context === "draft-project" || context === "update-project") && (
