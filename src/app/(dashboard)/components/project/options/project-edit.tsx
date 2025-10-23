@@ -4,13 +4,13 @@ import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import { Edit } from "lucide-react";
-import { useProjectDraft } from "../../profile/interfaces/use-projects.interface";
+import { usePortfolio } from "../../profile/interfaces/use-portfolio.interface";
 
 interface ProjectEdit {
 	project: Project;
 }
 export default function ProjectEdit({ project }: ProjectEdit) {
-	const { edit } = useProjectDraft();
+	const { edit } = usePortfolio();
 
 	return (
 		<>

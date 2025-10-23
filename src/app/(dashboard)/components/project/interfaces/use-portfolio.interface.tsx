@@ -52,18 +52,15 @@ export default function useProject() {
 						flex='column'
 						className='bg-light-surface gap-3 w-full max-h-[95%] neonScan border-0'
 					>
-						{/* Header */}
-						<Flex className='justify-between items-center shrink-0 border-0 p-0'>
+						<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 							<InteractiveIcon callback={close}>
 								<ArrowLeftIcon size={24} />
 							</InteractiveIcon>
 						</Flex>
 
 						<Flex flex='column' className='gap-3'>
-							{/* Project Title */}
 							<ProjectTitle title={project.title} />
-
-							<Flex className='gap-3 flex-wrap border-0 p-0'>
+							<Flex className='flex-wrap gap-3 p-0 border-0'>
 								<Flex flex='column' className='grow gap-3 basis-[360px]'>
 									<ProjectDescription description={project.description} />
 									<ProjectTechnologies

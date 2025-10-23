@@ -8,7 +8,7 @@ import { ExternalLink } from "lucide-react";
 import Repository from "@/components/repository";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { ReactNode } from "react";
-import useProject from "./interfaces/use-project.interface";
+import useProject from "./interfaces/use-portfolio.interface";
 
 export default function Project({
 	project,

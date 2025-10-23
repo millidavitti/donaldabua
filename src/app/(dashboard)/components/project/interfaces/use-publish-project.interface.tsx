@@ -6,7 +6,7 @@ import {
 	input_project_content_atom,
 	mutate_project_atom,
 } from "@/data/dashboard/dashboard-atoms/data";
-import { useProjectDraft } from "../../profile/interfaces/use-projects.interface";
+import { usePortfolio } from "../../profile/interfaces/use-portfolio.interface";
 import { useResetDraft } from "@/hooks/use-reset-project-draft";
 
 export function usePublishProject() {
@@ -19,7 +19,7 @@ export function usePublishProject() {
 	const [create_project] = useAtom(create_project_atom);
 	const [mutate_project] = useAtom(mutate_project_atom);
 	const input_project = useAtomValue(input_project_atom);
-	const [context, set_context] = useAtom(useProjectDraft.context_atom);
+	const [context, set_context] = useAtom(usePortfolio.context_atom);
 	const close = () => {
 		set_context(null);
 		resetProjectDraft();
