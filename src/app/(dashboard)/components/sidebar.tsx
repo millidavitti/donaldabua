@@ -1,17 +1,17 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-
 import IntroVideo from "./user/intro-video";
-import Socials, { Social } from "./user/socials";
 import Availability from "./user/availability";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Trash2, Plus, EditIcon } from "lucide-react";
+import { Social } from "./user/social";
+import Socials from "./user/socials";
 
 export default function Sidebar() {
 	return (
 		<Flex
 			flex='column'
-			className='grow gap-3 lg:shrink-0 lg:basis-80 border-0 p-0'
+			className='gap-3 p-0 border-0 grow lg:shrink-0 lg:basis-80'
 		>
 			<IntroVideo>
 				{(video, start, remove) => (
@@ -29,7 +29,7 @@ export default function Sidebar() {
 					</>
 				)}
 			</IntroVideo>
-			<Flex flex='column' className='grow gap-3 border-0 p-0'>
+			<Flex flex='column' className='gap-3 p-0 border-0 grow'>
 				<Availability>
 					{(start) => (
 						<InteractiveIcon callback={start}>
@@ -43,7 +43,7 @@ export default function Sidebar() {
 					</InteractiveIcon>
 					<Social slot='update' />
 					<InteractiveIcon slot='remove' className='p-0'>
-						<Trash2 className='stroke-light-error active:scale-95 transition group-hover:block hidden cursor-pointer' />
+						<Trash2 className='hidden transition cursor-pointer stroke-light-error active:scale-95 group-hover:block' />
 					</InteractiveIcon>
 				</Socials>
 			</Flex>

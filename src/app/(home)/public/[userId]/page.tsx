@@ -14,7 +14,8 @@ import Location from "@/app/(dashboard)/components/user/location";
 import Image from "next/image";
 import Availability from "@/app/(dashboard)/components/user/availability";
 import IntroVideo from "@/app/(dashboard)/components/user/intro-video";
-import Socials, { Social } from "@/app/(dashboard)/components/user/socials";
+import Socials from "@/app/(dashboard)/components/user/socials";
+import { Social } from "@/app/(dashboard)/components/user/social";
 export default function ProjectVault() {
 	return (
 		<>

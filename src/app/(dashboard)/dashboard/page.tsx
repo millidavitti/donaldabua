@@ -2,7 +2,6 @@
 import Flex from "@/components/layouts/flex";
 import Sidebar from "../components/sidebar";
 import Header from "../components/header";
-import AlertDialog from "@/components/ui/alert-dialog";
 import Portfolio from "../components/profile/portfolio";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { EditIcon } from "lucide-react";
@@ -63,11 +62,9 @@ export default function Dashboard() {
 								)}
 							</Projects>
 						</Portfolio>
-						{/* <EditProfileTechnologies /> */}
 					</Flex>
 				</Flex>
 			</Flex>
-			<AlertDialog />
 		</Flex>
 	);
 }

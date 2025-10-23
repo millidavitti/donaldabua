@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import { Profile } from "@/data/dashboard/dashboard-atoms/types";
+import { Profile } from "@/data/types";
 import useSelectProfile from "@/app/(dashboard)/components/profile/interfaces/use-select-profile.interface";
 import { ReactNode } from "react";
 
@@ -10,10 +10,10 @@ export interface SelectProfile {
 	) => ReactNode;
 }
 export default function SelectProfile({ children }: SelectProfile) {
-	const { view, Modal } = useSelectProfile();
+	const { view, Modal } = useSelectProfile(children);
 	return (
 		<>
-			{Modal && <Modal>{children}</Modal>}
+			{Modal}
 			<Button type='button' onClick={view} className='self-start'>
 				Select Profile
 			</Button>
