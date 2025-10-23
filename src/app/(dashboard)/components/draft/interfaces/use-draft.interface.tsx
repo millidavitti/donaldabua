@@ -3,12 +3,12 @@ import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/dat
 import { toast } from "sonner";
 import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
 import { useResetDraft } from "@/hooks/use-reset-project-draft";
-import { useProjectDraft } from "@/app/(dashboard)/components/profile/interfaces/use-projects.interface";
+import { usePortfolio } from "@/app/(dashboard)/components/profile/interfaces/use-portfolio.interface";
 
 export function useDraft() {
 	const project_technologies = useAtomValue(input_project_technologies_atom);
 	const project_content = useAtomValue(input_project_content_atom);
-	const [context, set_context] = useAtom(useProjectDraft.context_atom);
+	const [context, set_context] = useAtom(usePortfolio.context_atom);
 	const resetProjectFormFields = useResetDraft();
 	const hasContent = Boolean(project_content.length);
 	const hasTechnologies = Boolean(project_technologies.length);

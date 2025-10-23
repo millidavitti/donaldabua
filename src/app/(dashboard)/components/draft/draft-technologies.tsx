@@ -28,6 +28,7 @@ export default function DraftTechnologies() {
 				<Flex className='gap-3 p-0 overflow-x-auto border-0 shrink-0'>
 					{input_project_technologies.map((tech, index) => (
 						<Flex
+							key={index}
 							className={cn(
 								"gap-3 items-center self-start shrink-0",
 								getAnimationClass("swing-in-top-fwd"),
