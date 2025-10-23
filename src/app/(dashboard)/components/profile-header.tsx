@@ -11,7 +11,7 @@ import { Trash2 } from "lucide-react";
 
 export default function UserHeader() {
 	return (
-		<Flex className='shrink-0 gap-3 overflow-visible flex-wrap' id='user-info'>
+		<Flex className='flex-wrap gap-3 overflow-visible shrink-0' id='user-info'>
 			<DisplayPicture>
 				{(image, edit) => (
 					<Flex
@@ -46,13 +46,13 @@ export default function UserHeader() {
 				</Name>
 				<Location>
 					{(location, start) => (
-						<p onClick={start} className='cursor-pointer font-medium'>
+						<p onClick={start} className='font-medium cursor-pointer'>
 							{location?.city}, {location?.country}
 						</p>
 					)}
 				</Location>
 			</Flex>
-			<Flex className='gap-3 self-start flex-wrap grow border-0 p-0'>
+			<Flex className='flex-wrap self-start gap-3 p-0 border-0 grow'>
 				<CreateProfile />
 				<SelectProfile>
 					{(profileId, remove) => (
