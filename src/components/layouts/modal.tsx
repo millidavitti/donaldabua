@@ -20,7 +20,6 @@ export default function Modal({ children, className, close }: Modal) {
 			onClick={(e) => {
 				const modal = e.currentTarget;
 				const target = e.target as HTMLElement;
-				console.log(modal.id, target.id);
 				if (modal.id !== target.id || !close) return;
 
 				close();
