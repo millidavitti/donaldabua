@@ -1,4 +1,4 @@
-import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "../dashboard-constants";
+import { AVAILABILITY_OPTIONS, SOCIAL_PLATFORMS } from "./constants";
 
 export type Technology = {
 	id: string;

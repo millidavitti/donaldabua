@@ -16,7 +16,10 @@ import { queryClient } from "@/components/query-client";
 import { updateLocation } from "@/backend/controllers/dashboard/user-location/update-user-location.controller";
 import { updateTechnologies } from "@/backend/controllers/dashboard/technologies/update-technologies.controller";
 import { jotaiStore } from "@/components/jotai-store";
-import { dashboard_view_jotai, settings_view_atom } from "./dashboard-ui-state";
+import {
+	dashboard_view_jotai,
+	settings_view_atom,
+} from "./dashboard/dashboard-atoms/dashboard-ui-state";
 import { createSocial } from "@/backend/controllers/dashboard/socials/create-user-socials.controller";
 import { updateSocial } from "@/backend/controllers/dashboard/socials/update-user-socials.controller";
 import { deleteSocial } from "@/backend/controllers/dashboard/socials/delete-user-socials.controller";
