@@ -1,5 +1,5 @@
-import { Project } from "@/data/dashboard/dashboard-atoms/types";
-import { projects_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { Project } from "@/data/types";
+import { projects_atom } from "@/data/data";
 import { useAtom } from "jotai";
 
 export default function useProjects() {

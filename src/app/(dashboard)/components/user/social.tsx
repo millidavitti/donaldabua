@@ -1,4 +1,4 @@
-import { type Social } from "@/data/dashboard/dashboard-atoms/types";
+import { type Social } from "@/data/types";
 import { SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
 import Image from "next/image";
 

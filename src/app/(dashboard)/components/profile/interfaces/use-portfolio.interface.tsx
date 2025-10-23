@@ -9,12 +9,8 @@ import {
 	project_atom,
 	project_content_atom,
 	project_technologies_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
-import {
-	Project,
-	ProjectContent,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/types";
+} from "@/data/data";
+import { Project, ProjectContent, Technology } from "@/data/types";
 import { useResetDraft } from "@/hooks/use-reset-project-draft";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HashLoader } from "react-spinners";

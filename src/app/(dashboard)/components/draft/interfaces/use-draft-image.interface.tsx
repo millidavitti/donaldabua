@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { content_hover_state_jotai } from "@/data/dashboard/dashboard-atoms/dashboard-ui-state";
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_content_atom } from "@/data/data";
 import { createId } from "@paralleldrive/cuid2";
 import { useSetAtom } from "jotai";
 import { X } from "lucide-react";

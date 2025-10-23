@@ -1,5 +1,5 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_content_atom } from "@/data/data";
 import { useSetAtom } from "jotai";
 import { Trash } from "lucide-react";
 import React from "react";

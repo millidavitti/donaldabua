@@ -1,5 +1,5 @@
-import { Technology } from "@/data/dashboard/dashboard-atoms/types";
-import { payload_view_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { Technology } from "@/data/types";
+import { payload_view_atom } from "@/data/data";
 import { createId } from "@paralleldrive/cuid2";
 import { useQueryClient } from "@tanstack/react-query";
 import FuzzySearch from "fuzzy-search";

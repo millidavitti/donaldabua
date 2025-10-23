@@ -4,7 +4,7 @@ import useAddTechnologies from "@/app/(dashboard)/components/settings/interfaces
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
-import { DELAY } from "@/data/dashboard/dashboard-constants";
+import { DELAY } from "@/data/constants";
 
 export default function AddTechnologies() {
 	const {

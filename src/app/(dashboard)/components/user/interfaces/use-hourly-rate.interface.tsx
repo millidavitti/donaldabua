@@ -6,10 +6,7 @@ import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useState } from "react";
 
-import {
-	mutate_profile_atom,
-	profile_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+import { mutate_profile_atom, profile_atom } from "@/data/data";
 import { HashLoader } from "react-spinners";
 
 export function useHourlyRate() {

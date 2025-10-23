@@ -1,4 +1,4 @@
-import { Availability } from "@/data/dashboard/dashboard-atoms/types";
+import { Availability } from "@/data/types";
 import { useAtom, useAtomValue } from "jotai";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
@@ -7,10 +7,7 @@ import Button from "@/components/ui/button";
 import { AVAILABILITY_OPTIONS } from "@/data/home/home-constants";
 import { X } from "lucide-react";
 import { useState } from "react";
-import {
-	mutate_profile_atom,
-	profile_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+import { mutate_profile_atom, profile_atom } from "@/data/data";
 import { HashLoader } from "react-spinners";
 
 export function useAvailability() {

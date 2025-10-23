@@ -1,7 +1,4 @@
-import {
-	Social,
-	SocialPlatforms,
-} from "@/data/dashboard/dashboard-atoms/types";
+import { Social, SocialPlatforms } from "@/data/types";
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom } from "jotai";
 import {
@@ -10,7 +7,7 @@ import {
 	input_social_atom,
 	mutate_social_atom,
 	payload_view_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 import { Children, ReactElement, ReactNode, useState } from "react";
 import Button from "@/components/ui/button";
 import { HashLoader } from "react-spinners";
@@ -20,13 +17,13 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import { X } from "lucide-react";
 import { useResetAtom } from "jotai/utils";
-import useDialog from "@/hooks/use-dialog";
+import useToogleDialog from "@/hooks/use-dialog";
 
 export default function useSocials(children?: ReactNode) {
 	const slots: { [key: string | "update"]: ReactElement } = {};
 	const [input_social, set_input_social] = useAtom(input_social_atom);
 	const reset_input_social = useResetAtom(input_social_atom);
-	const { closeDialog, displayDialog } = useDialog();
+	const { closeDialog, displayDialog } = useToogleDialog();
 	const [create_social] = useAtom(create_social_atom);
 	const [payload_view] = useAtom(payload_view_atom);
 	const [mutate_social] = useAtom(mutate_social_atom);

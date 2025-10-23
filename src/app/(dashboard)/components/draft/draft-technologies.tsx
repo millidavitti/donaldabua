@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import { X } from "lucide-react";
 import useDraftTechnologies from "@/app/(dashboard)/components/draft/interfaces/use-draft-technologies.interface";
-import { DELAY } from "@/data/dashboard/dashboard-constants";
+import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import Button from "@/components/ui/button";

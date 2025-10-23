@@ -6,7 +6,7 @@ import {
 	input_project_technologies_atom,
 	input_project_content_atom,
 	mutate_project_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 import { usePortfolio } from "@/app/(dashboard)/components/profile/interfaces/use-portfolio.interface";
 
 export function usePublish() {

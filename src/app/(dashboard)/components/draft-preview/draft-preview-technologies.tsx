@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { useAtomValue } from "jotai";
-import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_technologies_atom } from "@/data/data";
 import { DELAY } from "@/data/home/home-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";

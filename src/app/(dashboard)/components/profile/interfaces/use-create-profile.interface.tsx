@@ -6,7 +6,7 @@ import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
 import { HashLoader } from "react-spinners";
-import { create_profile_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { create_profile_atom } from "@/data/data";
 
 export default function useCreateProfile() {
 	const [inputTitle, setInputTitle] = useState("");

@@ -1,4 +1,4 @@
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_content_atom } from "@/data/data";
 import { useSetAtom } from "jotai";
 import { useState } from "react";
 

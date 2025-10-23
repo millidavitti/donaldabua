@@ -1,6 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
+import { ProjectContent } from "@/data/types";
 import Button from "@/components/ui/button";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";

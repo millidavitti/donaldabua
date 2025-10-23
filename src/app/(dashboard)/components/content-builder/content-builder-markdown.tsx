@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
+import { ProjectContent } from "@/data/types";
 import md from "md";
 import parse from "html-react-parser";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";

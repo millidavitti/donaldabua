@@ -3,7 +3,7 @@ import Project from "./project";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cn } from "@/utils/cn";
-import { Project as TProject } from "@/data/dashboard/dashboard-atoms/types";
+import { Project as TProject } from "@/data/types";
 import { ReactNode } from "react";
 import useProjects from "./interfaces/use-projects.interface";
 

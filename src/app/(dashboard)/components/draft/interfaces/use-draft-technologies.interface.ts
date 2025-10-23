@@ -1,8 +1,8 @@
-import { Technology } from "@/data/dashboard/dashboard-atoms/types";
+import { Technology } from "@/data/types";
 import {
 	input_project_technologies_atom,
 	payload_view_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";

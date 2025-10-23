@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue } from "jotai";
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_content_atom } from "@/data/data";
 import { toast } from "sonner";
-import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_technologies_atom } from "@/data/data";
 import { useResetDraft } from "@/hooks/use-reset-project-draft";
 import { usePortfolio } from "@/app/(dashboard)/components/profile/interfaces/use-portfolio.interface";
 

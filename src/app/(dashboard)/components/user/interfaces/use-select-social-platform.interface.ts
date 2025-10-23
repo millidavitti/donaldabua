@@ -1,6 +1,6 @@
-import { input_social_atom } from "@/data/dashboard/dashboard-atoms/data";
-import { SocialPlatforms } from "@/data/dashboard/dashboard-atoms/types";
-import { SOCIAL_PLATFORMS } from "@/data/dashboard/dashboard-constants";
+import { input_social_atom } from "@/data/data";
+import { SocialPlatforms } from "@/data/types";
+import { SOCIAL_PLATFORMS } from "@/data/constants";
 import FuzzySearch from "fuzzy-search";
 import { useAtom } from "jotai";
 import { useState } from "react";

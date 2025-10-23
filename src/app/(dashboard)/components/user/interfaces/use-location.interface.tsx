@@ -1,8 +1,5 @@
 import { useAtom } from "jotai";
-import {
-	mutate_location_atom,
-	payload_view_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+import { mutate_location_atom, payload_view_atom } from "@/data/data";
 import { useState } from "react";
 import Modal from "@/components/layouts/modal";
 import Flex from "@/components/layouts/flex";

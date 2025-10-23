@@ -1,10 +1,10 @@
-import { Project } from "@/data/dashboard/dashboard-atoms/types";
+import { Project } from "@/data/types";
 import { useAtom } from "jotai";
 import {
 	project_atom,
 	project_content_atom,
 	project_technologies_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 import Modal from "@/components/layouts/modal";
 import ProjectContent from "@/app/(dashboard)/components/project/project-content";
 import ProjectDescription from "@/app/(dashboard)/components/project/project-description";

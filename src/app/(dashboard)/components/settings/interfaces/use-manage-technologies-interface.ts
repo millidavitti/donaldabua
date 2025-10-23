@@ -1,8 +1,5 @@
 import { useAtom } from "jotai";
-import {
-	mutate_technologies_atom,
-	payload_view_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+import { mutate_technologies_atom, payload_view_atom } from "@/data/data";
 
 export default function useManageTechnologies() {
 	const [mutate_technologies] = useAtom(mutate_technologies_atom);

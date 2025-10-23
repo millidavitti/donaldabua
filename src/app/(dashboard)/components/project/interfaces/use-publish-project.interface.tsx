@@ -5,7 +5,7 @@ import {
 	input_project_technologies_atom,
 	input_project_content_atom,
 	mutate_project_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 import { usePortfolio } from "../../profile/interfaces/use-portfolio.interface";
 import { useResetDraft } from "@/hooks/use-reset-project-draft";
 

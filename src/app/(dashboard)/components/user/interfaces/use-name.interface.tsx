@@ -1,8 +1,5 @@
 import { useAtom } from "jotai";
-import {
-	mutate_user_atom,
-	payload_view_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+import { mutate_user_atom, payload_view_atom } from "@/data/data";
 import { useState } from "react";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";

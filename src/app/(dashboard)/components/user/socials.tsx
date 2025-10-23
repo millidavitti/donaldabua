@@ -3,7 +3,7 @@ import Flex from "@/components/layouts/flex";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cloneElement, ReactNode } from "react";
-import { type Social } from "@/data/dashboard/dashboard-atoms/types";
+import { type Social } from "@/data/types";
 import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";

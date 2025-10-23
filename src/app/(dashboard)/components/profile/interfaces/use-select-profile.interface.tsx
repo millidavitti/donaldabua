@@ -12,7 +12,7 @@ import Button from "@/components/ui/button";
 import { cn } from "@/utils/cn";
 import { X } from "lucide-react";
 import { ReactNode, useState } from "react";
-import useAlertDialog from "@/hooks/use-alert-dialog-interface";
+import useAlertDialog from "@/hooks/use-alert-dialog.interface";
 
 /**
  * Hook to manage viewing, selecting, and removing user profiles.

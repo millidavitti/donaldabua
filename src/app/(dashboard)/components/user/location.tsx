@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { type Location } from "@/data/dashboard/dashboard-atoms/types";
+import { type Location } from "@/data/types";
 import { MapPin } from "lucide-react";
 import { ReactNode } from "react";
 import { useLocation } from "./interfaces/use-location.interface";

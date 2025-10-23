@@ -1,7 +1,7 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { type Project } from "@/data/dashboard/dashboard-atoms/types";
-import { DELAY } from "@/data/dashboard/dashboard-constants";
+import { type Project } from "@/data/types";
+import { DELAY } from "@/data/constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import { ExternalLink } from "lucide-react";

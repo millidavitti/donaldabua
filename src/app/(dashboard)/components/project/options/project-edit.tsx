@@ -1,6 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
-import { Project } from "@/data/dashboard/dashboard-atoms/types";
-import { DELAY } from "@/data/dashboard/dashboard-constants";
+import { Project } from "@/data/types";
+import { DELAY } from "@/data/constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import { Edit } from "lucide-react";

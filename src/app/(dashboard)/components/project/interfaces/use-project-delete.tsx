@@ -1,10 +1,10 @@
 import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom } from "jotai";
-import { delete_project_atom } from "@/data/dashboard/dashboard-atoms/data";
-import useDialog from "@/hooks/use-dialog";
+import { delete_project_atom } from "@/data/data";
+import useToogleDialog from "@/hooks/use-dialog";
 
 export default function useProjectDelete() {
-	const { closeDialog, displayDialog } = useDialog();
+	const { closeDialog, displayDialog } = useToogleDialog();
 	const [delete_project] = useAtom(delete_project_atom);
 	async function deleteProject(projectId: string) {
 		displayDialog();
