@@ -14,7 +14,7 @@ import {
 import { Children, ReactElement, ReactNode, useState } from "react";
 import Button from "@/components/ui/button";
 import { HashLoader } from "react-spinners";
-import SelectSocialPlatform from "@/app/(dashboard)/components/select-social-platform";
+import SelectSocialPlatform from "@/app/(dashboard)/components/user/select-social-platform";
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";

@@ -7,13 +7,13 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 import { toast } from "sonner";
 
-export default function useAddTechnologiesInterface() {
+export default function useAddTechnologies() {
 	const [payload_view] = useAtom(payload_view_atom);
 	const [searchResult, setSearchResult] = useState<Technology[]>([]);
 	const [inputTechnology, setInputTechnology] = useState<string>("");
 	const queryClient = useQueryClient();
 
-	function removeTechnology(tech: Technology) {
+	function remove(tech: Technology) {
 		const technologies = payload_view.data?.technologies as Technology[];
 		queryClient.setQueryData(
 			["payload_view"],
@@ -87,7 +87,7 @@ export default function useAddTechnologiesInterface() {
 	}
 
 	return {
-		removeTechnology,
+		remove,
 		addTechnology,
 		captureAndSearch,
 		displaySearchResult,

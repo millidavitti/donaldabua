@@ -12,7 +12,7 @@ export default function HourlyRate({
 	return (
 		<>
 			{Modal}
-			<Flex className='h-fit items-center justify-between shrink-0 ml-auto'>
+			<Flex className='items-center justify-between ml-auto h-fit shrink-0'>
 				<p className='font-semibold lg:text-2xl'>${hourlyRate}/hr</p>
 				{children && children(start)}
 			</Flex>

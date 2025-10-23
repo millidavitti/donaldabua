@@ -3,7 +3,7 @@ import React from "react";
 import Settings from "./settings/settings";
 import Image from "next/image";
 
-export default function DashboardHeader() {
+export default function Header() {
 	return (
 		<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 			<a href='/' target='_blank' rel='noopener noreferrer'>

@@ -1,8 +1,8 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import ProfileTitle from "./edit-profile-title";
-import HourlyRate from "./edit-profile-hourly-rate";
-import Overview from "./edit-profile-overview";
+import ProfileTitle from "./title";
+import HourlyRate from "./hourly-rate";
+import Overview from "./overview";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { EditIcon } from "lucide-react";
 

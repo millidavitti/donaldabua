@@ -5,7 +5,6 @@ import { DELAY } from "@/data/dashboard/dashboard-constants";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
 import Button from "@/components/ui/button";
-import ProfileTechnology from "../profile-technology";
 
 export default function DraftTechnologies() {
 	const {
@@ -26,9 +25,16 @@ export default function DraftTechnologies() {
 				Technologies
 			</label>
 			{Boolean(input_project_technologies.length) && (
-				<Flex className='gap-3 shrink-0 overflow-x-auto border-0 p-0'>
-					{input_project_technologies.map((tech, i) => (
-						<ProfileTechnology key={tech.id} tech={tech} index={i}>
+				<Flex className='gap-3 p-0 overflow-x-auto border-0 shrink-0'>
+					{input_project_technologies.map((tech, index) => (
+						<Flex
+							className={cn(
+								"gap-3 items-center self-start shrink-0",
+								getAnimationClass("swing-in-top-fwd"),
+							)}
+							style={{ animationDelay: index * DELAY + "ms" }}
+						>
+							<p className='font-medium'>{tech.name}</p>
 							<X
 								size={20}
 								className='stroke-light-error cursor-pointer active:scale-[.95] shrink-0'
@@ -36,18 +42,18 @@ export default function DraftTechnologies() {
 									remove(tech);
 								}}
 							/>
-						</ProfileTechnology>
+						</Flex>
 					))}
 				</Flex>
 			)}
 			<Flex
 				flex='column'
-				className='overflow-visible h-0 gap-3 mb-12 border-0 p-0'
+				className='h-0 gap-3 p-0 mb-12 overflow-visible border-0'
 			>
 				<input
 					type='text'
 					id='select-project-technology'
-					className='border p-3 w-full shrink-0'
+					className='w-full p-3 border shrink-0'
 					value={searchQuery}
 					onKeyDown={(e) => {
 						if (e.key === "Escape") close();
@@ -79,7 +85,7 @@ export default function DraftTechnologies() {
 							);
 						})}
 						<Button
-							className='sticky bottom-0 bg-black text-white'
+							className='sticky bottom-0 text-white bg-black'
 							onClick={() => close()}
 						>
 							Cancel

@@ -1,7 +1,6 @@
 import Flex from "@/components/layouts/flex";
 import { Plus, X } from "lucide-react";
-import ProfileTechnology from "../profile-technology";
-import useAddTechnologiesInterface from "@/hooks/interface/dashboard/use-add-technologies-interface";
+import useAddTechnologies from "@/app/(dashboard)/components/settings/interfaces/use-add-technologies-interface";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { cn } from "@/utils/cn";
 import { getAnimationClass } from "@/utils/animations";
@@ -14,41 +13,50 @@ export default function AddTechnologies() {
 		closeSearchResult,
 		displaySearchResult,
 		technologies,
-		removeTechnology,
+		remove,
 		searchQuery,
 		searchResult,
-	} = useAddTechnologiesInterface();
+	} = useAddTechnologies();
 	return (
 		<>
 			{Boolean(technologies.length) && (
-				<Flex className='gap-3 flex-wrap shrink-0 grow border-0 p-0'>
-					{technologies.map((technology, i) => (
-						<ProfileTechnology tech={technology} key={technology.id} index={i}>
+				<Flex className='flex-wrap gap-3 p-0 border-0 shrink-0 grow'>
+					{technologies.map((technology, index) => (
+						<Flex
+							className={cn(
+								"gap-3 items-center self-start shrink-0",
+								getAnimationClass("swing-in-top-fwd"),
+							)}
+							style={{ animationDelay: index * DELAY + "ms" }}
+						>
+							<p className='font-medium'>{technology.name}</p>
 							<X
-								size={24}
-								className='stroke-light-error cursor-pointer active:scale-[.95]'
-								onClick={() => removeTechnology(technology)}
+								size={20}
+								className='stroke-light-error cursor-pointer active:scale-[.95] shrink-0'
+								onClick={() => {
+									remove(technology);
+								}}
 							/>
-						</ProfileTechnology>
+						</Flex>
 					))}
 				</Flex>
 			)}
 			<Flex
 				flex='column'
-				className='relative overflow-visible gap-3 border-0 p-0'
+				className='relative gap-3 p-0 overflow-visible border-0'
 			>
 				<Flex className='gap-3'>
 					<input
 						type='text'
 						id='select-technology'
-						className='border p-3 w-full'
+						className='w-full p-3 border'
 						value={searchQuery}
 						onKeyDown={(e) => closeSearchResult(e.key)}
 						onFocus={() => displaySearchResult()}
 						onChange={(e) => captureAndSearch(e.target.value)}
 					/>
 					<InteractiveIcon
-						className='shrink-0 flex items-center'
+						className='flex items-center shrink-0'
 						callback={addTechnology}
 					>
 						<Plus />

@@ -1,20 +1,20 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import UserHeader from "../components/profile-header";
+import UserHeader from "../components/profile/header";
 import Sidebar from "../components/sidebar";
-import DashboardHeader from "../components/dashboard-header";
+import Header from "../components/header";
 import AlertDialog from "@/components/ui/alert-dialog";
-import ProjectDraft from "../components/profile/edit-profile-projects";
+import ProjectDraft from "../components/profile/project-draft";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { EditIcon } from "lucide-react";
-import HourlyRate from "../components/profile/edit-profile-hourly-rate";
-import Overview from "../components/profile/edit-profile-overview";
-import ProfileTitle from "../components/profile/edit-profile-title";
+import HourlyRate from "../components/profile/hourly-rate";
+import Overview from "../components/profile/overview";
+import ProfileTitle from "../components/profile/title";
 
 export default function Dashboard() {
 	return (
 		<Flex className='w-full h-full gap-3' flex='column'>
-			<DashboardHeader />
+			<Header />
 			<Flex className='border-0 p-0 h-full gap-3' flex='column'>
 				<UserHeader />
 				{/* Main */}

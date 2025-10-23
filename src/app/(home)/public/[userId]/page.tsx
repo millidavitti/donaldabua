@@ -11,9 +11,9 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { getUserController } from "@/backend/controllers/home/user/get-user.controller";
 import Projects from "@/app/(dashboard)/components/project/projects";
-import HourlyRate from "@/app/(dashboard)/components/profile/edit-profile-hourly-rate";
-import Overview from "@/app/(dashboard)/components/profile/edit-profile-overview";
-import ProfileTitle from "@/app/(dashboard)/components/profile/edit-profile-title";
+import HourlyRate from "@/app/(dashboard)/components/profile/hourly-rate";
+import Overview from "@/app/(dashboard)/components/profile/overview";
+import ProfileTitle from "@/app/(dashboard)/components/profile/title";
 
 export default function ProjectVault() {
 	const user_snapshot_setter = useSetAtom(user_snapshot_jotai);
