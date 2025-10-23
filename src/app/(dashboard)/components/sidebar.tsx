@@ -1,8 +1,8 @@
 "use client";
 import Flex from "@/components/layouts/flex";
 
-import IntroVideo from "./user/edit-intro-video";
-import Socials, { Social } from "./user/edit-socials";
+import IntroVideo from "./user/intro-video";
+import Socials, { Social } from "./user/socials";
 import Availability from "./profile/edit-availability";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Trash2, Plus, EditIcon } from "lucide-react";

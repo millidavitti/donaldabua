@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function DashboardHeader() {
 	return (
-		<Flex className='justify-between items-center shrink-0 border-0 p-0'>
+		<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 			<a href='/' target='_blank' rel='noopener noreferrer'>
 				<Image
 					src='/logo.svg'
@@ -15,7 +15,7 @@ export default function DashboardHeader() {
 					alt='logo'
 				/>
 			</a>
-			<h1 className='md:text-2xl font-bold text-center'>Portfolio Dashboard</h1>
+			<h1 className='font-bold text-center md:text-2xl'>Portfolio Dashboard</h1>
 			<Settings />
 		</Flex>
 	);

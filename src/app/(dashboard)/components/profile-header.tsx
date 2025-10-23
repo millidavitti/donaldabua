@@ -1,8 +1,8 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-import DisplayPicture from "./user/edit-display-picture";
-import Name from "./user/edit-name";
-import Location from "./user/edit-location";
+import DisplayPicture from "./user/display-picture";
+import Name from "./user/name";
+import Location from "./user/location";
 import CreateProfile from "./create-profile";
 import SelectProfile from "./select-profile";
 import Image from "next/image";
