@@ -19,9 +19,9 @@ import { useResetDraft } from "@/hooks/use-reset-project-draft";
 import { atom, useAtom, useSetAtom } from "jotai";
 import { HashLoader } from "react-spinners";
 
-export function useProjectDraft() {
+export function usePortfolio() {
 	const resetProjectFormFields = useResetDraft();
-	const [context, set_context] = useAtom(useProjectDraft.context_atom);
+	const [context, set_context] = useAtom(usePortfolio.context_atom);
 	const [project_content] = useAtom(project_content_atom);
 	const [project_technologies] = useAtom(project_technologies_atom);
 	const isProjectReady =
@@ -80,6 +80,6 @@ export function useProjectDraft() {
 	};
 }
 
-useProjectDraft.context_atom = atom<
+usePortfolio.context_atom = atom<
 	"draft-project" | "preview-draft" | "update-project" | "preview-update" | null
 >(null);

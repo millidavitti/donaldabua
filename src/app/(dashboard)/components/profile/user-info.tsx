@@ -9,7 +9,7 @@ import Image from "next/image";
 import { cn } from "@/utils/cn";
 import { Trash2 } from "lucide-react";
 
-export default function UserHeader() {
+export default function UserInfo() {
 	return (
 		<Flex className='flex-wrap gap-3 overflow-visible shrink-0' id='user-info'>
 			<DisplayPicture>
@@ -37,7 +37,7 @@ export default function UserHeader() {
 				<Name>
 					{(name, edit) => (
 						<h2
-							className='font-bold text-4xl cursor-pointer data-[is-visible=false]:absolute data-[is-visible=true]:hidden h-10'
+							className='h-10 text-2xl font-bold cursor-pointer md:text-4xl'
 							onClick={edit}
 						>
 							{name}

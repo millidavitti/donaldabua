@@ -2,14 +2,11 @@
 import Flex from "@/components/layouts/flex";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { Plus } from "lucide-react";
-import Projects from "../project/projects";
-import ProjectDelete from "../project/options/project-delete";
-import ProjectEdit from "../project/options/project-edit";
-import ProjectOptions from "../project/project-options";
-import { useProjectDraft } from "./interfaces/use-projects.interface";
+import { usePortfolio } from "./interfaces/use-portfolio.interface";
+import { ReactNode } from "react";
 
-export default function ProjectDraft() {
-	const { start, Modal } = useProjectDraft();
+export default function Portfolio({ children }: { children: ReactNode }) {
+	const { start, Modal } = usePortfolio();
 
 	return (
 		<>
@@ -26,14 +23,7 @@ export default function ProjectDraft() {
 						</InteractiveIcon>
 					</Flex>
 				</a>
-				<Projects>
-					{(project) => (
-						<ProjectOptions>
-							<ProjectEdit project={project} />
-							<ProjectDelete projectID={project.id} />
-						</ProjectOptions>
-					)}
-				</Projects>
+				{children}
 			</Flex>
 		</>
 	);
