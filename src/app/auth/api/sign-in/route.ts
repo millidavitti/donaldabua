@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 	try {
-		const endpoint = `${process.env.AUTH_ENDPOINT!}/sign-in`;
+		const endpoint = `${process.env.AUTH_ENDPOINT!}/sign-in/authenticated`;
 		const res = await fetch(endpoint, {
 			method: "get",
 			headers: req.headers,
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 		});
 	} catch (error) {
 		generateErrorLog(
-			"@src/app/auth/sign-in/verification/route.ts",
+			"@src/app/auth/api/sign-in/authenticated",
 			error,
 			"slient",
 		);

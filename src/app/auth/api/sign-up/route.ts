@@ -5,8 +5,9 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
 	try {
 		const searchParams = req.nextUrl.searchParams;
-		const endpoint = `${process.env
-			.AUTH_ENDPOINT!}/verify-email/${searchParams.get("token")}`;
+		const endpoint = `${process.env.AUTH_ENDPOINT!}/sign-up/${searchParams.get(
+			"token",
+		)}`;
 
 		const res = await fetch(endpoint, {
 			method: "GET",
@@ -26,7 +27,7 @@ export async function GET(req: NextRequest) {
 			},
 		});
 	} catch (error) {
-		generateErrorLog("auth/sign-up/verify-email", error, "slient");
+		generateErrorLog("auth/api/sign-up", error, "slient");
 		return new Response(null, {
 			status: 302,
 			headers: {
