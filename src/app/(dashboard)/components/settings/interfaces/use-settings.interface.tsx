@@ -32,7 +32,7 @@ export default function useSettings() {
 
 	async function signOut() {
 		setIsSigingOut(true);
-		router.replace("/auth/sign-out");
+		router.replace("/auth/api/sign-out");
 	}
 	return {
 		view,
