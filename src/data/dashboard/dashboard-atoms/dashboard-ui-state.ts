@@ -3,7 +3,7 @@ import {
 	DASHBOARD_VIEWS,
 	PROJECT_DRAFT_VIEWS,
 	SETTINGS_VIEWS,
-} from "../dashboard-constants";
+} from "../../constants";
 
 export type DashboardView = (typeof DASHBOARD_VIEWS)[number];
 export const dashboard_view_jotai = atom<DashboardView>(null);

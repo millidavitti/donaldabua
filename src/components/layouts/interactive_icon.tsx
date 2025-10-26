@@ -5,7 +5,6 @@ interface InteractiveIcon extends Omit<HTMLProps<HTMLDivElement>, "classID"> {
 	children: ReactNode;
 	className?: string;
 	callback?: MouseEventHandler<HTMLDivElement> | undefined;
-	htmlprops?: Partial<HTMLProps<HTMLDivElement>>;
 }
 export default function InteractiveIcon({
 	children,
@@ -15,6 +14,7 @@ export default function InteractiveIcon({
 }: InteractiveIcon) {
 	return (
 		<div
+			id='interactive-icon'
 			className={cn(
 				"flex p-1 cursor-pointer active:scale-95 transition stroke-light-surface-on-surface shrink-0",
 				className,

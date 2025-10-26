@@ -1,7 +1,9 @@
 import Flex from "@/components/layouts/flex";
 import { useAtomValue } from "jotai";
-import ProfileTechnology from "../profile-technology";
-import { input_project_technologies_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_technologies_atom } from "@/data/data";
+import { DELAY } from "@/data/home/home-constants";
+import { getAnimationClass } from "@/utils/animations";
+import { cn } from "@/utils/cn";
 
 export default function DraftPreviewTechnologies() {
 	const input_project_technologies = useAtomValue(
@@ -14,9 +16,18 @@ export default function DraftPreviewTechnologies() {
 			<label className='text-xl font-semibold shrink-0' htmlFor='title'>
 				Tech Stack
 			</label>
-			<Flex className='gap-3 flex-wrap shrink-0 border-0 p-0'>
-				{input_project_technologies.map((tech, i) => (
-					<ProfileTechnology tech={tech} key={tech.id} index={i} />
+			<Flex className='flex-wrap gap-3 p-0 border-0 shrink-0'>
+				{input_project_technologies.map((tech, index) => (
+					<Flex
+						key={index}
+						className={cn(
+							"gap-3 items-center self-start shrink-0",
+							getAnimationClass("swing-in-top-fwd"),
+						)}
+						style={{ animationDelay: index * DELAY + "ms" }}
+					>
+						<p className='font-medium'>{tech.name}</p>
+					</Flex>
 				))}
 			</Flex>
 		</>

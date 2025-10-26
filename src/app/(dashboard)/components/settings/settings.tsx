@@ -1,7 +1,7 @@
 "use client";
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { SettingsIcon } from "lucide-react";
-import useSettings from "@/hooks/interface/dashboard/use-settings.interface";
+import useSettings from "@/app/(dashboard)/components/settings/interfaces/use-settings.interface";
 
 export default function Settings() {
 	const { view, Modal } = useSettings();

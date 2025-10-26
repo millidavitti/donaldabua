@@ -9,9 +9,9 @@ import {
 	input_project_atom,
 	input_project_content_atom,
 	input_project_technologies_atom,
-} from "@/data/dashboard/dashboard-atoms/data";
+} from "@/data/data";
 
-export function useResetProjectDraft() {
+export function useResetDraft() {
 	const reset_input_project = useResetAtom(input_project_atom);
 	const reset_input_project_content = useResetAtom(input_project_content_atom);
 	const reset_input_project_technologies = useResetAtom(

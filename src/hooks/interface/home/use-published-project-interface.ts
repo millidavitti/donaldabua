@@ -1,6 +1,6 @@
 import { getProjectContentController } from "@/backend/controllers/home/project/get-project-content.controller";
 import { getProjectTechnologiesController } from "@/backend/controllers/home/project/get-project-technologies.controller";
-import { input_project_content_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_content_atom } from "@/data/data";
 import {
 	project_technologies_jotai,
 	Project,

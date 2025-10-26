@@ -1,4 +1,4 @@
-import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_atom } from "@/data/data";
 import { cn } from "@/utils/cn";
 import { useAtom } from "jotai";
 import Image from "next/image";

@@ -1,8 +1,4 @@
-import {
-	Project,
-	ProjectContent,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/types";
+import { Project, ProjectContent, Technology } from "@/data/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 

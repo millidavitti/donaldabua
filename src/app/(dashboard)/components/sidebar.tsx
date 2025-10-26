@@ -1,21 +1,51 @@
 "use client";
 import Flex from "@/components/layouts/flex";
-
-import React from "react";
-import EditIntroVideo from "./edit-user/edit-intro-video";
-import EditSocials from "./edit-user/edit-socials";
-import EditAvailability from "./edit-profile/edit-availability";
+import IntroVideo from "./user/intro-video";
+import Availability from "./user/availability";
+import InteractiveIcon from "@/components/layouts/interactive_icon";
+import { Trash2, Plus, EditIcon } from "lucide-react";
+import { Social } from "./user/social";
+import Socials from "./user/socials";
 
 export default function Sidebar() {
 	return (
 		<Flex
 			flex='column'
-			className='grow gap-3 lg:shrink-0 lg:basis-80 border-0 p-0'
+			className='gap-3 p-0 border-0 grow lg:shrink-0 lg:basis-80'
 		>
-			<EditIntroVideo />
-			<Flex flex='column' className='grow gap-3 border-0 p-0'>
-				<EditAvailability />
-				<EditSocials />
+			<IntroVideo>
+				{(video, start, remove) => (
+					<>
+						{Boolean(video) && (
+							<InteractiveIcon callback={remove}>
+								<Trash2 size={24} />
+							</InteractiveIcon>
+						)}
+						{Boolean(video) || (
+							<InteractiveIcon callback={start}>
+								<Plus size={24} />
+							</InteractiveIcon>
+						)}
+					</>
+				)}
+			</IntroVideo>
+			<Flex flex='column' className='gap-3 p-0 border-0 grow'>
+				<Availability>
+					{(start) => (
+						<InteractiveIcon callback={start}>
+							<EditIcon size={24} />
+						</InteractiveIcon>
+					)}
+				</Availability>
+				<Socials>
+					<InteractiveIcon slot='create'>
+						<Plus size={24} />
+					</InteractiveIcon>
+					<Social slot='update' />
+					<InteractiveIcon slot='remove' className='p-0'>
+						<Trash2 className='hidden transition cursor-pointer stroke-light-error active:scale-95 group-hover:block' />
+					</InteractiveIcon>
+				</Socials>
 			</Flex>
 		</Flex>
 	);

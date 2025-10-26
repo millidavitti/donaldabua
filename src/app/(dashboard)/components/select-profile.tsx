@@ -1,8 +1,16 @@
 import Button from "@/components/ui/button";
-import useSelectProfile from "@/hooks/interface/dashboard/use-select-profile.interface";
+import { Profile } from "@/data/types";
+import useSelectProfile from "@/app/(dashboard)/components/profile/interfaces/use-select-profile.interface";
+import { ReactNode } from "react";
 
-export default function SelectProfile() {
-	const { view, Modal } = useSelectProfile();
+export interface SelectProfile {
+	children?: (
+		profileId: string,
+		remove: (profile: Partial<Profile>) => void,
+	) => ReactNode;
+}
+export default function SelectProfile({ children }: SelectProfile) {
+	const { view, Modal } = useSelectProfile(children);
 	return (
 		<>
 			{Modal}

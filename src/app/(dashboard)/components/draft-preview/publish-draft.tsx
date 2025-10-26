@@ -1,10 +1,10 @@
 import Button from "@/components/ui/button";
-import { usePublishProject } from "@/hooks/interface/dashboard/use-publish-project.interface";
+import { usePublish } from "@/app/(dashboard)/components/draft/interfaces/use-publish.interface";
 import React from "react";
 import { HashLoader } from "react-spinners";
 
 export default function PublishDraft() {
-	const { context, publish, isPending } = usePublishProject();
+	const { context, publish, isPending } = usePublish();
 	return (
 		<Button
 			type='button'

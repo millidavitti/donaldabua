@@ -2,7 +2,7 @@ import Flex from "@/components/layouts/flex";
 import ContentBuilderImage from "../content-builder/content-builder-image";
 import ContentBuilderVideo from "../content-builder/content-builder-video";
 import ContentBuilderMarkdown from "../content-builder/content-builder-markdown";
-import { type ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
+import { type ProjectContent } from "@/data/types";
 
 export default function ProjectContent({
 	content,

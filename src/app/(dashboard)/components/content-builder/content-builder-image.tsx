@@ -1,13 +1,13 @@
 import Flex from "@/components/layouts/flex";
 import Image from "next/image";
-import { ProjectContent } from "@/data/dashboard/dashboard-atoms/types";
+import { ProjectContent } from "@/data/types";
 import Button from "@/components/ui/button";
 import ContentBuilderOptionsDrawer from "./content-builder-options-drawer";
 import ContentBuilderDeleteOption from "./content-builder-delete-option";
 import ContentBuilderEditOption from "./content-builder-edit-option";
 import ContentBuilderMoveUpOption from "./content-builder-move-up-option";
 import ContentBuilderMoveDownOption from "./content-builder-move-down-option";
-import { useContentBuilderImage } from "@/hooks/interface/dashboard/use-content-builder-image.interface";
+import { useContentBuilderImage } from "@/app/(dashboard)/components/content-builder/interfaces/use-content-builder-image.interface";
 
 interface ContentBuilderImage {
 	component: ProjectContent;

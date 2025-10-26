@@ -1,5 +1,5 @@
 import Button from "@/components/ui/button";
-import useCreateProfile from "@/hooks/interface/dashboard/use-create-profile.interface";
+import useCreateProfile from "@/app/(dashboard)/components/profile/interfaces/use-create-profile.interface";
 
 export default function CreateProfile() {
 	const { Modal, start } = useCreateProfile();

@@ -1,8 +1,5 @@
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
-import {
-	APIResponse,
-	Technology,
-} from "@/data/dashboard/dashboard-atoms/types";
+import { APIResponse, Technology } from "@/data/types";
 import { getErrorMessage } from "@/utils/get-error-message";
 
 export async function getTechnologiesController() {

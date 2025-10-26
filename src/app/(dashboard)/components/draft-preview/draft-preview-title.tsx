@@ -1,5 +1,5 @@
 import Flex from "@/components/layouts/flex";
-import { input_project_atom } from "@/data/dashboard/dashboard-atoms/data";
+import { input_project_atom } from "@/data/data";
 import { useAtomValue } from "jotai";
 
 export default function DraftPreviewTitle() {

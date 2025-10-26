@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { jwtVerify } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 import { generateErrorLog } from "./utils/generate-error-log";
-
 export async function middleware(request: NextRequest) {
 	const Cookies = await cookies();
-	const isAuth = await (async () => {
-		const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
+	const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
+	const isAuth = async () => {
 		const cookie = Cookies.get("__Secure-portfolio.authenticated");
 		try {
 			await jwtVerify(cookie?.value as string, secret);
@@ -23,9 +22,28 @@ export async function middleware(request: NextRequest) {
 			});
 			return false;
 		}
-	})();
+	};
 
-	if (isAuth) {
+	if (request.nextUrl.pathname.startsWith("/public")) {
+		const userId = request.nextUrl.pathname.split("/")[2];
+
+		const jwt = await new SignJWT()
+			.setProtectedHeader({ alg: "HS256" })
+			.setIssuedAt(Math.floor(Date.now() / 1000))
+			.setSubject(userId)
+			.setIssuer("Ronin Ubermensch")
+			.sign(secret);
+
+		Cookies.set({
+			value: jwt,
+			path: "/",
+			secure: true,
+			name: "__Secure-portfolio.guest",
+			domain: process.env.COOKIE_DOMAIN,
+			httpOnly: true,
+			sameSite: "none",
+		});
+	} else if (await isAuth()) {
 		Cookies.delete({
 			path: "/",
 			secure: true,
@@ -49,5 +67,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ["/auth/sign-in", "/auth/sign-up", "/dashboard"],
+	matcher: [
+		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+	],
 };

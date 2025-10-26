@@ -1,4 +1,4 @@
-import { APIResponse, User } from "@/data/dashboard/dashboard-atoms/types";
+import { APIResponse, User } from "@/data/types";
 import { getErrorMessage } from "@/utils/get-error-message";
 import { ENDPOINTS } from "../../../endpoints/endpoints";
 

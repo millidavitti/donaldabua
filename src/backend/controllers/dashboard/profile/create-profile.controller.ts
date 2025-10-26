@@ -1,4 +1,4 @@
-import { Profile } from "@/data/dashboard/dashboard-atoms/types";
+import { Profile } from "@/data/types";
 import { ENDPOINTS } from "@/backend/endpoints/endpoints";
 import { generateErrorLog } from "@/utils/generate-error-log";
 

@@ -3,7 +3,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import AddTechnologies from "../add-technologies";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
-import useManageTechnologies from "@/hooks/interface/dashboard/use-manage-technologies-interface";
+import useManageTechnologies from "@/app/(dashboard)/components/settings/interfaces/use-manage-technologies-interface";
 import { HashLoader } from "react-spinners";
 import Modal from "@/components/layouts/modal";
 

@@ -1,6 +1,6 @@
 import InteractiveIcon from "@/components/layouts/interactive_icon";
 import { VideoIcon } from "lucide-react";
-import useDraftVideo from "@/hooks/interface/dashboard/use-draft-video.interface";
+import useDraftVideo from "@/app/(dashboard)/components/draft/interfaces/use-draft-video.interface";
 
 export default function DraftVideo() {
 	const { Modal, set_content_hover_state, start } = useDraftVideo();
