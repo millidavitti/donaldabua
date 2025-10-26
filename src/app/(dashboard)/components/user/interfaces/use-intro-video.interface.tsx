@@ -8,6 +8,7 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
 import { X } from "lucide-react";
+import useAlertDialog from "@/hooks/use-alert-dialog.interface";
 
 export function useIntroVideo() {
 	const [inputVideo, setInputVideo] = useState<string | null>(null);
@@ -15,6 +16,7 @@ export function useIntroVideo() {
 	const [mutate_user] = useAtom(mutate_user_atom);
 	const [context, setContext] = useState<"add-intro-video" | null>(null);
 	const video: string = payload_view.data?.user.video || "";
+	const { startDialog, Dialog } = useAlertDialog();
 	const start = () => {
 		setContext("add-intro-video");
 		document.onkeydown = (e) => {
@@ -33,7 +35,7 @@ export function useIntroVideo() {
 	}
 
 	async function remove() {
-		await mutate_user.mutateAsync({ video: null });
+		if (await startDialog()) await mutate_user.mutateAsync({ video: null });
 	}
 
 	function captureInput(url: string) {
@@ -46,6 +48,7 @@ export function useIntroVideo() {
 		video,
 		start,
 		remove,
+		Dialog,
 		Modal: context && (
 			<Modal>
 				<Flex

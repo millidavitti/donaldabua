@@ -1,5 +1,4 @@
 import { Social, SocialPlatforms } from "@/data/types";
-import { waitForDialog } from "@/utils/wait-for-dialog";
 import { useAtom } from "jotai";
 import {
 	create_social_atom,
@@ -17,13 +16,13 @@ import InteractiveIcon from "@/components/layouts/interactive_icon";
 import Modal from "@/components/layouts/modal";
 import { X } from "lucide-react";
 import { useResetAtom } from "jotai/utils";
-import useToogleDialog from "@/hooks/use-dialog";
+import useAlertDialog from "@/hooks/use-alert-dialog.interface";
 
 export default function useSocials(children?: ReactNode) {
 	const slots: { [key: string | "update"]: ReactElement } = {};
 	const [input_social, set_input_social] = useAtom(input_social_atom);
 	const reset_input_social = useResetAtom(input_social_atom);
-	const { closeDialog, displayDialog } = useToogleDialog();
+	const { startDialog, Dialog } = useAlertDialog();
 	const [create_social] = useAtom(create_social_atom);
 	const [payload_view] = useAtom(payload_view_atom);
 	const [mutate_social] = useAtom(mutate_social_atom);
@@ -61,10 +60,7 @@ export default function useSocials(children?: ReactNode) {
 	}
 
 	async function remove(social: Social) {
-		displayDialog();
-		if (await new Promise(waitForDialog()))
-			await delete_social.mutateAsync(social.id!);
-		closeDialog();
+		if (await startDialog()) await delete_social.mutateAsync(social.id!);
 	}
 
 	Children.forEach(children, (child) => {
@@ -79,6 +75,7 @@ export default function useSocials(children?: ReactNode) {
 		socials: payload_view.data?.socials as Social[],
 		isFetching,
 		slots,
+		Dialog,
 		Modal: context && (
 			<Modal close={close}>
 				<Flex

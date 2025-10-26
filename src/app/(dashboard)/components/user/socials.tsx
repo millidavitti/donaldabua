@@ -3,12 +3,10 @@ import Flex from "@/components/layouts/flex";
 import { PackageOpen } from "lucide-react";
 import { HashLoader } from "react-spinners";
 import { cloneElement, ReactNode } from "react";
-import { type Social } from "@/data/types";
-import { DELAY, SOCIAL_PLATFORM_ICONS } from "@/data/home/home-constants";
+import { DELAY } from "@/data/home/home-constants";
 import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
-import Image from "next/image";
-import Slot from "@/components/layouts/Slot";
+import Slot from "@/components/layouts/slot";
 import useSocials from "./interfaces/use-socials.interface";
 
 interface Socials {
@@ -16,18 +14,21 @@ interface Socials {
 }
 
 export default function Socials({ children }: Socials) {
-	const { socials, remove, start, isFetching, slots, Modal } =
+	const { socials, remove, start, isFetching, slots, Modal, Dialog } =
 		useSocials(children);
 
 	return (
 		<>
 			{Modal}
+			{Dialog}
 			<Flex flex='column' className='gap-3 grow'>
 				<a href='#socials' className='shrink-0'>
 					<Flex className='items-center justify-between h-fit'>
 						<p className='font-semibold lg:text-2xl'>Socials</p>
-						<Slot slot='create' slots={slots}>
-							{(slot) => cloneElement(slot, { onClick: () => start("create") })}
+						<Slot name='create' slots={slots}>
+							{(element) =>
+								cloneElement(element, { onClick: () => start("create") })
+							}
 						</Slot>
 					</Flex>
 				</a>
@@ -42,22 +43,22 @@ export default function Socials({ children }: Socials) {
 								getAnimationClass("swing-in-top-fwd"),
 							)}
 						>
-							<Slot slot='update' slots={slots}>
-								{(slot) =>
-									cloneElement(slot, {
+							<Slot name='update' slots={slots}>
+								{(element) =>
+									cloneElement(element, {
 										onClick: () => start("update", social),
 										social,
 									})
 								}
 							</Slot>
-							<Slot slot='link' slots={slots}>
-								{(slot) => (
+							<Slot name='link' slots={slots}>
+								{(element) => (
 									<a href={social.profile} target='_blank' className='w-full'>
-										{cloneElement(slot, { social })}
+										{cloneElement(element, { social })}
 									</a>
 								)}
 							</Slot>
-							<Slot slot='remove' slots={slots}>
+							<Slot name='remove' slots={slots}>
 								{(slot) =>
 									cloneElement(slot, { onClick: () => remove(social) })
 								}

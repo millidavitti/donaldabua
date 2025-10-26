@@ -9,7 +9,7 @@ interface IntroVideo {
 	) => ReactNode;
 }
 export default function IntroVideo({ children }: IntroVideo) {
-	const { Modal, video, start, remove } = useIntroVideo();
+	const { Modal, video, start, remove, Dialog } = useIntroVideo();
 	return (
 		<Flex flex='column' className='h-[258px] gap-3'>
 			<a href='#video' className='shrink-0'>
@@ -26,6 +26,7 @@ export default function IntroVideo({ children }: IntroVideo) {
 				/>
 			)}
 			{Modal}
+			{Dialog}
 		</Flex>
 	);
 }
