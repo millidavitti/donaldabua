@@ -1,77 +1,86 @@
-import { jotaiStore } from "@/components/jotai-store";
 import Flex from "@/components/layouts/flex";
 import Modal from "@/components/layouts/modal";
 import Button from "@/components/ui/button";
-import { atom, useAtom } from "jotai";
+import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 /**
- * Custom React hook that provides a modal confirmation dialog which can be
- * opened programmatically and awaited like a Promise.
- *
- * The hook manages a shared Jotai atom to coordinate dialog state and exposes:
- * - startDialog: an async function that opens the dialog and resolves with the
- *   user's decision.
- * - Dialog: a JSX element representing the modal when open (or false when not open).
+ * Custom React hook that manages a modal alert/confirmation dialog and provides
+ * a programmatic way to await the user's choice.
  *
  * Behavior:
- * - Calling startDialog() sets the internal atom to "open" and returns a Promise<boolean>.
- * - The Promise resolves to `true` when the user confirms, `false` when the user cancels,
- *   or `false` if no response is received within 10 seconds (timeout).
- * - When the Promise resolves the dialog is closed and internal timers/intervals are cleared.
- * - The hook polls the Jotai store every 500ms to detect changes to the dialog action.
+ * - startDialog(): opens the dialog and returns a Promise<boolean> that resolves
+ *   to `true` when the user confirms, or `false` when the user cancels or when
+ *   a 10 second timeout elapses.
+ * - Dialog: a JSX element (or null) that, when rendered, is created via a portal
+ *   (to document.body) and displays the confirmation UI with "Cancel" and
+ *   "Confirm" buttons.
+ * - cancel() and confirm() are internal actions that set the user's choice and
+ *   cause the pending Promise returned by startDialog() to resolve.
+ * - closeDialog() clears the dialog state and internal choice/ref, and is used
+ *   to clean up after a decision or timeout.
  *
- * Usage:
- * - Render the returned Dialog somewhere in your component tree so the modal can mount.
- * - Await startDialog() to handle the user's decision synchronously in async control flow.
+ * Notes:
+ * - The hook uses an internal ref to track the user's action and state to
+ *   coordinate the Promise resolution and UI lifecycle.
+ * - Only a single dialog/context is supported at a time; calling startDialog()
+ *   will set the dialog visible and return a Promise that resolves when the
+ *   user acts or the timeout fires.
  *
  * Returns:
  * - An object with:
- *   - startDialog: () => Promise<boolean> — opens the dialog and resolves with the user's choice.
- *   - Dialog: JSX.Element | false — the modal element while open, or false when closed.
+ *   - startDialog: () => Promise<boolean>
+ *   - Dialog: JSX.Element | null
  *
- * Notes:
- * - The dialog automatically closes after a confirmation or cancellation, or after the 10s timeout.
- * - Ensure the hook is used inside a React component (it uses React hooks) and that the component
- *   renders the Dialog value so the modal appears when started.
+ * Example:
+ * const { startDialog, Dialog } = useAlertDialog();
+ * // include `Dialog` somewhere in your component tree (e.g. top-level JSX)
+ * const confirmed = await startDialog();
+ * if (confirmed) {
+ *   // proceed with destructive action
+ * }
  */
 export default function useAlertDialog() {
-	const [action, setAction] = useAtom(dialogActionAtom);
+	const [context, setContext] = useState<"start-dialog" | null>(null);
+	const action = useRef<"cancel" | "confirm" | null>(null);
 
-	function cancel() {
-		setAction("cancel");
-	}
-	function proceed() {
-		setAction("confirm");
-	}
+	const cancel = () => {
+		action.current = "cancel";
+	};
+	const confirm = () => {
+		action.current = "confirm";
+	};
 
 	const startDialog = async () => {
-		setAction("open");
+		setContext("start-dialog");
 		return await waitForConfirmation();
 	};
-	const closeDialog = () => setAction(null);
+	const closeDialog = () => {
+		setContext(null);
+		action.current = null;
+	};
 
-	function waitForConfirmation() {
+	const waitForConfirmation = () => {
 		return new Promise((resolve: (value: boolean) => void) => {
 			let interval: NodeJS.Timeout;
 
 			const check = () => {
 				clearInterval(interval);
-				const action = jotaiStore.get(dialogActionAtom);
-				switch (action) {
+				switch (action.current) {
 					case "confirm":
+						resolve(true);
 						closeDialog();
 						clearInterval(interval);
 						clearTimeout(timeout);
-						resolve(true);
 						break;
 					case "cancel":
+						resolve(false);
 						closeDialog();
 						clearInterval(interval);
 						clearTimeout(timeout);
-						resolve(false);
 						break;
 					default:
-						interval = setInterval(check, 500);
+						interval = setInterval(check);
 						break;
 				}
 			};
@@ -83,41 +92,42 @@ export default function useAlertDialog() {
 				resolve(false);
 			}, 10_000);
 		});
-	}
+	};
 
 	return {
 		startDialog,
-		Dialog: action === "open" && (
-			<Modal>
-				<Flex
-					flex='column'
-					className='bg-light-surface gap-3 basis-[480px] max-h-[80%] neonScan'
-				>
-					<h2 className='text-2xl font-semibold'>Are you absolutely sure?</h2>
-					<p>
-						This action cannot be undone. This will permanently delete and
-						remove your data from your servers.
-					</p>
-					<Flex className='justify-end gap-3 p-0 border-0'>
-						<Button
-							type='submit'
-							className='outline-1 active:scale-95'
-							onClick={cancel}
-						>
-							Cancel
-						</Button>
-						<Button
-							type='submit'
-							className='bg-light-error text-light-surface active:scale-95'
-							onClick={proceed}
-						>
-							Confirm
-						</Button>
+		Dialog:
+			context &&
+			createPortal(
+				<Modal>
+					<Flex
+						flex='column'
+						className='bg-light-surface gap-3 basis-[480px] max-h-[80%] neonScan'
+					>
+						<h2 className='text-2xl font-semibold'>Are you absolutely sure?</h2>
+						<p>
+							This action cannot be undone. This will permanently delete and
+							remove your data from your servers.
+						</p>
+						<Flex className='justify-end gap-3 p-0 border-0'>
+							<Button
+								type='submit'
+								className='outline-1 active:scale-95'
+								onClick={cancel}
+							>
+								Cancel
+							</Button>
+							<Button
+								type='submit'
+								className='bg-light-error text-light-surface active:scale-95'
+								onClick={confirm}
+							>
+								Confirm
+							</Button>
+						</Flex>
 					</Flex>
-				</Flex>
-			</Modal>
-		),
+				</Modal>,
+				document.body,
+			),
 	};
 }
-
-const dialogActionAtom = atom<"cancel" | "confirm" | "open" | null>(null);
