@@ -29,11 +29,11 @@ export function useDraft() {
 
 			if (!isInputValid) {
 				const input = el as HTMLElement;
-				input.classList.add("outline-red-600", "outline-1", "outline");
+				input.classList.add("outline-red-600", "outline-1", "outline-solid");
 				(draft[0] as HTMLInputElement).placeholder = "Start here";
 				setTimeout(
 					() =>
-						input.classList.remove("outline-red-600", "outline-1", "outline"),
+						input.classList.remove("outline-red-600", "outline-1", "outline-solid"),
 					1500,
 				);
 				draft[0].scrollIntoView({ behavior: "smooth" });
@@ -50,10 +50,10 @@ export function useDraft() {
 					const contentBuilder = document.querySelector(
 						"#content-builder",
 					) as HTMLElement;
-					contentBuilder.classList.add("border-red-600", "border-[2px]");
+					contentBuilder.classList.add("border-red-600", "border-2");
 					setTimeout(
 						() =>
-							contentBuilder.classList.remove("border-red-600", "border-[2px]"),
+							contentBuilder.classList.remove("border-red-600", "border-2"),
 						1500,
 					);
 				}

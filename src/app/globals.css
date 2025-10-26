@@ -1,57 +1,414 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-	--primary: 101 85 143;
-	--on-primary: 255 255 255;
-	--primary-container: 234 221 255;
-	--on-primary-container: 33 0 93;
+@plugin 'tailwindcss-animate';
 
-	--secondary: 98 91 113;
-	--on-secondary: 255 255 255;
-	--secondary-container: 232 222 248;
-	--on-secondary-container: 29 25 43;
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 840px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1600px;
 
-	--tertiary: 125 82 96;
-	--on-tertiary: 255 255 255;
-	--tertiary-container: 255 216 228;
-	--on-tertiary-container: 49 17 29;
+  --color-light-primary: rgb(var(--primary));
+  --color-light-primary-on-primary: rgb(var(--on-primary));
+  --color-light-primary-primary-container: rgb(var(--primary-container));
+  --color-light-primary-on-primary-container: rgb(var(--on-primary-container));
 
-	--error: 179 38 30;
-	--on-error: 255 255 255;
-	--error-container: 249 222 220;
-	--on-error-container: 65 14 11;
+  --color-light-secondary: rgb(var(--secondary));
+  --color-light-secondary-on-secondary: rgb(var(--on-secondary));
+  --color-light-secondary-secondary-container: rgb(var(--secondary-container));
+  --color-light-secondary-on-secondary-container: rgb(
+    var(--on-secondary-container)
+  );
 
-	--surface: 254 247 255;
-	--on-surface: 29 27 32;
-	--surface-variant: 231 224 236;
-	--on-surface-variant: 73 69 79;
-	--surface-container-lowest: 255 255 255;
-	--surface-container-low: 247 242 250;
-	--surface-container: 243 237 247;
-	--surface-container-high: 236 230 240;
-	--surface-container-highest: 230 224 233;
+  --color-light-tertiary: rgb(var(--tertiary));
+  --color-light-tertiary-on-tertiary: rgb(var(--on-tertiary));
+  --color-light-tertiary-tertiary-container: rgb(var(--tertiary-container));
+  --color-light-tertiary-on-tertiary-container: rgb(
+    var(--on-tertiary-container)
+  );
 
-	--outline: 121 116 126;
-	--outline-variant: 202 196 208;
+  --color-light-error: rgb(var(--error));
+  --color-light-error-on-error: rgb(var(--on-error));
+  --color-light-error-error-container: rgb(var(--error-container));
+  --color-light-error-on-error-container: rgb(var(--on-error-container));
 
-	--border: 121 116 126;
+  --color-light-surface: rgb(var(--surface));
+  --color-light-surface-on-surface: rgb(var(--on-surface));
+  --color-light-surface-surface-variant: rgb(var(--surface-variant));
+  --color-light-surface-on-surface-variant: rgb(var(--on-surface-variant));
+  --color-light-surface-surface-container-lowest: rgb(
+    var(--surface-container-lowest)
+  );
+  --color-light-surface-surface-container-low: rgb(
+    var(--surface-container-low)
+  );
+  --color-light-surface-surface-container: rgb(var(--surface-container));
+  --color-light-surface-surface-container-high: rgb(
+    var(--surface-container-high)
+  );
+  --color-light-surface-surface-container-highest: rgb(
+    var(--surface-container-highest)
+  );
+
+  --color-light-outline: rgb(var(--outline));
+  --color-light-outline-outline-variant: rgb(var(--outline-variant));
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: rgb(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility title-large {
+  @apply font-normal text-xl;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility title-medium {
+  @apply font-medium text-base;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility title-small {
+  @apply font-medium text-sm;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility body-large {
+  @apply font-normal text-base;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility body-medium {
+  @apply font-normal text-sm;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility body-small {
+  @apply font-normal text-xs;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility display-large {
+  @apply font-normal text-[3.56rem] leading-16;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility neonScan {
+  animation: neonScan 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility swing-in-top-fwd {
+  -webkit-animation: swing-in-top-fwd 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility slide-left {
+  -webkit-animation: swing-in-top-fwd 0.5s
+    cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  animation: slide-left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+}
+
+@utility dark {
+  /* ----------------------------------------------
+ * Generated by Animista on 2025-3-14 8:32:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+  /**
+ * ----------------------------------------
+ * animation swing-in-top-fwd
+ * ----------------------------------------
+ */
+
+  @layer base {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
-	.no-scrollbar::-webkit-scrollbar {
-		display: none;
-	}
+  :root {
+    --primary: 101 85 143;
+    --on-primary: 255 255 255;
+    --primary-container: 234 221 255;
+    --on-primary-container: 33 0 93;
 
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-		-ms-overflow-style: none;
-		scrollbar-width: none;
-	}
+    --secondary: 98 91 113;
+    --on-secondary: 255 255 255;
+    --secondary-container: 232 222 248;
+    --on-secondary-container: 29 25 43;
+
+    --tertiary: 125 82 96;
+    --on-tertiary: 255 255 255;
+    --tertiary-container: 255 216 228;
+    --on-tertiary-container: 49 17 29;
+
+    --error: 179 38 30;
+    --on-error: 255 255 255;
+    --error-container: 249 222 220;
+    --on-error-container: 65 14 11;
+
+    --surface: 254 247 255;
+    --on-surface: 29 27 32;
+    --surface-variant: 231 224 236;
+    --on-surface-variant: 73 69 79;
+    --surface-container-lowest: 255 255 255;
+    --surface-container-low: 247 242 250;
+    --surface-container: 243 237 247;
+    --surface-container-high: 236 230 240;
+    --surface-container-highest: 230 224 233;
+
+    --outline: 121 116 126;
+    --outline-variant: 202 196 208;
+
+    --border: 121 116 126;
+  }
+}
+
+@layer utilities {
 
 	/* Chrome, Safari, Edge */
 	::-webkit-scrollbar {
@@ -67,29 +424,6 @@
 		border: 2px solid transparent; /* Makes the thumb float */
 		background-clip: padding-box;
 		border-radius: 8px;
-	}
-
-	.title-large {
-		@apply font-normal text-xl;
-	}
-	.title-medium {
-		@apply font-medium text-base;
-	}
-	.title-small {
-		@apply font-medium text-sm;
-	}
-
-	.body-large {
-		@apply font-normal text-base;
-	}
-	.body-medium {
-		@apply font-normal text-sm;
-	}
-	.body-small {
-		@apply font-normal text-xs;
-	}
-	.display-large {
-		@apply font-normal text-[3.56rem] leading-[4rem];
 	}
 
 	@keyframes neonScan {
@@ -108,38 +442,6 @@
 			clip-path: none;
 		}
 	}
-
-	.neonScan {
-		animation: neonScan 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
-		animation: name duration timing-function delay iteration-count direction
-			fill-mode;
-	}
-
-	.swing-in-top-fwd {
-		-webkit-animation: swing-in-top-fwd 0.5s
-			cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-		animation: swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-			both;
-	}
-
-	.slide-left {
-		-webkit-animation: swing-in-top-fwd 0.5s
-			cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-		animation: slide-left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-	}
-
-	/* ----------------------------------------------
- * Generated by Animista on 2025-3-14 8:32:44
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-	/**
- * ----------------------------------------
- * animation swing-in-top-fwd
- * ----------------------------------------
- */
 	@-webkit-keyframes swing-in-top-fwd {
 		0% {
 			-webkit-transform: rotateX(-100deg);
@@ -231,33 +533,6 @@
 			padding: 12px;
 			border-radius: 12px;
 			background-color: rgb(var(--surface-container-high));
-		}
-
-		.dark {
-			--background: 240 10% 3.9%;
-			--foreground: 0 0% 98%;
-			--card: 240 10% 3.9%;
-			--card-foreground: 0 0% 98%;
-			--popover: 240 10% 3.9%;
-			--popover-foreground: 0 0% 98%;
-			--primary: 0 0% 98%;
-			--primary-foreground: 240 5.9% 10%;
-			--secondary: 240 3.7% 15.9%;
-			--secondary-foreground: 0 0% 98%;
-			--muted: 240 3.7% 15.9%;
-			--muted-foreground: 240 5% 64.9%;
-			--accent: 240 3.7% 15.9%;
-			--accent-foreground: 0 0% 98%;
-			--destructive: 0 62.8% 30.6%;
-			--destructive-foreground: 0 0% 98%;
-			--border: 240 3.7% 15.9%;
-			--input: 240 3.7% 15.9%;
-			--ring: 240 4.9% 83.9%;
-			--chart-1: 220 70% 50%;
-			--chart-2: 160 60% 45%;
-			--chart-3: 30 80% 55%;
-			--chart-4: 280 65% 60%;
-			--chart-5: 340 75% 55%;
 		}
 	}
 

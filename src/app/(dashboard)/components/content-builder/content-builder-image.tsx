@@ -45,7 +45,7 @@ export default function ContentBuilderImage({
 							required
 							defaultValue={component.url!}
 							onChange={(e) => captureInput(e.target.value)}
-							className='outline p-3'
+							className='outline-solid p-3'
 						/>
 
 						<Button

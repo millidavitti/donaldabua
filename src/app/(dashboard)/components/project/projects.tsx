@@ -22,7 +22,7 @@ export default function Projects({
 					"gap-3 border-0 p-0 shrink-0",
 					hasProject && "w-[240px]",
 					hasProjects &&
-						"grid grid-cols-[repeat(auto-fit,_minmax(240px,_1fr))]",
+						"grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))]",
 				)}
 			>
 				{projects.map((project, i) => {

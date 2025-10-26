@@ -8,7 +8,7 @@ import { useAtomValue } from "jotai";
 export default function DraftPreviewContent() {
 	const input_project_content = useAtomValue(input_project_content_atom);
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
+		<Flex flex='column' className='basis-[360px] grow-2 gap-3 border-0 p-0'>
 			{input_project_content
 				.sort((a, b) => a.position - b.position)
 				.map((component) => {

@@ -21,7 +21,7 @@ export default function IntroVideo({ children }: IntroVideo) {
 			{Boolean(video) && (
 				<iframe
 					src={video}
-					className='aspect-[16/9] outline-2 outline'
+					className='aspect-video outline-2 outline-solid'
 					loading='lazy'
 				/>
 			)}

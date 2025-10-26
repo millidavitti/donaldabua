@@ -75,7 +75,7 @@ export default function useDraftVideo() {
 						{url && (
 							<iframe
 								src={url}
-								className='aspect-[16/9] outline-2 outline neonScan'
+								className='aspect-video outline-2 outline-solid neonScan'
 								loading='lazy'
 							/>
 						)}

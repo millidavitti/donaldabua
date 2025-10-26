@@ -47,7 +47,7 @@ export default function ProjectVault() {
 						</DisplayPicture>
 						<Flex
 							flex='column'
-							className='relative overflow-visible gap-3 grow-[256]'
+							className='relative overflow-visible gap-3 grow-256'
 						>
 							<Name>
 								{(name) => (
@@ -83,7 +83,7 @@ export default function ProjectVault() {
 							</Flex>
 						</Flex>
 						<Flex
-							className='basis-[720px] grow-[2] border-0 p-0 gap-3'
+							className='basis-[720px] grow-2 border-0 p-0 gap-3'
 							flex='column'
 						>
 							<Flex flex='column' className='gap-3 p-0 border-0'>

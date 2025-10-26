@@ -21,7 +21,7 @@ export default function Flex({
 					className={cn(
 						"flex flex-col p-3 border border-border overflow-y-auto",
 						className,
-						debug && "p-3 outline-1 outline",
+						debug && "p-3 outline-1 outline-solid",
 					)}
 					{...props}
 				>
@@ -33,7 +33,7 @@ export default function Flex({
 					className={cn(
 						"flex flex-row p-3 border border-border overflow-x-auto",
 						className,
-						debug && "p-3 outline-1 outline",
+						debug && "p-3 outline-1 outline-solid",
 					)}
 					{...props}
 				>

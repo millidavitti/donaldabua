@@ -9,7 +9,7 @@ export default function ContentBuilderEditOption({
 }: ContentBuilderEditOption) {
 	return (
 		<InteractiveIcon
-			className='outline grow flex place-content-center'
+			className='outline-solid grow flex place-content-center'
 			onClick={edit}
 		>
 			<Edit />
