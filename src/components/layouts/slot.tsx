@@ -2,16 +2,16 @@ import { ReactElement, ReactNode } from "react";
 
 export default function Slot({
 	children,
-	slot,
+	name,
 	slots,
 }: {
-	slot: string;
+	name: string;
 	slots: { [key: string]: ReactElement };
 	children: (
-		slot: ReactElement<Record<string, unknown> | HTMLElement>,
+		element: ReactElement<Record<string, unknown> | HTMLElement>,
 	) => ReactNode;
 }) {
-	const component = slots[slot] as ReactElement<
+	const component = slots[name] as ReactElement<
 		Record<string, unknown> | HTMLElement
 	>;
 	if (!component) return;

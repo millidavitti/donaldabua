@@ -12,7 +12,7 @@ interface Modal {
 export default function Modal({ children, className, close }: Modal) {
 	return (
 		<div
-			id={createId()}
+			id={"modal-" + createId()}
 			className={cn(
 				"inset-0 bg-light-surface-on-surface/15 backdrop-blur-md z-20 fixed p-3 flex justify-center items-center",
 				className,
