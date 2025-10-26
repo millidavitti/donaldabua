@@ -4,6 +4,7 @@ import { getAnimationClass } from "@/utils/animations";
 import { cn } from "@/utils/cn";
 import { Trash2 } from "lucide-react";
 import useProjectDelete from "../interfaces/use-project-delete";
+import { createId } from "@paralleldrive/cuid2";
 
 interface PublishedProjectDeleteOption {
 	projectID: string;
@@ -11,10 +12,12 @@ interface PublishedProjectDeleteOption {
 export default function ProjectDelete({
 	projectID,
 }: PublishedProjectDeleteOption) {
-	const { deleteProject } = useProjectDelete();
+	const { deleteProject, Dialog } = useProjectDelete();
 	return (
 		<>
+			{Dialog}
 			<InteractiveIcon
+				id={createId()}
 				className={cn(
 					"border-none p-3 flex place-content-center group-hover:border-yellow-700",
 					getAnimationClass("slide-left"),
@@ -22,7 +25,7 @@ export default function ProjectDelete({
 				style={{ animationDelay: 0 * DELAY + "ms" }}
 				onClick={() => deleteProject(projectID)}
 			>
-				<Trash2 className='stroke-light-error' />
+				<Trash2 className='stroke-light-error pointer-events-none' />
 			</InteractiveIcon>
 		</>
 	);
