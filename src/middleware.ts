@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
 	const Cookies = await cookies();
 	const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
 	const isAuth = async () => {
-		const cookie = Cookies.get("__Secure-portfolio.authenticated");
+		const cookie = Cookies.get("__Secure-authenticated");
 		try {
 			await jwtVerify(cookie?.value as string, secret);
 			return true;
@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
 			Cookies.delete({
 				path: "/",
 				secure: true,
-				name: "__Secure-portfolio.authenticated",
+				name: "__Secure-authenticated",
 				domain: process.env.COOKIE_DOMAIN,
 				httpOnly: true,
 				sameSite: "none",
@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
 			value: jwt,
 			path: "/",
 			secure: true,
-			name: "__Secure-portfolio.guest",
+			name: "__Secure-guest",
 			domain: process.env.COOKIE_DOMAIN,
 			httpOnly: true,
 			sameSite: "none",
@@ -47,7 +47,7 @@ export async function middleware(request: NextRequest) {
 		Cookies.delete({
 			path: "/",
 			secure: true,
-			name: "__Secure-portfolio.authenticating",
+			name: "__Secure-authenticating",
 			domain: process.env.COOKIE_DOMAIN,
 			httpOnly: true,
 			sameSite: "none",
@@ -67,7 +67,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: [
-		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-	],
+	matcher: "/((?!api|_next/static|_next/image|.*\\.png$).*)",
 };

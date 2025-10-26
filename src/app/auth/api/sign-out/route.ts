@@ -8,7 +8,7 @@ export async function GET() {
 		Cookies.delete({
 			path: "/",
 			secure: true,
-			name: "__Secure-portfolio.authenticated",
+			name: "__Secure-authenticated",
 			domain: process.env.COOKIE_DOMAIN,
 			httpOnly: true,
 			sameSite: "none",

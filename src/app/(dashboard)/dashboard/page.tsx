@@ -13,11 +13,14 @@ import ProjectDelete from "../components/project/options/project-delete";
 import ProjectEdit from "../components/project/options/project-edit";
 import ProjectOptions from "../components/project/project-options";
 import Projects from "../components/project/projects";
+import Settings from "../components/settings/settings";
 
 export default function Dashboard() {
 	return (
 		<Flex className='w-full h-full gap-3' flex='column'>
-			<Header />
+			<Header>
+				<Settings />
+			</Header>
 			<Flex className='h-full gap-3 p-0 border-0' flex='column'>
 				<UserInfo />
 				{/* Main */}

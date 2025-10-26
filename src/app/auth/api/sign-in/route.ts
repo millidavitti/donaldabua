@@ -4,33 +4,32 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 	try {
-		const searchParams = req.nextUrl.searchParams;
-		const endpoint = `${process.env
-			.AUTH_ENDPOINT!}/verify-email/${searchParams.get("token")}`;
-
+		const endpoint = `${process.env.AUTH_ENDPOINT!}/sign-in/authenticated`;
 		const res = await fetch(endpoint, {
-			method: "GET",
-			headers: {
-				Cookie: req.headers.get("Cookie") ?? "",
-				"Content-Type": "appilcation/json",
-			},
+			method: "get",
+			headers: req.headers,
 		});
 
 		const json = await res.json();
+		const headers = Object.fromEntries(res.headers.entries());
 
 		return new Response(null, {
 			status: 302,
 			headers: {
-				...Object.fromEntries(res.headers.entries()),
+				...headers,
 				Location: `/auth/sign-in?message=${json.message}`,
 			},
 		});
 	} catch (error) {
-		generateErrorLog("auth/sign-up/verify-email", error, "slient");
+		generateErrorLog(
+			"@src/app/auth/api/sign-in/authenticated",
+			error,
+			"slient",
+		);
 		return new Response(null, {
 			status: 302,
 			headers: {
-				Location: `/auth/sign-up?message=${
+				Location: `/auth/sign-in?message=${
 					JSON.parse(getErrorMessage(error)).message
 				}`,
 			},
