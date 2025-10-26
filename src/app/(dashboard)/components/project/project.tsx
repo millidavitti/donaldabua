@@ -52,7 +52,7 @@ export default function Project({
 					</p>
 					<Flex className='items-center gap-0 p-0 border-none'>
 						<a href={project.repository} target='_blank'>
-							<InteractiveIcon className='hover:outline-offset-[-1px] hover:outline'>
+							<InteractiveIcon className='hover:-outline-offset-1 hover:outline-solid'>
 								<Repository size={28} className='stroke-none' />
 							</InteractiveIcon>
 						</a>

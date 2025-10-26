@@ -24,7 +24,7 @@ export default function Dashboard() {
 				<Flex className='flex-wrap gap-3 p-0 border-0 grow shrink-0 h-fit'>
 					<Sidebar />
 					<Flex
-						className='basis-[720px] grow-[2] gap-3 border-0 p-0'
+						className='basis-[720px] grow-2 gap-3 border-0 p-0'
 						flex='column'
 					>
 						<Flex flex='column' className='gap-3 p-0 border-0'>

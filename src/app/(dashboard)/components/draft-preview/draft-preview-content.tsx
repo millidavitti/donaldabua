@@ -13,7 +13,7 @@ export default function DraftPreviewContent() {
 		[input_project_content],
 	);
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
+		<Flex flex='column' className='basis-[360px] grow-2 gap-3 border-0 p-0'>
 			{sorted.map((component) => {
 				if (component.type === "image")
 					return (

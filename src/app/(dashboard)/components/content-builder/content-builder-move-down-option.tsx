@@ -13,7 +13,7 @@ export default function ContentBuilderMoveDownOption({
 	const set_project_content = useSetAtom(input_project_content_atom);
 	return (
 		<InteractiveIcon
-			className='outline grow flex place-content-center'
+			className='outline-solid grow flex place-content-center'
 			onClick={() =>
 				set_project_content((content) => {
 					return content.map((comp, i, arr) => {

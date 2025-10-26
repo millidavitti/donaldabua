@@ -32,7 +32,7 @@ export default function UserInfo() {
 			</DisplayPicture>
 			<Flex
 				flex='column'
-				className='relative overflow-visible gap-3 grow-[256]'
+				className='relative overflow-visible gap-3 grow-256'
 			>
 				<Name>
 					{(name, edit) => (

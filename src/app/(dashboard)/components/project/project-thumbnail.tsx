@@ -17,7 +17,7 @@ export default function ProjectThumbnail({ thumbnail }: { thumbnail: string }) {
 						height={1000}
 						alt='thumbnail'
 						data-is-visible={Boolean(thumbnail)}
-						className='data-[is-visible=false]:hidden aspect-[16/9] outline-2 outline neonScan'
+						className='data-[is-visible=false]:hidden aspect-video outline-2 outline-solid neonScan'
 					/>
 				</Flex>
 			)}

@@ -10,7 +10,7 @@ export default function ProjectContent({
 	content: ProjectContent[];
 }) {
 	return (
-		<Flex flex='column' className='basis-[360px] grow-[2] gap-3 border-0 p-0'>
+		<Flex flex='column' className='basis-[360px] grow-2 gap-3 border-0 p-0'>
 			{content
 				.sort((a, b) => a.position - b.position)
 				.map((component) => {

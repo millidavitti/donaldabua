@@ -12,7 +12,7 @@ export default function ContentBuilder() {
 	return (
 		<Flex
 			flex='column'
-			className='basis-[360px] grow-[2] gap-3'
+			className='basis-[360px] grow-2 gap-3'
 			id='content-builder'
 		>
 			<ContentTypes />

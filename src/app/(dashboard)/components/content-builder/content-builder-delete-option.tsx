@@ -13,7 +13,7 @@ export default function ContentBuilderDeleteOption({
 	const project_content_setter = useSetAtom(input_project_content_atom);
 	return (
 		<InteractiveIcon
-			className='outline grow flex place-content-center'
+			className='outline-solid grow flex place-content-center'
 			onClick={() => {
 				project_content_setter((content) => {
 					return content

@@ -112,7 +112,7 @@ export default function useAlertDialog() {
 						<Flex className='justify-end gap-3 p-0 border-0'>
 							<Button
 								type='submit'
-								className='outline-1 active:scale-95'
+								className='active:scale-95'
 								onClick={cancel}
 							>
 								Cancel

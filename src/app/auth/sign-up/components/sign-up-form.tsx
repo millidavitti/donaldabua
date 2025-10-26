@@ -40,7 +40,7 @@ export default function SignUpForm() {
 					type='text'
 					id='name'
 					name='name'
-					className='outline p-3'
+					className='outline-solid p-3'
 					onChange={(e) =>
 						setCredentials({ ...credentials, name: e.target.value })
 					}
@@ -50,7 +50,7 @@ export default function SignUpForm() {
 					type='email'
 					id='email'
 					name='email'
-					className='outline p-3'
+					className='outline-solid p-3'
 					required
 					onChange={(e) =>
 						setCredentials({ ...credentials, email: e.target.value })

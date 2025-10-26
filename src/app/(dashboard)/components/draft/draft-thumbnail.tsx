@@ -38,7 +38,7 @@ export default function DraftThumbnail() {
 					width={1000}
 					height={1000}
 					alt='thumbnail'
-					className='aspect-[16/9] shrink-0 neonScan'
+					className='aspect-video shrink-0 neonScan'
 				/>
 			)}
 		</>

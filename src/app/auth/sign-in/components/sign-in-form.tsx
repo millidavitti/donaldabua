@@ -38,7 +38,7 @@ export default function SignInForm() {
 					type='email'
 					id='email'
 					name='email'
-					className='outline p-3'
+					className='outline-solid p-3'
 					required
 					onChange={(e) => setFormData({ email: e.target.value })}
 				/>

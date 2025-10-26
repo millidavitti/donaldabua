@@ -24,7 +24,7 @@ export default function ContentBuilderVideo({
 				<ContentBuilderMoveDownOption position={component.position} />
 			</ContentBuilderOptionsDrawer>
 			{componentId === component.id || (
-				<iframe src={component.url!} className='aspect-[16/9]' loading='lazy' />
+				<iframe src={component.url!} className='aspect-video' loading='lazy' />
 			)}
 			{componentId === component.id && (
 				<Flex flex='column' className='bg-light-surface gap-3'>
@@ -38,7 +38,7 @@ export default function ContentBuilderVideo({
 							required
 							defaultValue={component.url!}
 							onChange={(e) => captureInput(e.currentTarget.value)}
-							className='outline p-3'
+							className='outline-solid p-3'
 						/>
 
 						<Button
