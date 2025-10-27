@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
 		}
 	};
 
-	if (request.nextUrl.pathname.startsWith("/public")) {
+	if (request.nextUrl.pathname.startsWith("/share")) {
 		const userId = request.nextUrl.pathname.split("/")[2];
 
 		const jwt = await new SignJWT()
