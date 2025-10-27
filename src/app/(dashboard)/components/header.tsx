@@ -11,7 +11,7 @@ export default function Header({ children }: { children?: ReactNode }) {
 	return (
 		<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 			<Link
-				href={"/public/" + payload.data?.user.id}
+				href={"/share/" + payload.data?.user.id}
 				target='_blank'
 				rel='noopener noreferrer'
 			>
