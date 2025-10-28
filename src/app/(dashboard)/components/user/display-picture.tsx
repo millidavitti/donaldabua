@@ -12,7 +12,7 @@ export default function DisplayPicture({
 	return (
 		<Flex
 			flex='column'
-			className='relative overflow-visible z-10 mx-auto lg:mx-0'
+			className='relative overflow-visible z-20 mx-auto lg:mx-0'
 		>
 			{Modal}
 			{children(image, edit)}
