@@ -4,14 +4,16 @@ import Image from "next/image";
 import { useAtomValue } from "jotai";
 import { payload_view_atom } from "@/data/data";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 export default function Header({ children }: { children?: ReactNode }) {
 	const payload = useAtomValue(payload_view_atom);
+	const { userId } = useParams();
 
 	return (
 		<Flex className='items-center justify-between p-0 border-0 shrink-0'>
 			<Link
-				href={"/share/" + payload.data?.user.id}
+				href={"/share/" + (userId || payload.data?.user.id)}
 				target='_blank'
 				rel='noopener noreferrer'
 			>
